@@ -10,7 +10,24 @@
    * example commands, try "rush --help", "rush my-bulk-command --help", or
    * "rush my-global-command --help".
    */
-  "commands": [
+  "commands": [{
+      "commandKind": "bulk",
+      "name": "compile",
+      "summary": "compilies all of the projects typescript",
+      "enableParallelism": true
+    },
+    {
+      "commandKind": "bulk",
+      "name": "clean",
+      "summary": "removes all of the compilation generated files",
+      "enableParallelism": true
+    },
+    {
+      "commandKind": "bulk",
+      "name": "test",
+      "summary": "runs all tests",
+      "enableParallelism": false
+    }
     // {
     //   /**
     //    * (Required) Determines the type of custom command.

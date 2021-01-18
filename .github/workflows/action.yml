@@ -3,6 +3,7 @@ name: CI Job
 on:
     pull_request:
         branches: [ master ]
+        types: [ synchronize, opened, reopened ]
 jobs:
     job_1_name:
         runs-on: ubuntu-latest
@@ -11,7 +12,6 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                 node-version: 12
-            - run: npm i -g rush
-            - run: rush update
-            - run: rush compile
-            - run: rush test
+            - run: node node common/scripts/install-run-rush.js change --verify
+            - run: node common/scripts/install-run-rush.js install
+            - run: node common/scripts/install-run-rush.js test

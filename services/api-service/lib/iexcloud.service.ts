@@ -14,7 +14,7 @@ const prefix = () => {
     return pk && pk[0] === "T" ? sandboxURL : baseURL;
 };
 
-const tokenPlugin = got.extend({
+export const tokenPlugin = got.extend({
     searchParams: { 'token': pk }
 })
 
@@ -32,8 +32,6 @@ export const iexApiRequest = async <T> (
 
         return JSON.parse(resp.body);
     } catch (error) {
-        // tslint:disable-next-line: no-console
-        console.error(error);
         throw error;
     }
 };

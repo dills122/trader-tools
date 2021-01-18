@@ -1,6 +1,6 @@
 import IEXCloud from './iexcloud.service';
 
-export const quote = async (symbol): Promise<IEXQuote> => {
+export const quote = async (symbol: string): Promise<IEXQuote> => {
   return await IEXCloud<IEXQuote>(`/stock/${symbol}/quote`);
 };
 

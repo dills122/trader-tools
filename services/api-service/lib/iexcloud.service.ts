@@ -32,8 +32,6 @@ export const iexApiRequest = async <T> (
 
         return JSON.parse(resp.body);
     } catch (error) {
-        // tslint:disable-next-line: no-console
-        console.error(error);
         throw error;
     }
 };

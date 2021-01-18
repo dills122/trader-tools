@@ -14,7 +14,7 @@ const prefix = () => {
     return pk && pk[0] === "T" ? sandboxURL : baseURL;
 };
 
-const tokenPlugin = got.extend({
+export const tokenPlugin = got.extend({
     searchParams: { 'token': pk }
 })
 

@@ -397,6 +397,10 @@
     {
       "packageName": "trading-services",
       "projectFolder": "services/trading-services"
+    },
+    {
+      "packageName": "cron-app",
+      "projectFolder": "apps/cron-app"
     }
     // {
     //   /**

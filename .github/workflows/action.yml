@@ -2,7 +2,6 @@ name: CI Job
 
 on:
     pull_request:
-        branches: [ master ]
         types: [ synchronize, opened, reopened ]
 jobs:
     job_1_name:

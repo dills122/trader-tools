@@ -393,6 +393,10 @@
     {
       "packageName": "api-service",
       "projectFolder": "services/api-service"
+    },
+    {
+      "packageName": "trading-services",
+      "projectFolder": "services/trading-services"
     }
     // {
     //   /**

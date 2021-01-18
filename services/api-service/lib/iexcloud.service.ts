@@ -19,10 +19,10 @@ const tokenPlugin = got.extend({
 })
 
 
-export const iexApiRequest = async (
+export const iexApiRequest = async <T> (
     endpoint: string,
     params = {}
-): Promise<any> => {
+): Promise<T> => {
     try {
         const resp = await tokenPlugin.get(`${prefix()}${apiversion}${endpoint}`, {
             searchParams: {
@@ -30,10 +30,11 @@ export const iexApiRequest = async (
             }
         });
 
-        return resp;
+        return JSON.parse(resp.body);
     } catch (error) {
         // tslint:disable-next-line: no-console
         console.error(error);
+        throw error;
     }
 };
 

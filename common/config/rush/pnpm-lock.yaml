@@ -1,8 +1,12 @@
 dependencies:
   '@rush-temp/api-service': 'file:projects/api-service.tgz'
   '@rush-temp/trader-sdk': 'file:projects/trader-sdk.tgz'
+  '@rush-temp/trading-services': 'file:projects/trading-services.tgz'
+  '@types/lodash': 4.14.167
   dotenv: 8.2.0
+  gmail-send: 1.8.10
   got: 11.8.1
+  lodash: 4.17.20
   typescript: 4.1.3
 lockfileVersion: 5.1
 packages:
@@ -39,6 +43,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-MPtoySlAZQ37VoLaPcTHCu1RWJ4llDkULYZIzOYxlhxBqYPB0RsRlmMU0R6tahtFe27mIdkHV+551ZWV4PLmVw==
+  /@types/lodash/4.14.167:
+    dev: false
+    resolution:
+      integrity: sha512-w7tQPjARrvdeBkX/Rwg95S592JwxqOjmms3zWQ0XZgSyxSLdzWaYH3vErBhdVS/lRBX7F8aBYcYJYTr5TMGOzw==
   /@types/node/14.14.21:
     dev: false
     resolution:
@@ -109,6 +117,13 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==
+  /gmail-send/1.8.10:
+    dependencies:
+      lodash: 4.17.20
+      nodemailer: 6.4.17
+    dev: false
+    resolution:
+      integrity: sha512-QMpWwzeA64U69HzOEzI37UNc73xXkhTg8LuqsfKX9W7LjiQY3yRvViVn7ZhuJWLTV4136vsLJf2sXiZKmdykbw==
   /got/11.8.1:
     dependencies:
       '@sindresorhus/is': 4.0.0
@@ -150,6 +165,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-zdGa2TOpSZPq5mU6iowDARnMBZgtCqJ11dJROFi6tg6kTn4nuUdU09lFyLFSaHrWqpIJ+EBq4E8/Dc0Vx5vLdA==
+  /lodash/4.17.20:
+    dev: false
+    resolution:
+      integrity: sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
   /lowercase-keys/2.0.0:
     dev: false
     engines:
@@ -168,6 +187,12 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==
+  /nodemailer/6.4.17:
+    dev: false
+    engines:
+      node: '>=6.0.0'
+    resolution:
+      integrity: sha512-89ps+SBGpo0D4Bi5ZrxcrCiRFaMmkCt+gItMXQGzEtZVR3uAD3QAQIDoxTWnx3ky0Dwwy/dhFrQ+6NNGXpw/qQ==
   /normalize-url/4.5.0:
     dev: false
     engines:
@@ -228,22 +253,38 @@ packages:
     dev: false
     name: '@rush-temp/api-service'
     resolution:
-      integrity: sha512-nEQvG4uR62lEGhJu8tTCOOb15VNMvPxQmM34ocoCsM9txRtdMLZyEdgsNLL6sWK4NBqQI8tHJQh5bmF078XWeQ==
+      integrity: sha512-zUfKkyb8ohEIhfCpqUDFIimJNipoj80EMLxp43Je7qHgVoBJNPsicepkV8VPJWwYYZ78q4+k4NhSj0kM/CJneQ==
       tarball: 'file:projects/api-service.tgz'
     version: 0.0.0
   'file:projects/trader-sdk.tgz':
     dependencies:
+      '@types/lodash': 4.14.167
+      gmail-send: 1.8.10
+      lodash: 4.17.20
       typescript: 4.1.3
     dev: false
     name: '@rush-temp/trader-sdk'
     resolution:
-      integrity: sha512-CFuC0w5oEvPwRgzz/pvgJLTcgByPYsDGDUoblncSqJ4xt6vqHi09JPx8zm2tLXPkX+F3FBIqxmpjxSLNtMjDKg==
+      integrity: sha512-ORwuNDrzdgA5lovjsydoB2/KfdwGHPshYbh3UVM8WB3kHsZ15F6QqVc07o7TBpqwJSUEy/cdi2gjsyKIerwLmg==
       tarball: 'file:projects/trader-sdk.tgz'
+    version: 0.0.0
+  'file:projects/trading-services.tgz':
+    dependencies:
+      typescript: 4.1.3
+    dev: false
+    name: '@rush-temp/trading-services'
+    resolution:
+      integrity: sha512-695KRphzZm7wy0hUsSC6/aD1Jd1XjVfLhrdgQskGXIMDFStLf3BQVHQOybmU/I7Zp7sqEYO+ol9o71cjyLb+Pw==
+      tarball: 'file:projects/trading-services.tgz'
     version: 0.0.0
 registry: ''
 specifiers:
   '@rush-temp/api-service': 'file:./projects/api-service.tgz'
   '@rush-temp/trader-sdk': 'file:./projects/trader-sdk.tgz'
+  '@rush-temp/trading-services': 'file:./projects/trading-services.tgz'
+  '@types/lodash': ~4.14.167
   dotenv: ~8.2.0
+  gmail-send: ~1.8.10
   got: ~11.8.1
+  lodash: ~4.17.20
   typescript: ~4.1.3

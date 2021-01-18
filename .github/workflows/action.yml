@@ -1,0 +1,16 @@
+name: CI Job
+
+on:
+    pull_request:
+        types: [ synchronize, opened, reopened ]
+jobs:
+    job_1_name:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                node-version: 12
+            - run: node node common/scripts/install-run-rush.js change --verify
+            - run: node common/scripts/install-run-rush.js install
+            - run: node common/scripts/install-run-rush.js test

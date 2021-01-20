@@ -33,8 +33,10 @@ export const CrossOver = (args: BBArgs) => {
         values: args.dataPoints
     });
 
+    const middleBand = _.map(bands, 'middle');
+
     const upperBound: boolean[] = dependencies.CrossUp.calculate({
-        lineB: _.map(bands, 'upper'),
+        lineB: middleBand,
         lineA: sma
     });
 
@@ -42,7 +44,7 @@ export const CrossOver = (args: BBArgs) => {
 
     const lowerBound: boolean[] = dependencies.CrossDown.calculate({
         lineA: sma,
-        lineB: _.map(bands, 'lower')
+        lineB: middleBand
     });
 
     const isCrossOverLowerBound = _.some(lowerBound, (v) => v);

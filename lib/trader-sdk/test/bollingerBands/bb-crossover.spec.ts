@@ -30,7 +30,7 @@ describe('Bollinger Bands::', function () {
     });
 
     it('Should run happy path and have downward trend (Lower bound cross over)', () => {
-        stubs.SMAStub.returns([5, 5, 7, 7, 8, 9, 8, 8, 8, 8, 6, 3, 3, 1, 3, 1, 1, 3, 3, 3, 4, 3]);
+        stubs.SMAStub.returns([5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 1, 3, 1, 1, 3, 3, 3, 4, 3]);
         const BBTrend = CrossOver({
             dataPoints: []
         });

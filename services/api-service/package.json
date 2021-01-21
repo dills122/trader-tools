@@ -24,6 +24,6 @@
   "dependencies": {
     "got": "~11.8.1",
     "dotenv": "~8.2.0",
-    "trader-sdk": "~0.0.0"
+    "trader-sdk": "~0.1.0"
   }
 }

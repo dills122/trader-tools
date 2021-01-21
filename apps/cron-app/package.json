@@ -1,6 +1,6 @@
 {
   "name": "cron-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "runs all trading cron jobs",
   "main": "cron-runner.js",
   "scripts": {

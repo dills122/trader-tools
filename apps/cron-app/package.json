@@ -5,7 +5,7 @@
   "main": "cron-runner.js",
   "scripts": {
     "test": "echo \"Error: no test yet\" && exit 0",
-    "build": "",
+    "build": "tsc -p .",
     "compile": "tsc",
     "clean": "tsc --build --clean"
   },

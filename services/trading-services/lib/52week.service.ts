@@ -5,11 +5,10 @@ export const service = async () => {
     try {
         const results = await util.asyncFilter(util.getWatchlist(), async (symbol) => {
             const { week52Low, latestPrice } = await QuouteService.quote(symbol);
-            console.log(week52Low, latestPrice);
             if (week52Low >= latestPrice) {
                 return true;
             }
-            const percentDifference = (Math.abs(week52Low - latestPrice) / ((latestPrice + week52Low) / 2)) * 100;
+            const percentDifference = util.calculatePercentDifference(week52Low, latestPrice);
             return percentDifference <= 10;
         });
         if (results.length <= 0) {

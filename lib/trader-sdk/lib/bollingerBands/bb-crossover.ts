@@ -24,6 +24,7 @@ export const CrossOver = (args: BBArgs) => {
         stdDev: args.stdDev || stdDev,
         values: args.dataPoints
     });
+    
     if (bands.length <= 0) {
         return;
     }

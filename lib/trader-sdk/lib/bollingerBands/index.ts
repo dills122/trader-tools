@@ -1,9 +1,10 @@
-import * as BB from './bb';
+// import * as BB from './bb';
+import * as BBCrossover from './bb-crossover';
 
 export default {
-    BB
+    BBCrossover
 };
 
 export {
-    BB
+    BBCrossover
 };

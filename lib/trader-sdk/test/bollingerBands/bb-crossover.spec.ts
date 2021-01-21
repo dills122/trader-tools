@@ -38,6 +38,14 @@ describe('Bollinger Bands::', function () {
     });
 
     it('Should run happy path and have no trend', () => {
+        stubs.SMAStub.returns([5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]);
+        const BBTrend = CrossOver({
+            dataPoints: []
+        });
+        expect(BBTrend).to.be.undefined;
+    });
+
+    it('Should run happy path and have no trend', () => {
         stubs.BBStub.returns([]);
         stubs.SMAStub.returns([]);
         const BBTrend = CrossOver({

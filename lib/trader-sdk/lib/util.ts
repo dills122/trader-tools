@@ -21,3 +21,7 @@ export const calculatePercentType = (arry: boolean[], bit: boolean) => {
     });
     return _.round(total / recordCount * 100, 2);
 };
+
+export const calculatePercentDifference = (valueOne, valueTwo) => {
+    return (Math.abs(valueOne - valueTwo) / ((valueTwo + valueOne) / 2)) * 100;
+};

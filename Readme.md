@@ -66,3 +66,29 @@ rush clean
 ## Important Info
 
 When submitting PRs **always** remember to run `rush clean` before submitting a PR and merging it. We do **NOT** want auto generated files in the source code to reduce noise.
+
+## Container Development
+
+Building the docker container
+
+```bash
+sudo docker build -t "repo:tagHere" ./
+```
+
+Run container with port open
+
+```bash
+sudo docker run -p 8080:8080 "containerId" &
+```
+
+Run container and remote into it
+
+```bash
+sudo docker run -it "containerId" /bin/bash
+```
+
+## Deployments
+
+Currently you'll only be able to deploy this via the command line, no CD integration is setup yet.
+
+You'll need to re-build the container before every deployment.

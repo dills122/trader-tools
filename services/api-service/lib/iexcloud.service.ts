@@ -5,7 +5,7 @@ import got from 'got';
 const baseURL = "https://cloud.iexapis.com/";
 const sandboxURL = "https://sandbox.iexapis.com/";
 
-dotenv.config({ path: __dirname + '/../.env' });
+dotenv.config({ path: __dirname + '/../../../.env' });
 
 const pk = process.env.IEXCLOUD_PUBLIC_KEY;
 const apiversion = process.env.IEXCLOUD_API_VERSION;

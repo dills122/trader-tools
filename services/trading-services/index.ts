@@ -1,9 +1,11 @@
-import { Week52Low } from './lib';
+import { Week52Low, ShortBB } from './lib';
 
 export default {
-    Week52Low
+    Week52Low,
+    ShortBB
 };
 
 export {
-    Week52Low
+    Week52Low,
+    ShortBB
 };

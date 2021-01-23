@@ -2,6 +2,18 @@
 
 This mono-repo contains various tools and apps all centered around stocks/equities/cryptos.
 
+# Table of Contents
+- [Trader Tools](#trader-tools)
+- [Table of Contents](#table-of-contents)
+  - [Basic Structure](#basic-structure)
+    - [Folders](#folders)
+  - [Getting Started](#getting-started)
+    - [Other Setup Items](#other-setup-items)
+    - [Other Important Commands](#other-important-commands)
+  - [Important Info](#important-info)
+  - [Container Development](#container-development)
+  - [Deployments](#deployments)
+
 ## Basic Structure
 
 This is mono-repo is setup with an overall basic folder structure that will be explained below.
@@ -30,9 +42,9 @@ rush install
 
 ### Other Setup Items
 
-You'll need to create a couple `.env` files to ensure all the services work correctly.
+You'll need to create an `.env` file with a few key-value pair to ensure all the services work correctly.
 
-In `~/services/api-services` create an `.env` file with the following parameters:
+In `~/` create an `.env` file, if one doesn't already exist, with the following parameters:
 
 ```env
 IEXCLOUD_PUBLIC_KEY=PUBLIC_KEY
@@ -41,7 +53,7 @@ IEXCLOUD_API_VERSION=stable
 
 To get the required data points sign up for an `iex cloud` api account [here](https://iexcloud.io/) and for more info on how to work with the api read [here](https://intercom.help/iexcloud/en/articles/2851957-how-to-use-the-iex-cloud-api).
 
-In `~/lib/trader-sdk` create an `.env` file with the following parameters:
+In `~/` create an `.env` file, if one doesn't already exist, with the following parameters:
 
 ```env
 EMAIL_USERNAME=GMAIL_EMAIL
@@ -66,3 +78,29 @@ rush clean
 ## Important Info
 
 When submitting PRs **always** remember to run `rush clean` before submitting a PR and merging it. We do **NOT** want auto generated files in the source code to reduce noise.
+
+## Container Development
+
+Building the docker container
+
+```bash
+sudo docker build -t "repo:tagHere" ./
+```
+
+Run container with port open
+
+```bash
+sudo docker run -p 8080:8080 "containerId" &
+```
+
+Run container and remote into it
+
+```bash
+sudo docker run -it "containerId" /bin/bash
+```
+
+## Deployments
+
+Currently you'll only be able to deploy this via the command line, no CD integration is setup yet.
+
+You'll need to re-build the container before every deployment.

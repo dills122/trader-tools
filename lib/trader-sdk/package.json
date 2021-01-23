@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.spec.ts",
-    "build": "",
+    "build": "tsc -p .",
     "compile": "tsc",
     "clean": "tsc --build --clean"
   },

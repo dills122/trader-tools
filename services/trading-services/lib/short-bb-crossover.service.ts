@@ -2,6 +2,8 @@ import { BollingerBands, Emailer, util } from 'trader-sdk';
 import { HistoricPrices } from 'api-service';
 import _ from 'lodash';
 
+const { CrossOver } = BollingerBands;
+
 
 export const service = async () => {
     try {
@@ -12,14 +14,16 @@ export const service = async () => {
                 timeframe: '10d'
             });
             const closedPrices = _.map(historicPrices, 'close');
-            const trend = BollingerBands.BBCrossover.CrossOver({
-                dataPoints: closedPrices,
+            const crossOver = new CrossOver({
+                peroidData: closedPrices,
                 peroid: 10,
                 stdDev: 2
-            });
-            if (trend) {
+            })
+            const isCrossingDown = crossOver.isCrossingDown();
+            const isCrossingUp = crossOver.isCrossingUp();
+            if (isCrossingUp || isCrossingDown) {
                 results.push({
-                    trend,
+                    trend: isCrossingUp ? 'upwards' : 'downwards',
                     symbol
                 });
             }

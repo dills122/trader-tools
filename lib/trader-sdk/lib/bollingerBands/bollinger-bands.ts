@@ -1,11 +1,9 @@
 import _ from 'lodash';
 import config from './bollinger-bands.config';
-const { BollingerBands: BB, CrossUp, CrossDown, SMA } = require('technicalindicators');
+const { BollingerBands: BB, SMA } = require('technicalindicators');
 
 const dependencies = {
     BollingerBands: BB,
-    CrossUp,
-    CrossDown,
     SMA
 };
 
@@ -14,8 +12,6 @@ export interface Band {
     middle: number,
     upper: number
 };
-
-// export type BollingerBands = Array<Band>;
 
 export interface BollingerBandsArgs {
     peroid?: number,
@@ -44,5 +40,21 @@ export class BollingerBands {
             period: this.peroid,
             values: this.peroidData
         });
+    }
+
+    setOrUpdatePeroid(peroid: number) {
+        this.peroid = peroid;
+    }
+
+    getPeroid() {
+        return this.peroid;
+    }
+
+    setOrUpdateStandardDeviation(stdDev: number) {
+        this.stdDev = stdDev;
+    }
+
+    getStandardDeviation() {
+        return this.stdDev;
     }
 }

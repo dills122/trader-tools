@@ -32,7 +32,7 @@ export class BandWidth extends BollingerBands {
 
     private calculatePercentB(band: Band, priceAtBand: number) {
         const { lower, upper } = band;
-        return _.round((priceAtBand - lower) / (upper - lower) * 100, 2);
+        return _.round((priceAtBand - lower) / (upper - lower), 2);
     }
 
     private calculateAverageBandwidth() {
@@ -44,6 +44,9 @@ export class BandWidth extends BollingerBands {
         return this.averageBandWidthOverPeroid;
     }
 
+    /**
+     * calculates if the bands are narrowing, signaling lower volatility
+     */
     hasNarrowingBandwidth() {
         const downwardTrendsInARow: number[] = [];
         let downwardTrendCount: number = 0;
@@ -67,7 +70,29 @@ export class BandWidth extends BollingerBands {
         return isWithinGivenBuffer(totalBandsTrendingNarrow, thirdOfPeroid, 10);
     }
 
-    isWalkingUpTheBand() {
+    /**
+     * calculates if there was any points to signal an over buy
+     */
+    isOverBought() {
+        let overBoughtSignals: number = 0;
+        _.each(this.percentBs, (percentB) => {
+            if (isWithinGivenBuffer(percentB, 1, 2) || percentB > 1) {
+                overBoughtSignals++;
+            }
+        });
+        return overBoughtSignals > 0;
+    }
 
+    /**
+     * calculates if there was any points to signal an over sell
+     */
+    isOverSold() {
+        let overSoldSignals: number = 0;
+        _.each(this.percentBs, (percentB) => {
+            if (isWithinGivenBuffer(percentB, 0, 2) || percentB < 0) {
+                overSoldSignals++;
+            }
+        });
+        return overSoldSignals > 0;
     }
 };

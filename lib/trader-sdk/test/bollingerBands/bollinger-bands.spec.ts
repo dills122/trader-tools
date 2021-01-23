@@ -2,8 +2,8 @@ import { describe } from 'mocha';
 import { expect } from 'chai';
 import _ from 'lodash';
 import Sinon from 'sinon';
-import { BollingerBands as BB } from '../../lib/bollingerBands/bollinger-bands';
-import config from '../../lib/bollingerBands/bollinger-bands.config';
+import { BollingerBands as BB } from '../../lib/bollinger-bands/bollinger-bands';
+import config from '../../lib/bollinger-bands/bollinger-bands.config';
 const { BollingerBands } = require('technicalindicators');
 import { BB as FlatBB } from '../../mocks/BB.mock';
 
@@ -21,31 +21,31 @@ describe('Bollinger Bands::', function () {
         sandbox.restore();
     });
 
-    describe("Peroid::", () => {
-        it('Should be able to update peroid', () => {
+    describe("Period::", () => {
+        it('Should be able to update period', () => {
             const bb = new BB({
-                peroidData: []
+                periodData: []
             });
-            expect(bb.getPeroid()).to.equal(config.peroid);
-            bb.setOrUpdatePeroid(100);
-            expect(bb.getPeroid()).to.equal(100);
+            expect(bb.getPeriod()).to.equal(config.period);
+            bb.setOrUpdatePeriod(100);
+            expect(bb.getPeriod()).to.equal(100);
         });
 
-        it('Should be able to update peroid, given peroid', () => {
+        it('Should be able to update period, given period', () => {
             const bb = new BB({
-                peroidData: [],
-                peroid: 100
+                periodData: [],
+                period: 100
             });
-            expect(bb.getPeroid()).to.equal(100);
-            bb.setOrUpdatePeroid(config.peroid);
-            expect(bb.getPeroid()).to.equal(config.peroid);
+            expect(bb.getPeriod()).to.equal(100);
+            bb.setOrUpdatePeriod(config.period);
+            expect(bb.getPeriod()).to.equal(config.period);
         });
     });
 
     describe("StandardDeviation::", () => {
         it('Should be able to update std dev, without a given std dev', () => {
             const bb = new BB({
-                peroidData: []
+                periodData: []
             });
             expect(bb.getStandardDeviation()).to.equal(config.stdDev);
             bb.setOrUpdateStandardDeviation(100);
@@ -54,7 +54,7 @@ describe('Bollinger Bands::', function () {
 
         it('Should be able to update std dev, given std dev', () => {
             const bb = new BB({
-                peroidData: [],
+                periodData: [],
                 stdDev: 100
             });
             expect(bb.getStandardDeviation()).to.equal(100);

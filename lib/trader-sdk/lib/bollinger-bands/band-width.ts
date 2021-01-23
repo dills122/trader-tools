@@ -5,23 +5,23 @@ import { isWithinGivenBuffer } from '../util';
 export class BandWidth extends BollingerBands {
     protected bandWidths: number[] = [];
     protected percentBs: number[] = [];
-    protected averageBandWidthOverPeroid: number = 0;
+    protected averageBandWidthOverPeriod: number = 0;
     constructor(args: BollingerBandsArgs) {
         super(args);
-        this.calculateBandWidthsOverPeroid();
-        this.calculatePercentBsOverPeroid();
+        this.calculateBandWidthsOverPeriod();
+        this.calculatePercentBsOverPeriod();
         this.calculateAverageBandwidth();
     }
 
-    private calculateBandWidthsOverPeroid() {
+    private calculateBandWidthsOverPeriod() {
         _.each(this.bands, (band) => {
             this.bandWidths.push(this.calculateBandWidth(band));
         });
     }
 
-    private calculatePercentBsOverPeroid() {
+    private calculatePercentBsOverPeriod() {
         _.each(this.bands, (band, currentIndex) => {
-            this.percentBs.push(this.calculatePercentB(band, this.peroidData[currentIndex]));
+            this.percentBs.push(this.calculatePercentB(band, this.periodData[currentIndex]));
         });
     }
 
@@ -37,11 +37,11 @@ export class BandWidth extends BollingerBands {
 
     private calculateAverageBandwidth() {
         const sumOfBandWidths = _.sum(this.bandWidths);
-        this.averageBandWidthOverPeroid = sumOfBandWidths / this.peroid;
+        this.averageBandWidthOverPeriod = sumOfBandWidths / this.period;
     }
 
     getAverageBandwidth() {
-        return this.averageBandWidthOverPeroid;
+        return this.averageBandWidthOverPeriod;
     }
 
     /**
@@ -62,12 +62,12 @@ export class BandWidth extends BollingerBands {
                 downwardTrendCount = 0;
             }
         }
-        const thirdOfPeroid = this.peroid / 3;
+        const thirdOfPeriod = this.period / 3;
         const totalBandsTrendingNarrow = _.sum(downwardTrendsInARow);
         if (totalBandsTrendingNarrow === 0) {
             return false;
         }
-        return isWithinGivenBuffer(totalBandsTrendingNarrow, thirdOfPeroid, 10);
+        return isWithinGivenBuffer(totalBandsTrendingNarrow, thirdOfPeriod, 10);
     }
 
     /**

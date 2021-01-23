@@ -14,40 +14,40 @@ export interface Band {
 };
 
 export interface BollingerBandsArgs {
-    peroid?: number,
+    period?: number,
     stdDev?: number,
-    peroidData: number[]
+    periodData: number[]
 };
 
 export class BollingerBands {
-    protected peroid: number;
+    protected period: number;
     protected stdDev: number;
-    protected peroidData: number[];
+    protected periodData: number[];
     protected bands: Band[];
     protected sma: number[];
     constructor(args: BollingerBandsArgs) {
         _.assign(this, {
-            peroid: args.peroid || config.peroid,
+            period: args.period || config.period,
             stdDev: args.stdDev || config.stdDev,
-            peroidData: args.peroidData
+            periodData: args.periodData
         });
         this.bands = dependencies.BollingerBands.calculate({
-            peroid: this.peroid,
+            period: this.period,
             stdDev: this.stdDev,
-            values: this.peroidData
+            values: this.periodData
         });
         this.sma = dependencies.SMA.calculate({
-            period: this.peroid,
-            values: this.peroidData
+            period: this.period,
+            values: this.periodData
         });
     }
 
-    setOrUpdatePeroid(peroid: number) {
-        this.peroid = peroid;
+    setOrUpdatePeriod(period: number) {
+        this.period = period;
     }
 
-    getPeroid() {
-        return this.peroid;
+    getPeriod() {
+        return this.period;
     }
 
     setOrUpdateStandardDeviation(stdDev: number) {

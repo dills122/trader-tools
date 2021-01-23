@@ -2,7 +2,7 @@ import { describe } from 'mocha';
 import { expect } from 'chai';
 import _ from 'lodash';
 import Sinon from 'sinon';
-import { CrossOver } from '../../lib/bollingerBands/cross-over';
+import { CrossOver } from '../../lib/bollinger-bands/cross-over';
 const { BollingerBands, SMA } = require('technicalindicators');
 import { BB } from '../../mocks/BB.mock';
 
@@ -24,7 +24,7 @@ describe('Bollinger Bands::', function () {
     it('Should run happy path and have upward trend (Upper bound cross over)', () => {
         stubs.SMAStub.returns([5, 5, 7, 7, 8, 9, 8, 8, 8, 8, 9, 10, 9, 10, 10, 11, 11, 10, 10, 9, 9, 9]);
         const BBTrend = new CrossOver({
-            peroidData: []
+            periodData: []
         });
         expect(BBTrend.isCrossingUp()).is.true;
         expect(BBTrend.isCrossingDown()).is.false;
@@ -33,7 +33,7 @@ describe('Bollinger Bands::', function () {
     it('Should run happy path and have downward trend (Lower bound cross over)', () => {
         stubs.SMAStub.returns([5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 1, 3, 1, 1, 3, 3, 3, 4, 3]);
         const BBTrend = new CrossOver({
-            peroidData: []
+            periodData: []
         });
         expect(BBTrend.isCrossingUp()).is.false;
         expect(BBTrend.isCrossingDown()).is.true;
@@ -42,7 +42,7 @@ describe('Bollinger Bands::', function () {
     it('Should run happy path and have no trend', () => {
         stubs.SMAStub.returns([5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]);
         const BBTrend = new CrossOver({
-            peroidData: []
+            periodData: []
         });
         expect(BBTrend.isCrossingUp()).is.false;
         expect(BBTrend.isCrossingDown()).is.false;
@@ -52,7 +52,7 @@ describe('Bollinger Bands::', function () {
         stubs.BBStub.returns([]);
         stubs.SMAStub.returns([]);
         const BBTrend = new CrossOver({
-            peroidData: []
+            periodData: []
         });
         expect(BBTrend.isCrossingUp()).is.false;
         expect(BBTrend.isCrossingDown()).is.false;

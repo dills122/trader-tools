@@ -1,4 +1,4 @@
 export default {
-    peroid: 20,
+    period: 20,
     stdDev: 2
 };

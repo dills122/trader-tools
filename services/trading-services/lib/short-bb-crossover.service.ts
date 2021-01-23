@@ -15,8 +15,8 @@ export const service = async () => {
             });
             const closedPrices = _.map(historicPrices, 'close');
             const crossOver = new CrossOver({
-                peroidData: closedPrices,
-                peroid: 10,
+                periodData: closedPrices,
+                period: 10,
                 stdDev: 2
             })
             const isCrossingDown = crossOver.isCrossingDown();

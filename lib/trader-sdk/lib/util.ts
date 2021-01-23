@@ -25,3 +25,10 @@ export const calculatePercentType = (arry: boolean[], bit: boolean) => {
 export const calculatePercentDifference = (valueOne, valueTwo) => {
     return (Math.abs(valueOne - valueTwo) / ((valueTwo + valueOne) / 2)) * 100;
 };
+
+export const isWithinGivenBuffer = (valueToCompare: number, valueComparingAganist: number, bufferValue: number): boolean => {
+    const buffer = _.round((bufferValue / 100) * valueComparingAganist, 2)
+    const lowerBound = valueComparingAganist - buffer;
+    const upperBound = valueComparingAganist + buffer;
+    return lowerBound <= valueToCompare && upperBound >= valueToCompare;
+};

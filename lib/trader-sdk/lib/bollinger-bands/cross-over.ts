@@ -6,7 +6,7 @@ const dependencies = {
     CrossUp,
     CrossDown
 };
-
+//This is working but is incorrect
 export class CrossOver extends BollingerBands {
     private upperBoundCrossover: boolean[];
     private lowerBoundCrossover: boolean[];

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import BaseIndicator, { BaseIndicatorArgs } from '../base-indicator';
 import config from './bollinger-bands.config';
 const { BollingerBands: BB, SMA } = require('technicalindicators');
 
@@ -13,32 +14,29 @@ export interface Band {
     upper: number
 };
 
-export interface BollingerBandsArgs {
-    period?: number,
-    stdDev?: number,
-    periodData: number[]
+export interface BollingerBandsArgs extends BaseIndicatorArgs {
+    stdDev?: number
 };
 
-export class BollingerBands {
-    protected period: number;
+export class BollingerBands extends BaseIndicator {
     protected stdDev: number;
-    protected periodData: number[];
     protected bands: Band[];
     protected sma: number[];
     constructor(args: BollingerBandsArgs) {
+        super(args as BaseIndicatorArgs);
         _.assign(this, {
             period: args.period || config.period,
             stdDev: args.stdDev || config.stdDev,
-            periodData: args.periodData
+            periodData: this.getClosePrices()
         });
         this.bands = dependencies.BollingerBands.calculate({
             period: this.period,
             stdDev: this.stdDev,
-            values: this.periodData
+            values: this.getClosePrices()
         });
         this.sma = dependencies.SMA.calculate({
             period: this.period,
-            values: this.periodData
+            values: this.getClosePrices()
         });
     }
 

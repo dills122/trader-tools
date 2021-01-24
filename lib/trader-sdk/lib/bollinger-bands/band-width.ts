@@ -21,7 +21,7 @@ export class BandWidth extends BollingerBands {
 
     private calculatePercentBsOverPeriod() {
         _.each(this.bands, (band, currentIndex) => {
-            this.percentBs.push(this.calculatePercentB(band, this.periodData[currentIndex]));
+            this.percentBs.push(this.calculatePercentB(band, this.getClosePrices()[currentIndex]));
         });
     }
 

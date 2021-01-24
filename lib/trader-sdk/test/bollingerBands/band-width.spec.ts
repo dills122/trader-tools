@@ -6,7 +6,7 @@ import { BandWidth } from '../../lib/bollinger-bands/band-width';
 const { BollingerBands } = require('technicalindicators');
 import { BandWidthDownward, BB } from '../../mocks/BB.mock';
 
-describe('Bollinger Bands::', function () {
+describe('Band Width::', function () {
     let sandbox: Sinon.SinonSandbox;
     let stubs: any = {};
 

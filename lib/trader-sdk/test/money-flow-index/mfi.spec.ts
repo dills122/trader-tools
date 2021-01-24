@@ -5,7 +5,7 @@ import {MFI} from '../../lib/money-flow-index/mfi';
 import config from '../../lib/money-flow-index/money-flow.index.config';
 import { FourteenDayPeriod } from '../../mocks/mfi.mock';
 
-describe('Bollinger Bands::', function () {
+describe('MFI::', function () {
 
     it('Happy path 14 period', () => {
         const mfi = new MFI({

@@ -59,8 +59,13 @@ export class PercentBMFIIndicator {
         return this.stdDev;
     }
 
-    hasUpwardTrend() {
+    hasStrongUpwardTrend() {
         return isWithinGivenBufferOrGreater(this.mfiClass.getAverageMfi(), 80, 2) &&
             isWithinGivenBufferOrGreater(this.bbWidthClass.getAveragePercentB(), .80, 2);
+    }
+
+    hasUpwardTrend() {
+        return isWithinGivenBufferOrGreater(this.mfiClass.getAverageMfi(), 65, 2) &&
+            isWithinGivenBufferOrGreater(this.bbWidthClass.getAveragePercentB(), .65, 2);
     }
 }

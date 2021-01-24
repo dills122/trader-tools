@@ -14,13 +14,14 @@ export interface MFIArgs {
     period?: number
 }
 
-export default class MFI {
+export class MFI {
     protected highPrices: number[];
     protected lowPrices: number[];
     protected closePrices: number[];
     protected volumeAmounts: number[];
     protected period: number = config.period;
     protected mfis: number[];
+    protected averageMfi: number;
     constructor(args: MFIArgs) {
         _.assign(this, args);
         this.calculateMfis();
@@ -34,6 +35,7 @@ export default class MFI {
             volume: this.volumeAmounts,
             period: this.period
         });
+        this.calculateAverageMfi();
     }
 
     getMfisOverPeriod() {
@@ -46,5 +48,14 @@ export default class MFI {
 
     getPeriod() {
         return this.period;
+    }
+
+    getAverageMfi() {
+        return this.averageMfi;
+    }
+
+    private calculateAverageMfi() {
+        const numberOfMfis = this.mfis.length;
+        this.averageMfi = _.chain(this.mfis).sum().divide(numberOfMfis).round(2).value();
     }
 }

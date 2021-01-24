@@ -32,3 +32,7 @@ export const isWithinGivenBuffer = (valueToCompare: number, valueComparingAganis
     const upperBound = valueComparingAganist + buffer;
     return lowerBound <= valueToCompare && upperBound >= valueToCompare;
 };
+
+export const isWithinGivenBufferOrGreater = (valueToCompare: number, valueComparingAganist: number, bufferValue: number): boolean => {
+    return isWithinGivenBuffer(valueToCompare, valueComparingAganist, bufferValue) && valueToCompare > valueComparingAganist;
+};

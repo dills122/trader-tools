@@ -6,11 +6,13 @@ export class BandWidth extends BollingerBands {
     protected bandWidths: number[] = [];
     protected percentBs: number[] = [];
     protected averageBandWidthOverPeriod: number = 0;
+    protected averagePercentBOverPeriod: number = 0;
     constructor(args: BollingerBandsArgs) {
         super(args);
         this.calculateBandWidthsOverPeriod();
         this.calculatePercentBsOverPeriod();
         this.calculateAverageBandwidth();
+        this.calculateAveragePercentB();
     }
 
     private calculateBandWidthsOverPeriod() {
@@ -36,12 +38,27 @@ export class BandWidth extends BollingerBands {
     }
 
     private calculateAverageBandwidth() {
-        const sumOfBandWidths = _.sum(this.bandWidths);
-        this.averageBandWidthOverPeriod = sumOfBandWidths / this.period;
+        this.averageBandWidthOverPeriod = _.chain(this.bandWidths)
+        .sum()
+        .divide(this.bandWidths.length)
+        .round(2)
+        .value();
+    }
+
+    private calculateAveragePercentB() {
+        this.averagePercentBOverPeriod = _.chain(this.percentBs)
+        .sum()
+        .divide(this.percentBs.length)
+        .round(2)
+        .value();
     }
 
     getAverageBandwidth() {
         return this.averageBandWidthOverPeriod;
+    }
+
+    getAveragePercentB() {
+        return this.averagePercentBOverPeriod;
     }
 
     /**

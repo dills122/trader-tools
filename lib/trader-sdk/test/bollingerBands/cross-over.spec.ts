@@ -6,7 +6,7 @@ import { CrossOver } from '../../lib/bollinger-bands/cross-over';
 const { BollingerBands, SMA } = require('technicalindicators');
 import { BB } from '../../mocks/BB.mock';
 
-describe('Bollinger Bands::', function () {
+describe('Cross Over::', function () {
     let sandbox: Sinon.SinonSandbox;
     let stubs: any = {};
 

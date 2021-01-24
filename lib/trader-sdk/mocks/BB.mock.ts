@@ -91,6 +91,192 @@ export const BB = [
     }
 ];
 
+export const BBSecond = [
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    },
+    {
+        lower: 24.05,
+        middle: 25.55,
+        upper: 26.95
+    }
+];
+
+export const BBHighBPercent = [
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    },
+    {
+        lower: 50.12,
+        middle: 53.75,
+        upper: 55
+    }
+];
+
 export const BandWidthDownward = [
     {
         lower: 2,

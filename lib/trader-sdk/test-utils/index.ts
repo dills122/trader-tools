@@ -43,3 +43,12 @@ export function buildCandlesFromArrays({
     }
     return candles;
 }
+
+export function generateArrayOfNumbers(length: number, seedNumber: number = Math.random() * 10, bufferValue: number = 0) {
+    let numbers: number[] = [];
+    for (let i = 0; i < length; i++) {
+        const buffer = Math.random() * bufferValue;
+        numbers.push(buffer ? seedNumber - buffer : seedNumber);
+    }
+    return numbers;
+}

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { CandleCollection } from '../candles';
 import SMA from '../sma';
 
-const config = {
+export const config = {
     fastPeriod: 50,
     slowPeriod: 200
 };
@@ -41,27 +41,24 @@ export default class FastSlowSMACrossOver {
 
     hasRecentCrossUp() {
         const recentSegmentLength = _.min([this.slowPeriodSMAs.length, 2]) || 0;
-        const slowSplice = _.chain(this.slowPeriodSMAs)
+        const slowSlice = _.chain(this.slowPeriodSMAs)
             .clone()
             .slice(this.slowPeriodSMAs.length - recentSegmentLength, this.slowPeriodSMAs.length)
             .value();
-        const tmpFastPeriodSMAs = _.clone(this.fastPeriodSMAs);
-        return slowSplice.some((slowSMA) => {
-            const fastSMA = tmpFastPeriodSMAs.pop() || 0;
-            return fastSMA > slowSMA;
+        return _.some(slowSlice, (slowSMA, index) => {
+            return slowSMA > this.fastPeriodSMAs[this.fastPeriodSMAs.length - index - 1];
         });
     }
 
     hasRecentCrossDown() {
         const recentSegmentLength = _.min([this.slowPeriodSMAs.length, 2]) || 0;
-        const slowSplice = _.chain(this.slowPeriodSMAs)
+        const slowSlice = _.chain(this.slowPeriodSMAs)
             .clone()
             .slice(this.slowPeriodSMAs.length - recentSegmentLength, this.slowPeriodSMAs.length)
             .value();
-        const tmpFastPeriodSMAs = _.clone(this.fastPeriodSMAs);
-        return slowSplice.some((slowSMA) => {
-            const fastSMA = tmpFastPeriodSMAs.pop() || 0;
-            return fastSMA < slowSMA;
+
+        return _.some(slowSlice, (slowSMA, index) => {
+            return slowSMA < this.fastPeriodSMAs[this.fastPeriodSMAs.length - index - 1];
         });
     }
 }

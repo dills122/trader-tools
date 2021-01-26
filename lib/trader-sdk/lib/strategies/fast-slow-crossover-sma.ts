@@ -1,6 +1,12 @@
 import _ from 'lodash';
-import { CandleCollection } from '../candles';
+import { CandleCollection } from '../candles/candles';
 import SMA from '../sma';
+import { CrossDown, CrossUp } from 'technicalindicators';
+
+const dependencies = {
+    CrossUp,
+    CrossDown
+};
 
 export const config = {
     fastPeriod: 50,
@@ -60,5 +66,21 @@ export default class FastSlowSMACrossOver {
         return _.some(slowSlice, (slowSMA, index) => {
             return slowSMA < this.fastPeriodSMAs[this.fastPeriodSMAs.length - index - 1];
         });
+    }
+
+    hasCrossUp() {
+        const crossUpValues = dependencies.CrossUp.calculate({
+            lineA: this.slowPeriodSMAs,
+            lineB: this.fastPeriodSMAs
+        });
+        return _.some(crossUpValues, (up) => up);
+    }
+
+    hasCrossDown() {
+        const crossDownValues = dependencies.CrossDown.calculate({
+            lineA: this.slowPeriodSMAs,
+            lineB: this.fastPeriodSMAs
+        });
+        return _.some(crossDownValues, (up) => up);
     }
 }

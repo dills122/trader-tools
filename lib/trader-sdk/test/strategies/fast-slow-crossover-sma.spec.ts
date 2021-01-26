@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import _ from 'lodash';
 import Sinon from 'sinon';
 import * as Indicator from '../../lib/strategies/fast-slow-crossover-sma';
-const { SMA } = require('technicalindicators');
+import { SMA } from 'technicalindicators';
 import { buildUniformCandlesFromArray, generateArrayOfNumbers } from '../../test-utils';
 
 describe('Fast/Slow Crossover SMA::', function () {
@@ -31,7 +31,9 @@ describe('Fast/Slow Crossover SMA::', function () {
             candles: buildUniformCandlesFromArray(generateArrayOfNumbers(200, 20, .5))
         });
         expect(indicator.hasRecentCrossUp()).to.be.true;
+        expect(indicator.hasCrossUp()).to.be.true;
         expect(indicator.hasRecentCrossDown()).to.be.false;
+        expect(indicator.hasCrossDown()).to.be.false;
     });
 
     it('Should run happy path and have downward trend on slow SMA', () => {
@@ -46,7 +48,9 @@ describe('Fast/Slow Crossover SMA::', function () {
             candles: buildUniformCandlesFromArray(generateArrayOfNumbers(200, 20, .5))
         });
         expect(indicator.hasRecentCrossUp()).to.be.false;
+        expect(indicator.hasCrossUp()).to.be.false;
         expect(indicator.hasRecentCrossDown()).to.be.true;
+        expect(indicator.hasCrossDown()).to.be.true;
     });
 
     it('Should run happy path and have a flat trend', () => {
@@ -58,9 +62,11 @@ describe('Fast/Slow Crossover SMA::', function () {
         .onCall(4).returns([19.5]) //Slow
         ;
         const indicator = new Indicator.default({
-            candles: buildUniformCandlesFromArray(generateArrayOfNumbers(200, 20, .5))
+            candles: buildUniformCandlesFromArray(generateArrayOfNumbers(200, 20))
         });
         expect(indicator.hasRecentCrossUp()).to.be.false;
+        expect(indicator.hasCrossUp()).to.be.false;
         expect(indicator.hasRecentCrossDown()).to.be.false;
+        expect(indicator.hasCrossDown()).to.be.true;
     });
 });

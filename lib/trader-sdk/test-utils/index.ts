@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Candle, CandleCollection } from '../lib/candles';
+import { Candle, CandleCollection } from '../lib/candles/candles';
 
 
 export function buildUniformCandlesFromArray(arrayOfNumbers: number[]) {

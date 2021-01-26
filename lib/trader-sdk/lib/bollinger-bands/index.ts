@@ -1,15 +1,12 @@
 import { BandWidth } from './band-width';
 import * as BollingerBands from './bollinger-bands';
-import { CrossOver } from './cross-over';
 
 export default {
     BandWidth,
-    BollingerBands,
-    CrossOver
+    BollingerBands
 };
 
 export {
     BandWidth,
-    BollingerBands,
-    CrossOver
+    BollingerBands
 };

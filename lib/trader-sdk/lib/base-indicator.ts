@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { CandleCollection } from "./candles";
+import { CandleCollection } from "./candles/candles";
 
 export interface BaseIndicatorArgs {
     candles: CandleCollection,

@@ -32,3 +32,12 @@ export const isWithinGivenBuffer = (valueToCompare: number, valueComparingAganis
     const upperBound = valueComparingAganist + buffer;
     return lowerBound <= valueToCompare && upperBound >= valueToCompare;
 };
+
+export const sliceArrayByFullChunks = (arry: any[], chunkSize: number, shouldReverse: boolean = false) => {
+    const maxChunks = _.round(arry.length / chunkSize);
+    const fullLength = chunkSize * maxChunks;
+    if (shouldReverse) {
+        return _.slice(arry, arry.length - fullLength);
+    }
+    return _.slice(arry, 0, fullLength);
+};

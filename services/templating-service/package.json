@@ -1,0 +1,20 @@
+{
+  "name": "templating-service",
+  "version": "0.1.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test yet\" && exit 0",
+    "build": "tsc -p .",
+    "compile": "tsc",
+    "clean": "tsc --build --clean"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mustache": "^4.1.0"
+  },
+  "devDependencies": {
+    "typescript": "~4.1.3"
+  }
+}

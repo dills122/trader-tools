@@ -1,6 +1,7 @@
 dependencies:
   '@rush-temp/api-service': 'file:projects/api-service.tgz'
   '@rush-temp/cron-app': 'file:projects/cron-app.tgz'
+  '@rush-temp/templating-service': 'file:projects/templating-service.tgz'
   '@rush-temp/trader-sdk': 'file:projects/trader-sdk.tgz'
   '@rush-temp/trading-services': 'file:projects/trading-services.tgz'
   '@types/chai': 4.2.14
@@ -17,6 +18,7 @@ dependencies:
   got: 11.8.1
   lodash: 4.17.20
   mocha: 8.2.1
+  mustache: 4.1.0
   node-cron: 2.0.3
   sinon: 9.2.3
   technicalindicators: 3.1.0
@@ -1033,6 +1035,11 @@ packages:
     dev: false
     resolution:
       integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
+  /mustache/4.1.0:
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-0FsgP/WVq4mKyjolIyX+Z9Bd+3WS8GOwoUTyKXT5cTYMGeauNTi2HPCwERqseC1IHAy0Z7MDZnJBfjabd4O8GQ==
   /nanoid/3.1.12:
     dev: false
     engines:
@@ -1592,7 +1599,7 @@ packages:
     dev: false
     name: '@rush-temp/api-service'
     resolution:
-      integrity: sha512-iSpDsg2f7i6JkHsur4DH+vRaBTGsLkKNlTnEQjSGY1fp+3pkZP0vrteway8dtrYN2T9Q/2YZQXIbYY5PAHb/eQ==
+      integrity: sha512-wr+jhlYMXIq2vu8AcLVEg4uua+czi4uEzVwBJ5bUuSoe8EpU7CvRUB+2kuBIhRobvJSYcI2By8BN9eropxv7Pw==
       tarball: 'file:projects/api-service.tgz'
     version: 0.0.0
   'file:projects/cron-app.tgz':
@@ -1604,8 +1611,17 @@ packages:
     dev: false
     name: '@rush-temp/cron-app'
     resolution:
-      integrity: sha512-s3Iol9RrxeP1ZFZeVNTgFIueTapLxgjrWpxXSZtgKVFJOaftK32dumNagC11F3FkEl/2RDVwYpQTn0GsX97Ysw==
+      integrity: sha512-VG2OVYr1hx9lhsak4v3hC3we1XG+Zs+MljfomaNrbxt+mA6gF/wityXyjz6vy18wg0RkQhWSuN8SUy5uYjX30A==
       tarball: 'file:projects/cron-app.tgz'
+    version: 0.0.0
+  'file:projects/templating-service.tgz':
+    dependencies:
+      mustache: 4.1.0
+    dev: false
+    name: '@rush-temp/templating-service'
+    resolution:
+      integrity: sha512-EBFKC4iiAIOCr0R9Had/9qJ3lr70WcNK5ulCoCvz+71649tS0HBb1hvKfeg/GDhQnGD12n115oo6H1MKagjt9A==
+      tarball: 'file:projects/templating-service.tgz'
     version: 0.0.0
   'file:projects/trader-sdk.tgz':
     dependencies:
@@ -1636,12 +1652,14 @@ packages:
     dev: false
     name: '@rush-temp/trading-services'
     resolution:
-      integrity: sha512-gBSxB/9Ojj0Pgc0GoUJ8OKtAwCoQPqAb095jzkOCji9HydLnbz6WIOiOggY/Ft0kf4q5PgfL/D+ragygtWLv8A==
+      integrity: sha512-FJAmfzDEV0GSOT+yvlQk1toUsnjRQnQjtvuKLXNMjb7nWYL97fqBi/WUA8IMqtUI1t3aD4T9yiAJhstxS37/1g==
       tarball: 'file:projects/trading-services.tgz'
     version: 0.0.0
+registry: ''
 specifiers:
   '@rush-temp/api-service': 'file:./projects/api-service.tgz'
   '@rush-temp/cron-app': 'file:./projects/cron-app.tgz'
+  '@rush-temp/templating-service': 'file:./projects/templating-service.tgz'
   '@rush-temp/trader-sdk': 'file:./projects/trader-sdk.tgz'
   '@rush-temp/trading-services': 'file:./projects/trading-services.tgz'
   '@types/chai': ~4.2.14
@@ -1658,6 +1676,7 @@ specifiers:
   got: ~11.8.1
   lodash: ~4.17.20
   mocha: ~8.2.1
+  mustache: ^4.1.0
   node-cron: ~2.0.3
   sinon: ~9.2.3
   technicalindicators: ~3.1.0

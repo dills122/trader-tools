@@ -19,6 +19,6 @@ export const service = async () => {
             hasCrossUp: Indicator.hasCrossUp()
         });
     });
-
     //Need to add templating to be able to create a way to send this
+    //TODO finish feature once templating feature is created
 };

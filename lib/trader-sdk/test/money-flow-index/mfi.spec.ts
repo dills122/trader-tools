@@ -4,15 +4,19 @@ import _ from 'lodash';
 import MFIClass from '../../lib/money-flow-index/mfi';
 import config from '../../lib/money-flow-index/money-flow.index.config';
 import { FourteenDayPeriod } from '../../mocks/mfi.mock';
+import { buildCandlesFromArrays } from '../../test-utils';
 
 describe('Bollinger Bands::', function () {
 
     it('Happy path 14 period', () => {
-        const mfi = new MFIClass({
+        const data = buildCandlesFromArrays({
             highPrices: FourteenDayPeriod.high,
             lowPrices: FourteenDayPeriod.low,
             closePrices: FourteenDayPeriod.close,
-            volumeAmounts: FourteenDayPeriod.volume,
+            volumeAmounts: FourteenDayPeriod.volume
+        });
+        const mfi = new MFIClass({
+            candles: data,
             period: 14
         });
         assert(mfi);
@@ -23,11 +27,14 @@ describe('Bollinger Bands::', function () {
     });
 
     it('Happy path 20 period', () => {
-        const mfi = new MFIClass({
+        const data = buildCandlesFromArrays({
             highPrices: [25.03, 24.91, 24.89, 25.13, 25.00, 25.01, 25.1, ...FourteenDayPeriod.high],
             lowPrices: [25.03, 24.91, 24.89, 25.13, 25.00, 25.01, 25.1, ...FourteenDayPeriod.low],
             closePrices: [25.03, 24.91, 24.89, 25.13, 25.00, 25.01, 25.1, ...FourteenDayPeriod.close],
             volumeAmounts: [5673, 5625, 5023, 7457, 25.00, 25.01, 25.1, ...FourteenDayPeriod.volume],
+        })
+        const mfi = new MFIClass({
+            candles: data,
             period: 20
         });
         assert(mfi);

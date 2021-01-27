@@ -24,7 +24,7 @@ describe('Bollinger Bands::', function () {
     describe("Period::", () => {
         it('Should be able to update period', () => {
             const bb = new BB({
-                periodData: []
+                candles: []
             });
             expect(bb.getPeriod()).to.equal(config.period);
             bb.setOrUpdatePeriod(100);
@@ -33,7 +33,7 @@ describe('Bollinger Bands::', function () {
 
         it('Should be able to update period, given period', () => {
             const bb = new BB({
-                periodData: [],
+                candles: [],
                 period: 100
             });
             expect(bb.getPeriod()).to.equal(100);
@@ -45,7 +45,7 @@ describe('Bollinger Bands::', function () {
     describe("StandardDeviation::", () => {
         it('Should be able to update std dev, without a given std dev', () => {
             const bb = new BB({
-                periodData: []
+                candles: []
             });
             expect(bb.getStandardDeviation()).to.equal(config.stdDev);
             bb.setOrUpdateStandardDeviation(100);
@@ -54,7 +54,7 @@ describe('Bollinger Bands::', function () {
 
         it('Should be able to update std dev, given std dev', () => {
             const bb = new BB({
-                periodData: [],
+                candles: [],
                 stdDev: 100
             });
             expect(bb.getStandardDeviation()).to.equal(100);

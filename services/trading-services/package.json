@@ -17,6 +17,7 @@
   "dependencies": {
     "api-service": "^0.1.0",
     "trader-sdk": "^0.1.0",
-    "lodash": "~4.17.20"
+    "lodash": "~4.17.20",
+    "templating-service": "^0.1.2"
   }
 }

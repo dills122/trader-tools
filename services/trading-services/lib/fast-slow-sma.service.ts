@@ -27,7 +27,7 @@ export const service = async () => {
             trends: results
         });
         await Emailer.sendEmail({
-            body: renderedEmailTemplate,
+            html: renderedEmailTemplate,
             subject: 'Fast Slow SMA Daily Report',
             email: 'insidertradingtips1220@gmail.com'
         });

@@ -1,0 +1,51 @@
+<html>
+
+<body>
+    <div>
+        <h2>
+            Fast Slow SMA Cross Over Daily Report
+        </h2>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>
+                    Symbol
+                </th>
+                <th>
+                    hasRecentCrossUp
+                </th>
+                <th>
+                    hasRecentCrossDown
+                </th>
+                <th>
+                    hasCrossDown
+                </th>
+                <th>
+                    hasCrossUp
+                </th>
+            </tr>
+            {{ #trendResults }}
+            <tr>
+                <td>
+                    {{symbol}}
+                </td>
+                <td>
+                    {{hasRecentCrossUp}}
+                </td>
+                <td>
+                    {{hasRecentCrossDown}}
+                </td>
+                <td>
+                    {{hasCrossDown}}
+                </td>
+                <td>
+                    {{hasCrossUp}}
+                </td>
+            </tr>
+            {{ #trendResults}}
+        </table>
+    </div>
+</body>
+
+</html>

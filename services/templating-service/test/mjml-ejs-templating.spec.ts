@@ -9,7 +9,7 @@ const TEST_TEMPLATE = '<html><body><h1>Hello</h1></body></html>';
 
 const mjmlStub = Sinon.stub().returns({
     html: TEST_TEMPLATE,
-    errors: undefined,
+    errors: [],
     json: {}
 });
 const mjmlTemplater = proxyquire('../lib/mjml-ejs-templating.ts', {
@@ -29,7 +29,7 @@ describe('Ejs-mjml::', function () {
         sandbox.restore();
         mjmlStub.returns({
             html: TEST_TEMPLATE,
-            errors: undefined,
+            errors: [],
             json: {}
         });
     });
@@ -42,7 +42,7 @@ describe('Ejs-mjml::', function () {
     it('Should fail to render an email template from a given file', async () => {
         mjmlStub.returns({
             html: null,
-            errors: Error('Error'),
+            errors: [Error('Error')],
             json: {}
         });
         try {

@@ -32,7 +32,7 @@ export const createTemplateFromString = (templateString: string, templateData: o
         throw Error('Rendered templated was returned empty');
     }
     const renderedEmailResults = mjml(renderedTemplate);
-    if (renderedEmailResults.errors) {
+    if (renderedEmailResults.errors.length >= 1) {
         throw Error('Error with rendering template with mjml');
     }
     if (!renderedEmailResults.html) {

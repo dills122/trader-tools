@@ -17,7 +17,7 @@ export interface FastSlowSMACrossOverArgs {
     candles: CandleCollection
 };
 
-export default class FastSlowSMACrossOver {
+export class FastSlowSMACrossOver {
     private candles: CandleCollection;
     private fastPeriodSMAs: number[] = [];
     private slowPeriodSMAs: number[] = [];
@@ -84,3 +84,5 @@ export default class FastSlowSMACrossOver {
         return _.some(crossDownValues, (up) => up);
     }
 }
+
+export default FastSlowSMACrossOver;

@@ -7,19 +7,24 @@ const send = require('gmail-send')({
     to: process.env.EMAIL_USERNAME,
     subject: 'Tips incoming'
 });
-
 export interface EmailArgs {
     email?: string,
-    body: string,
+    body?: string,
+    html?: string,
     subject: string
 };
 
 export const sendEmail = async (args: EmailArgs) => {
+    if((!args.body && !args.html)) {
+        throw Error('Missing a required args, body or html is needed');
+    }
     try {
         await send({
-            text: args.body,
+            text: args.body ? args.body : undefined,
+            html: args.html ? args.html : undefined,
             to: args.email,
-            subject: args.subject
+            subject: args.subject,
+            
         });
     } catch (err) {
         console.log(err);

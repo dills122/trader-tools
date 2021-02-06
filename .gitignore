@@ -66,3 +66,5 @@ common/autoinstallers/*/.npmrc
 
 types/
 **/types/
+
+services/templating-service/test-templates/

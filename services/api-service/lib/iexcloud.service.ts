@@ -31,7 +31,6 @@ export const iexApiRequest = async <T>(
                 ...params
             }
         });
-        console.log(resp.url);
         return JSON.parse(resp.body);
     } catch (error) {
         throw error;

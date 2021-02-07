@@ -17,5 +17,10 @@ export interface HistoricBatchPricesCollection {
 export type Timeframe = '1m' | '3m' | '6m' | '1y' | '2y' | '3y' | '1d' | '5d' | '10d';
 
 export const historicBatch = async (args: HistoricPricesArgs) => {
-    return await IEXCloud<HistoricBatchPricesCollection>(`/stock/market/batch?${args.symbols.join(',')}&types=chart&range=${args.timeframe}`);
+    const url = `/stock/market/batch`;
+    return await IEXCloud<HistoricBatchPricesCollection>(url, {
+        symbols: args.symbols.join(',').toLocaleLowerCase(),
+        types: 'chart',
+        range: args.timeframe
+    });
 };

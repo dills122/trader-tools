@@ -48,6 +48,7 @@ In `~/` create an `.env` file, if one doesn't already exist, with the following 
 
 ```env
 IEXCLOUD_PUBLIC_KEY=PUBLIC_KEY
+IEXCLOUD_PUBLIC_KEY_TEST=PUBLIC_TEST_KEY # only have this when in test env, or else it will always think your in a test env
 IEXCLOUD_API_VERSION=stable
 ```
 

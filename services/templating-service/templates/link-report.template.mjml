@@ -1,0 +1,63 @@
+<mjml>
+  <mj-body>
+    <mj-section background-color="#5D6D7E">
+      <mj-column>
+        <mj-text font-style="italic" font-size="20px" color="#FDFEFE">
+          Link Report
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-table>
+          <tr style="border-bottom:1px solid #ecedee;text-align:left;padding:15px 0;">
+            <th style="padding: 0 3px 0 0;">Symbol</th>
+            <th style="padding: 0 3px;">Finviz</th>
+            <th style="padding: 0 3px;">OpenInsider</th>
+            <th style="padding: 0 3px;">Whalewisdom</th>
+            <th style="padding: 0 3px;">Zacks</th>
+            <th style="padding: 0 3px;">Stocktwits</th>
+            <th style="padding: 0 3px;">TradingView</th>
+            <th style="padding: 0 3px;">AtomFinance</th>
+            <th style="padding: 0 3px;">YahooFinance</th>
+            <th style="padding: 0 0 0 3px;">SeekingAlpha</th>
+          </tr>
+          <% stockLinks.forEach(function(linkObject){ %>
+          <tr>
+            <td style="padding: 0 3px 0 0;">
+              <%= linkObject.symbol %>
+            </td>
+            <td style="padding: 0 3px;">
+              <a href="<%= linkObject.Finviz %>">Link</a>
+            </td>
+            <td style="padding: 0 3px;">
+              <a href="<%= linkObject.OpenInsider %>">Link</a>
+            </td>
+            <td style="padding: 0 3px;">
+              <a href="<%= linkObject.Whalewisdom %>">Link</a>
+            </td>
+            <td style="padding: 0 3px;">
+              <a href="<%= linkObject.Zacks %>">Link</a>
+            </td>
+            <td style="padding: 0 3px;">
+              <a href="<%= linkObject.Stocktwits %>">Link</a>
+            </td>
+            <td style="padding: 0 3px;">
+              <a href="<%= linkObject.TradingView %>">Link</a>
+            </td>
+            <td style="padding: 0 3px;">
+              <a href="<%= linkObject.AtomFinance %>">Link</a>
+            </td>
+            <td style="padding: 0 3px;">
+              <a href="<%= linkObject.YahooFinance %>">Link</a>
+            </td>
+            <td style="padding: 0 0 0 3px;">
+              <a href="<%= linkObject.SeekingAlpha %>">Link</a>
+            </td>
+          </tr>
+          <% }); %>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

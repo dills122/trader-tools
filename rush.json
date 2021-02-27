@@ -403,6 +403,10 @@
       "projectFolder": "services/templating-service"
     },
     {
+      "packageName": "sentiment-service",
+      "projectFolder": "services/sentiment-service"
+    },
+    {
       "packageName": "cron-app",
       "projectFolder": "apps/cron-app"
     }

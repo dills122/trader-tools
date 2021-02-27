@@ -1,5 +1,6 @@
 import { Socials } from 'api-service';
 import _ from 'lodash';
+import { FlairFilter } from './flair-filter';
 
 export interface PostFilterArgs {
     posts: Socials.Reddit.Types.RedditLinkSchema[],
@@ -56,7 +57,41 @@ export class PostFilter {
                 this.filteredPosts.push(post);
                 continue;
             }
-
+            if (this.discussionOnlyMode) {
+                const flairFilter = new FlairFilter({
+                    filterType: 'discussion',
+                    flair: post.data.link_flair_text,
+                    subreddit: post.data.subreddit
+                });
+                if (flairFilter.filter()) {
+                    this.filteredPosts.push(post);
+                }
+                continue;
+            }
+            if (this.nonShitpostingMode) {
+                const flairFilter = new FlairFilter({
+                    filterType: 'shitpost',
+                    flair: post.data.link_flair_text,
+                    subreddit: post.data.subreddit
+                });
+                if (flairFilter.filter()) {
+                    this.filteredPosts.push(post);
+                }
+                continue;
+            }
+            if (this.ddMode) {
+                // Not supported yet
+                continue;
+            }
+            // Default is chaos filter
+            const flairFilter = new FlairFilter({
+                filterType: 'chaos',
+                flair: post.data.link_flair_text,
+                subreddit: post.data.subreddit
+            });
+            if (flairFilter.filter()) {
+                this.filteredPosts.push(post);
+            }
         }
     }
 

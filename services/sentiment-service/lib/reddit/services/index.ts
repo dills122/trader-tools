@@ -1,0 +1,1 @@
+export * as FrontPageService from './front-page.service';

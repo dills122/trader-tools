@@ -4,10 +4,10 @@ import { FlairFilter } from './flair-filter';
 
 export interface PostFilterArgs {
     posts: Socials.Reddit.Types.RedditLinkSchema[],
-    stickedMode: boolean,
-    nonShitpostingMode: boolean,
-    discussionOnlyMode: boolean,
-    ddMode: boolean
+    stickedMode?: boolean,
+    nonShitpostingMode?: boolean,
+    discussionOnlyMode?: boolean,
+    ddMode?: boolean
 };
 
 /**
@@ -93,6 +93,7 @@ export class PostFilter {
                 this.filteredPosts.push(post);
             }
         }
+        return this.filteredPosts;
     }
 
     isSticked(post: Socials.Reddit.Types.RedditLinkSchema) {

@@ -18,7 +18,9 @@ export interface RedditLinkSchema {
             images: object[]
         },
         media: object,
-        is_video: boolean
+        is_video: boolean,
+        permalink: string,
+        url: string
     }
 };
 export interface RedditCommentSchema {

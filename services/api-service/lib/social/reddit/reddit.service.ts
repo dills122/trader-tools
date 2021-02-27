@@ -12,7 +12,7 @@ const kindMapping = {
     t6: 'award'
 };
 
-const subreddits = [
+export const subreddits = [
     'RedditTickers',
     'SPACs',
     'dividends',
@@ -104,7 +104,7 @@ export const getPostAndCommentThread = async (url: string) => {
         if (!isRedditLinkSchema(postData)) {
             throw Error('No post info found');
         }
-        if (!isRedditCommentSchema(commentsEntity.data.children)) {
+        if (!isRedditCommentSchemaList(commentsEntity.data.children)) {
             throw Error('Mismatched returned data');
         }
         return {

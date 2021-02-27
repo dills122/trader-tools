@@ -1,6 +1,16 @@
 import got from 'got';
+import { isRedditPostSchema, RedditPostSchema, RedditRawResult } from './reddit-types';
 
 const baseURL = 'https:://www.reddit.com/r/';
+
+const kindMapping = {
+    t1: 'comment',
+    t2: 'account',
+    t3: 'link',
+    t4: 'message',
+    t5: 'subreddit',
+    t6: 'award'
+};
 
 const subreddits = [
     'RedditTickers',
@@ -14,7 +24,7 @@ const subreddits = [
     'wallstreetbets'
 ];
 
-export const getFrontPageOfSubreddit = async (subreddit: string) => {
+export const getFrontPageOfSubreddit = async (subreddit: string): Promise<RedditRawResult> => {
     if (!subreddits.includes(subreddit)) {
         throw Error('Unsupported subreddit');
     }
@@ -26,8 +36,8 @@ export const getFrontPageOfSubreddit = async (subreddit: string) => {
     }
 };
 
-export const getAllSubredditsFrontPages = async () => {
-    let aggregatedPosts: object[] = []; // TODO update type 
+export const getAllSubredditsFrontPages = async (): Promise<RedditPostSchema[]> => {
+    let aggregatedPosts: RedditPostSchema[] = []; // TODO update type 
     for (let subreddit of subreddits) {
         try {
             const { data } = await getFrontPageOfSubreddit(subreddit);
@@ -35,9 +45,16 @@ export const getAllSubredditsFrontPages = async () => {
                 continue; // Fail forward
             }
             const { children } = data;
-            if (children && Array(children).length > 0) {
-                aggregatedPosts = aggregatedPosts.concat(children);
+            const filterNonPostEntities = children.filter((entity) => {
+                return isRedditPostSchema(entity.data);
+            });
+            const mappedFilteredPosts = filterNonPostEntities.map((entity) => {
+                return entity.data;
+            });
+            if (!isRedditPostSchema(mappedFilteredPosts)) {
+                continue;
             }
+            aggregatedPosts = aggregatedPosts.concat(mappedFilteredPosts);
         } catch (err) {
             console.error(err);
             continue;

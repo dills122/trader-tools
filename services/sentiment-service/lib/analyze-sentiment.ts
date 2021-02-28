@@ -7,14 +7,21 @@ export const SentimentConfig = {
     veryNegative: -0.85
 };
 
-export const analyze = (standardizedInput: string[]) => {
+export interface SentimentAnalysisResult {
+    status: 'netural' | 'positive' | 'very-positive' | 'negative' | 'very-negative',
+    score: number,
+    standardizedInput: string
+};
+
+export const analyze = (standardizedInput: string[]): SentimentAnalysisResult => {
     const analyzer = new SentimentAnalyzer('English', PorterStemmer, 'afinn');
     const analysis = analyzer.getSentiment(standardizedInput);
     // Netural Area
     if (analysis >= SentimentConfig.negative && analysis <= SentimentConfig.positive) {
         return {
             status: 'netural',
-            score: analysis
+            score: analysis,
+            standardizedInput: standardizedInput.join(' ')
         };
     }
     const isPositive = SentimentConfig.positive <= analysis;
@@ -23,12 +30,14 @@ export const analyze = (standardizedInput: string[]) => {
     if (isPositive) {
         return {
             status: isVeryPositive ? 'very-positive' : 'positive',
-            score: analysis
+            score: analysis,
+            standardizedInput: standardizedInput.join(' ')
         }
     }
 
     return {
         status: isVeryNegative ? 'very-negative' : 'negative',
-        score: analysis
+        score: analysis,
+        standardizedInput: standardizedInput.join(' ')
     };
 };

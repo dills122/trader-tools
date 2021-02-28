@@ -1,16 +1,16 @@
 import got from 'got';
-import { isRedditLinkSchemaList, isRedditCommentSchemaList, RedditCommentSchema, RedditLinkSchema, RedditRawResult, RedditRawResults, isRedditLinkSchema, isRedditCommentSchema } from './reddit-types';
+import { isRedditLinkSchemaList, isRedditCommentSchemaList, RedditCommentSchema, RedditLinkSchema, RedditRawResult, RedditRawResults, isRedditLinkSchema } from './reddit-types';
 
 const baseURL = 'https:://www.reddit.com/r/';
 
-const kindMapping = {
-    t1: 'comment',
-    t2: 'account',
-    t3: 'link',
-    t4: 'message',
-    t5: 'subreddit',
-    t6: 'award'
-};
+// const kindMapping = {
+//     t1: 'comment',
+//     t2: 'account',
+//     t3: 'link',
+//     t4: 'message',
+//     t5: 'subreddit',
+//     t6: 'award'
+// };
 
 export const subreddits = [
     'RedditTickers',

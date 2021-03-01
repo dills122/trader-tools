@@ -1,6 +1,7 @@
 import { RedditCommentSchema, RedditLinkSchema, RedditRawResult } from "../lib/social/reddit/reddit-types";
+import _ from 'lodash';
 
-export const RedditRawResultBase = {
+export const RedditRawResultBase: RedditRawResult = {
     kind: 'Listing',
     data: {
         modhash: 'HASH',
@@ -45,23 +46,40 @@ export const RedditCommentSchemaBase: RedditCommentSchema = {
     }
 };
 
-export const getCommentList = (size: number) => {
+export const getCommentList = (size: number, subreddit?: string) => {
     const comments: RedditCommentSchema[] = [];
     for (let i = 0; i < size; i++) {
-        comments.push(RedditCommentSchemaBase);
+        const clonedSchema = _.cloneDeep(RedditCommentSchemaBase);
+        if (subreddit) {
+            clonedSchema.data.subreddit = subreddit;
+        }
+        comments.push(clonedSchema);
     }
     return comments;
 };
 
-export const getLinkList = (size: number) => {
+export const getLinkList = (size: number, subreddit?: string) => {
     const links: RedditLinkSchema[] = [];
     for (let i = 0; i < size; i++) {
-        links.push(RedditLinkSchemaBase);
+        const clonedSchema = _.cloneDeep(RedditLinkSchemaBase);
+        if (subreddit) {
+            clonedSchema.data.subreddit = subreddit;
+        }
+        links.push(clonedSchema);
     }
     return links;
 };
 
-export const getRawResult = (type: 'comment' | 'link', size: number = 5): RedditRawResult => {
-    RedditRawResultBase.data.children = type === 'comment' ? getCommentList(size) : getLinkList(size);
-    return RedditRawResultBase;
+export const getRawResult = (type: 'comment' | 'link', size: number = 5, subreddit?: string): RedditRawResult => {
+    const cloned = _.cloneDeep(RedditRawResultBase);
+    cloned.data.children = [];
+    if (type === 'comment') {
+        const comments = getCommentList(size, subreddit);
+        cloned.data.children = comments;
+        return cloned;
+    } else {
+        const links = getLinkList(size, subreddit);
+        cloned.data.children = links;
+        return cloned;
+    }
 };

@@ -1,7 +1,8 @@
 import got from 'got';
 import { isRedditLinkSchemaList, isRedditCommentSchemaList, RedditCommentSchema, RedditLinkSchema, RedditRawResult, RedditRawResults, isRedditLinkSchema } from './reddit-types';
+import * as util from './reddit-util';
 
-const baseURL = 'https:://www.reddit.com/r/';
+export const baseURL = 'https:://www.reddit.com/r/';
 
 // const kindMapping = {
 //     t1: 'comment',
@@ -12,7 +13,7 @@ const baseURL = 'https:://www.reddit.com/r/';
 //     t6: 'award'
 // };
 
-export const subreddits = [
+export const subredditsConfig = [
     'RedditTickers',
     'SPACs',
     'dividends',
@@ -24,7 +25,12 @@ export const subreddits = [
     'wallstreetbets'
 ];
 
+export const getSubreddits = () => {
+    return subredditsConfig;
+};
+
 export const getFrontPageOfSubreddit = async (subreddit: string): Promise<RedditRawResult> => {
+    const subreddits = getSubreddits();
     if (!subreddits.includes(subreddit)) {
         throw Error('Unsupported subreddit');
     }
@@ -37,6 +43,7 @@ export const getFrontPageOfSubreddit = async (subreddit: string): Promise<Reddit
 };
 
 export const getAllSubredditsFrontPages = async (): Promise<RedditLinkSchema[]> => {
+    const subreddits = getSubreddits();
     let aggregatedPosts: RedditLinkSchema[] = []; // TODO update type 
     for (let subreddit of subreddits) {
         try {
@@ -68,7 +75,10 @@ export const getDiscussionCommentThread = async (url: string): Promise<RedditCom
         if (!url.includes(baseURL)) {
             throw Error('Unsupported URL');
         }
-        const resp = await got.get(`${url}.json`);
+        if (!url.includes('json')) {
+            url = util.trimAndFixUrl(url);
+        }
+        const resp = await got.get(`${url}`);
         const rawResults: RedditRawResults = JSON.parse(resp.body);
 
         if (rawResults.length <= 0 || rawResults.length > 2) {
@@ -77,7 +87,7 @@ export const getDiscussionCommentThread = async (url: string): Promise<RedditCom
 
         const commentsEntity = rawResults[1];
 
-        if (!isRedditCommentSchemaList(commentsEntity.data.children)) {
+        if (!commentsEntity || !isRedditCommentSchemaList(commentsEntity.data.children)) {
             throw Error('Mismatched returned data');
         }
         return commentsEntity.data.children;
@@ -91,12 +101,16 @@ export const getPostAndCommentThread = async (url: string) => {
         if (!url.includes(baseURL)) {
             throw Error('Unsupported URL');
         }
-        const resp = await got.get(`${url}.json`);
+        if (!url.includes('json')) {
+            url = util.trimAndFixUrl(url);
+        }
+        const resp = await got.get(`${url}`);
         const rawResults: RedditRawResults = JSON.parse(resp.body);
 
         if (rawResults.length <= 0 || rawResults.length > 2) {
             throw Error('Unexpected data structure returned');
         }
+
         const [postEntity, commentsEntity] = rawResults;
 
         const postData = postEntity.data.children[0];

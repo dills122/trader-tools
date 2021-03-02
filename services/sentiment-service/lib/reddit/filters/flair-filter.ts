@@ -34,7 +34,7 @@ export class FlairFilter {
     private filterType: string;
     private subredditConfig: FlairConfigSubredditItem;
     constructor(args: FlairFilterArgs) {
-        _.assign(this.filter, args);
+        _.assign(this, args);
         this.flair = this.flair.toLowerCase();
         this.checkSubreddit();
         this.subredditConfig = flairConfig.subreddits[this.subreddit];

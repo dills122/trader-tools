@@ -14,7 +14,7 @@ export class FrontPageService {
     private analyizedCommentsList: CommentListAnalyzerResult[] = [];
     constructor(args: FrontPageServiceArgs) {
         _.assign(this, args);
-        if (!Reddit.Service.subreddits.includes(this.subreddit)) {
+        if (!Reddit.Service.subredditsConfig.includes(this.subreddit)) {
             throw Error('Unsupported subreddit');
         }
     }

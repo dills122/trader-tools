@@ -83,14 +83,17 @@ export class PostFilter {
                 // Not supported yet
                 continue;
             }
-            // Default is chaos filter
-            const flairFilter = new FlairFilter({
-                filterType: 'chaos',
-                flair: post.data.link_flair_text,
-                subreddit: post.data.subreddit
-            });
-            if (flairFilter.filter()) {
-                this.filteredPosts.push(post);
+            if (!this.ddMode && !this.discussionOnlyMode &&
+                !this.nonShitpostingMode && !this.stickedMode) {
+                // Default is chaos filter
+                const flairFilter = new FlairFilter({
+                    filterType: 'chaos',
+                    flair: post.data.link_flair_text,
+                    subreddit: post.data.subreddit
+                });
+                if (flairFilter.filter()) {
+                    this.filteredPosts.push(post);
+                }
             }
         }
         return this.filteredPosts;

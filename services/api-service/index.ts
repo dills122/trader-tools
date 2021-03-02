@@ -5,13 +5,16 @@ import * as HistoricBatchPrices from './lib/historic-batch-chart.service';
 import * as SocialSentiment from './lib/sentiment-analysis';
 import * as Socials from './lib/social';
 
+import * as Mocks from './mocks';
+
 export default {
     IEXCloud,
     QuouteService,
     HistoricPrices,
     HistoricBatchPrices,
     SocialSentiment,
-    Socials
+    Socials,
+    Mocks
 };
 
 export {
@@ -20,5 +23,6 @@ export {
     HistoricPrices,
     HistoricBatchPrices,
     SocialSentiment,
-    Socials
+    Socials,
+    Mocks
 };

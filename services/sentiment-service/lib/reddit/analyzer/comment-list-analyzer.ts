@@ -11,16 +11,21 @@ export interface CommentListAnalyzerArgs {
 export interface CommentListAnalyzerResult {
     title: string,
     subreddit: string,
-    positiveComments: SentimentAnalysisResult[],
-    negativeComments: SentimentAnalysisResult[]
+    positiveComments: SentimentAnalysisResultExtended[],
+    negativeComments: SentimentAnalysisResultExtended[]
+};
+
+export interface SentimentAnalysisResultExtended extends SentimentAnalysisResult {
+    comment: string[],
+    tickerSymbol: string
 };
 
 export class CommentListAnalyzer {
     private comments: Socials.Reddit.Types.RedditCommentSchema[];
     private title: string;
     private subreddit: string;
-    private positiveComments: SentimentAnalysisResult[] = [];
-    private negativeComments: SentimentAnalysisResult[] = [];
+    private positiveComments: SentimentAnalysisResultExtended[] = [];
+    private negativeComments: SentimentAnalysisResultExtended[] = [];
     constructor(args: CommentListAnalyzerArgs) {
         this.comments = args.comments;
         this.title = args.title;

@@ -1,5 +1,5 @@
 import got from 'got';
-import { isRedditLinkSchemaList, isRedditCommentSchemaList, RedditCommentSchema, RedditLinkSchema, RedditRawResult, RedditRawResults, isRedditLinkSchema } from './reddit-types';
+import { isRedditLinkSchemaList, isRedditCommentSchemaList, RedditCommentSchema, RedditLinkSchema, RedditRawResult, RedditRawResults, isRedditLinkSchema, RedditPostAndThreadSchema } from './reddit-types';
 import * as util from './reddit-util';
 
 export const baseURL = 'https:://www.reddit.com/r/';
@@ -96,7 +96,7 @@ export const getDiscussionCommentThread = async (url: string): Promise<RedditCom
     }
 };
 
-export const getPostAndCommentThread = async (url: string) => {
+export const getPostAndCommentThread = async (url: string): Promise<RedditPostAndThreadSchema> => {
     try {
         if (!url.includes(baseURL)) {
             throw Error('Unsupported URL');

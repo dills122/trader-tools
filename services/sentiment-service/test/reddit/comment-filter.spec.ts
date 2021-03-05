@@ -22,7 +22,7 @@ describe('Reddit::', () => {
                 const second = mocks[1];
                 const filteredComments = new CommentFilter({
                     comments: mocks,
-                    nonShitpostingMode: true
+                    matureFilter: true
                 }).filter();
                 assert(filteredComments);
                 expect(filteredComments).to.have.length(1);
@@ -35,7 +35,7 @@ describe('Reddit::', () => {
             it('Should execute happy path for nonShitpostingMode, return empty results', () => {
                 const filteredComments = new CommentFilter({
                     comments: [mocks[0]],
-                    nonShitpostingMode: true
+                    matureFilter: true
                 }).filter();
                 assert(filteredComments);
                 expect(filteredComments).to.have.length(0);
@@ -48,7 +48,7 @@ describe('Reddit::', () => {
                 mocks[0].data.body = 'Fuck $ABR its trash';
                 const filteredComments = new CommentFilter({
                     comments: mocks,
-                    nonShitpostingMode: true
+                    matureFilter: true
                 }).filter();
                 assert(filteredComments);
                 expect(filteredComments).to.have.length(0);

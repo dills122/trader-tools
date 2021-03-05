@@ -1,4 +1,4 @@
-import { RedditCommentSchema, RedditLinkSchema, RedditRawResult } from "../lib/social/reddit/reddit-types";
+import { RedditCommentSchema, RedditLinkSchema, RedditPostAndThreadSchema, RedditRawResult } from "../lib/social/reddit/reddit-types";
 import _ from 'lodash';
 
 export const RedditRawResultBase: RedditRawResult = {
@@ -46,6 +46,12 @@ export const RedditCommentSchemaBase: RedditCommentSchema = {
     }
 };
 
+export const RedditPostAndThreadSchemaBase: RedditPostAndThreadSchema = {
+    body: '',
+    title: '',
+    discussion: []
+};
+
 export const getCommentList = (size: number, subreddit?: string) => {
     const comments: RedditCommentSchema[] = [];
     for (let i = 0; i < size; i++) {
@@ -82,4 +88,12 @@ export const getRawResult = (type: 'comment' | 'link', size: number = 5, subredd
         cloned.data.children = links;
         return cloned;
     }
+};
+
+export const getRedditPostAndThreadResult = (title: string, body: string, size: number = 5, subreddit?: string) => {
+    const cloned = _.cloneDeep(RedditPostAndThreadSchemaBase);
+    cloned.title = title;
+    cloned.body = body;
+    cloned.discussion = getCommentList(size, subreddit);
+    return cloned;
 };

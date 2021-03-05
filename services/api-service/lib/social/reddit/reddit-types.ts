@@ -45,6 +45,12 @@ export interface RedditRawResult {
     }
 };
 
+export interface RedditPostAndThreadSchema {
+    title: string,
+    body: string,
+    discussion: RedditCommentSchema[]
+};
+
 export const isRedditLinkSchemaList = (arg: any): arg is RedditLinkSchema[] => {
     if (!Array.isArray(arg)) {
         return false;

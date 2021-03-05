@@ -2,21 +2,39 @@ import { Socials } from "api-service";
 import { extractStockOrCryptoTicker } from '../../standardize-input';
 import _ from 'lodash';
 import BadWords from 'bad-words';
+import { SentimentAnalysisFilterFlags } from "../../sharedTypes";
 
-export interface CommentFilterArgs {
+export interface CommentFilterArgs extends SentimentAnalysisFilterFlags {
     comments: Socials.Reddit.Types.RedditCommentSchema[],
-    nonShitpostingMode: boolean
 };
 
 export class CommentFilter {
     private comments: Socials.Reddit.Types.RedditCommentSchema[];
-    private nonShitpostingMode: boolean;
+    private matureFilter: boolean;
+    // private emojiFilter: boolean;
+    // private hashtagFilter: boolean;
+
     constructor(args: CommentFilterArgs) {
         _.assign(this, args);
     }
 
     filter() {
         // Stickied posts are normally informational to the thread and not worth reading
+        const nonEmptyComments = this.removeStickiedAndEmptyComments();
+
+        const commentsWithTickerLikeSymbols = nonEmptyComments.filter((comment) => {
+            const commentData = comment.data.body;
+            const possibleTickerSymbols = extractStockOrCryptoTicker(commentData);
+            return possibleTickerSymbols.length > 0;
+        });
+
+        if (this.matureFilter) {
+            return this.removeMatureComments(commentsWithTickerLikeSymbols);
+        }
+        return commentsWithTickerLikeSymbols;
+    }
+
+    private removeStickiedAndEmptyComments() {
         const nonStickiedComments = this.comments.filter((comment) => {
             return !comment.data.stickied;
         });
@@ -25,19 +43,10 @@ export class CommentFilter {
             return comment.data.body && comment.data.body.length > 0;
         });
 
-        const commentsWithTickerLikeSymbols = nonEmptyComments.filter((comment) => {
-            const commentData = comment.data.body;
-            const possibleTickerSymbols = extractStockOrCryptoTicker(commentData);
-            return possibleTickerSymbols.length > 0;
-        });
-
-        if (this.nonShitpostingMode) {
-            return this.nonShitpostingModeFilter(commentsWithTickerLikeSymbols);
-        }
-        return commentsWithTickerLikeSymbols;
+        return nonEmptyComments;
     }
 
-    private nonShitpostingModeFilter(filteredComments: Socials.Reddit.Types.RedditCommentSchema[]) {
+    private removeMatureComments(filteredComments: Socials.Reddit.Types.RedditCommentSchema[]) {
         const badWordFilter = new BadWords();
 
         const nonProfaneCheckedInput = filteredComments.filter((comment) => {

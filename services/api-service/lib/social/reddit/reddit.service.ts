@@ -2,7 +2,7 @@ import got from 'got';
 import { isRedditLinkSchemaList, isRedditCommentSchemaList, RedditCommentSchema, RedditLinkSchema, RedditRawResult, RedditRawResults, isRedditLinkSchema, RedditPostAndThreadSchema } from './reddit-types';
 import * as util from './reddit-util';
 
-export const baseURL = 'https:://www.reddit.com/r/';
+export const baseURL = 'https://www.reddit.com/r/';
 
 // const kindMapping = {
 //     t1: 'comment',

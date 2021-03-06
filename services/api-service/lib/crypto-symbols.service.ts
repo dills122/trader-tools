@@ -13,5 +13,5 @@ export interface CryptoSymbolsData {
 };
 
 export const cryptoSymbols = async () => {
-    return await IEXCloud<CryptoSymbolsData>('/ref-data/crypto/symbols');
+    return await IEXCloud<CryptoSymbolsData[]>('/ref-data/crypto/symbols');
 };

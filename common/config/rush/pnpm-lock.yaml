@@ -1,13 +1,16 @@
 dependencies:
+  '@fast-csv/format': 4.3.5
+  '@fast-csv/parse': 4.3.6
   '@rush-temp/api-service': 'file:projects/api-service.tgz'
   '@rush-temp/cron-app': 'file:projects/cron-app.tgz'
+  '@rush-temp/is-ticker-symbol': 'file:projects/is-ticker-symbol.tgz'
   '@rush-temp/templating-service': 'file:projects/templating-service.tgz'
   '@rush-temp/trader-sdk': 'file:projects/trader-sdk.tgz'
   '@rush-temp/trading-services': 'file:projects/trading-services.tgz'
   '@types/chai': 4.2.14
   '@types/ejs': 3.0.5
   '@types/express': 4.17.11
-  '@types/lodash': 4.14.168
+  '@types/jsftp': 2.1.0
   '@types/mjml': 4.7.0
   '@types/mocha': 8.2.0
   '@types/mustache': 4.1.1
@@ -21,8 +24,7 @@ dependencies:
   ejs: 3.1.5
   express: 4.17.1
   gmail-send: 1.8.10
-  got: 11.8.1
-  lodash: 4.17.20
+  jsftp: 2.1.3
   mjml: 4.8.1
   mocha: 8.2.1
   mustache: 4.1.0
@@ -41,6 +43,29 @@ packages:
     dev: false
     resolution:
       integrity: sha512-8+3UMPBrjFa/6TtKi/7sehPKqfAm4g6K+YQjyyFOLUTxzOngcRZTlAVY8sc2CORJYqdHQY8gRPHmn+qo15rCBw==
+  /@fast-csv/format/4.3.5:
+    dependencies:
+      '@types/node': 14.14.25
+      lodash.escaperegexp: 4.1.2
+      lodash.isboolean: 3.0.3
+      lodash.isequal: 4.5.0
+      lodash.isfunction: 3.0.9
+      lodash.isnil: 4.0.0
+    dev: false
+    resolution:
+      integrity: sha512-8iRn6QF3I8Ak78lNAa+Gdl5MJJBM5vRHivFtMRUWINdevNo00K7OXxS2PshawLKTejVwieIlPmK5YlLu6w4u8A==
+  /@fast-csv/parse/4.3.6:
+    dependencies:
+      '@types/node': 14.14.25
+      lodash.escaperegexp: 4.1.2
+      lodash.groupby: 4.6.0
+      lodash.isfunction: 3.0.9
+      lodash.isnil: 4.0.0
+      lodash.isundefined: 3.0.1
+      lodash.uniq: 4.5.0
+    dev: false
+    resolution:
+      integrity: sha512-uRsLYksqpbDmWaSmzvJcuApSEe38+6NQZBUsuAyMZKqHxH0g1wcJgsKUvN3WC8tewaqFjBMMGrkHmC+T7k8LvA==
   /@sindresorhus/is/4.0.0:
     dev: false
     engines:
@@ -109,6 +134,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-k4ef69sS4sIqAPW9GoBnN+URAON2LeL1H0duQvL4RgdEBna19/WattYSA1qYqvbVEDRTSWzOw56tCLhC/m/IOw==
+  /@types/events/3.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==
   /@types/express-serve-static-core/4.17.18:
     dependencies:
       '@types/node': 14.14.22
@@ -130,6 +159,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-c3Xy026kOF7QOTn00hbIllV1dLR9hG9NkSrLQgCVs8NF6sBU+VGWjD3wLPhmh1TYAc7ugCFsvHYMN4VcBN1U1A==
+  /@types/jsftp/2.1.0:
+    dependencies:
+      '@types/events': 3.0.0
+      '@types/node': 14.14.25
+    dev: false
+    resolution:
+      integrity: sha512-BMSQG2nAMe75rYEMPguGSx5ZkQtYZ7WKN6uZwLYKvjD3Sy+Vjqi2gM3MWkwuC5RwMuEQAg/aQIgrUjwfsq9Clw==
   /@types/keyv/3.1.1:
     dependencies:
       '@types/node': 14.14.22
@@ -572,6 +608,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-+Hp8fLp57wnUSt0tY0tHEXh4voZRDnoIrZPqlo3DPiI4y9lwg/jqx+1Om94/W6ZaPDOUbnjOt/99w66zk+l1Xg==
+  /core-util-is/1.0.2:
+    dev: false
+    resolution:
+      integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
   /create-require/1.1.1:
     dev: false
     resolution:
@@ -595,6 +635,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
+  /debug/3.2.7:
+    dependencies:
+      ms: 2.1.2
+    dev: false
+    resolution:
+      integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==
   /debug/4.2.0_supports-color@7.2.0:
     dependencies:
       ms: 2.1.2
@@ -737,6 +783,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+  /duplexer/0.1.2:
+    dev: false
+    resolution:
+      integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==
   /editorconfig/0.15.3:
     dependencies:
       commander: 2.20.3
@@ -951,6 +1001,14 @@ packages:
       - darwin
     resolution:
       integrity: sha512-Auw9a4AxqWpa9GUfj370BMPzzyncfBABW8Mab7BGWBYDj4Isgq+cDKtx0i6u9jcX9pQDnswsaaOTgTmA5pEjuQ==
+  /ftp-response-parser/1.0.1:
+    dependencies:
+      readable-stream: 1.1.14
+    dev: false
+    engines:
+      node: '>=0.8.0'
+    resolution:
+      integrity: sha1-O50z+O3V+45HALj3eMRi5bFYH4k=
   /function-bind/1.1.1:
     dev: false
     resolution:
@@ -1017,6 +1075,24 @@ packages:
       node: '>=10.19.0'
     resolution:
       integrity: sha512-9aYdZL+6nHmvJwHALLwKSUZ0hMwGaJGYv3hoPLPgnT8BoBXm1SjnZeky+91tfwJaDzun2s4RsBRy48IEYv2q2Q==
+  /got/11.8.2:
+    dependencies:
+      '@sindresorhus/is': 4.0.0
+      '@szmarczak/http-timer': 4.0.5
+      '@types/cacheable-request': 6.0.1
+      '@types/responselike': 1.0.0
+      cacheable-lookup: 5.0.4
+      cacheable-request: 7.0.1
+      decompress-response: 6.0.0
+      http2-wrapper: 1.0.0-beta.5.2
+      lowercase-keys: 2.0.0
+      p-cancelable: 2.0.0
+      responselike: 2.0.0
+    dev: false
+    engines:
+      node: '>=10.19.0'
+    resolution:
+      integrity: sha512-D0QywKgIe30ODs+fm8wMZiAcZjypcCodPNuMz5H9Mny7RJ+IjJ10BdmGW7OM7fHXP+O7r6ZwapQ/YQmMSvB0UQ==
   /growl/1.10.5:
     dev: false
     engines:
@@ -1248,6 +1324,19 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-/4IbIeHcD9VMHFqDR/gQ7EdZdLimOvW2DdcxFjdyyZ9NsbS+ccrXqVWDtab/lRl5AlUqmpBx8EhPaWR+OtY17A==
+  /jsftp/2.1.3:
+    dependencies:
+      debug: 3.2.7
+      ftp-response-parser: 1.0.1
+      once: 1.4.0
+      parse-listing: 1.1.3
+      stream-combiner: 0.2.2
+      unorm: 1.6.0
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-r79EVB8jaNAZbq8hvanL8e8JGu2ZNr2bXdHC4ZdQhRImpSPpnWwm5DYVzQ5QxJmtGtKhNNuvqGgbNaFl604fEQ==
   /json-buffer/3.0.1:
     dev: false
     resolution:
@@ -1292,14 +1381,50 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==
+  /lodash.escaperegexp/4.1.2:
+    dev: false
+    resolution:
+      integrity: sha1-ZHYsSGGAglGKw99Mz11YhtriA0c=
   /lodash.get/4.4.2:
     dev: false
     resolution:
       integrity: sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
+  /lodash.groupby/4.6.0:
+    dev: false
+    resolution:
+      integrity: sha1-Cwih3PaDl8OXhVwyOXg4Mt90A9E=
+  /lodash.isboolean/3.0.3:
+    dev: false
+    resolution:
+      integrity: sha1-bC4XHbKiV82WgC/UOwGyDV9YcPY=
+  /lodash.isequal/4.5.0:
+    dev: false
+    resolution:
+      integrity: sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+  /lodash.isfunction/3.0.9:
+    dev: false
+    resolution:
+      integrity: sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==
+  /lodash.isnil/4.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-SeKM1VkBNFjIFMVHnTxmOiG/qmw=
+  /lodash.isundefined/3.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-I+89lTVWUgOmbO/VuDD4SJEa+0g=
+  /lodash.uniq/4.5.0:
+    dev: false
+    resolution:
+      integrity: sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
   /lodash/4.17.20:
     dev: false
     resolution:
       integrity: sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+  /lodash/4.17.21:
+    dev: false
+    resolution:
+      integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
   /log-symbols/4.0.0:
     dependencies:
       chalk: 4.1.0
@@ -1899,6 +2024,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-35T9jPZTHs915r75oIWPvHK+Ikc=
+  /parse-listing/1.1.3:
+    dev: false
+    engines:
+      node: '>=0.6.21'
+    resolution:
+      integrity: sha1-qlRvV/3BKc+/mUXNS3V7FLBhgt0=
   /parse5/3.0.3:
     dependencies:
       '@types/node': 14.14.25
@@ -2020,6 +2151,15 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-4Oz8DUIwdvoa5qMJelxipzi/iJIi40O5cGV1wNYp5hvZP8ZN0T+jiNkL0QepXs+EsQ9XJ8ipEDoiH70ySUJP3Q==
+  /readable-stream/1.1.14:
+    dependencies:
+      core-util-is: 1.0.2
+      inherits: 2.0.4
+      isarray: 0.0.1
+      string_decoder: 0.10.31
+    dev: false
+    resolution:
+      integrity: sha1-fPTFTvZI44EwhMY23SB54WbAgdk=
   /readable-stream/3.6.0:
     dependencies:
       inherits: 2.0.4
@@ -2190,6 +2330,13 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
+  /stream-combiner/0.2.2:
+    dependencies:
+      duplexer: 0.1.2
+      through: 2.3.8
+    dev: false
+    resolution:
+      integrity: sha1-rsjLrBd7Vrb0+kec7YwZEs7lKFg=
   /string-width/2.1.1:
     dependencies:
       is-fullwidth-code-point: 2.0.0
@@ -2219,6 +2366,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-zUz5JD+tgqtuDjMhwIg5uFVV3dtqZ9yQJlZVfq4I01/K5Paj5UHj7VyrQOJvzawSVlKpObApbfD0Ed6yJc+1eg==
+  /string_decoder/0.10.31:
+    dev: false
+    resolution:
+      integrity: sha1-YuIDvEF2bGwoyfyEMB2rHFMQ+pQ=
   /string_decoder/1.3.0:
     dependencies:
       safe-buffer: 5.2.1
@@ -2277,6 +2428,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-f16mOc+Y05hNy/of+UbGxhxQQmxUztCiluhsqC5QLUYz4WowUgKde9m6nIjK1Kay0wGHigT0IkOabpp0+22UfA==
+  /through/2.3.8:
+    dev: false
+    resolution:
+      integrity: sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
   /to-regex-range/5.0.1:
     dependencies:
       is-number: 7.0.0
@@ -2341,6 +2496,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-aqWHe3DfQmZUDGWBbabZ2eQnJlQd1fKlMUu7gV+MiTuDzdgDw31bI3wA2jLLsV/hNcDP26IfyEgSVoft5+0SVw==
+  /unorm/1.6.0:
+    dev: false
+    engines:
+      node: '>= 0.4.0'
+    resolution:
+      integrity: sha512-b2/KCUlYZUeA7JFUuRJZPUtr4gZvBh7tavtv4fvk4+KV9pfGiR6CQAQAWl49ZpR3ts2dk4FYkP7EIgDJoiOLDA==
   /unpipe/1.0.0:
     dev: false
     engines:
@@ -2547,6 +2708,30 @@ packages:
       integrity: sha512-VG2OVYr1hx9lhsak4v3hC3we1XG+Zs+MljfomaNrbxt+mA6gF/wityXyjz6vy18wg0RkQhWSuN8SUy5uYjX30A==
       tarball: 'file:projects/cron-app.tgz'
     version: 0.0.0
+  'file:projects/is-ticker-symbol.tgz':
+    dependencies:
+      '@fast-csv/format': 4.3.5
+      '@fast-csv/parse': 4.3.6
+      '@types/chai': 4.2.14
+      '@types/jsftp': 2.1.0
+      '@types/lodash': 4.14.168
+      '@types/mocha': 8.2.0
+      '@types/node': 14.14.25
+      '@types/sinon': 9.0.10
+      chai: 4.2.0
+      got: 11.8.2
+      jsftp: 2.1.3
+      lodash: 4.17.21
+      mocha: 8.2.1
+      sinon: 9.2.4
+      ts-node: 9.1.1_typescript@4.1.3
+      typescript: 4.1.3
+    dev: false
+    name: '@rush-temp/is-ticker-symbol'
+    resolution:
+      integrity: sha512-oDGY7+DP6eMuVVhpIZsXQqoc2U3NmMEc8kmlMR1KDhQEz5Kqt/hfAn5msVjqE5jbsq5eAxMOThnXme/Ick+2Jw==
+      tarball: 'file:projects/is-ticker-symbol.tgz'
+    version: 0.0.0
   'file:projects/templating-service.tgz':
     dependencies:
       '@types/chai': 4.2.14
@@ -2604,20 +2789,23 @@ packages:
     dev: false
     name: '@rush-temp/trading-services'
     resolution:
-      integrity: sha512-FJAmfzDEV0GSOT+yvlQk1toUsnjRQnQjtvuKLXNMjb7nWYL97fqBi/WUA8IMqtUI1t3aD4T9yiAJhstxS37/1g==
+      integrity: sha512-N7QcW7R/QYcWBKuHv7zOgEfpE7nq9TN3DU2+KIfdxzbBmHwLEpAzIyyyq3w7PuZSWQgz2ot3/RM2U0Y4CZuZJA==
       tarball: 'file:projects/trading-services.tgz'
     version: 0.0.0
 registry: ''
 specifiers:
+  '@fast-csv/format': ~4.3.5
+  '@fast-csv/parse': ~4.3.6
   '@rush-temp/api-service': 'file:./projects/api-service.tgz'
   '@rush-temp/cron-app': 'file:./projects/cron-app.tgz'
+  '@rush-temp/is-ticker-symbol': 'file:./projects/is-ticker-symbol.tgz'
   '@rush-temp/templating-service': 'file:./projects/templating-service.tgz'
   '@rush-temp/trader-sdk': 'file:./projects/trader-sdk.tgz'
   '@rush-temp/trading-services': 'file:./projects/trading-services.tgz'
   '@types/chai': ~4.2.14
   '@types/ejs': ~3.0.5
   '@types/express': ~4.17.11
-  '@types/lodash': ~4.14.167
+  '@types/jsftp': ~2.1.0
   '@types/mjml': ~4.7.0
   '@types/mocha': ~8.2.0
   '@types/mustache': ~4.1.1
@@ -2631,8 +2819,7 @@ specifiers:
   ejs: ~3.1.5
   express: ~4.17.1
   gmail-send: ~1.8.10
-  got: ~11.8.1
-  lodash: ~4.17.20
+  jsftp: ~2.1.3
   mjml: ~4.8.1
   mocha: ~8.2.1
   mustache: ^4.1.0

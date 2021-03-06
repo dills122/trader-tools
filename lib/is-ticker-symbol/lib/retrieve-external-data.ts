@@ -13,7 +13,9 @@ export const retrieveData = async (market: string): Promise<string> => {
     let csvStr = '';
     return new Promise((resolve, reject) => {
         const fileConfig: FileMappingType = config.fileMapping[market];
-        Ftp.get(`${config.directory}/${fileConfig.name}.${fileConfig.ext}`, (err, socket) => {
+        const url = `${config.directory}/${fileConfig.name}.${fileConfig.ext}`;
+
+        Ftp.get(url, (err, socket) => {
             if (err) {
                 return reject(err);
             }
@@ -56,4 +58,9 @@ export const retrieveDataList = async (): Promise<string[]> => {
         throw Error('No file data found');
     }
     return csvDataList;
+};
+
+export default {
+    retrieveData,
+    retrieveDataList
 };

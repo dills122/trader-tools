@@ -1,5 +1,5 @@
 import { retrieveDataList } from './retrieve-external-data';
-import FastCsvParser from '@fast-csv/parse';
+import { parseString } from '@fast-csv/parse';
 import fs from 'fs/promises';
 import _ from 'lodash';
 import path from 'path';
@@ -24,7 +24,8 @@ export class RebaseTickerList {
             this.mapToSymbolList();
             await this.createOrOverwriteDataFiles();
         } catch (err) {
-
+            console.error(err);
+            throw err;
         }
     }
 
@@ -46,8 +47,9 @@ export class RebaseTickerList {
     private parseCsvData(csvString: string): Promise<any[]> {
         const parsedCsvObjs: any[] = [];
         return new Promise((resolve, reject) => {
-            FastCsvParser.parseString(csvString, {
-                headers: true
+            parseString(csvString, {
+                headers: true,
+                delimiter: '|'
             }).on('error', error => {
                 console.error(error);
                 return reject(error);
@@ -62,6 +64,9 @@ export class RebaseTickerList {
 
     private async mapToJson() {
         for (let marketCsvData of this.allMarketCsvDataList) {
+            if (!marketCsvData) {
+                continue;
+            }
             const csvDataRows = await this.parseCsvData(marketCsvData);
             for (let row of csvDataRows) {
                 this.jsonMarketDataList.push({

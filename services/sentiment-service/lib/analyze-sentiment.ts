@@ -1,4 +1,5 @@
 import { SentimentAnalyzer, PorterStemmer } from 'natural';
+import { sentimentStatusType } from './sharedTypes';
 
 export const SentimentConfig = {
     veryPositive: 0.85,
@@ -8,7 +9,7 @@ export const SentimentConfig = {
 };
 
 export interface SentimentAnalysisResult {
-    status: 'netural' | 'positive' | 'very-positive' | 'negative' | 'very-negative',
+    status: sentimentStatusType,
     score: number,
     standardizedInput: string
 };

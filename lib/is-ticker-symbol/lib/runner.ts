@@ -6,5 +6,6 @@ import { RebaseTickerList } from './rebase-ticker-list';
         await RebaseInst.rebase();
     } catch (err) {
         console.error(err);
+        process.exit(1);
     }
 })();

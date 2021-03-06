@@ -18,10 +18,6 @@ export const config = {
         mutalFunds: {
             name: 'mfundslist',
             ext: 'txt'
-        },
-        futures: {
-            name: 'pbot',
-            ext: 'txt'
         }
     }
 };

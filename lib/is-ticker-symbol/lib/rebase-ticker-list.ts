@@ -1,4 +1,5 @@
-import { retrieveDataList } from './retrieve-external-data';
+import { retrieveNASDAQDataList, retrieveIEXData } from './retrieve-external-data';
+import { SymbolsData } from 'api-service';
 import { parseString } from '@fast-csv/parse';
 import fs from 'fs/promises';
 import _ from 'lodash';
@@ -18,8 +19,9 @@ export class RebaseTickerList {
 
     async rebase() {
         try {
-            this.allMarketCsvDataList = await retrieveDataList();
+            this.allMarketCsvDataList = await retrieveNASDAQDataList();
             await this.mapToJson();
+            await this.gatherAndSetupIEXData();
             this.filterDuplicates();
             this.mapToSymbolList();
             await this.createOrOverwriteDataFiles();
@@ -27,6 +29,25 @@ export class RebaseTickerList {
             console.error(err);
             throw err;
         }
+    }
+
+    private async gatherAndSetupIEXData() {
+        try {
+            const IEXSymbolsList = await retrieveIEXData();
+            const mappedSymbolsList = this.mapIEXToMarketDataSchema(IEXSymbolsList);
+            this.jsonMarketDataList = this.jsonMarketDataList.concat(mappedSymbolsList);
+        } catch(err) {
+            throw err;
+        }
+    }
+
+    private mapIEXToMarketDataSchema(IEXSymbolsList: SymbolsData.SymbolsReferenceData[]): JsonMarketDataSchema[] {
+        return IEXSymbolsList.map((symbolObject) => {
+            return {
+                name: symbolObject.name,
+                symbol: symbolObject.symbol
+            };
+        });
     }
 
     private async createOrOverwriteDataFiles() {

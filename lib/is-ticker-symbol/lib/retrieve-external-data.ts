@@ -1,7 +1,16 @@
 import jsftp from 'jsftp';
+import { SymbolsData } from 'api-service';
 import { config, FileMappingType } from './external-sources.config';
 
-export const retrieveData = async (market: string): Promise<string> => {
+export const retrieveIEXData = async () => {
+    try {
+        return await SymbolsData.symbols();
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const retrieveNASDAQData = async (market: string): Promise<string> => {
     if (!Object.keys(config.fileMapping).includes(market)) {
         throw Error('Unsupported file given');
     }
@@ -42,12 +51,12 @@ export const retrieveData = async (market: string): Promise<string> => {
     });
 };
 
-export const retrieveDataList = async (): Promise<string[]> => {
+export const retrieveNASDAQDataList = async (): Promise<string[]> => {
     const csvDataList: string[] = [];
     const supportedMarkets = Object.keys(config.fileMapping);
     for (let market of supportedMarkets) {
         try {
-            const csvFileData = await retrieveData(market);
+            const csvFileData = await retrieveNASDAQData(market);
             csvDataList.push(csvFileData);
         } catch (err) {
             console.error(err);
@@ -61,6 +70,6 @@ export const retrieveDataList = async (): Promise<string[]> => {
 };
 
 export default {
-    retrieveData,
-    retrieveDataList
+    retrieveNASDAQData,
+    retrieveNASDAQDataList
 };

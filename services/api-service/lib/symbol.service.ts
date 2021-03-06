@@ -15,5 +15,5 @@ export interface SymbolsReferenceData {
 };
 
 export const symbols = async () => {
-    return await IEXCloud<SymbolsReferenceData>('/ref-data/symbols');
+    return await IEXCloud<SymbolsReferenceData[]>('/ref-data/symbols');
 };

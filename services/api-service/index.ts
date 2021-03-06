@@ -6,6 +6,8 @@ import * as SocialSentiment from './lib/sentiment-analysis';
 import * as Socials from './lib/social';
 
 import * as Mocks from './mocks';
+import * as SymbolsData from './lib/symbol.service';
+import * as CryptoSymbolsData from './lib/crypto-symbols.service';
 
 export default {
     IEXCloud,
@@ -14,7 +16,9 @@ export default {
     HistoricBatchPrices,
     SocialSentiment,
     Socials,
-    Mocks
+    Mocks,
+    SymbolsData,
+    CryptoSymbolsData
 };
 
 export {
@@ -24,5 +28,7 @@ export {
     HistoricBatchPrices,
     SocialSentiment,
     Socials,
-    Mocks
+    Mocks,
+    SymbolsData,
+    CryptoSymbolsData
 };

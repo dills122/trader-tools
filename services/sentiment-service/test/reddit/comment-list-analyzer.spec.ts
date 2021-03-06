@@ -1,17 +1,17 @@
 import { describe } from 'mocha';
 import { assert, expect } from 'chai';
-import { CommentListAnalyzer } from '../../lib/reddit/analyzer/comment-list-analyzer';
+import { CommentListSentimentAnalyzer } from '../../lib/reddit/analyzer/comment-list-sentiment-analyzer';
 import { Mocks, Socials } from 'api-service';
 import _ from 'lodash';
 
 const subreddit = 'wallstreetbets';
 
 describe('Reddit::', () => {
-    let mocks: Socials.Reddit.Types.RedditCommentSchema[] = [];
+    let mocks: Socials.Reddit.Types.RedditCommentSchemaExtended[] = [];
     describe('Analyzer::', () => {
         describe('CommentList::', () => {
             beforeEach(() => {
-                mocks = _.cloneDeep(Mocks.Reddit.getCommentList(2, subreddit));
+                mocks = _.cloneDeep(Mocks.Reddit.getExtendedCommentList(2, subreddit, 'ABR'));
                 const first = mocks[0];
                 const second = mocks[1];
                 first.data.stickied = true;
@@ -19,7 +19,7 @@ describe('Reddit::', () => {
             });
 
             it('Should analyze only the comments with a ticker symbol in it', () => {
-                const analyzer = new CommentListAnalyzer({
+                const analyzer = new CommentListSentimentAnalyzer({
                     comments: mocks,
                     subreddit: subreddit,
                     title: 'This is a title'
@@ -38,11 +38,12 @@ describe('Reddit::', () => {
             });
 
             it('Should analyze only the comments with a ticker symbol in it, negative sentiment', () => {
-                const negativeCommentMock = _.cloneDeep(Mocks.Reddit.getCommentList(1, subreddit))[0];
+                const negativeCommentMock = _.cloneDeep(Mocks.Reddit.getExtendedCommentList(1, subreddit))[0];
                 negativeCommentMock.data.body = '$F is a pretty bad stock. I would sell it';
+                negativeCommentMock.tickerSymbol = 'F';
                 negativeCommentMock.data.ups = 1000;
                 mocks.push(negativeCommentMock);
-                const analyzer = new CommentListAnalyzer({
+                const analyzer = new CommentListSentimentAnalyzer({
                     comments: mocks,
                     subreddit: subreddit,
                     title: 'This is a title'
@@ -66,7 +67,7 @@ describe('Reddit::', () => {
 
             it('Should still return results when given no comments to analyze', () => {
                 mocks = [];
-                const analyzer = new CommentListAnalyzer({
+                const analyzer = new CommentListSentimentAnalyzer({
                     comments: mocks,
                     subreddit: subreddit,
                     title: 'This is a title'

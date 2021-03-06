@@ -2,7 +2,7 @@ import { Socials } from 'api-service';
 import { CommentFilter, PostFilter } from '../filters';
 import { CommentAnalyzer } from '../analyzer';
 import _ from 'lodash';
-import { CommentListAnalyzerResult } from '../analyzer/comment-list-analyzer';
+import { CommentListAnalyzerResult } from '../analyzer/comment-list-sentiment-analyzer';
 import { SentimentAnalysisFilterFlags } from '../../sharedTypes';
 import { RedditPostAndThreadSchema } from 'api-service/lib/social/reddit/reddit-types';
 
@@ -99,14 +99,16 @@ export class FrontPageService {
     }
 
     private analyizeCommentCollection(comments, title: string) {
-        const CommentAnalyzerInst = new CommentAnalyzer.CommentListAnalyzer({
+        const CommentAnalyzerInst = new CommentAnalyzer.CommentListSentimentAnalyzer({
             comments: comments,
             subreddit: this.subreddit,
             title: title
         });
 
         const commentAnalysisResults = CommentAnalyzerInst.analyze();
-        if (commentAnalysisResults.positiveComments.length > 0 || commentAnalysisResults.negativeComments.length > 0) {
+        if (commentAnalysisResults.positiveComments.length > 0 ||
+            commentAnalysisResults.negativeComments.length > 0 ||
+            commentAnalysisResults.neutralComments.length > 0) {
             this.analyizedCommentsList.push(commentAnalysisResults);
         }
     }

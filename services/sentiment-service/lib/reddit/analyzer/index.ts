@@ -1,1 +1,1 @@
-export * as CommentAnalyzer from './comment-list-analyzer';
+export * as CommentAnalyzer from './comment-list-sentiment-analyzer';

@@ -51,6 +51,10 @@ export interface RedditPostAndThreadSchema {
     discussion: RedditCommentSchema[]
 };
 
+export interface RedditCommentSchemaExtended extends RedditCommentSchema {
+    tickerSymbol: string
+};
+
 export const isRedditLinkSchemaList = (arg: any): arg is RedditLinkSchema[] => {
     if (!Array.isArray(arg)) {
         return false;

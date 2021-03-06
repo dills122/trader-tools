@@ -1,4 +1,4 @@
-import { RedditCommentSchema, RedditLinkSchema, RedditPostAndThreadSchema, RedditRawResult } from "../lib/social/reddit/reddit-types";
+import { RedditCommentSchema, RedditCommentSchemaExtended, RedditLinkSchema, RedditPostAndThreadSchema, RedditRawResult } from "../lib/social/reddit/reddit-types";
 import _ from 'lodash';
 
 export const RedditRawResultBase: RedditRawResult = {
@@ -45,6 +45,19 @@ export const RedditCommentSchemaBase: RedditCommentSchema = {
         stickied: false
     }
 };
+export const RedditCommentSchemaExtendedBase: RedditCommentSchemaExtended = {
+    kind: "t1",
+    data: {
+        score: 0,
+        ups: 0,
+        downs: 0,
+        upvote_ratio: 0,
+        subreddit: 'sbureddit',
+        body: 'This is a body',
+        stickied: false
+    },
+    tickerSymbol: ''
+};
 
 export const RedditPostAndThreadSchemaBase: RedditPostAndThreadSchema = {
     body: '',
@@ -58,6 +71,21 @@ export const getCommentList = (size: number, subreddit?: string) => {
         const clonedSchema = _.cloneDeep(RedditCommentSchemaBase);
         if (subreddit) {
             clonedSchema.data.subreddit = subreddit;
+        }
+        comments.push(clonedSchema);
+    }
+    return comments;
+};
+
+export const getExtendedCommentList = (size: number, subreddit?: string, symbol?: string) => {
+    const comments: RedditCommentSchemaExtended[] = [];
+    for (let i = 0; i < size; i++) {
+        const clonedSchema = _.cloneDeep(RedditCommentSchemaExtendedBase);
+        if (subreddit) {
+            clonedSchema.data.subreddit = subreddit;
+        }
+        if (symbol) {
+            clonedSchema.tickerSymbol = symbol;
         }
         comments.push(clonedSchema);
     }

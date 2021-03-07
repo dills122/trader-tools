@@ -2,7 +2,7 @@ import { describe } from 'mocha';
 import { Socials, Mocks } from 'api-service';
 import { expect, assert } from 'chai';
 import Sinon from 'sinon';
-import { SentimentAnalysisService } from '../../lib/services/sentiment-analysis.service';
+import { GenericSentimentAnalysisService } from '../../lib/services/generic-sentiment-analysis.service';
 // import { GenericService } from '../../lib/reddit/services';
 import _ from 'lodash';
 
@@ -18,9 +18,9 @@ describe("Services::", function () {
     describe('SentimentAnalysis::', () => {
         beforeEach(() => {
             sandbox = Sinon.createSandbox();
-            spies.setFilterFlagsSpy = sandbox.spy(SentimentAnalysisService.prototype, <any>'setFilterFlags');
-            spies.analyzeFilterFlagsSpy = sandbox.spy(SentimentAnalysisService.prototype, <any>'analyzeFilterFlags');
-            spies.disableAllFilterFlagsOfTypeSpy = sandbox.spy(SentimentAnalysisService.prototype, <any>'disableAllFilterFlagsOfType');
+            spies.setFilterFlagsSpy = sandbox.spy(GenericSentimentAnalysisService.prototype, <any>'setFilterFlags');
+            spies.analyzeFilterFlagsSpy = sandbox.spy(GenericSentimentAnalysisService.prototype, <any>'analyzeFilterFlags');
+            spies.disableAllFilterFlagsOfTypeSpy = sandbox.spy(GenericSentimentAnalysisService.prototype, <any>'disableAllFilterFlagsOfType');
             const discussionPost = Mocks.Reddit.getLinkList(1, subreddit)[0];
             discussionPost.data.link_flair_text = 'discussion';
             const nonDiscussionPost = Mocks.Reddit.getLinkList(1, subreddit)[0];
@@ -35,7 +35,7 @@ describe("Services::", function () {
         });
         describe('Analyze::', () => {
             it('should go through the happy path', async () => {
-                const serviceInst = new SentimentAnalysisService({
+                const serviceInst = new GenericSentimentAnalysisService({
                     analyzer: 'natural',
                     serviceAnalysisType: 'front-page',
                     socialSource: 'reddit',
@@ -54,7 +54,7 @@ describe("Services::", function () {
             });
 
             it('should throw due to an unsupported social source', async () => {
-                const serviceInst = new SentimentAnalysisService({
+                const serviceInst = new GenericSentimentAnalysisService({
                     analyzer: 'natural',
                     serviceAnalysisType: 'front-page',
                     socialSource: 'reddit'
@@ -82,7 +82,7 @@ describe("Services::", function () {
         });
         describe('FilterFlags::', () => {
             it('Should set default case if no filter flags are given', () => {
-                const serviceInst = new SentimentAnalysisService({
+                const serviceInst = new GenericSentimentAnalysisService({
                     analyzer: 'natural',
                     serviceAnalysisType: 'front-page',
                     socialSource: 'reddit'
@@ -97,7 +97,7 @@ describe("Services::", function () {
                 expect(spies.disableAllFilterFlagsOfTypeSpy.callCount).to.equal(0);
             });
             it('Should set default case if an empty filter flags object is given', () => {
-                const serviceInst = new SentimentAnalysisService({
+                const serviceInst = new GenericSentimentAnalysisService({
                     analyzer: 'natural',
                     serviceAnalysisType: 'front-page',
                     socialSource: 'reddit',
@@ -113,7 +113,7 @@ describe("Services::", function () {
                 expect(spies.disableAllFilterFlagsOfTypeSpy.callCount).to.equal(0);
             });
             it('Should properly set the filter flags given chaos mode', () => {
-                const serviceInst = new SentimentAnalysisService({
+                const serviceInst = new GenericSentimentAnalysisService({
                     analyzer: 'natural',
                     serviceAnalysisType: 'front-page',
                     socialSource: 'reddit',
@@ -141,7 +141,7 @@ describe("Services::", function () {
                 expect(spies.disableAllFilterFlagsOfTypeSpy.callCount).to.equal(1);
             });
             it('Should properly set the filter flags given discussion mode', () => {
-                const serviceInst = new SentimentAnalysisService({
+                const serviceInst = new GenericSentimentAnalysisService({
                     analyzer: 'natural',
                     serviceAnalysisType: 'front-page',
                     socialSource: 'reddit',
@@ -170,7 +170,7 @@ describe("Services::", function () {
                 expect(spies.disableAllFilterFlagsOfTypeSpy.callCount).to.equal(1);
             });
             it('Should properly set the filter flags given dd mode', () => {
-                const serviceInst = new SentimentAnalysisService({
+                const serviceInst = new GenericSentimentAnalysisService({
                     analyzer: 'natural',
                     serviceAnalysisType: 'front-page',
                     socialSource: 'reddit',

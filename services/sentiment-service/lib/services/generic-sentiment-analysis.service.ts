@@ -10,7 +10,7 @@ export interface SentimentAnalysisServiceArgs {
     subreddit?: string
 };
 
-export class SentimentAnalysisService {
+export class GenericSentimentAnalysisService {
     private socialSource: socialSourceType;
     private analyzer: analyzerType;
     private serviceAnalysisType: serviceAnalysisType;

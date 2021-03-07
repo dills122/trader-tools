@@ -18,6 +18,7 @@ describe('Mustache::', function () {
         sandbox = Sinon.createSandbox();
         stubs.readFileStub = sandbox.stub(fs, 'readFile').resolves(TEST_TEMPLATE);
         stubs.mustacheRenderStub = sandbox.stub(mustache, 'render').resolves(TEST_TEMPLATE);
+        stubs.consoleErrStub = sandbox.stub(console, 'error').returns();
     });
 
     afterEach(() => {

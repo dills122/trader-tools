@@ -15,6 +15,7 @@ describe('Reddit::', () => {
             beforeEach(() => {
                 sandbox = Sinon.createSandbox();
                 stubs.frontPageServiceStub = sandbox.stub(FrontPageService.prototype, 'service').resolves();
+                stubs.consoleErrStub = sandbox.stub(console, 'error').returns();
             });
             afterEach(() => {
                 sandbox.restore();

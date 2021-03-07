@@ -1,6 +1,6 @@
 import { describe } from 'mocha';
 import { assert, expect } from 'chai';
-import { flairConfig, FlairFilter } from '../../lib/reddit/filters/flair-filter';
+import { flairConfig, FlairFilter } from '../../../lib/reddit/filters/flair-filter';
 
 const subreddit = 'wallstreetbets';
 const GoodFlair = flairConfig.subreddits.wallstreetbets.good[0];

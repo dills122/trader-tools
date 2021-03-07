@@ -33,7 +33,7 @@ export const service = async () => {
         });
         //TODO create a way to go through the aggregated data and look for watchlist stocks and good/bad trending stocks
     } catch (err) {
-        console.log(err);
+        console.error(err);
         throw Error('Error Generating Sentiment Report');
     }
 };

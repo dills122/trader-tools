@@ -1,5 +1,5 @@
 import { GenericSentimentAnalysisResult } from "../../sharedTypes";
-import { CommentListAnalyzerResult, SentimentAnalysisResultExtended } from "../analyzer/comment-list-sentiment-analyzer";
+import { CommentListAnalyzerResult, SentimentAnalysisResultExtended } from "../analyzers/comment-list-sentiment-analyzer";
 
 export const transform = (obj: SentimentAnalysisResultExtended, subreddit: string, title?: string): GenericSentimentAnalysisResult => {
     return {

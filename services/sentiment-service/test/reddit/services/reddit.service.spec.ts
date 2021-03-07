@@ -1,7 +1,7 @@
 import { describe } from 'mocha';
 import { assert, expect } from 'chai';
-import { GenericRedditService } from '../../lib/reddit/services/reddit.service';
-import { FrontPageService } from '../../lib/reddit/services/front-page.service';
+import { GenericRedditService } from '../../../lib/reddit/services/reddit.service';
+import { FrontPageService } from '../../../lib/reddit/services/front-page.service';
 import _ from 'lodash';
 import Sinon from 'sinon';
 

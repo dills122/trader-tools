@@ -1,6 +1,6 @@
 import { describe } from 'mocha';
 import { assert, expect } from 'chai';
-import { PostFilter } from '../../lib/reddit/filters/post-filter';
+import { PostFilter } from '../../../lib/reddit/filters/post-filter';
 import { Mocks, Socials } from 'api-service';
 import _ from 'lodash';
 

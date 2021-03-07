@@ -1,8 +1,8 @@
 import { Socials } from 'api-service';
 import { CommentFilter, PostFilter } from '../filters';
-import { CommentAnalyzer } from '../analyzer';
+import { CommentAnalyzer } from '../analyzers';
 import _ from 'lodash';
-import { CommentListAnalyzerResult } from '../analyzer/comment-list-sentiment-analyzer';
+import { CommentListAnalyzerResult } from '../analyzers/comment-list-sentiment-analyzer';
 import { SentimentAnalysisFilterFlags } from '../../sharedTypes';
 import { RedditPostAndThreadSchema } from 'api-service/lib/social/reddit/reddit-types';
 
@@ -59,6 +59,10 @@ export class FrontPageService {
         } catch (err) {
             throw err;
         }
+    }
+
+    getSentimentAnalysisResults() {
+        return this.analyizedCommentsList;    
     }
 
     private async getCommentThread(rawUrl: string): Promise<RedditPostAndThreadSchema> {

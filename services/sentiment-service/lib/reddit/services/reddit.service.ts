@@ -1,6 +1,10 @@
 import _ from 'lodash';
-import { analyzerType, SentimentAnalysisFilterFlags, serviceAnalysisType } from "../../sharedTypes";
+import { analyzerType, GenericSentimentAnalysisResult, SentimentAnalysisFilterFlags, serviceAnalysisType } from "../../sharedTypes";
 import { FrontPageService } from './front-page.service';
+import {
+    GenericCommentTransformer
+} from '../../reddit/transformers';
+import { CommentListAnalyzerResult } from '../analyzers/comment-list-sentiment-analyzer';
 
 export interface GenericRedditServiceArgs {
     serviceAnalysisType: serviceAnalysisType,
@@ -14,7 +18,7 @@ export class GenericRedditService {
     private subreddit: string;
     private analyzer: analyzerType;
     private filterFlags: SentimentAnalysisFilterFlags;
-    
+
     constructor(args: GenericRedditServiceArgs) {
         _.assign(this, args);
 
@@ -28,12 +32,22 @@ export class GenericRedditService {
                     filterFlags: this.filterFlags,
                     subreddit: this.subreddit
                 });
-                return await serviceInst.service();
+                await serviceInst.service();
+                const redditSentimentAnalysisData = serviceInst.getSentimentAnalysisResults();
+                return this.mapToGenericSentimentSchema(redditSentimentAnalysisData);
             } catch (err) {
-                console.log(err);
+                console.error(err);
                 throw err;
             }
         }
         throw Error('Unsupported service type');
+    }
+
+    mapToGenericSentimentSchema(commentThreadList: CommentListAnalyzerResult[]) {
+        let genericSentimentList: GenericSentimentAnalysisResult[] = [];
+        for (let commentThread of commentThreadList) {
+            genericSentimentList = genericSentimentList.concat(GenericCommentTransformer.transformList(commentThread));
+        }
+        return genericSentimentList;
     }
 };

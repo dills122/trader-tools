@@ -16,7 +16,6 @@ export class PostFilter {
 
     constructor(args: PostFilterArgs) {
         _.assign(this, args);
-        console.log(args, 'Post Filter');
     }
 
     filter() {

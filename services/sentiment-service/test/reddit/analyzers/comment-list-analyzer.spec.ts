@@ -1,6 +1,6 @@
 import { describe } from 'mocha';
 import { assert, expect } from 'chai';
-import { CommentListSentimentAnalyzer } from '../../lib/reddit/analyzer/comment-list-sentiment-analyzer';
+import { CommentListSentimentAnalyzer } from '../../../lib/reddit/analyzers/comment-list-sentiment-analyzer';
 import { Mocks, Socials } from 'api-service';
 import _ from 'lodash';
 

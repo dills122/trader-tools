@@ -3,8 +3,8 @@ import { analyzerType, SentimentAnalysisFilterFlags, serviceAnalysisType, social
 import { GenericService } from '../reddit/services';
 
 export interface SentimentAnalysisServiceArgs {
-    socialSource: socialSourceType, //TODO update this with a better way to manage
-    analyzer: analyzerType, //TODO update with better way to manage
+    socialSource: socialSourceType,
+    analyzer: analyzerType,
     serviceAnalysisType: serviceAnalysisType,
     filterFlags?: SentimentAnalysisFilterFlags,
     subreddit?: string

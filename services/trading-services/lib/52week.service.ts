@@ -20,6 +20,6 @@ export const service = async () => {
             email: 'insidertradingtips1220@gmail.com'
         });
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 };

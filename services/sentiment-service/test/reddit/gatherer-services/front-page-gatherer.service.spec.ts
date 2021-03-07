@@ -2,7 +2,7 @@ import { describe } from 'mocha';
 import { Socials, Mocks } from 'api-service';
 import { expect, assert } from 'chai';
 import Sinon from 'sinon';
-import * as Gatherer from '../../lib/reddit/gatherer-services/front-page-gatherer.service';
+import * as Gatherer from '../../../lib/reddit/gatherer-services/front-page-gatherer.service';
 
 const RedditMocks = Mocks.Reddit;
 

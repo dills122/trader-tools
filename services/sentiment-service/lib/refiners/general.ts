@@ -6,4 +6,4 @@ export class GeneralRefinerStrategy extends BaseRefiner {
     constructor(args: GeneralRefinerStrategyArgs) {
         super(args);
     }
-}
+};

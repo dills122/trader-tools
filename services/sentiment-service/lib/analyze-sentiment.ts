@@ -1,12 +1,6 @@
 import { SentimentAnalyzer, PorterStemmer } from 'natural';
+import { SentimentConfig } from './sentiment.config';
 import { sentimentStatusType } from './sharedTypes';
-
-export const SentimentConfig = {
-    veryPositive: 0.85,
-    positive: 0.35,
-    negative: - 0.35,
-    veryNegative: -0.85
-};
 
 export interface SentimentAnalysisResult {
     status: sentimentStatusType,

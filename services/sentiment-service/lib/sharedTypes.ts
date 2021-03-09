@@ -21,7 +21,7 @@ export interface SentimentAnalysisFilterFlagsFilterType {
 export interface GenericSentimentAnalysisResult {
     content: string,
     stanardizedContent: string[],
-    symbol?: string,
+    symbol: string,
     sentimentStatus: string,
     score: number,
     source: socialSourceType,

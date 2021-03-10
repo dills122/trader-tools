@@ -1,5 +1,6 @@
 import { Socials } from "api-service";
-import { analyze, SentimentAnalysisResult, SentimentConfig } from '../../analyze-sentiment';
+import { analyze, SentimentAnalysisResult } from '../../analyze-sentiment';
+import { SentimentConfig } from "../../sentiment.config";
 import { standardizeInput } from '../../standardize-input';
 
 export interface CommentListAnalyzerArgs {

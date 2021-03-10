@@ -1,7 +1,8 @@
 import { describe } from 'mocha';
 import { expect, assert } from 'chai';
-import { analyze, SentimentConfig } from '../lib/analyze-sentiment';
+import { analyze } from '../lib/analyze-sentiment';
 import { standardizeInput } from '../lib/standardize-input';
+import { SentimentConfig } from '../lib/sentiment.config';
 
 
 describe('AnalyzeSentiment::', function () {

@@ -3,7 +3,8 @@ const aposToLexForm = require('apos-to-lex-form');
 import SpellCorrector from 'spelling-corrector';
 import StopWord from 'stopword';
 import BadWords from 'bad-words';
-import { isTickerSymbolLike, cleanUpTickerSymbol } from './ticker-symbols';
+import { cleanUpTickerSymbol } from './ticker-symbols';
+import { isTickerSymbol } from 'is-ticker-symbol';
 
 const SpellCorrectorInst = new SpellCorrector();
 SpellCorrectorInst.loadDictionary();
@@ -45,8 +46,8 @@ export const extractStockOrCryptoTicker = (input: string, whitelist?: string[]) 
     const tickerSymbols: string[] = [];
 
     for (let tokenInput of filteredInput) {
-        const isTickerSymbol = isTickerSymbolLike(tokenInput);
-        if (!isTickerSymbol) {
+        const isTickerSymbolCheck = isTickerSymbol(tokenInput);
+        if (!isTickerSymbolCheck) {
             continue;
         }
         const cleanedUpTickerSymbol = cleanUpTickerSymbol(tokenInput);

@@ -24,7 +24,7 @@ export class FrontPageService {
         if (!Reddit.Service.subredditsConfig.includes(this.subreddit)) {
             throw Error('Unsupported subreddit');
         }
-        console.log(this.analyzer, this.filterFlags);
+        console.log(this.analyzer);
     }
 
     async service() {

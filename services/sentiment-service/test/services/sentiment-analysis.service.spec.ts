@@ -3,7 +3,6 @@ import { Socials, Mocks } from 'api-service';
 import { expect, assert } from 'chai';
 import Sinon from 'sinon';
 import { GenericSentimentAnalysisService } from '../../lib/services/generic-sentiment-analysis.service';
-// import { GenericService } from '../../lib/reddit/services';
 import _ from 'lodash';
 
 const subreddit = 'wallstreetbets';
@@ -12,7 +11,6 @@ const body = 'This is the body of the post';
 
 describe("Services::", function () {
     let sandbox: Sinon.SinonSandbox;
-    // let stubs: any = {};
     let spies: any = {};
     let stubs: any = {};
     describe('SentimentAnalysis::', () => {
@@ -28,7 +26,7 @@ describe("Services::", function () {
             const rawData = Mocks.Reddit.getRawResult('link', 0, subreddit);
             rawData.data.children = [discussionPost, nonDiscussionPost];
             stubs.getFrontPageOfSubredditStub = sandbox.stub(Socials.Reddit.Service, 'getFrontPageOfSubreddit').resolves(rawData);
-            stubs.getFrontPageOfSubredditStub = sandbox.stub(Socials.Reddit.Service, 'getPostAndCommentThread').resolves(Mocks.Reddit.getRedditPostAndThreadResult(title, body, 5, subreddit));
+            stubs.getPostAndCommentThreadStub = sandbox.stub(Socials.Reddit.Service, 'getPostAndCommentThread').resolves(Mocks.Reddit.getRedditPostAndThreadResult(title, body, 5, subreddit));
         });
         afterEach(() => {
             sandbox.restore();

@@ -67,17 +67,18 @@ export class BaseRefiner {
         const positiveSentiment = this.calculateAverage(groupedEntitiesBySentimentType.positiveEntities);
         const negativeSentiment = this.calculateAverage(groupedEntitiesBySentimentType.negativeEntities);
         const neutralSentiment = this.calculateAverage(groupedEntitiesBySentimentType.neutralEntities);
+        const totalEntities = conversationPostiveCount + conversationNegativeCount + conversationNeutralCount;
 
         return {
             symbol,
-            conversationEntityCount: conversationPostiveCount + conversationNegativeCount + conversationNeutralCount,
+            conversationEntityCount: totalEntities,
             conversationPostiveCount,
             conversationNegativeCount,
             conversationNeutralCount,
             positiveSentiment,
             negativeSentiment,
             neutralSentiment,
-            sentimentScore: _.chain([positiveSentiment, negativeSentiment, neutralSentiment]).sum().divide(3).round(2).value()
+            sentimentScore: this.calculateSentimentScore(positiveSentiment, negativeSentiment, conversationNeutralCount, totalEntities)
         };
     }
 
@@ -100,5 +101,14 @@ export class BaseRefiner {
             .divide(entityList.length)
             .round(2)
             .value();
+    }
+
+    private calculateSentimentScore(positiveSentiment: number, negativeSentiment: number, neutralEntities: number, totalEntities: number) {
+        const avgSentiment = _.chain([positiveSentiment, negativeSentiment]).sum().divide(2).round(2).value();
+        if (neutralEntities === 0) {
+            return avgSentiment;
+        }
+        const neutralWeightValue = _.chain(neutralEntities).divide(totalEntities).divide(10).multiply(avgSentiment).round(4).value();
+        return avgSentiment - neutralWeightValue;
     }
 };

@@ -21,9 +21,6 @@ export class GenericSentimentAnalysisService {
     constructor(args: SentimentAnalysisServiceArgs) {
         _.assign(this, args);
         this.analyzeFilterFlags();
-        //TODO remove once more finished, this is to get past the un-used check
-        console.log(this.analyzer, this.serviceAnalysisType, this.subreddit);
-        //TODO create a way to check if the subreddit is in the whitelist, future add a way to override the whitelist
     }
 
     async analyze() {
@@ -37,7 +34,6 @@ export class GenericSentimentAnalysisService {
                 });
                 const sentimentData = await serviceInst.service();
                 return this.refineSentimentData(sentimentData);
-                break;
             default:
                 throw Error('Unsupported social source provided');
         }

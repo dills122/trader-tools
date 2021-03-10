@@ -33,19 +33,19 @@ export class BaseRefiner {
 
     refine() {
         const grouped = this.groupBySymbol();
-        this.aggregateGroupedBySymbolData(grouped);
+        return this.aggregateGroupedBySymbolData(grouped);
     }
 
     protected groupBySymbol(): GroupedBySymbol {
         const symbolObjectAgg: GroupedBySymbol = {};
-        _.each(this.sentimentData, (sentimentEntity) => {
+        for (let sentimentEntity of this.sentimentData) {
             const symbol = sentimentEntity.symbol;
             if (symbolObjectAgg.hasOwnProperty(symbol)) {
                 symbolObjectAgg[symbol].push(sentimentEntity);
             } else {
                 symbolObjectAgg[symbol] = [sentimentEntity];
             }
-        });
+        }
         return symbolObjectAgg;
     }
 
@@ -90,6 +90,9 @@ export class BaseRefiner {
     }
 
     private calculateAverage(entityList: GenericSentimentAnalysisResult[]) {
+        if (entityList.length <= 0) {
+            return 0;
+        }
         return _.chain(entityList)
             .clone()
             .map('score')

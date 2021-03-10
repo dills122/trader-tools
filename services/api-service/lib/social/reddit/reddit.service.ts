@@ -44,7 +44,7 @@ export const getFrontPageOfSubreddit = async (subreddit: string): Promise<Reddit
 
 export const getAllSubredditsFrontPages = async (): Promise<RedditLinkSchema[]> => {
     const subreddits = getSubreddits();
-    let aggregatedPosts: RedditLinkSchema[] = []; // TODO update type 
+    let aggregatedPosts: RedditLinkSchema[] = [];
     for (let subreddit of subreddits) {
         try {
             const { data } = await getFrontPageOfSubreddit(subreddit);

@@ -55,14 +55,13 @@ export class FrontPageService {
 
                 this.analyizeCommentCollection(filteredComments, post.data.title);
             }
-            // TODO group postive and negative comments by ticker and get total for each mention
         } catch (err) {
             throw err;
         }
     }
 
     getSentimentAnalysisResults() {
-        return this.analyizedCommentsList;    
+        return this.analyizedCommentsList;
     }
 
     private async getCommentThread(rawUrl: string): Promise<RedditPostAndThreadSchema> {

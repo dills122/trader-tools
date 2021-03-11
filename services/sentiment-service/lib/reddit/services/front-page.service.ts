@@ -37,6 +37,8 @@ export class FrontPageService {
             }
             const filteredPosts = this.filterPosts(linkPostList);
 
+            console.log('Filtered Posts:', filteredPosts.map(post => post.data.title));
+
             for (let post of filteredPosts) {
 
                 const commentThread = await this.getCommentThread(post.data.url);
@@ -47,6 +49,8 @@ export class FrontPageService {
                 }
 
                 const filteredComments = this.filterComments(commentThread);
+
+                console.log('Filtered Comments:', filteredComments.map(comment => comment.data.body));
 
                 //If a post has no comments after filtering, continue to next post
                 if (filteredComments.length <= 0) {

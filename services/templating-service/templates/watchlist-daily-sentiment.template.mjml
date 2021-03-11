@@ -1,0 +1,43 @@
+<mjml>
+  <mj-body>
+    <mj-section background-color="#5D6D7E">
+      <mj-column>
+        <mj-text font-style="italic" font-size="20px" color="#FDFEFE">
+          Watchlist Social Sentiment Report
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-table cellpadding="5">
+          <tr style="border-bottom:2px solid #ecedee;text-align:left">
+            <th>Symbol</th>
+            <th>Score</th>
+            <th>Avg 7 Days</th>
+            <th>Avg 14 Days</th>
+            <th>Avg 30 Days</th>
+          </tr>
+          <% stockLinks.forEach(function(sentimentObject){ %>
+          <tr>
+            <td>
+              <%= sentimentObject.symbol %>
+            </td>
+            <td>
+              <%= sentimentObject.score %>
+            </td>
+            <td>
+              <%= sentimentObject.avg_7_days %>
+            </td>
+            <td>
+              <%= sentimentObject.avg_14_days %>
+            </td>
+            <td>
+              <%= sentimentObject.avg_30_days %>
+            </td>
+          </tr>
+          <% }); %>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

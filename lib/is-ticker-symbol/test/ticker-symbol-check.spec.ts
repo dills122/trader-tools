@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { assert } from 'console';
 import * as Lib from '../index';
 
-const goodSymbols = ['TSLA', 'AAPL', 'MSFT'];
+const goodSymbols = ['TSLA', 'AAPL', 'MSFT', 'ABR'];
 const badSymbols = ['Cupertino', 'information', 'Company'];
 
 describe('Lib', function () {

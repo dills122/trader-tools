@@ -1,6 +1,6 @@
 import cron from 'node-cron';
 import express from 'express';
-import { Week52Low, FastSlowSma, LinkReport } from 'trading-services';
+import { Week52Low, FastSlowSma, LinkReport, SocialSentimentReport } from 'trading-services';
 
 const app = express();
 
@@ -16,7 +16,7 @@ cron.schedule('35 16 * * 1-5', () => {
 
 //Runs at 8:00 AM Mon-Fri.
 cron.schedule('0 8 * * 1-5', () => {
-    Promise.all([LinkReport.service()]).then(() => {
+    Promise.all([LinkReport.service(), SocialSentimentReport.service()]).then(() => {
         console.log('Finished running service');
     }).catch((err) => {
         console.error('Finished running with errors');

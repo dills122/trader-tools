@@ -23,6 +23,7 @@ describe('Ejs-mjml::', function () {
     beforeEach(() => {
         sandbox = Sinon.createSandbox();
         stubs.readFileStub = sandbox.stub(fs, 'readFile').resolves(TEST_TEMPLATE);
+        stubs.consoleErrStub = sandbox.stub(console, 'error').returns();
     });
 
     afterEach(() => {

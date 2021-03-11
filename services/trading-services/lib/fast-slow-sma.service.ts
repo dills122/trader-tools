@@ -8,7 +8,6 @@ export const service = async () => {
     try {
         const stocks = getWatchlist();
         for (const stock of stocks) {
-            console.log(stock);
             const stockCandleCollection = await HistoricPrices.historic({
                 symbol: stock,
                 timeframe: '2y'
@@ -32,7 +31,7 @@ export const service = async () => {
             email: 'insidertradingtips1220@gmail.com'
         });
     } catch (err) {
-        console.log(err);
+        console.error(err);
         throw Error('Error creating Fast/Slow SMA report');
     }
 };

@@ -6,7 +6,7 @@ export const createTemplateFromFile = async (templateLocation: string, templateD
     try {
         renderedTemplate = await ejs.createTemplateFromFile(templateLocation, templateData);
     } catch (err) {
-        console.log(err);
+        console.error(err);
         throw Error('Issue rendering your requested template');
     }
     if (renderedTemplate.length === 0) {

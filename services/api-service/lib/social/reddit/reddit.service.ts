@@ -99,6 +99,7 @@ export const getDiscussionCommentThread = async (url: string): Promise<RedditCom
 export const getPostAndCommentThread = async (url: string): Promise<RedditPostAndThreadSchema> => {
     try {
         if (!url.includes(baseURL)) {
+            console.error(url);
             throw Error('Unsupported URL');
         }
         if (!url.includes('json')) {
@@ -118,13 +119,16 @@ export const getPostAndCommentThread = async (url: string): Promise<RedditPostAn
         if (!isRedditLinkSchema(postData)) {
             throw Error('No post info found');
         }
-        if (!isRedditCommentSchemaList(commentsEntity.data.children)) {
+
+        const trimedArray = commentsEntity.data.children.filter(comment => comment.kind === 't1');
+
+        if (!isRedditCommentSchemaList(trimedArray)) {
             throw Error('Mismatched returned data');
         }
         return {
             title: postData.data.title,
             body: postData.data.selftext,
-            discussion: commentsEntity.data.children
+            discussion: trimedArray
         };
     } catch (err) {
         throw err;

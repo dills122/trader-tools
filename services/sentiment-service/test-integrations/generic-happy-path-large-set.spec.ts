@@ -64,7 +64,7 @@ describe('Integrations::', function () {
         sandbox.restore();
     });
     //This should be positive or very positive sentiment, but currently is not 
-    it.only('Should execute happy path and find mostly positive sentiment', async () => {
+    it('Should execute happy path and find mostly positive sentiment', async () => {
         const service = new GenericSentimentAnalysisService({
             analyzer: 'natural',
             serviceAnalysisType: 'front-page',
@@ -77,7 +77,6 @@ describe('Integrations::', function () {
         const analyzedResults = await service.analyze();
         assert(analyzedResults);
         const result = analyzedResults[0];
-        console.log(result);
         expect(result.sentimentScore).to.be.lessThan(.1).and.greaterThan(-.1);
     });
 });

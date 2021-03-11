@@ -34,7 +34,7 @@ export class PostFilter {
             if (this.discussionMode) {
                 const flairFilter = new FlairFilter({
                     filterType: 'discussion',
-                    flair: post.data.link_flair_text,
+                    flair: post.data.link_flair_text || '',
                     subreddit: post.data.subreddit
                 });
                 if (flairFilter.filter()) {

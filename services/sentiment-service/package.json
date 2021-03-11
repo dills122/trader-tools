@@ -1,6 +1,6 @@
 {
   "name": "sentiment-service",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -21,9 +21,9 @@
     "stopword": "~1.0.6",
     "word-list": "~3.1.0",
     "bad-words": "~3.0.4",
-    "api-service": "~0.1.6",
+    "api-service": "^0.2.0",
     "lodash": "~4.17.21",
-    "is-ticker-symbol": "^0.1.6"
+    "is-ticker-symbol": "^0.2.0"
   },
   "devDependencies": {
     "typescript": "~4.1.3",

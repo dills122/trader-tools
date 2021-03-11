@@ -20,6 +20,7 @@ describe('Social::', function () {
                 stubs.gotGetStub = sandbox.stub(got, 'get').resolves({
                     body: JSON.stringify(RedditMock.getRawResult('link'))
                 });
+                stubs.consoleErrStub = sandbox.stub(console, 'error').returns();
             });
 
             afterEach(() => {
@@ -205,14 +206,18 @@ describe('Social::', function () {
                     }
                 });
                 it('Should error out if data list is of incorrect type', async () => {
+                    const invalidTypeMock: any = RedditMock.getRawResult('link');
+                    invalidTypeMock.data.children[0].kind = 't1';
+                    delete invalidTypeMock.data.children[0].data.body;
                     stubs.gotGetStub.resolves({
                         body: JSON.stringify([
                             RedditMock.getRawResult('link', 1),
-                            RedditMock.getRawResult('link')
+                            invalidTypeMock
                         ])
                     });
                     try {
                         const resp = await RedditService.getPostAndCommentThread(RedditService.baseURL);
+                        console.log(resp);
                         assert(!resp);
                     } catch (err) {
                         assert(err);

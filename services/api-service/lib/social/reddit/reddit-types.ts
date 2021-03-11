@@ -66,7 +66,7 @@ export const isRedditCommentSchemaList = (arg: any): arg is RedditCommentSchema[
     if (!Array.isArray(arg)) {
         return false;
     }
-    return arg.every(item => item && item.kind && item.kind === 't1' && item.data);
+    return arg.every(item => item && item.kind && item.kind === 't1' && item.data && item.data.body);
 };
 
 export const isRedditLinkSchema = (arg: any): arg is RedditLinkSchema => {

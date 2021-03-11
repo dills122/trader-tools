@@ -11,8 +11,6 @@ export interface CommentFilterArgs extends SentimentAnalysisFilterFlags {
 export class CommentFilter {
     private comments: Socials.Reddit.Types.RedditCommentSchema[];
     private matureFilter: boolean;
-    // private emojiFilter: boolean;
-    // private hashtagFilter: boolean;
 
     constructor(args: CommentFilterArgs) {
         _.assign(this, args);

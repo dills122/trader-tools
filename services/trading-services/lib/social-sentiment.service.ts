@@ -31,7 +31,6 @@ export const service = async () => {
             subject: 'Social Sentiment Report',
             email: 'insidertradingtips1220@gmail.com'
         });
-        //TODO create a way to go through the aggregated data and look for watchlist stocks and good/bad trending stocks
     } catch (err) {
         console.error(err);
         throw Error('Error Generating Sentiment Report');

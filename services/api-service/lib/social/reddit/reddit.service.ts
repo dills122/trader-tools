@@ -4,14 +4,14 @@ import * as util from './reddit-util';
 
 export const baseURL = 'https://www.reddit.com/r/';
 
-// const kindMapping = {
-//     t1: 'comment',
-//     t2: 'account',
-//     t3: 'link',
-//     t4: 'message',
-//     t5: 'subreddit',
-//     t6: 'award'
-// };
+export const kindMapping = {
+    t1: 'comment',
+    t2: 'account',
+    t3: 'link',
+    t4: 'message',
+    t5: 'subreddit',
+    t6: 'award'
+};
 
 export const subredditsConfig = [
     'RedditTickers',

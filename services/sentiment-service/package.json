@@ -23,7 +23,7 @@
     "bad-words": "~3.0.4",
     "api-service": "~0.1.6",
     "lodash": "~4.17.21",
-    "is-ticker-symbol": "~0.1.6"
+    "is-ticker-symbol": "^0.1.6"
   },
   "devDependencies": {
     "typescript": "~4.1.3",

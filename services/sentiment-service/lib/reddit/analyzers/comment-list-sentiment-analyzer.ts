@@ -2,6 +2,7 @@ import { Socials } from "api-service";
 import { analyze, SentimentAnalysisResult } from '../../analyze-sentiment';
 import { SentimentConfig } from "../../sentiment.config";
 import { standardizeInput } from '../../standardize-input';
+import { config, SubredditConfigSchema } from '../config';
 
 export interface CommentListAnalyzerArgs {
     comments: Socials.Reddit.Types.RedditCommentSchemaExtended[],
@@ -26,6 +27,7 @@ export class CommentListSentimentAnalyzer {
     private comments: Socials.Reddit.Types.RedditCommentSchemaExtended[];
     private title: string;
     private subreddit: string;
+    private subredditConfig: SubredditConfigSchema;
     private positiveComments: SentimentAnalysisResultExtended[] = [];
     private negativeComments: SentimentAnalysisResultExtended[] = [];
     private neutralComments: SentimentAnalysisResultExtended[] = [];
@@ -34,6 +36,7 @@ export class CommentListSentimentAnalyzer {
         this.comments = args.comments;
         this.title = args.title;
         this.subreddit = args.subreddit;
+        this.subredditConfig = config.subreddits[this.subreddit];
     }
 
     analyze(): CommentListAnalyzerResult {
@@ -84,7 +87,7 @@ export class CommentListSentimentAnalyzer {
         return commentWithTickerSymbol.map((body) => {
             return {
                 ...body,
-                comment: standardizeInput(body.comment)
+                comment: standardizeInput(body.comment, this.subredditConfig.whitelist)
             };
         });
     }

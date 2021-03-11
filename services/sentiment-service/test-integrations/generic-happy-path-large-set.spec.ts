@@ -31,11 +31,11 @@ describe('Integrations::', function () {
         const rawData = Mocks.Reddit.getRawResult('link', 0, subreddit);
         rawData.data.children = frontPageMock;
 
-        const firstThreadComments = Mocks.Reddit.getCommentList(10, subreddit);
+        const firstThreadComments = Mocks.Reddit.getCommentList(200, subreddit);
         firstThreadComments.forEach((post, index) => {
             if (index % 2 === 0) {
                 post.data.body = getRandomStatement('positive', 'ABR');
-            } else if (index % 2 !== 0 && index % 3 === 0) {
+            } else if (index % 2 !== 0 && index % 25 === 0) {
                 post.data.body = getRandomStatement('negative', 'ABR');
             } else {
                 post.data.body = getRandomStatement('filler', 'ABR');
@@ -43,14 +43,12 @@ describe('Integrations::', function () {
         });
         const rawCommentThreadOne = Mocks.Reddit.getRedditPostAndThreadResult(titleOne, '', 0, subreddit);
         rawCommentThreadOne.discussion = firstThreadComments;
-        const secondThreadComments = Mocks.Reddit.getCommentList(16, subreddit);
+        const secondThreadComments = Mocks.Reddit.getCommentList(250, subreddit);
         secondThreadComments.forEach((post, index) => {
-            if (index % 5 === 0) {
+            if (index % 3 === 0) {
                 post.data.body = getRandomStatement('positive', 'ABR');
-            } else if (index % 5 !== 0 && index % 3 === 0) {
+            } else if (index % 3 !== 0 && index % 25 === 0) {
                 post.data.body = getRandomStatement('negative', 'ABR');
-            } else if (index % 5 !== 0 && index % 10 === 0) {
-                post.data.body = getRandomStatement('positive', 'ABR');
             } else {
                 post.data.body = getRandomStatement('filler', 'ABR');
             }
@@ -61,29 +59,12 @@ describe('Integrations::', function () {
         stubs.getPostAndCommentThreadStub = sandbox.stub(Socials.Reddit.Service, 'getPostAndCommentThread')
             .onCall(0).resolves(rawCommentThreadOne)
             .onCall(1).resolves(rawCommentThreadTwo)
-            .onCall(2).resolves(rawCommentThreadOne)
-            .onCall(3).resolves(rawCommentThreadTwo)
-            .onCall(4).resolves(rawCommentThreadOne)
-            .onCall(5).resolves(rawCommentThreadTwo)
-            .onCall(6).resolves(rawCommentThreadOne)
-            .onCall(7).resolves(rawCommentThreadTwo)
-            .onCall(8).resolves(rawCommentThreadOne)
-            .onCall(9).resolves(rawCommentThreadTwo)
-            .onCall(10).resolves(rawCommentThreadOne)
-            .onCall(11).resolves(rawCommentThreadTwo)
-            .onCall(12).resolves(rawCommentThreadOne)
-            .onCall(13).resolves(rawCommentThreadTwo)
-            .onCall(14).resolves(rawCommentThreadOne)
-            .onCall(15).resolves(rawCommentThreadTwo)
-            .onCall(16).resolves(rawCommentThreadOne)
-            .onCall(17).resolves(rawCommentThreadTwo)
-            .onCall(18).resolves(rawCommentThreadOne)
-            .onCall(19).resolves(rawCommentThreadTwo)
     });
     afterEach(() => {
         sandbox.restore();
     });
-    it('Should execute happy path and find mostly positive sentiment', async () => {
+    //This should be positive or very positive sentiment, but currently is not 
+    it.only('Should execute happy path and find mostly positive sentiment', async () => {
         const service = new GenericSentimentAnalysisService({
             analyzer: 'natural',
             serviceAnalysisType: 'front-page',
@@ -93,16 +74,10 @@ describe('Integrations::', function () {
             },
             subreddit
         });
-        const executionTimes = 10;
-        const executions: number[] = [];
-        for (let i = 0; i < executionTimes; i++) {
-            const analyzedResults = await service.analyze();
-            assert(analyzedResults);
-            const result = analyzedResults[0];
-            executions.push(result.sentimentScore);
-            expect(result.sentimentScore).to.be.lessThan(.1).and.greaterThan(-.1);
-        }
-        const resultAvg = _.chain(executions).sum().divide(executionTimes).round(4).value();
-        expect(resultAvg).to.be.lessThan(.1).and.greaterThan(-.1);
+        const analyzedResults = await service.analyze();
+        assert(analyzedResults);
+        const result = analyzedResults[0];
+        console.log(result);
+        expect(result.sentimentScore).to.be.lessThan(.1).and.greaterThan(-.1);
     });
 });

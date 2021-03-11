@@ -12,7 +12,7 @@ export const analyze = (standardizedInput: string[]): SentimentAnalysisResult =>
     const analyzer = new SentimentAnalyzer('English', PorterStemmer, 'afinn');
     const analysis = analyzer.getSentiment(standardizedInput);
     // Netural Area
-    if (analysis >= SentimentConfig.negative && analysis <= SentimentConfig.positive) {
+    if (analysis > SentimentConfig.negative && analysis < SentimentConfig.positive) {
         return {
             status: 'netural',
             score: analysis,
@@ -21,7 +21,7 @@ export const analyze = (standardizedInput: string[]): SentimentAnalysisResult =>
     }
     const isPositive = SentimentConfig.positive <= analysis;
     const isVeryPositive = SentimentConfig.veryPositive <= analysis;
-    const isVeryNegative = SentimentConfig.veryNegative <= analysis;
+    const isVeryNegative = SentimentConfig.veryNegative >= analysis;
     if (isPositive) {
         return {
             status: isVeryPositive ? 'very-positive' : 'positive',

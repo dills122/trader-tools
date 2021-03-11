@@ -5,35 +5,57 @@ import StopWord from 'stopword';
 import BadWords from 'bad-words';
 import { cleanUpTickerSymbol } from './ticker-symbols';
 import { isTickerSymbol } from 'is-ticker-symbol';
+import { checker } from './word-checker';
 
 const SpellCorrectorInst = new SpellCorrector();
 SpellCorrectorInst.loadDictionary();
 
-export const standardizeInput = (input: string) => {
+export interface StandardizeInputOptions {
+    disableStopWords?: boolean,
+    disableProfanityFilter?: boolean,
+
+};
+
+export const standardizeInput = (input: string, whitelist: string[] = [], options?: StandardizeInputOptions) => {
+    const { disableProfanityFilter, disableStopWords } = options || {};
     const lexedInput: string = aposToLexForm(input);
     const loweredLexedInput = lexedInput.toLowerCase();
     const alphaOnlyLoweredLexedInput = loweredLexedInput.replace(/[^a-zA-Z\s]+/g, '');
 
     const tokenizer = new WordTokenizer();
-    const tokenizedLexedInput = tokenizer.tokenize(alphaOnlyLoweredLexedInput);
+    let tokenizedLexedInput: string[] = tokenizer.tokenize(alphaOnlyLoweredLexedInput);
 
     const badWordFilter = new BadWords();
 
-    const nonProfaneCheckedInput = tokenizedLexedInput.filter((word) => {
-        return !badWordFilter.isProfane(word);
+    if (!disableProfanityFilter) {
+        tokenizedLexedInput = tokenizedLexedInput.filter((word) => {
+            return !badWordFilter.isProfane(word.toUpperCase());
+        });
+    }
+
+    tokenizedLexedInput = tokenizedLexedInput.filter((word) => {
+        if (whitelist.includes(word)) {
+            return true;
+        }
+        if (checker(word)) {
+            return true;
+        }
+        return !isTickerSymbol(word.toUpperCase());
     });
 
-    const spellCheckedInput = nonProfaneCheckedInput.map((word) => {
+    tokenizedLexedInput = tokenizedLexedInput.map((word) => {
         return SpellCorrectorInst.correct(word);
     });
 
-    const filteredInput = StopWord.removeStopwords(spellCheckedInput);
+    if (!disableStopWords) {
+        tokenizedLexedInput = StopWord.removeStopwords(tokenizedLexedInput);
+    }
 
-    if (filteredInput.length <= 0) {
+    if (tokenizedLexedInput.length <= 0) {
         throw Error('No results found after standardizing input');
     }
 
-    return filteredInput;
+    return tokenizedLexedInput;
 };
 
 export const extractStockOrCryptoTicker = (input: string, whitelist?: string[]) => {

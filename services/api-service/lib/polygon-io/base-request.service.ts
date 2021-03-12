@@ -7,7 +7,7 @@ const baseURL = "https://api.polygon.io/";
 dotenv.config({ path: __dirname + '/../../../.env' });
 
 const pk = process.env.POLYGONIO_PUBLIC_KEY_TEST || process.env.POLYGONIO_PUBLIC_KEY;
-const apiversion = process.env.POLYGONIO_API_VERSION;
+const APIVersion = process.env.POLYGONIO_API_VERSION;
 
 
 export const tokenPlugin = got.extend({
@@ -16,7 +16,8 @@ export const tokenPlugin = got.extend({
 
 export const polygonIOApiRequest = async <T>(
     endpoint: string,
-    params = {}
+    params = {},
+    apiversion = APIVersion
 ): Promise<T> => {
     try {
         const url = `${baseURL}${apiversion}${endpoint}`;

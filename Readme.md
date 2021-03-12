@@ -9,6 +9,7 @@ This mono-repo contains various tools and apps all centered around stocks/equiti
     - [Folders](#folders)
   - [Getting Started](#getting-started)
     - [Other Setup Items](#other-setup-items)
+      - [External Services Setup](#external-services-setup)
     - [Other Important Commands](#other-important-commands)
   - [Important Info](#important-info)
   - [Container Development](#container-development)
@@ -44,23 +45,35 @@ rush install
 
 You'll need to create an `.env` file with a few key-value pair to ensure all the services work correctly.
 
-In `~/` create an `.env` file, if one doesn't already exist, with the following parameters:
+In `~/` create an `.env` file, if one doesn't already exist. You'll need to follow the proceeding steps to finish setting up the external services and the `.env` items
 
-```env
-IEXCLOUD_PUBLIC_KEY=PUBLIC_KEY
-IEXCLOUD_PUBLIC_KEY_TEST=PUBLIC_TEST_KEY # only have this when in test env, or else it will always think your in a test env
-IEXCLOUD_API_VERSION=stable
-```
+#### External Services Setup
 
-To get the required data points sign up for an `iex cloud` api account [here](https://iexcloud.io/) and for more info on how to work with the api read [here](https://intercom.help/iexcloud/en/articles/2851957-how-to-use-the-iex-cloud-api).
-
-In `~/` create an `.env` file, if one doesn't already exist, with the following parameters:
-
-```env
-EMAIL_USERNAME=GMAIL_EMAIL
-EMAIL_PASSWORD=GMAIL_PASSWORD
-```
-You'll need to sign-up for a new Gmail account to use this feature and if any authentication issue refer to these common [issues](https://github.com/alykoshin/gmail-send#preparation-step---configure-your-gmail-account).
+1. IEX Cloud - Used for stock historical data and reference data, along with crypto
+   1. You'll need to create an account [here](https://iexcloud.io/cloud-login?r=https%3A%2F%2Fiexcloud.io%2Fconsole%2F#/register)
+   2. Once you created your account you'll need to add two new entries to your .env file
+      1. `IEXCLOUD_PUBLIC_KEY=PUBLIC_KEY`
+      2. `IEXCLOUD_PUBLIC_KEY_TEST=PUBLIC_TEST_KEY`
+      3. `IEXCLOUD_API_VERSION=stable`
+   3. More info about the API available [here](https://intercom.help/iexcloud/en/articles/2851957-how-to-use-the-iex-cloud-api)
+2. Gmail - Used to send all email based reports and correspondence
+   1. You'll need a Google account, if you don't have one or want a new one for this [here is a link](https://accounts.google.com/signup/v2/webcreateaccount?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail&hl=en&dsh=S-1711203018%3A1615436234382827&gmb=exp&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp)
+   2. Add the following parameters to the `.env` file
+      1. `EMAIL_USERNAME=GMAIL_EMAIL`
+      2. `EMAIL_PASSWORD=GMAIL_PASSWORD`
+   3. if any authentication issue refer to these common [issues](https://github.com/alykoshin/gmail-send#preparation-step---configure-your-gmail-account)
+3. Polygon.io - Used for historic stock data and reference data
+   1. You'll need to create an account [here](https://polygon.io/dashboard/signup)
+   2. Once you've created your account, you'll need to add a few items to your `.env` file
+      1. `POLYGONIO_PUBLIC_KEY`
+      2. `POLYGONIO_API_VERSION=v2`
+   3. For more info on the API, check [here](https://polygon.io/docs)
+4. Social Sentiment.io - Used for daily sentiment analysis data
+   1. You can create an account [here](https://socialsentiment.io/register/)
+   2. Once you do that you'll need to add a few `.env` file entries:
+      1. `SOCIAL_SENTIMENT_API`
+      2. `SOCIAL_SENTIMENT_API_VERSION`
+   3. Note: as of 03-11-21 this is not used and can really be skipped for now
 
 ### Other Important Commands
 

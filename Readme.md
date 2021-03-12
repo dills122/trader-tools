@@ -68,6 +68,12 @@ In `~/` create an `.env` file, if one doesn't already exist. You'll need to foll
       1. `POLYGONIO_PUBLIC_KEY`
       2. `POLYGONIO_API_VERSION=v2`
    3. For more info on the API, check [here](https://polygon.io/docs)
+4. Social Sentiment.io - Used for daily sentiment analysis data
+   1. You can create an account [here](https://socialsentiment.io/register/)
+   2. Once you do that you'll need to add a few `.env` file entries:
+      1. `SOCIAL_SENTIMENT_API`
+      2. `SOCIAL_SENTIMENT_API_VERSION`
+   3. Note: as of 03-11-21 this is not used and can really be skipped for now
 
 ### Other Important Commands
 

@@ -4,7 +4,14 @@ on:
     pull_request:
         types: [ synchronize, opened, reopened ]
 jobs:
-    ci_job:
+    linter_job:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                node-version: 14
+            - run: grep -rio --include="*.js" --exclude-dir={\*node_modules,common} '' ./; [[ $? = 1 ]] && exit 0 || exit 1;
+    pr_job:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2

@@ -1,0 +1,9 @@
+
+export const trimAndFixUrl = (url: string, format: 'json' | 'xml' = 'json') => {
+    const isSlash = url.slice(-1) === '/';
+    let modifiedURL = url;
+    if (isSlash) {
+        modifiedURL = modifiedURL.slice(0, url.length - 1);
+    }
+    return `${modifiedURL}.${format}`;
+};

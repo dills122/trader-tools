@@ -1,10 +1,11 @@
 {
   "name": "api-service",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register test/*.spec.ts",
+    "test": "mocha -r ts-node/register test/**/*.spec.ts",
+    "test:integrations": "mocha -r ts-node/register integrations/**/*.spec.ts",
     "build": "tsc -p .",
     "compile": "tsc",
     "clean": "tsc --build --clean"
@@ -19,11 +20,13 @@
     "@types/chai": "~4.2.14",
     "sinon": "~9.2.3",
     "@types/sinon": "~9.0.10",
-    "ts-node": "~9.1.1"
+    "ts-node": "~9.1.1",
+    "@types/lodash": "~4.14.168"
   },
   "dependencies": {
     "got": "~11.8.1",
     "dotenv": "~8.2.0",
-    "trader-sdk": "^0.1.0"
+    "trader-sdk": "^0.2.0",
+    "lodash": "~4.17.21"
   }
 }

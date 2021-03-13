@@ -1,5 +1,4 @@
 import config from './config.json';
-// import Fuzzy from 'fuzzyset';
 import Fuse from 'fuse.js';
 import _ from 'lodash';
 
@@ -31,17 +30,6 @@ export const isCompanyName = (inputString: string, matchTolerance = .2): {
     name: string
 } => {
     const names = configCache.json.map(company => company.name);
-    // const set = Fuzzy(names);
-    // const matches = set.get(inputString);
-    // if (!matches || matches.length <= 0) {
-    //     return false;
-    // }
-    // return matches.map((match) => {
-    //     return {
-    //         percent: match[0],
-    //         name: match[1]
-    //     };
-    // }).some(match => match.percent >= matchTolerance);
     const fuse = new Fuse(names, {
         threshold: matchTolerance
     });

@@ -78,8 +78,8 @@ export const getPolygonIOData = async () => {
     do {
         try {
             const tickerPage = await PolygonIO.Tickers.getTickerSymbolPage(count);
-            totalPageCount = Number(tickerPage.count / tickerPage.perPage) - 2; // I think -1 for 0 indexing, and -1 for skipping the first page in the count
-            console.log('Current Page:', count, totalPageCount);
+            totalPageCount = Math.ceil(Number(tickerPage.count / tickerPage.perPage) - 2); // I think -1 for 0 indexing, and -1 for skipping the first page in the count
+            console.log(`Current Page:${count} out of ${totalPageCount}`);
             count += 1;
             if (count > totalPageCount) {
                 shouldContinue = false;

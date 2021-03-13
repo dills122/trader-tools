@@ -6,6 +6,7 @@ const goodSymbols = ['TSLA', 'AAPL', 'MSFT', 'ABR'];
 const badSymbols = ['Cupertino', 'information', 'Company'];
 
 describe('Lib', function () {
+    this.timeout(6000);
     describe('isTickerSymbol::', () => {
         it('Should find match', () => {
             for (let symbol of goodSymbols) {
@@ -18,6 +19,25 @@ describe('Lib', function () {
                 const isTickerSymbol = Lib.isTickerSymbol(symbol);
                 expect(isTickerSymbol).is.false;
             }
+        });
+    });
+
+    describe('isCompanyName::', () => {
+        it('Should find match', () => {
+            let isCompanyName = Lib.isCompanyName('Ford Motor Company');
+            expect(isCompanyName.isMatch).to.be.true;
+            expect(isCompanyName.name).and.equals('Ford Motor Company');
+            isCompanyName = Lib.isCompanyName('Ford Motor Company', .2);
+            expect(isCompanyName.isMatch).to.be.true;
+            expect(isCompanyName.name).and.equals('Ford Motor Company');
+        });
+        it('Should not find match', () => {
+            let isCompanyName = Lib.isCompanyName('akfsklasklfks');
+            expect(isCompanyName.isMatch).to.be.false;
+            expect(isCompanyName.name).to.be.empty;
+            isCompanyName = Lib.isCompanyName('akfsklasklfks', .2);
+            expect(isCompanyName.isMatch).to.be.false;
+            expect(isCompanyName.name).to.be.empty;
         });
     });
 

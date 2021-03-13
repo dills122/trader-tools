@@ -26,7 +26,7 @@ describe('PolygonIO::', function () {
         it("Should execute happy path", async () => {
             const resp = await Ticker.getTickerSymbolPage(1);
             assert(resp);
-            expect(resp.length).to.equal(4);
+            expect(resp.tickers.length).to.equal(4);
             expect(stubs.gotGetStub.callCount).to.equal(1);
         });
         it("Should execute unhappy path, non OK status", async () => {

@@ -1,5 +1,5 @@
-import { retrieveNASDAQDataList, retrieveIEXData } from './retrieve-external-data';
-import { SymbolsData } from 'api-service';
+import { getPolygonIOData, retrieveIEXData, retrieveNASDAQDataList } from './retrieve-external-data';
+import { PolygonIO, SymbolsData } from 'api-service';
 import { parseString } from '@fast-csv/parse';
 import fs from 'fs/promises';
 import _ from 'lodash';
@@ -19,9 +19,12 @@ export class RebaseTickerList {
 
     async rebase() {
         try {
-            this.allMarketCsvDataList = await retrieveNASDAQDataList();
-            await this.mapToJson();
+            await this.gatherAndSetupNasdaqFTPData();
             await this.gatherAndSetupIEXData();
+            await this.gatherAndSetupPolygonIO();
+            if (this.jsonMarketDataList.length <= 0) {
+                throw Error('No data to proceed, cannot proceed');
+            }
             this.filterDuplicates();
             this.mapToSymbolList();
             await this.createOrOverwriteDataFiles();
@@ -31,13 +34,32 @@ export class RebaseTickerList {
         }
     }
 
+    private async gatherAndSetupNasdaqFTPData() {
+        try {
+            this.allMarketCsvDataList = await retrieveNASDAQDataList();
+            await this.mapToJson();
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     private async gatherAndSetupIEXData() {
         try {
             const IEXSymbolsList = await retrieveIEXData();
             const mappedSymbolsList = this.mapIEXToMarketDataSchema(IEXSymbolsList);
             this.jsonMarketDataList = this.jsonMarketDataList.concat(mappedSymbolsList);
-        } catch(err) {
-            throw err;
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    private async gatherAndSetupPolygonIO() {
+        try {
+            const TickersList = await getPolygonIOData();
+            const mappedSymbolsList = this.mapPolygonToMarketDataSchema(TickersList);
+            this.jsonMarketDataList = this.jsonMarketDataList.concat(mappedSymbolsList);
+        } catch (err) {
+            console.error(err);
         }
     }
 
@@ -46,6 +68,15 @@ export class RebaseTickerList {
             return {
                 name: symbolObject.name,
                 symbol: symbolObject.symbol
+            };
+        });
+    }
+
+    private mapPolygonToMarketDataSchema(TickersList: PolygonIO.Tickers.TickerSymbolResponse[]): JsonMarketDataSchema[] {
+        return TickersList.map((symbolObject) => {
+            return {
+                name: symbolObject.name,
+                symbol: symbolObject.ticker
             };
         });
     }

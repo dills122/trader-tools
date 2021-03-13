@@ -13,14 +13,14 @@ export const getTickerSymbolPage = async (page: number, options?: TickerSymbolRe
         const resp = await polygonIOApiRequest<RawTickerPageResponse>('/reference/tickers', {
             page,
             ...options
-        });
+        }, 'v2');
         if (resp.status !== 'OK') {
             throw Error('Unsuccessful status returned from api, unable to proceed');
         }
         if (resp.tickers.length <= 0) {
             throw Error('No ticker symbols returned, most likely a page number issue');
         }
-        return resp.tickers;
+        return resp;
     } catch (err) {
         console.error(err);
         throw err;

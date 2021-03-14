@@ -15,7 +15,7 @@ describe("Refiners::", function () {
             sandbox = Sinon.createSandbox();
             spies.groupBySymbolSpy = sandbox.spy(BaseRefiner.prototype, <any>'groupBySymbol');
             spies.aggregateGroupedBySymbolDataSpy = sandbox.spy(BaseRefiner.prototype, <any>'aggregateGroupedBySymbolData');
-            spies.calculateAggergatedSentimentDataSpy = sandbox.spy(BaseRefiner.prototype, <any>'calculateAggergatedSentimentData');
+            spies.calculateAggregatedSentimentDataSpy = sandbox.spy(BaseRefiner.prototype, <any>'calculateAggregatedSentimentData');
             spies.groupSentimentListByTypeSpy = sandbox.spy(BaseRefiner.prototype, <any>'groupSentimentListByType');
             spies.calculateAverageSpy = sandbox.spy(BaseRefiner.prototype, <any>'calculateAverage');
         });
@@ -44,7 +44,7 @@ describe("Refiners::", function () {
                 assert.isTrue(refinedData.every(data => data.symbol === 'ABR'));
                 expect(spies.groupBySymbolSpy.callCount).to.equal(1);
                 expect(spies.aggregateGroupedBySymbolDataSpy.callCount).to.equal(1);
-                expect(spies.calculateAggergatedSentimentDataSpy.callCount).to.equal(1);
+                expect(spies.calculateAggregatedSentimentDataSpy.callCount).to.equal(1);
                 expect(spies.groupSentimentListByTypeSpy.callCount).to.equal(1);
                 expect(spies.calculateAverageSpy.callCount).to.equal(3);
             });
@@ -72,7 +72,7 @@ describe("Refiners::", function () {
                 assert.isTrue(refinedData.some(data => data.symbol === 'F'));
                 expect(spies.groupBySymbolSpy.callCount).to.equal(1);
                 expect(spies.aggregateGroupedBySymbolDataSpy.callCount).to.equal(1);
-                expect(spies.calculateAggergatedSentimentDataSpy.callCount).to.equal(2);
+                expect(spies.calculateAggregatedSentimentDataSpy.callCount).to.equal(2);
                 expect(spies.groupSentimentListByTypeSpy.callCount).to.equal(2);
                 expect(spies.calculateAverageSpy.callCount).to.equal(6);
             });

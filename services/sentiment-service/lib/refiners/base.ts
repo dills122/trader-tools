@@ -25,7 +25,7 @@ interface GroupedBySymbol {
 
 export class BaseRefiner {
     private sentimentData: GenericSentimentAnalysisResult[];
-    private aggergatedSentimentData: AggregatedRefinedSentimentData[] = [];
+    private aggregatedSentimentData: AggregatedRefinedSentimentData[] = [];
 
     constructor(args: BaseRefinerArgs) {
         _.assign(this, args);
@@ -53,13 +53,13 @@ export class BaseRefiner {
         const symbols = _.keys(groupedEntities);
         for (let symbol of symbols) {
             const sentimentEntities = groupedEntities[symbol];
-            const aggergatedSentimentData = this.calculateAggergatedSentimentData(sentimentEntities, symbol);
-            this.aggergatedSentimentData.push(aggergatedSentimentData);
+            const aggregatedSentimentData = this.calculateAggregatedSentimentData(sentimentEntities, symbol);
+            this.aggregatedSentimentData.push(aggregatedSentimentData);
         }
-        return this.aggergatedSentimentData;
+        return this.aggregatedSentimentData;
     }
 
-    private calculateAggergatedSentimentData(sentimentEntities: GenericSentimentAnalysisResult[], symbol: string): AggregatedRefinedSentimentData {
+    private calculateAggregatedSentimentData(sentimentEntities: GenericSentimentAnalysisResult[], symbol: string): AggregatedRefinedSentimentData {
         const groupedEntitiesBySentimentType = this.groupSentimentListByType(sentimentEntities);
         const conversationPostiveCount = groupedEntitiesBySentimentType.positiveEntities.length;
         const conversationNegativeCount = groupedEntitiesBySentimentType.negativeEntities.length;

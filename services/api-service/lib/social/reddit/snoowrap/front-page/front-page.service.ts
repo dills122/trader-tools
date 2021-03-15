@@ -1,4 +1,4 @@
-import { connect } from './base.service';
+import { connect } from '../base.service';
 
 export const getFrontPage = async (subreddit: string) => {
     try {

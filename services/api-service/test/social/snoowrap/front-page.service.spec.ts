@@ -1,7 +1,7 @@
 import { assert, expect } from 'chai';
 import Sinon from 'sinon';
 import * as Base from '../../../lib/social/reddit/snoowrap/base.service';
-import * as FrontPage from '../../../lib/social/reddit/snoowrap/front-page.service';
+import * as FrontPage from '../../../lib/social/reddit/snoowrap/front-page/front-page.service';
 
 const subreddit = 'wallstreetbets';
 

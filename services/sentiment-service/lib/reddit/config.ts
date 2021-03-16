@@ -10,5 +10,16 @@ export const config = {
             name: 'wallstreetbets',
             whitelist: ['moon', 'diamond-hands']
         }
-    }
+    },
+    supportedSubreddits: [
+        'RedditTickers',
+        'SPACs',
+        'dividends',
+        'investing',
+        'pennystocks',
+        'smallstreetbets',
+        'stocks',
+        'stonks',
+        'wallstreetbets'
+    ]
 };

@@ -4,7 +4,7 @@ import { expect, assert } from 'chai';
 import Sinon from 'sinon';
 import * as Gatherer from '../../../lib/reddit/gatherer-services/front-page-gatherer.service';
 
-const RedditMocks = Mocks.Reddit;
+const RedditMocks = Mocks.Snoowrap;
 
 const Subreddit = 'wallstreetbets';
 
@@ -15,7 +15,7 @@ describe('Gatherer::', function () {
     describe('FrontPageGatherer::', () => {
         beforeEach(() => {
             sandbox = Sinon.createSandbox();
-            stubs.getFrontPageOfSubredditStub = sandbox.stub(Socials.Reddit.Service, 'getFrontPageOfSubreddit').resolves(RedditMocks.getRawResult('link'));
+            stubs.getFrontPageOfSubredditStub = sandbox.stub(Socials.Reddit.FrontPageService.Service, 'getFrontPage').resolves(RedditMocks.getPostList(5));
         });
         afterEach(() => {
             sandbox.restore();
@@ -30,9 +30,7 @@ describe('Gatherer::', function () {
             }
         });
         it('Should execute happy path', async () => {
-            const rawMock = RedditMocks.getRawResult('link');
-            rawMock.data.children = [];
-            stubs.getFrontPageOfSubredditStub.resolves(rawMock);
+            stubs.getFrontPageOfSubredditStub.resolves([]);
             try {
                 const rawData = await Gatherer.gather(Subreddit);
                 assert(rawData);

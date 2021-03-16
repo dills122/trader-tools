@@ -1,12 +1,10 @@
+import _ from 'lodash';
 import { Socials } from 'api-service';
 import { CommentFilter, PostFilter } from '../filters';
 import { CommentAnalyzer } from '../analyzers';
-import _ from 'lodash';
-import { CommentListAnalyzerResult } from '../analyzers/comment-list-sentiment-analyzer';
 import { SentimentAnalysisFilterFlags } from '../../sharedTypes';
-import { RedditPostAndThreadSchema } from 'api-service/lib/social/reddit/reddit-types';
-
-const Reddit = Socials.Reddit;
+import { FrontPageGather } from '../gatherer-services';
+import { config } from '../config';
 export interface FrontPageServiceArgs {
     subreddit: string,
     analyzer: string,
@@ -17,11 +15,11 @@ export class FrontPageService {
     private subreddit: string;
     private analyzer: string;
     private filterFlags: SentimentAnalysisFilterFlags;
-    private analyizedCommentsList: CommentListAnalyzerResult[] = [];
+    private analyizedCommentsList: CommentAnalyzer.CommentListAnalyzerResult[] = [];
 
     constructor(args: FrontPageServiceArgs) {
         _.assign(this, args);
-        if (!Reddit.Service.subredditsConfig.includes(this.subreddit)) {
+        if (!config.supportedSubreddits.includes(this.subreddit)) {
             throw Error('Unsupported subreddit');
         }
         console.log(this.analyzer);
@@ -29,35 +27,31 @@ export class FrontPageService {
 
     async service() {
         try {
-            const frontPage = await Reddit.Service.getFrontPageOfSubreddit(this.subreddit);
-            const linkPostList = frontPage.data.children;
+            const frontPagePosts = await FrontPageGather.gather(this.subreddit);
 
-            if (!Socials.Reddit.Types.isRedditLinkSchemaList(linkPostList)) {
-                throw Error('Incompatible data type returned');
-            }
-            const filteredPosts = this.filterPosts(linkPostList);
+            const filteredPosts = this.filterPosts(frontPagePosts);
 
-            console.log('Filtered Posts:', filteredPosts.map(post => post.data.title));
+            console.log('Filtered Posts:', filteredPosts.map(post => post.title));
 
             for (let post of filteredPosts) {
 
-                const commentThread = await this.getCommentThread(post.data.url);
+                const commentThread = post.comments;
 
                 //Continue to next post if no comments present
-                if (commentThread.discussion.length <= 0) {
+                if (commentThread.length <= 0) {
                     continue;
                 }
 
                 const filteredComments = this.filterComments(commentThread);
 
-                console.log('Filtered Comments:', filteredComments.map(comment => comment.data.body));
+                console.log('Filtered Comments:', filteredComments.map(comment => comment.body));
 
                 //If a post has no comments after filtering, continue to next post
                 if (filteredComments.length <= 0) {
                     continue;
                 }
 
-                this.analyizeCommentCollection(filteredComments, post.data.title);
+                this.analyizeCommentCollection(filteredComments, post.title);
             }
         } catch (err) {
             throw err;
@@ -68,21 +62,7 @@ export class FrontPageService {
         return this.analyizedCommentsList;
     }
 
-    private async getCommentThread(rawUrl: string): Promise<RedditPostAndThreadSchema> {
-        try {
-            const commentUrl = Reddit.Util.trimAndFixUrl(rawUrl);
-            return await Reddit.Service.getPostAndCommentThread(commentUrl);
-        } catch (err) {
-            console.error(err);
-            return {
-                discussion: [],
-                title: '',
-                body: ''
-            };
-        }
-    }
-
-    private filterPosts(postList: Socials.Reddit.Types.RedditLinkSchema[]) {
+    private filterPosts(postList: Socials.Reddit.Types.Post[]) {
         const postFilterInst = new PostFilter.PostFilter({
             posts: postList,
             discussionMode: this.filterFlags.discussionMode,
@@ -96,9 +76,9 @@ export class FrontPageService {
         return filteredPosts;
     }
 
-    private filterComments(comments: RedditPostAndThreadSchema) {
+    private filterComments(comments: Socials.Reddit.Types.Comment[]) {
         const filteredCommentsInst = new CommentFilter.CommentFilter({
-            comments: comments.discussion,
+            comments: comments,
             ...this.filterFlags
         });
 
@@ -119,4 +99,4 @@ export class FrontPageService {
             this.analyizedCommentsList.push(commentAnalysisResults);
         }
     }
-}
+};

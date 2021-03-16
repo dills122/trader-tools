@@ -1,3 +1,5 @@
-export * as Types from './reddit-types';
 export * as Util from './reddit-util';
-export * as Service from './reddit.service';
+export * as Base from './base.service';
+export * as Mapper from './shared-mapper';
+export * as Types from './shared-types';
+export * as FrontPageService from './front-page';

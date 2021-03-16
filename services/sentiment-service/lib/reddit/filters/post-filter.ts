@@ -4,15 +4,15 @@ import { SentimentAnalysisFilterFlags } from '../../sharedTypes';
 import { FlairFilter } from './flair-filter';
 
 export interface PostFilterArgs extends SentimentAnalysisFilterFlags {
-    posts: Socials.Reddit.Types.RedditLinkSchema[]
+    posts: Socials.Reddit.Types.Post[]
 };
 
 export class PostFilter {
     private discussionMode: boolean;
     private chaosMode: boolean;
     private ddMode: boolean;
-    private posts: Socials.Reddit.Types.RedditLinkSchema[];
-    private filteredPosts: Socials.Reddit.Types.RedditLinkSchema[] = [];
+    private posts: Socials.Reddit.Types.Post[];
+    private filteredPosts: Socials.Reddit.Types.Post[] = [];
 
     constructor(args: PostFilterArgs) {
         _.assign(this, args);
@@ -34,8 +34,8 @@ export class PostFilter {
             if (this.discussionMode) {
                 const flairFilter = new FlairFilter({
                     filterType: 'discussion',
-                    flair: post.data.link_flair_text || '',
-                    subreddit: post.data.subreddit
+                    flair: post.flair || '',
+                    subreddit: post.subreddit
                 });
                 if (flairFilter.filter()) {
                     this.filteredPosts.push(post);
@@ -51,7 +51,7 @@ export class PostFilter {
         return this.filteredPosts;
     }
 
-    isSticked(post: Socials.Reddit.Types.RedditLinkSchema) {
-        return post.data.stickied;
+    isSticked(post: Socials.Reddit.Types.Post) {
+        return post.stickied;
     }
 };

@@ -6,8 +6,8 @@ import { GenericSentimentAnalysisService } from '../../lib/services/generic-sent
 import _ from 'lodash';
 
 const subreddit = 'wallstreetbets';
-const title = 'This is a title';
-const body = 'This is the body of the post';
+// const title = 'This is a title';
+// const body = 'This is the body of the post';
 
 describe("Services::", function () {
     let sandbox: Sinon.SinonSandbox;
@@ -19,14 +19,11 @@ describe("Services::", function () {
             spies.setFilterFlagsSpy = sandbox.spy(GenericSentimentAnalysisService.prototype, <any>'setFilterFlags');
             spies.analyzeFilterFlagsSpy = sandbox.spy(GenericSentimentAnalysisService.prototype, <any>'analyzeFilterFlags');
             spies.disableAllFilterFlagsOfTypeSpy = sandbox.spy(GenericSentimentAnalysisService.prototype, <any>'disableAllFilterFlagsOfType');
-            const discussionPost = Mocks.Reddit.getLinkList(1, subreddit)[0];
-            discussionPost.data.link_flair_text = 'discussion';
-            const nonDiscussionPost = Mocks.Reddit.getLinkList(1, subreddit)[0];
-            nonDiscussionPost.data.link_flair_text = 'meme';
-            const rawData = Mocks.Reddit.getRawResult('link', 0, subreddit);
-            rawData.data.children = [discussionPost, nonDiscussionPost];
-            stubs.getFrontPageOfSubredditStub = sandbox.stub(Socials.Reddit.Service, 'getFrontPageOfSubreddit').resolves(rawData);
-            stubs.getPostAndCommentThreadStub = sandbox.stub(Socials.Reddit.Service, 'getPostAndCommentThread').resolves(Mocks.Reddit.getRedditPostAndThreadResult(title, body, 5, subreddit));
+            const discussionPost = Mocks.Snoowrap.getPostList(1, subreddit)[0];
+            discussionPost.flair = 'discussion';
+            const nonDiscussionPost = Mocks.Snoowrap.getPostList(1, subreddit)[0];
+            nonDiscussionPost.flair = 'meme';
+            stubs.getFrontPageOfSubredditStub = sandbox.stub(Socials.Reddit.FrontPageService.Service, 'getFrontPage').resolves([discussionPost, nonDiscussionPost]);
         });
         afterEach(() => {
             sandbox.restore();

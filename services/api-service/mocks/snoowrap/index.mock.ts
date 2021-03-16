@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { Post, Comment, CommentExtended } from "../../lib/social/reddit/snoowrap/shared-types";
+import { Post, Comment, CommentExtended } from "../../lib/social/reddit/shared-types";
 
 export const PostBase: Post = {
     body: '',

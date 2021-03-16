@@ -4,15 +4,15 @@ import { SentimentAnalysisFilterFlags } from '../../sharedTypes';
 import { FlairFilter } from './flair-filter';
 
 export interface PostFilterArgs extends SentimentAnalysisFilterFlags {
-    posts: Socials.Reddit.Snoowrap.Types.Post[]
+    posts: Socials.Reddit.Types.Post[]
 };
 
 export class PostFilter {
     private discussionMode: boolean;
     private chaosMode: boolean;
     private ddMode: boolean;
-    private posts: Socials.Reddit.Snoowrap.Types.Post[];
-    private filteredPosts: Socials.Reddit.Snoowrap.Types.Post[] = [];
+    private posts: Socials.Reddit.Types.Post[];
+    private filteredPosts: Socials.Reddit.Types.Post[] = [];
 
     constructor(args: PostFilterArgs) {
         _.assign(this, args);
@@ -51,7 +51,7 @@ export class PostFilter {
         return this.filteredPosts;
     }
 
-    isSticked(post: Socials.Reddit.Snoowrap.Types.Post) {
+    isSticked(post: Socials.Reddit.Types.Post) {
         return post.stickied;
     }
 };

@@ -4,8 +4,7 @@ import { CommentFilter, PostFilter } from '../filters';
 import { CommentAnalyzer } from '../analyzers';
 import { SentimentAnalysisFilterFlags } from '../../sharedTypes';
 import { FrontPageGather } from '../gatherer-services';
-
-const Reddit = Socials.Reddit;
+import { config } from '../config';
 export interface FrontPageServiceArgs {
     subreddit: string,
     analyzer: string,
@@ -20,7 +19,7 @@ export class FrontPageService {
 
     constructor(args: FrontPageServiceArgs) {
         _.assign(this, args);
-        if (!Reddit.Service.subredditsConfig.includes(this.subreddit)) {
+        if (!config.supportedSubreddits.includes(this.subreddit)) {
             throw Error('Unsupported subreddit');
         }
         console.log(this.analyzer);
@@ -63,7 +62,7 @@ export class FrontPageService {
         return this.analyizedCommentsList;
     }
 
-    private filterPosts(postList: Socials.Reddit.Snoowrap.Types.Post[]) {
+    private filterPosts(postList: Socials.Reddit.Types.Post[]) {
         const postFilterInst = new PostFilter.PostFilter({
             posts: postList,
             discussionMode: this.filterFlags.discussionMode,
@@ -77,7 +76,7 @@ export class FrontPageService {
         return filteredPosts;
     }
 
-    private filterComments(comments: Socials.Reddit.Snoowrap.Types.Comment[]) {
+    private filterComments(comments: Socials.Reddit.Types.Comment[]) {
         const filteredCommentsInst = new CommentFilter.CommentFilter({
             comments: comments,
             ...this.filterFlags

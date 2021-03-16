@@ -15,7 +15,7 @@ describe('Gatherer::', function () {
     describe('FrontPageGatherer::', () => {
         beforeEach(() => {
             sandbox = Sinon.createSandbox();
-            stubs.getFrontPageOfSubredditStub = sandbox.stub(Socials.Reddit.Snoowrap.FrontPage.Service, 'getFrontPage').resolves(RedditMocks.getPostList(5));
+            stubs.getFrontPageOfSubredditStub = sandbox.stub(Socials.Reddit.FrontPageService.Service, 'getFrontPage').resolves(RedditMocks.getPostList(5));
         });
         afterEach(() => {
             sandbox.restore();

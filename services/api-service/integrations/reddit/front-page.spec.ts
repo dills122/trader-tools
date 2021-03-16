@@ -1,18 +1,17 @@
 import { assert, expect } from 'chai';
-import { isRedditLinkSchema, isRedditLinkSchemaList, RedditRawResult } from '../../lib/social/reddit/reddit-types';
-import { getFrontPageOfSubreddit, getPostAndCommentThread } from '../../lib/social/reddit/reddit.service';
+import { Service } from '../../lib/social/reddit/front-page';
+import { Post } from '../../lib/social/reddit/shared-types';
 
 const subreddit = 'wallstreetbets';
 
 describe('Integration::', function () {
     describe('Reddit::', () => {
-        let FrontPage: RedditRawResult;
+        let FrontPage: Post[];
         it('Should be able to retrieve the front page without issue', async () => {
             try {
-                const frontPage = await getFrontPageOfSubreddit(subreddit);
+                const frontPage = await Service.getFrontPage(subreddit);
                 assert(frontPage);
-                assert(frontPage.data.children);
-                expect(frontPage.data.children.length).greaterThan(0);
+                expect(frontPage.length).greaterThan(0);
                 FrontPage = frontPage;
             } catch (err) {
                 console.log(err);
@@ -21,16 +20,10 @@ describe('Integration::', function () {
         });
         it('Should be able retrieve each post and comment thread', async () => {
             try {
-                const posts = FrontPage.data.children;
-                assert.isTrue(isRedditLinkSchemaList(posts));
-                for (let post of posts) {
-                    if (!isRedditLinkSchema(post)) {
-                        console.error(post);
-                        throw Error('Invalid Type, expected Reddit Link List');
-                    }
-                    const postAndThread = await getPostAndCommentThread(post.data.url);
-                    assert(postAndThread);
-                    console.log(postAndThread);
+                for (let post of FrontPage) {
+                    const comments = post.comments;
+                    assert(comments);
+                    expect(comments.length).greaterThan(0);
                 }
             } catch (err) {
                 console.log(err);

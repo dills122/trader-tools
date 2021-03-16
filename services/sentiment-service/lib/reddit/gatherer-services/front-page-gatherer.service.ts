@@ -1,5 +1,5 @@
 import { Socials } from 'api-service';
-const FrontPageService = Socials.Reddit.Snoowrap.FrontPage.Service;
+const FrontPageService = Socials.Reddit.FrontPageService.Service;
 
 export const gather = async (subreddit: string) => {
     try {

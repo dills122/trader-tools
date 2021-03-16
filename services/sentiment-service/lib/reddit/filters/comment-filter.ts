@@ -5,22 +5,22 @@ import { extractStockOrCryptoTicker } from '../../standardize-input';
 import { SentimentAnalysisFilterFlags } from "../../sharedTypes";
 
 export interface CommentFilterArgs extends SentimentAnalysisFilterFlags {
-    comments: Socials.Reddit.Snoowrap.Types.Comment[]
+    comments: Socials.Reddit.Types.Comment[]
 };
 
 export class CommentFilter {
-    private comments: Socials.Reddit.Snoowrap.Types.Comment[];
+    private comments: Socials.Reddit.Types.Comment[];
     private matureFilter: boolean;
 
     constructor(args: CommentFilterArgs) {
         _.assign(this, args);
     }
 
-    filter(): Socials.Reddit.Snoowrap.Types.CommentExtended[] {
+    filter(): Socials.Reddit.Types.CommentExtended[] {
         // Stickied posts are normally informational to the thread and not worth reading
         const nonEmptyComments = this.removeStickiedAndEmptyComments();
 
-        const commentsWithTickerLikeSymbols: Socials.Reddit.Snoowrap.Types.CommentExtended[] = nonEmptyComments.map((comment) => {
+        const commentsWithTickerLikeSymbols: Socials.Reddit.Types.CommentExtended[] = nonEmptyComments.map((comment) => {
             const commentData = comment.body;
             const possibleTickerSymbols = extractStockOrCryptoTicker(commentData);
             return {
@@ -47,7 +47,7 @@ export class CommentFilter {
         return nonEmptyComments;
     }
 
-    private removeMatureComments(filteredComments: Socials.Reddit.Snoowrap.Types.CommentExtended[]) {
+    private removeMatureComments(filteredComments: Socials.Reddit.Types.CommentExtended[]) {
         const badWordFilter = new BadWords();
 
         const nonProfaneCheckedInput = filteredComments.filter((comment) => {

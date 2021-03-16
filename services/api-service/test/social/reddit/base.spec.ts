@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import * as Base from '../../../lib/social/reddit/snoowrap/base.service';
+import * as Base from '../../../lib/social/reddit/base.service';
 
 describe('Social::', function () {
     describe('Snoowrap::', () => {

@@ -5,7 +5,7 @@ import { standardizeInput } from '../../standardize-input';
 import { config, SubredditConfigSchema } from '../config';
 
 export interface CommentListAnalyzerArgs {
-    comments: Socials.Reddit.Snoowrap.Types.CommentExtended[],
+    comments: Socials.Reddit.Types.CommentExtended[],
     title: string,
     subreddit: string
 };
@@ -24,7 +24,7 @@ export interface SentimentAnalysisResultExtended extends SentimentAnalysisResult
 };
 
 export class CommentListSentimentAnalyzer {
-    private comments: Socials.Reddit.Snoowrap.Types.CommentExtended[];
+    private comments: Socials.Reddit.Types.CommentExtended[];
     private title: string;
     private subreddit: string;
     private subredditConfig: SubredditConfigSchema;

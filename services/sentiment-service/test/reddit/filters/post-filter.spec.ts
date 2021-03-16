@@ -7,7 +7,7 @@ import _ from 'lodash';
 const subreddit = 'wallstreetbets';
 
 describe('Reddit::', () => {
-    let mocks: Socials.Reddit.Snoowrap.Types.Post[] = [];
+    let mocks: Socials.Reddit.Types.Post[] = [];
     describe('Filters::', () => {
         describe('PostFilter::', () => {
             beforeEach(() => {

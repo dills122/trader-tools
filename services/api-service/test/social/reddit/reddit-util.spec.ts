@@ -1,6 +1,6 @@
 import { describe } from 'mocha';
 import { expect } from 'chai';
-import { trimAndFixUrl } from '../../lib/social/reddit/reddit-util';
+import { trimAndFixUrl } from '../../../lib/social/reddit/reddit-util';
 
 
 describe('Social::', function () {

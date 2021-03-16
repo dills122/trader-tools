@@ -13,11 +13,11 @@ SpellCorrectorInst.loadDictionary();
 export interface StandardizeInputOptions {
     disableStopWords?: boolean,
     disableProfanityFilter?: boolean,
-
+    disableTickerSymbolFilter?: boolean
 };
 
 export const standardizeInput = (input: string, whitelist: string[] = [], options?: StandardizeInputOptions) => {
-    const { disableProfanityFilter, disableStopWords } = options || {};
+    const { disableProfanityFilter, disableStopWords, disableTickerSymbolFilter } = options || {};
     const lexedInput: string = aposToLexForm(input);
     const loweredLexedInput = lexedInput.toLowerCase();
     const alphaOnlyLoweredLexedInput = loweredLexedInput.replace(/[^a-zA-Z\s]+/g, '');
@@ -33,15 +33,17 @@ export const standardizeInput = (input: string, whitelist: string[] = [], option
         });
     }
 
-    tokenizedLexedInput = tokenizedLexedInput.filter((word) => {
-        if (whitelist.includes(word)) {
-            return true;
-        }
-        if (checker(word)) {
-            return true;
-        }
-        return !isTickerSymbol(word.toUpperCase());
-    });
+    if (!disableTickerSymbolFilter) {
+        tokenizedLexedInput = tokenizedLexedInput.filter((word) => {
+            if (whitelist.includes(word)) {
+                return true;
+            }
+            if (checker(word)) {
+                return true;
+            }
+            return !isTickerSymbol(word.toUpperCase());
+        });
+    }
 
     tokenizedLexedInput = tokenizedLexedInput.map((word) => {
         return SpellCorrectorInst.correct(word);

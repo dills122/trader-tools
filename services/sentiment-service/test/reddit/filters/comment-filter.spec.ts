@@ -7,15 +7,15 @@ import _ from 'lodash';
 const subreddit = 'wallstreetbets';
 
 describe('Reddit::', () => {
-    let mocks: Socials.Reddit.Types.RedditCommentSchema[] = [];
+    let mocks: Socials.Reddit.Snoowrap.Types.Comment[] = [];
     describe('Filters::', () => {
         describe('CommentFilter::', () => {
             beforeEach(() => {
-                mocks = _.cloneDeep(Mocks.Reddit.getCommentList(2, subreddit));
+                mocks = _.cloneDeep(Mocks.Snoowrap.getCommentList(2, subreddit));
                 const first = mocks[0];
                 const second = mocks[1];
-                first.data.stickied = true;
-                second.data.body = 'The stock $ABR is really looking good';
+                first.stickied = true;
+                second.body = 'The stock $ABR is really looking good';
             });
 
             it('Should execute happy path for nonShitpostingMode', () => {
@@ -28,8 +28,8 @@ describe('Reddit::', () => {
                 expect(filteredComments).to.have.length(1);
                 const firstPost = filteredComments[0];
                 assert(firstPost);
-                expect(firstPost.data.body).to.equal(second.data.body);
-                expect(firstPost.data.subreddit).to.equal(subreddit);
+                expect(firstPost.body).to.equal(second.body);
+                expect(firstPost.subreddit).to.equal(subreddit);
             });
 
             it('Should execute happy path for nonShitpostingMode, return empty results', () => {
@@ -44,8 +44,8 @@ describe('Reddit::', () => {
             });
 
             it('Should execute happy path for nonShitpostingMode, empty results due to bad language filter', () => {
-                mocks = _.cloneDeep(Mocks.Reddit.getCommentList(1, subreddit));
-                mocks[0].data.body = 'Fuck $ABR its trash';
+                mocks = _.cloneDeep(Mocks.Snoowrap.getCommentList(1, subreddit));
+                mocks[0].body = 'Fuck $ABR its trash';
                 const filteredComments = new CommentFilter({
                     comments: mocks,
                     matureFilter: true

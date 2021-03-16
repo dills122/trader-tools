@@ -4,6 +4,8 @@ export interface VotableContent {
     downs: number,
     score: number,
     user: string,
+    stickied: boolean,
+    subreddit: string,
     timestamp: string
 };
 
@@ -13,7 +15,6 @@ export interface Post extends VotableContent {
     flair?: string,
     user: string,
     isMultiMedia: boolean
-    stickied: boolean,
     url: string,
     hidden: boolean,
     locked: boolean,
@@ -28,3 +29,6 @@ export interface Comment extends VotableContent {
     isSubmitter: boolean
 };
 
+export interface CommentExtended extends Comment {
+    tickerSymbol: string
+};

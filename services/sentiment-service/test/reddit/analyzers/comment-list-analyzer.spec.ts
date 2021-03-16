@@ -7,15 +7,15 @@ import _ from 'lodash';
 const subreddit = 'wallstreetbets';
 
 describe('Reddit::', () => {
-    let mocks: Socials.Reddit.Types.RedditCommentSchemaExtended[] = [];
+    let mocks: Socials.Reddit.Snoowrap.Types.CommentExtended[] = [];
     describe('Analyzer::', () => {
         describe('CommentList::', () => {
             beforeEach(() => {
-                mocks = _.cloneDeep(Mocks.Reddit.getExtendedCommentList(2, subreddit, 'ABR'));
+                mocks = _.cloneDeep(Mocks.Snoowrap.getCommentListExtended(2, 'ABR', subreddit));
                 const first = mocks[0];
                 const second = mocks[1];
-                first.data.stickied = true;
-                second.data.body = 'The stock $ABR is really looking good';
+                first.stickied = true;
+                second.body = 'The stock $ABR is really looking good';
             });
 
             it('Should analyze only the comments with a ticker symbol in it', () => {
@@ -38,10 +38,10 @@ describe('Reddit::', () => {
             });
 
             it('Should analyze only the comments with a ticker symbol in it, negative sentiment', () => {
-                const negativeCommentMock = _.cloneDeep(Mocks.Reddit.getExtendedCommentList(1, subreddit))[0];
-                negativeCommentMock.data.body = '$F is a pretty bad stock. I would sell it';
+                const negativeCommentMock = _.cloneDeep(Mocks.Snoowrap.getCommentListExtended(1, 'F', subreddit))[0];
+                negativeCommentMock.body = '$F is a pretty bad stock. I would sell it';
                 negativeCommentMock.tickerSymbol = 'F';
-                negativeCommentMock.data.ups = 1000;
+                negativeCommentMock.ups = 1000;
                 mocks.push(negativeCommentMock);
                 const analyzer = new CommentListSentimentAnalyzer({
                     comments: mocks,

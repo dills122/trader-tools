@@ -7,15 +7,15 @@ import _ from 'lodash';
 const subreddit = 'wallstreetbets';
 
 describe('Reddit::', () => {
-    let mocks: Socials.Reddit.Types.RedditLinkSchema[] = [];
+    let mocks: Socials.Reddit.Snoowrap.Types.Post[] = [];
     describe('Filters::', () => {
         describe('PostFilter::', () => {
             beforeEach(() => {
-                mocks = _.cloneDeep(Mocks.Reddit.getLinkList(2, subreddit));
+                mocks = _.cloneDeep(Mocks.Snoowrap.getPostList(2, subreddit));
                 const first = mocks[0];
                 const second = mocks[1];
-                first.data.link_flair_text = 'discussion';
-                second.data.link_flair_text = 'meme';
+                first.flair = 'discussion';
+                second.flair = 'meme';
             });
 
             it('Should execute happy path for discussionMode', () => {
@@ -27,8 +27,8 @@ describe('Reddit::', () => {
                 expect(filteredPosts).to.have.length(1);
                 const firstPost = filteredPosts[0];
                 assert(firstPost);
-                expect(firstPost.data.link_flair_text).to.equal('discussion');
-                expect(firstPost.data.subreddit).to.equal(subreddit);
+                expect(firstPost.flair).to.equal('discussion');
+                expect(firstPost.subreddit).to.equal(subreddit);
             });
 
             // it('Should execute happy path for stickedMode', () => {
@@ -59,8 +59,8 @@ describe('Reddit::', () => {
                 expect(filteredPosts).to.have.length(1);
                 const firstPost = filteredPosts[0];
                 assert(firstPost);
-                expect(firstPost.data.link_flair_text).to.equal('discussion');
-                expect(firstPost.data.subreddit).to.equal(subreddit);
+                expect(firstPost.flair).to.equal('discussion');
+                expect(firstPost.subreddit).to.equal(subreddit);
             });
 
             it('Should execute default happy path, chaos mode', () => {
@@ -70,8 +70,8 @@ describe('Reddit::', () => {
                 }).filter();
                 assert(filteredPosts);
                 expect(filteredPosts).to.have.length(2);
-                expect(filteredPosts.some(post => post.data.link_flair_text === 'meme')).to.be.true;
-                expect(filteredPosts.some(post => post.data.link_flair_text === 'discussion')).to.be.true;
+                expect(filteredPosts.some(post => post.flair === 'meme')).to.be.true;
+                expect(filteredPosts.some(post => post.flair === 'discussion')).to.be.true;
             });
 
             it('Should execute happy path when empty set is given', () => {

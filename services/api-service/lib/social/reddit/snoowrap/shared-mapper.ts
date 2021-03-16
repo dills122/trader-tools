@@ -20,6 +20,7 @@ export const mapPost = (apiSchema: Submission): Post => {
         url: apiSchema.url,
         user: apiSchema.author.name,
         flair: apiSchema.link_flair_text || undefined,
+        subreddit: apiSchema.subreddit.name,
         comments
     };
     return schema;
@@ -28,10 +29,12 @@ export const mapPost = (apiSchema: Submission): Post => {
 export const mapComment = (apiSchema: snoowrap.Comment): Comment => {
     return {
         approved: apiSchema.approved,
+        subreddit: apiSchema.subreddit.name,
         body: apiSchema.body,
         downs: apiSchema.downs,
         ups: apiSchema.ups,
         isSubmitter: apiSchema.is_submitter,
+        stickied: apiSchema.stickied,
         removed: apiSchema.removed,
         score: apiSchema.score,
         spam: apiSchema.spam,

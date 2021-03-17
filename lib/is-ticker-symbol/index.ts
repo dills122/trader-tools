@@ -9,13 +9,33 @@ if (configCache.symbols.length <= 0 ||
     throw Error('Unable to proceed, config data is empty, this is a maintainer issue');
 }
 
+export interface Options {
+    output?: boolean,
+    matchTolerance?: number
+};
+
 /**
  * Checks if a given string matches a public companies ticker symbol
  * @param symbol string checking against company database
+ * @param options optional settings to change functionality of matching, output
  * @returns true if match found, false else
  */
-export const isTickerSymbol = (symbol: string) => {
+export const isTickerSymbol = (symbol: string, options: Options = {}) => {
     const symbols = configCache.symbols as string[];
+    if(options.output) {
+        const fuse = new Fuse(symbols, {
+            threshold: options.matchTolerance || .2
+        });
+        const matches = fuse.search(symbol);
+        if (matches.length <= 0) {
+            return false;
+        }
+        const match = _.chain(matches)
+            .orderBy(['score'], ['asc'])
+            .first()
+            .value();
+        return <string>match.item;
+    }
     return symbols.includes(symbol);
 };
 

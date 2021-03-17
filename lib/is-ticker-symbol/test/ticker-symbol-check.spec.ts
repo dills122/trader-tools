@@ -14,6 +14,15 @@ describe('Lib', function () {
                 expect(isTickerSymbol).is.true;
             }
         });
+        it('Should find match and output it', () => {
+            for (let symbol of goodSymbols) {
+                const tickerSymbol = Lib.isTickerSymbol(symbol, {
+                    output: true
+                });
+                expect(tickerSymbol).to.be.a('string');
+                expect(goodSymbols.includes(<any>tickerSymbol)).to.be.true;
+            }
+        });
         it('Should not a find match', () => {
             for (let symbol of badSymbols) {
                 const isTickerSymbol = Lib.isTickerSymbol(symbol);

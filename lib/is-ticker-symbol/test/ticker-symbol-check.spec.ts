@@ -50,6 +50,35 @@ describe('Lib', function () {
         });
     });
 
+    describe('lookupTickerByCompanyName::', () => {
+        it('Should be able to find symbol by company name', () => {
+            const company = 'Ford Motor Company';
+            const matchResults = Lib.lookupTickerByCompanyName(company);
+            assert(matchResults);
+            expect(matchResults).to.be.a('string');
+            expect(matchResults).to.equal('F');
+        });
+        it('Should be able to find symbol by company name', () => {
+            const company = 'Facebook, Inc';
+            const matchResults = Lib.lookupTickerByCompanyName(company);
+            assert(matchResults);
+            expect(matchResults).to.be.a('string');
+            expect(matchResults).to.equal('FB');
+        });
+        it('Should NOT be able to find symbol by company name', () => {
+            const company = 'Froo lob test funky Company';
+            const matchResults = Lib.lookupTickerByCompanyName(company);
+            expect(matchResults).to.be.a('string');
+            expect(matchResults).to.equal('');
+        });
+        it('Should NOT be able to find symbol by company name', () => {
+            const company = 'XYZ abcasda easde asdf Cabe ls Inc';
+            const matchResults = Lib.lookupTickerByCompanyName(company);
+            expect(matchResults).to.be.a('string');
+            expect(matchResults).to.equal('');
+        });
+    });
+
     describe('getTickerSymbols::', () => {
         it('Should be able to get the list of symbols', () => {
             const symbols = Lib.getTickerSymbols();

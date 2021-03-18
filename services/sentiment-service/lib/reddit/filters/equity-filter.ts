@@ -1,10 +1,14 @@
 import _ from "lodash";
 import { isCompanyName, isTickerSymbol, lookupTickerByCompanyName } from 'is-ticker-symbol';
-import { standardizeInput } from '../../standardize-input';
+import { WordTokenizer } from "natural";
+import StopWord from 'stopword';
+import { config } from '../config';
+const aposToLexForm = require('apos-to-lex-form');
 
 export interface EquityFilterArgs {
     stringToAnalyze: string,
-    matchTolerance?: number
+    matchTolerance?: number,
+    blacklist?: string[]
 };
 
 export class EquityFilter {
@@ -12,13 +16,18 @@ export class EquityFilter {
     private matchTolerance: number = .2;
     private tokenizedInputString: string[];
     private matchedTickerSymbol: string;
+    private blacklist: string[] = [];
 
     constructor(args: EquityFilterArgs) {
         this.stringToAnalyze = args.stringToAnalyze;
         if (args.matchTolerance) {
             this.matchTolerance = this.setMatchTolerance(args.matchTolerance);
         }
-        this.tokenizeString();
+        this.blacklist = config.commonMissHitWords;
+        if (args.blacklist) {
+            this.blacklist = args.blacklist;
+        }
+        this.standardizeData();
     }
 
     filter() {
@@ -38,12 +47,22 @@ export class EquityFilter {
         return '';
     }
 
-    public getTickerSymbolIfPresent() {
-        return this.matchedTickerSymbol;
+    private filterAganistBlacklist(input: string[]) {
+        return input.filter(word => !this.blacklist.includes(word))
     }
 
-    private tokenizeString() {
-        this.tokenizedInputString = standardizeInput(this.stringToAnalyze);
+    private standardizeData() {
+        const lexedInput: string = aposToLexForm(this.stringToAnalyze);
+        const alphaOnlyLoweredLexedInput = lexedInput.toLowerCase().replace(/[^a-zA-Z\s]+/g, '');
+        const tokenizer = new WordTokenizer();
+        const tokenizedLexedInput = tokenizer.tokenize(alphaOnlyLoweredLexedInput);
+        const filteredStopWordInput = StopWord.removeStopwords(tokenizedLexedInput);
+        const filteredInput = this.filterAganistBlacklist(filteredStopWordInput);
+        this.tokenizedInputString = filteredInput;
+    }
+
+    public getTickerSymbolIfPresent() {
+        return this.matchedTickerSymbol;
     }
 
     private checkForCompanyName() {

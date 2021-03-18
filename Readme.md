@@ -90,7 +90,7 @@ rush clean
 
 ## Important Info
 
-When submitting PRs **always** remember to run `rush clean` before submitting a PR and merging it. We do **NOT** want auto generated files in the source code to reduce noise.
+When submitting PRs **always** remember to run `rush clean` before submitting a PR and merging it. We do **NOT** want auto generated files in the source code to reduce noise. If you forget to run this command, there is now an automated Action that will alert you when it finds any of the build files present on a PR branch.
 
 ## Container Development
 

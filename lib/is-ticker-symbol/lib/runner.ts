@@ -6,7 +6,8 @@ const cli = meow(`
 	  $ execute
 
 	Options
-	  --exclude-sources, -x  Include a rainbow
+	  --exclude, -x  exclude specific sources
+      --filter, -f type of tickers you want
 
 	Examples
 	  $ execute
@@ -14,9 +15,13 @@ const cli = meow(`
 `, {
     booleanDefault: undefined,
     flags: {
-        ['exclude-sources']: {
+        exclude: {
             type: 'string',
             alias: 'x'
+        },
+        filter: {
+            type: 'string',
+            alias: 'f'
         }
     }
 });
@@ -28,17 +33,20 @@ const checkCLIArgs = () => {
         throw Error('Incorrect command given');
     }
     const flags = cli.flags;
-    const excludedSources = flags['exclude-sources'];
-    if (!excludedSources) {
-        throw Error('Incorrect or no arg given with flag');
-    }
-    return excludedSources.split(',');
+    const excludedSources = flags['exclude'] || '';
+    return {
+        excludedSources: excludedSources.split(','),
+        filterType: flags.filter
+    };
 };
 
 (async () => {
-    const RebaseInst = new RebaseTickerList();
     try {
         const args = checkCLIArgs();
+        const RebaseInst = new RebaseTickerList({
+            excludedSources: args.excludedSources.length > 0 ? args.excludedSources : undefined,
+            filterType: <any>args.filterType
+        });
         console.log('Starting Rebase Service');
         await RebaseInst.rebase();
         console.log('Rebase Service Finished Successfully');

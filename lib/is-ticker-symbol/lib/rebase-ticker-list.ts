@@ -10,18 +10,39 @@ export interface JsonMarketDataSchema {
     symbol: string
 };
 
+export interface RebaseTickerListArgs {
+    excludedSources?: string[]
+};
+
+const validSources = [
+    'polygonio',
+    'iex',
+    'nasdaq'
+];
+
 export class RebaseTickerList {
     private allMarketCsvDataList: string[];
     private jsonMarketDataList: JsonMarketDataSchema[] = [];
     private symbolDataList: string[] = [];
+    private excludedSources: string[];
 
-    constructor() { }
+    constructor(args?: RebaseTickerListArgs) {
+        if (args?.excludedSources && args.excludedSources.every(source => validSources.includes(source))) {
+            this.excludedSources = args.excludedSources;
+        }
+    }
 
     async rebase() {
         try {
-            await this.gatherAndSetupNasdaqFTPData();
-            await this.gatherAndSetupIEXData();
-            await this.gatherAndSetupPolygonIO();
+            if (!this.excludedSources.includes('nasdaq')) {
+                await this.gatherAndSetupNasdaqFTPData();
+            }
+            if (!this.excludedSources.includes('iex')) {
+                await this.gatherAndSetupIEXData();
+            }
+            if (!this.excludedSources.includes('polygonio')) {
+                await this.gatherAndSetupPolygonIO();
+            }
             if (this.jsonMarketDataList.length <= 0) {
                 throw Error('No data to proceed, cannot proceed');
             }

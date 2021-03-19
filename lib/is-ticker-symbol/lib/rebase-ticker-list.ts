@@ -1,5 +1,5 @@
 import { getPolygonIOData, retrieveIEXData, retrieveNASDAQDataList } from './retrieve-external-data';
-import { PolygonIO, SymbolsData } from 'api-service';
+import { PolygonIO, IEX } from 'api-service';
 import { parseString } from '@fast-csv/parse';
 import fs from 'fs/promises';
 import _ from 'lodash';
@@ -104,7 +104,7 @@ export class RebaseTickerList {
         }
     }
 
-    private mapIEXToMarketDataSchema(IEXSymbolsList: SymbolsData.SymbolsReferenceData[]): JsonMarketDataSchema[] {
+    private mapIEXToMarketDataSchema(IEXSymbolsList: IEX.Symbols.SymbolsReferenceData[]): JsonMarketDataSchema[] {
         return IEXSymbolsList.map((symbolObject) => {
             return {
                 name: symbolObject.name,

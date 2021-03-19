@@ -7,26 +7,58 @@ import path from 'path';
 
 export interface JsonMarketDataSchema {
     name: string,
-    symbol: string
+    symbol: string,
+    active: boolean,
+    region: string,
+    type?: string
 };
+
+export interface RebaseTickerListArgs {
+    excludedSources?: string[],
+    filterType?: 'cs' | 'all' | 'mutal'
+};
+
+const validSources = [
+    'polygonio',
+    'iex',
+    'nasdaq'
+];
 
 export class RebaseTickerList {
     private allMarketCsvDataList: string[];
     private jsonMarketDataList: JsonMarketDataSchema[] = [];
     private symbolDataList: string[] = [];
+    private excludedSources: string[];
+    private filterType: string;
 
-    constructor() { }
+    constructor(args?: RebaseTickerListArgs) {
+        if (args?.excludedSources && args.excludedSources.every(source => validSources.includes(source))) {
+            this.excludedSources = args.excludedSources;
+        }
+        if (args?.filterType) {
+            this.filterType = args.filterType;
+            console.log(`Has filter type: ${this.filterType}`);
+        }
+    }
 
     async rebase() {
         try {
-            await this.gatherAndSetupNasdaqFTPData();
-            await this.gatherAndSetupIEXData();
-            await this.gatherAndSetupPolygonIO();
+            if (!this.checkIfExcludedSource('nasdaq')) {
+                await this.gatherAndSetupNasdaqFTPData();
+            }
+            if (!this.checkIfExcludedSource('iex')) {
+                await this.gatherAndSetupIEXData();
+            }
+            if (!this.checkIfExcludedSource('polygonio')) {
+                await this.gatherAndSetupPolygonIO();
+            }
             if (this.jsonMarketDataList.length <= 0) {
                 throw Error('No data to proceed, cannot proceed');
             }
             this.filterDuplicates();
+            this.filterNonActive();
             this.mapToSymbolList();
+            console.log(`Total Tickers Found: ${this.symbolDataList.length}`);
             await this.createOrOverwriteDataFiles();
         } catch (err) {
             console.error(err);
@@ -34,9 +66,16 @@ export class RebaseTickerList {
         }
     }
 
+    private checkIfExcludedSource(source: string) {
+        if (!this.excludedSources) {
+            return false;
+        }
+        return this.excludedSources.includes(source);
+    }
+
     private async gatherAndSetupNasdaqFTPData() {
         try {
-            this.allMarketCsvDataList = await retrieveNASDAQDataList();
+            this.allMarketCsvDataList = await retrieveNASDAQDataList(this.filterType);
             await this.mapToJson();
         } catch (err) {
             console.error(err);
@@ -45,8 +84,9 @@ export class RebaseTickerList {
 
     private async gatherAndSetupIEXData() {
         try {
-            const IEXSymbolsList = await retrieveIEXData();
+            const IEXSymbolsList = await retrieveIEXData(this.filterType);
             const mappedSymbolsList = this.mapIEXToMarketDataSchema(IEXSymbolsList);
+            console.log(`Items Found in IEX: ${mappedSymbolsList.length}`);
             this.jsonMarketDataList = this.jsonMarketDataList.concat(mappedSymbolsList);
         } catch (err) {
             console.error(err);
@@ -55,8 +95,9 @@ export class RebaseTickerList {
 
     private async gatherAndSetupPolygonIO() {
         try {
-            const TickersList = await getPolygonIOData();
+            const TickersList = await getPolygonIOData(this.filterType);
             const mappedSymbolsList = this.mapPolygonToMarketDataSchema(TickersList);
+            console.log(`Items Found in Polygon: ${mappedSymbolsList.length}`);
             this.jsonMarketDataList = this.jsonMarketDataList.concat(mappedSymbolsList);
         } catch (err) {
             console.error(err);
@@ -67,7 +108,10 @@ export class RebaseTickerList {
         return IEXSymbolsList.map((symbolObject) => {
             return {
                 name: symbolObject.name,
-                symbol: symbolObject.symbol
+                symbol: symbolObject.symbol,
+                active: symbolObject.isEnabled,
+                region: symbolObject.region,
+                type: symbolObject.type.toLowerCase()
             };
         });
     }
@@ -76,7 +120,10 @@ export class RebaseTickerList {
         return TickersList.map((symbolObject) => {
             return {
                 name: symbolObject.name,
-                symbol: symbolObject.ticker
+                symbol: symbolObject.ticker,
+                active: symbolObject.active,
+                region: symbolObject.locale,
+                type: symbolObject.type.toLowerCase()
             };
         });
     }
@@ -120,10 +167,13 @@ export class RebaseTickerList {
                 continue;
             }
             const csvDataRows = await this.parseCsvData(marketCsvData);
+            console.log(`Items Found in NASDAQ: ${csvDataRows.length}`);
             for (let row of csvDataRows) {
                 this.jsonMarketDataList.push({
                     name: row['Security Name'],
-                    symbol: row['Symbol']
+                    symbol: row['Symbol'],
+                    active: true,
+                    region: 'US', //TODO might need to update
                 });
             }
         }
@@ -131,6 +181,10 @@ export class RebaseTickerList {
 
     private filterDuplicates() {
         this.jsonMarketDataList = _.uniqBy(this.jsonMarketDataList, 'symbol');
+    }
+
+    private filterNonActive() {
+        this.jsonMarketDataList = _.filter(this.jsonMarketDataList, json => json.active);
     }
 
     private mapToSymbolList() {

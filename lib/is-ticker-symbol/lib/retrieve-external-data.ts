@@ -2,6 +2,7 @@ import jsftp from 'jsftp';
 import _ from 'lodash';
 import { SymbolsData, PolygonIO } from 'api-service';
 import { config, FileMappingType } from './external-sources.config';
+import { filterIexByFilterType, mapNasdaqFilterTypes, mapPolygonFilterTypes } from './util';
 
 export const retrieveIEXData = async (filterType?: string) => {
     try {
@@ -98,41 +99,6 @@ export const getPolygonIOData = async (filterType?: string) => {
         }
     } while (shouldContinue);
     return tickers;
-};
-
-export const mapPolygonFilterTypes = (filterType?: string) => {
-    if (!filterType) {
-        return undefined;
-    }
-    filterType = filterType.toLowerCase();
-    if (filterType === 'cs') {
-        return 'CS';
-    }
-    if (filterType === 'mutal') {
-        return 'MF';
-    }
-    return undefined;
-};
-
-export const mapNasdaqFilterTypes = (filterType?: string) => {
-    if (!filterType) {
-        return Object.keys(config.fileMapping);
-    }
-    filterType = filterType.toLowerCase();
-    if (filterType === 'cs') {
-        return ['nasdaq'];
-    }
-    if (filterType === 'mutal') {
-        return ['mutalFunds'];
-    }
-    return Object.keys(config.fileMapping);
-};
-
-export const filterIexByFilterType = (list: SymbolsData.SymbolsReferenceData[], filterType?: string) => {
-    if (!filterType || filterType === 'all') {
-        return list;
-    }
-    return _.filter(list, { type: filterType });
 };
 
 export default {

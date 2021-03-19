@@ -1,18 +1,20 @@
 import { describe } from 'mocha';
 import { assert, expect } from 'chai';
-import IEXCloud, { tokenPlugin } from '../lib/iexcloud.service';
+import { tokenPlugin } from '../../lib/iex/iexcloud.service';
+import * as Symbols from '../../lib/iex/symbol.service';
 import Sinon from 'sinon';
+import { HappyPathMock } from '../../mocks/symbols.mock';
 
-const FAKE_ENDPOINT = 'fake/url';
+const STOCK_SYMBOL = 'A';
 
-describe('IEXCloud::', function () {
+describe('Symbols::', function () {
     let sandbox: Sinon.SinonSandbox;
     let stubs: any = {};
 
     beforeEach(() => {
         sandbox = Sinon.createSandbox();
         stubs.gotGetStub = sandbox.stub(tokenPlugin, 'get').resolves({
-            body: '{"value":"string"}'
+            body: JSON.stringify(HappyPathMock)
         });
     });
 
@@ -21,27 +23,18 @@ describe('IEXCloud::', function () {
     });
 
     it('Should run happy path', async () => {
-        const resp: any = await IEXCloud(FAKE_ENDPOINT);
+        const resp: any = await Symbols.symbols();
         assert(resp);
-        expect(resp).to.be.a('object');
-        expect(resp.value).to.be.a('string').and.equal('string');
-    });
-
-    it('Should run happy path, typed', async () => {
-        const resp = await IEXCloud<{
-            value: string
-        }>(FAKE_ENDPOINT);
-        assert(resp);
-        expect(resp).to.be.a('object');
-        expect(resp.value).to.be.a('string').and.equal('string');
+        expect(resp).to.be.a('array');
+        const quote = resp[0];
+        expect(quote.symbol).to.be.a('string').and.equal(STOCK_SYMBOL);
+        expect(quote.name).to.be.a('string').and.equal("Agilent Technologies Inc.");
     });
 
     it('Should run unhappy path', async () => {
         stubs.gotGetStub.rejects(Error('err'));
         try {
-            const resp = await IEXCloud<{
-                value: string
-            }>(FAKE_ENDPOINT);
+            const resp: any = await Symbols.symbols();
             assert(!resp);
         } catch (err) {
             assert(err);

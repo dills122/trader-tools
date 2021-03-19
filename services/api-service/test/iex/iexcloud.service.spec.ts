@@ -1,20 +1,18 @@
 import { describe } from 'mocha';
 import { assert, expect } from 'chai';
-import IEXCloud, { tokenPlugin } from '../lib/iexcloud.service';
-import * as QuoteService from '../lib/quote.service';
+import IEXCloud, { tokenPlugin } from '../../lib/iex/iexcloud.service';
 import Sinon from 'sinon';
-import { HappyPathMock } from '../mocks/quote.mock';
 
-const STOCK_SYMBOL = 'AAPL';
+const FAKE_ENDPOINT = 'fake/url';
 
-describe('QuoteService::', function () {
+describe('IEXCloud::', function () {
     let sandbox: Sinon.SinonSandbox;
     let stubs: any = {};
 
     beforeEach(() => {
         sandbox = Sinon.createSandbox();
         stubs.gotGetStub = sandbox.stub(tokenPlugin, 'get').resolves({
-            body: JSON.stringify(HappyPathMock)
+            body: '{"value":"string"}'
         });
     });
 
@@ -23,25 +21,27 @@ describe('QuoteService::', function () {
     });
 
     it('Should run happy path', async () => {
-        const resp: any = await QuoteService.quote(STOCK_SYMBOL);
+        const resp: any = await IEXCloud(FAKE_ENDPOINT);
         assert(resp);
         expect(resp).to.be.a('object');
-        expect(resp.symbol).to.be.a('string').and.equal(STOCK_SYMBOL);
-        expect(resp.high).to.be.a('number').and.equal(0);
+        expect(resp.value).to.be.a('string').and.equal('string');
     });
 
     it('Should run happy path, typed', async () => {
-        const resp = await IEXCloud<QuoteService.IEXQuote>(STOCK_SYMBOL);
+        const resp = await IEXCloud<{
+            value: string
+        }>(FAKE_ENDPOINT);
         assert(resp);
         expect(resp).to.be.a('object');
-        expect(resp.symbol).to.be.a('string').and.equal(STOCK_SYMBOL);
-        expect(resp.high).to.be.a('number').and.equal(0);
+        expect(resp.value).to.be.a('string').and.equal('string');
     });
 
     it('Should run unhappy path', async () => {
         stubs.gotGetStub.rejects(Error('err'));
         try {
-            const resp = await IEXCloud<QuoteService.IEXQuote>(STOCK_SYMBOL);
+            const resp = await IEXCloud<{
+                value: string
+            }>(FAKE_ENDPOINT);
             assert(!resp);
         } catch (err) {
             assert(err);

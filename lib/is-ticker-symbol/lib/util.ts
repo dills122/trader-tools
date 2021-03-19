@@ -1,4 +1,4 @@
-import { SymbolsData } from "api-service";
+import { IEX } from "api-service";
 import _ from "lodash";
 import { config } from "./external-sources.config";
 
@@ -30,7 +30,7 @@ export const mapNasdaqFilterTypes = (filterType?: string) => {
     return Object.keys(config.fileMapping);
 };
 
-export const filterIexByFilterType = (list: SymbolsData.SymbolsReferenceData[], filterType?: string) => {
+export const filterIexByFilterType = (list: IEX.Symbols.SymbolsReferenceData[], filterType?: string) => {
     if (!filterType || filterType === 'all') {
         return list;
     }

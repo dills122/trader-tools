@@ -1,12 +1,12 @@
 import jsftp from 'jsftp';
 import _ from 'lodash';
-import { SymbolsData, PolygonIO } from 'api-service';
+import { IEX, PolygonIO } from 'api-service';
 import { config, FileMappingType } from './external-sources.config';
 import { filterIexByFilterType, mapNasdaqFilterTypes, mapPolygonFilterTypes } from './util';
 
 export const retrieveIEXData = async (filterType?: string) => {
     try {
-        const symbols = await SymbolsData.symbols();
+        const symbols = await IEX.Symbols.symbols();
         return filterIexByFilterType(symbols, filterType);
     } catch (err) {
         throw err;

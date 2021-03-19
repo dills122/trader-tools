@@ -58,6 +58,7 @@ export class RebaseTickerList {
             this.filterDuplicates();
             this.filterNonActive();
             this.mapToSymbolList();
+            console.log(`Total Tickers Found: ${this.symbolDataList.length}`);
             await this.createOrOverwriteDataFiles();
         } catch (err) {
             console.error(err);
@@ -85,6 +86,7 @@ export class RebaseTickerList {
         try {
             const IEXSymbolsList = await retrieveIEXData(this.filterType);
             const mappedSymbolsList = this.mapIEXToMarketDataSchema(IEXSymbolsList);
+            console.log(`Items Found in IEX: ${mappedSymbolsList.length}`);
             this.jsonMarketDataList = this.jsonMarketDataList.concat(mappedSymbolsList);
         } catch (err) {
             console.error(err);
@@ -95,6 +97,7 @@ export class RebaseTickerList {
         try {
             const TickersList = await getPolygonIOData(this.filterType);
             const mappedSymbolsList = this.mapPolygonToMarketDataSchema(TickersList);
+            console.log(`Items Found in Polygon: ${mappedSymbolsList.length}`);
             this.jsonMarketDataList = this.jsonMarketDataList.concat(mappedSymbolsList);
         } catch (err) {
             console.error(err);
@@ -164,6 +167,7 @@ export class RebaseTickerList {
                 continue;
             }
             const csvDataRows = await this.parseCsvData(marketCsvData);
+            console.log(`Items Found in NASDAQ: ${csvDataRows.length}`);
             for (let row of csvDataRows) {
                 this.jsonMarketDataList.push({
                     name: row['Security Name'],

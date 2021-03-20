@@ -2,7 +2,7 @@ import { assert, expect } from 'chai';
 import { Generic } from '../lib/services';
 
 describe('Tester::', function () {
-    this.timeout(40000);
+    this.timeout(400000);
     it('Should run', async () => {
         const service = new Generic.GenericSentimentAnalysisService({
             analyzer: 'natural',

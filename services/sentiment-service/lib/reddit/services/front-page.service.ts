@@ -27,7 +27,7 @@ export class FrontPageService {
 
     async service() {
         try {
-            const frontPagePosts = await FrontPageGather.gather(this.subreddit);
+            const frontPagePosts = await FrontPageGather.frontPageGather(this.subreddit);
 
             const filteredPosts = this.filterPosts(frontPagePosts);
 
@@ -35,14 +35,14 @@ export class FrontPageService {
 
             for (let post of filteredPosts) {
 
-                const commentThread = post.comments;
+                const discussionThread = await FrontPageGather.discussionGather(post.postId);
 
                 //Continue to next post if no comments present
-                if (commentThread.length <= 0) {
+                if (discussionThread.length <= 0) {
                     continue;
                 }
 
-                const filteredComments = this.filterComments(commentThread);
+                const filteredComments = this.filterComments(discussionThread);
 
                 console.log('Filtered Comments:', filteredComments.map(comment => comment.body));
 

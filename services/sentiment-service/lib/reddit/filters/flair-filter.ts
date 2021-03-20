@@ -3,9 +3,10 @@ import _ from "lodash";
 export const flairConfig = {
     subreddits: {
         'wallstreetbets': {
-            good: ['chart', 'news', 'discussion', 'dd'],
+            good: ['chart', 'news', 'discussion', 'dd', 'weekend discussion'],
             bad: ['meme', 'shitpost'],
-            netural: ['loss', 'gain', 'yolo']
+            netural: ['loss', 'gain', 'yolo'],
+            discussion: ['discussion', 'weekend discussion']
         }
     }
 }
@@ -13,7 +14,8 @@ export const flairConfig = {
 export interface FlairConfigSubredditItem {
     good: string[],
     bad: string[],
-    netural: string[]
+    netural: string[],
+    discussion: string[]
 };
 
 export interface FlairFilterArgs {
@@ -60,7 +62,7 @@ export class FlairFilter {
     }
 
     private discussionMode() {
-        return this.flair === 'discussion';
+        return this.subredditConfig.discussion.includes(this.flair);
     }
 
     private chaosMode() {

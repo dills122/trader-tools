@@ -7,3 +7,10 @@ export const trimAndFixUrl = (url: string, format: 'json' | 'xml' = 'json') => {
     }
     return `${modifiedURL}.${format}`;
 };
+
+export const trimSubredditName = (subreddit: string) => {
+    if (!subreddit.includes('r/')) {
+        return subreddit;
+    }
+    return subreddit.replace('r/', '');
+};

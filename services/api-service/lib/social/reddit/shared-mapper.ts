@@ -1,11 +1,8 @@
 import snoowrap, { Submission } from "snoowrap";
+import { trimSubredditName } from "./reddit-util";
 import { Comment, Post } from "./shared-types";
 
 export const mapPost = (apiSchema: Submission): Post => {
-    const comments: Comment[] = [];
-    for (let comment of apiSchema.comments) {
-        comments.push(mapComment(comment));
-    }
     let schema = {
         body: apiSchema.selftext,
         title: apiSchema.title,
@@ -20,8 +17,9 @@ export const mapPost = (apiSchema: Submission): Post => {
         url: apiSchema.url,
         user: apiSchema.author.name,
         flair: apiSchema.link_flair_text || undefined,
-        subreddit: apiSchema.subreddit.name,
-        comments
+        postId: apiSchema.id,
+        subreddit: trimSubredditName(apiSchema.subreddit_name_prefixed),
+        comments: []
     };
     return schema;
 };
@@ -29,7 +27,7 @@ export const mapPost = (apiSchema: Submission): Post => {
 export const mapComment = (apiSchema: snoowrap.Comment): Comment => {
     return {
         approved: apiSchema.approved,
-        subreddit: apiSchema.subreddit.name,
+        subreddit: trimSubredditName(apiSchema.subreddit_name_prefixed),
         body: apiSchema.body,
         downs: apiSchema.downs,
         ups: apiSchema.ups,

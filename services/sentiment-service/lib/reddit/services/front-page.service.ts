@@ -3,7 +3,7 @@ import { Socials } from 'api-service';
 import { CommentFilter, PostFilter } from '../filters';
 import { CommentAnalyzer } from '../analyzers';
 import { SentimentAnalysisFilterFlags } from '../../sharedTypes';
-import { FrontPageGather } from '../gatherer-services';
+import { DiscussionGather, FrontPageGather } from '../gatherer-services';
 import { config } from '../config';
 export interface FrontPageServiceArgs {
     subreddit: string,
@@ -34,24 +34,28 @@ export class FrontPageService {
             console.log('Filtered Posts:', filteredPosts.map(post => post.title));
 
             for (let post of filteredPosts) {
+                try {
+                    const discussionThread = await DiscussionGather.discussionGather(post.postId);
 
-                const discussionThread = await FrontPageGather.discussionGather(post.postId);
+                    //Continue to next post if no comments present
+                    if (discussionThread.length <= 0) {
+                        continue;
+                    }
 
-                //Continue to next post if no comments present
-                if (discussionThread.length <= 0) {
+                    const filteredComments = this.filterComments(discussionThread);
+
+                    console.log(`Filtered Comments: Count: ${filteredComments.length}`, filteredComments.map(comment => comment.body));
+
+                    //If a post has no comments after filtering, continue to next post
+                    if (filteredComments.length <= 0) {
+                        continue;
+                    }
+
+                    this.analyizeCommentCollection(filteredComments, post.title);
+                } catch (err) {
+                    console.error(err);
                     continue;
                 }
-
-                const filteredComments = this.filterComments(discussionThread);
-
-                console.log('Filtered Comments:', filteredComments.map(comment => comment.body));
-
-                //If a post has no comments after filtering, continue to next post
-                if (filteredComments.length <= 0) {
-                    continue;
-                }
-
-                this.analyizeCommentCollection(filteredComments, post.title);
             }
         } catch (err) {
             throw err;
@@ -96,6 +100,13 @@ export class FrontPageService {
         if (commentAnalysisResults.positiveComments.length > 0 ||
             commentAnalysisResults.negativeComments.length > 0 ||
             commentAnalysisResults.neutralComments.length > 0) {
+            console.log('Comments Analyzed::', {
+                title: commentAnalysisResults.title,
+                subreddit: commentAnalysisResults.subreddit,
+                postiveCommentsCount: commentAnalysisResults.positiveComments.length,
+                negativeCommentCount: commentAnalysisResults.negativeComments.length,
+                neutralCommentCount: commentAnalysisResults.neutralComments.length
+            });
             this.analyizedCommentsList.push(commentAnalysisResults);
         }
     }

@@ -1,9 +1,7 @@
 import _ from 'lodash';
 import { analyzerType, GenericSentimentAnalysisResult, SentimentAnalysisFilterFlags, serviceAnalysisType } from "../../sharedTypes";
 import { FrontPageService } from './front-page.service';
-import {
-    GenericCommentTransformer
-} from '../../reddit/transformers';
+import { GenericCommentTransformer } from '../../reddit/transformers';
 import { CommentListAnalyzerResult } from '../analyzers/comment-list-sentiment-analyzer';
 
 export interface GenericRedditServiceArgs {

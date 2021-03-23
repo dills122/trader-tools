@@ -2,15 +2,15 @@ import _ from 'lodash';
 import bunyan from 'bunyan';
 
 export interface LoggerParams {
-    isPretty: boolean | true,
+    isPretty: boolean,
     name: string
 };
 
 export default class Logger {
-    isPretty: boolean;
-    bunyan: bunyan;
+    private isPretty: boolean;
+    private bunyan: bunyan;
     constructor(args: LoggerParams) {
-        this.isPretty = args.isPretty;
+        this.isPretty = args.isPretty || true;
         if (this.isPretty) {
             this.bunyan = bunyan.createLogger({
                 level: 4,

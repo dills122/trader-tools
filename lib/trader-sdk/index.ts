@@ -4,6 +4,7 @@ import * as Emailer from './lib/emailer';
 import BollingerBands from './lib/bollinger-bands';
 import * as Strategies from './lib/strategies';
 import * as LinkGenerator from './lib/link-generator';
+import * as Logger from './lib/logger';
 
 export default {
     watchlist,
@@ -11,7 +12,8 @@ export default {
     Emailer,
     BollingerBands,
     Strategies,
-    LinkGenerator
+    LinkGenerator,
+    Logger
 };
 
 export {
@@ -20,5 +22,6 @@ export {
     Emailer,
     BollingerBands,
     Strategies,
-    LinkGenerator
+    LinkGenerator,
+    Logger
 };

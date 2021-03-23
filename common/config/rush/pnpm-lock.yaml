@@ -25,6 +25,7 @@ dependencies:
   '@types/uuid': 8.3.0
   apos-to-lex-form: 1.0.5
   bad-words: 3.0.4
+  bunyan: 1.8.15
   chai: 4.2.0
   dotenv: 8.2.0
   ejs: 3.1.5
@@ -701,6 +702,18 @@ packages:
     dev: false
     resolution:
       integrity: sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==
+  /bunyan/1.8.15:
+    dev: false
+    engines:
+      '0': node >=0.10.0
+    hasBin: true
+    optionalDependencies:
+      dtrace-provider: 0.8.8
+      moment: 2.29.1
+      mv: 2.1.1
+      safe-json-stringify: 1.2.0
+    resolution:
+      integrity: sha512-0tECWShh6wUysgucJcBAoYegf3JJoZWibxdqhTm7OHPeT42qdjkZ29QCMcKwbgU1kiH+auSIasNRXMLWXafXig==
   /bytes/3.1.0:
     dev: false
     engines:
@@ -1259,6 +1272,16 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+  /dtrace-provider/0.8.8:
+    dependencies:
+      nan: 2.14.2
+    dev: false
+    engines:
+      node: '>=0.10'
+    optional: true
+    requiresBuild: true
+    resolution:
+      integrity: sha512-b7Z7cNtHPhH9EJhNNbbeqTcXB8LGFFZhq1PGgEvpeHlzd36bhbdTWoE/Ba/YguqpBSlAPKnARWhVlhunCMwfxg==
   /duplexer/0.1.2:
     dev: false
     resolution:
@@ -1699,6 +1722,17 @@ packages:
     dev: false
     resolution:
       integrity: sha1-Spc/Y1uRkPcV0QmH1cAP0oFevj0=
+  /glob/6.0.4:
+    dependencies:
+      inflight: 1.0.6
+      inherits: 2.0.4
+      minimatch: 3.0.4
+      once: 1.4.0
+      path-is-absolute: 1.0.1
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha1-DwiGD2oVUSey+t1PnOJLGqtuTSI=
   /glob/7.1.6:
     dependencies:
       fs.realpath: 1.0.0
@@ -2921,6 +2955,11 @@ packages:
     dev: false
     resolution:
       integrity: sha1-z4tP9PKWQGdNbN0CsOO8UjwrvcA=
+  /moment/2.29.1:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
   /ms/0.7.1:
     dev: false
     resolution:
@@ -2942,6 +2981,22 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-0FsgP/WVq4mKyjolIyX+Z9Bd+3WS8GOwoUTyKXT5cTYMGeauNTi2HPCwERqseC1IHAy0Z7MDZnJBfjabd4O8GQ==
+  /mv/2.1.1:
+    dependencies:
+      mkdirp: 0.5.1
+      ncp: 2.0.0
+      rimraf: 2.4.5
+    dev: false
+    engines:
+      node: '>=0.8.0'
+    optional: true
+    resolution:
+      integrity: sha1-rmzg1vbV4KT32JN5jQPB6pVZtqI=
+  /nan/2.14.2:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ==
   /nanoid/3.1.12:
     dev: false
     engines:
@@ -2964,6 +3019,12 @@ packages:
       node: '>=0.4.10'
     resolution:
       integrity: sha512-uL/Y5ES/eCs1R1j/NCbWM7JlKFaZY/Xrx7ZiIFZwpAAsV0eiIG9A5+qna/OvYu8xmazBg1Z4ihDFJd2DHCuM4w==
+  /ncp/2.0.0:
+    dev: false
+    hasBin: true
+    optional: true
+    resolution:
+      integrity: sha1-GVoh1sRuNh0vsSgbo4uR6d9727M=
   /negotiator/0.6.2:
     dev: false
     engines:
@@ -3627,6 +3688,14 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-YTObci/mo1FWiSENJOFMlhSGE+8=
+  /rimraf/2.4.5:
+    dependencies:
+      glob: 6.0.4
+    dev: false
+    hasBin: true
+    optional: true
+    resolution:
+      integrity: sha1-7nEM5dk6j9uFb7Xqj/Di11k0sto=
   /run-parallel/1.2.0:
     dependencies:
       queue-microtask: 1.2.2
@@ -3641,6 +3710,11 @@ packages:
     dev: false
     resolution:
       integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
+  /safe-json-stringify/1.2.0:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-gH8eh2nZudPQO6TytOvbxnuhYBOvDBBLW52tz5q6X58lJcd/tkmqFR+5Z9adS8aJtURSXWThWy/xJtJwixErvg==
   /safer-buffer/2.1.2:
     dev: false
     resolution:
@@ -4577,6 +4651,7 @@ packages:
       '@types/mocha': 8.2.0
       '@types/node': 14.14.22
       '@types/sinon': 9.0.10
+      bunyan: 1.8.15
       chai: 4.2.0
       dotenv: 8.2.0
       gmail-send: 1.8.10
@@ -4589,7 +4664,7 @@ packages:
     dev: false
     name: '@rush-temp/trader-sdk'
     resolution:
-      integrity: sha512-EsBIsDalRohk+Jnxy68Qfz2aGe/o7DrXfZ2fWZMCkz/w2w0CCCUirG+9X/+I2FkkKmDuE+om+Rn+It3EdwtO0Q==
+      integrity: sha512-7UUM0BIDpgJc3bvvkePUG71sb2hk+WAgOYPPdUxNdlutbJCIJMf7Xd3UagpOdhGWIdw6VsUHEesukkgaaJrhqA==
       tarball: 'file:projects/trader-sdk.tgz'
     version: 0.0.0
   'file:projects/trading-services.tgz':
@@ -4631,6 +4706,7 @@ specifiers:
   '@types/uuid': ~8.3.0
   apos-to-lex-form: ~1.0.5
   bad-words: ~3.0.4
+  bunyan: ~1.8.15
   chai: ~4.2.0
   dotenv: ~8.2.0
   ejs: ~3.1.5

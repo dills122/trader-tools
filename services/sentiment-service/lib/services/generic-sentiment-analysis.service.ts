@@ -93,4 +93,4 @@ export class GenericSentimentAnalysisService {
         });
         return refiner.refine();
     }
-}
+};

@@ -3,7 +3,7 @@ const aposToLexForm = require('apos-to-lex-form');
 import SpellCorrector from 'spelling-corrector';
 import StopWord from 'stopword';
 import BadWords from 'bad-words';
-import { cleanUpTickerSymbol } from './ticker-symbols';
+import { cleanUpTickerSymbol } from './util';
 import { isTickerSymbol } from 'is-ticker-symbol';
 import { checker } from './word-checker';
 

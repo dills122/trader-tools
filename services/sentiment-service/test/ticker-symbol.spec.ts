@@ -1,6 +1,6 @@
 import { describe } from 'mocha';
 import { expect } from 'chai';
-import { cleanUpTickerSymbol } from '../lib/ticker-symbols';
+import { cleanUpTickerSymbol } from '../lib/util';
 
 
 describe('TicketSymbol::', function () {

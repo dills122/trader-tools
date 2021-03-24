@@ -5,13 +5,14 @@ export const getWatchlist = (): string[] => {
     return _.keys(watchlist);
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const asyncFilter = async (arr, predicate) => {
     const results = await Promise.all(arr.map(predicate));
 
     return arr.filter((_v, index) => results[index]);
 };
 
-export const calculatePercentType = (arry: boolean[], bit: boolean) => {
+export const calculatePercentType = (arry: boolean[], bit: boolean): number => {
     const recordCount = arry.length;
     let total = 0;
     _.each(arry, (value) => {
@@ -22,7 +23,7 @@ export const calculatePercentType = (arry: boolean[], bit: boolean) => {
     return _.round(total / recordCount * 100, 2);
 };
 
-export const calculatePercentDifference = (valueOne, valueTwo) => {
+export const calculatePercentDifference = (valueOne: number, valueTwo: number): number => {
     return (Math.abs(valueOne - valueTwo) / ((valueTwo + valueOne) / 2)) * 100;
 };
 
@@ -33,7 +34,8 @@ export const isWithinGivenBuffer = (valueToCompare: number, valueComparingAganis
     return lowerBound <= valueToCompare && upperBound >= valueToCompare;
 };
 
-export const sliceArrayByFullChunks = (arry: any[], chunkSize: number, shouldReverse: boolean = false) => {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+export const sliceArrayByFullChunks = (arry: any[], chunkSize: number, shouldReverse = false) => {
     const maxChunks = _.round(arry.length / chunkSize);
     const fullLength = chunkSize * maxChunks;
     if (shouldReverse) {

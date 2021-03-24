@@ -8,7 +8,7 @@ import { buildUniformCandlesFromArray, generateArrayOfNumbers } from '../../test
 
 describe('Fast/Slow Crossover SMA::', function () {
     let sandbox: Sinon.SinonSandbox;
-    let stubs: any = {};
+    const stubs: any = {};
 
     beforeEach(() => {
         sandbox = Sinon.createSandbox();

@@ -24,6 +24,7 @@ describe("Services::", function () {
             const nonDiscussionPost = Mocks.Snoowrap.getPostList(1, subreddit)[0];
             nonDiscussionPost.flair = 'meme';
             stubs.getFrontPageOfSubredditStub = sandbox.stub(Socials.Reddit.FrontPageService.Service, 'getFrontPage').resolves([discussionPost, nonDiscussionPost]);
+            stubs.getDiscussionStub = sandbox.stub(Socials.Reddit.PostDiscussionService.Service, 'getPostDiscussion').resolves(Mocks.Snoowrap.getCommentList(6));
         });
         afterEach(() => {
             sandbox.restore();

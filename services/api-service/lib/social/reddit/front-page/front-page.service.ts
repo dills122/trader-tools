@@ -4,11 +4,14 @@ import * as Mapper from '../shared-mapper';
 export const getFrontPage = async (subreddit: string) => {
     try {
         const connection = connect();
-        const frontPagePosts = await connection.getSubreddit(subreddit).getHot();
-        if (!frontPagePosts || frontPagePosts.length) {
+        const subredditInst = connection.getSubreddit(subreddit);
+        const posts = await subredditInst.getHot({
+            limit: 100 //TODO update these
+        });
+        if (!posts || posts.length <= 0) {
             throw Error('No posts found');
         }
-        return frontPagePosts.map(page => Mapper.mapPost(page));
+        return posts.map(page => Mapper.mapPost(page));
     } catch (err) {
         console.error(err);
         throw err;

@@ -3,7 +3,7 @@ import { polygonIOApiRequest } from './base-request.service';
 
 export interface TickerSymbolRequestOptions {
     sort?: '-ticker' | 'ticker' | 'type',
-    type?: 'CS' | 'REIT' | 'PUB', // https://polygon.io/docs/get_v2_reference_types_anchor
+    type?: 'CS' | 'REIT' | 'PUB' | 'MF', // https://polygon.io/docs/get_v2_reference_types_anchor
     market?: 'stocks' | 'crypto' | 'fx',
     locale?: 'us' | 'g'
 };

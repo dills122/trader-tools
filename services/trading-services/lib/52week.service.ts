@@ -1,10 +1,10 @@
-import { QuouteService } from 'api-service';
+import { IEX } from 'api-service';
 import { util, Emailer } from 'trader-sdk';
 
 export const service = async () => {
     try {
         const results = await util.asyncFilter(util.getWatchlist(), async (symbol) => {
-            const { week52Low, latestPrice } = await QuouteService.quote(symbol);
+            const { week52Low, latestPrice } = await IEX.Quote.quote(symbol);
             if (week52Low >= latestPrice) {
                 return true;
             }

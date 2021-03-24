@@ -18,6 +18,7 @@ export interface Post extends VotableContent {
     url: string,
     hidden: boolean,
     locked: boolean,
+    postId: string,
     comments: Comment[]
 };
 

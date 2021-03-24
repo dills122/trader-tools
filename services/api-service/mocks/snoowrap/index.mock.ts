@@ -16,6 +16,7 @@ export const PostBase: Post = {
     user: '',
     flair: '',
     subreddit: '',
+    postId: '',
     comments: []
 };
 

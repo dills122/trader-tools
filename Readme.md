@@ -73,6 +73,16 @@ In `~/` create an `.env` file, if one doesn't already exist. You'll need to foll
       1. `SOCIAL_SENTIMENT_API`
       2. `SOCIAL_SENTIMENT_API_VERSION`
    3. Note: as of 03-11-21 this is not used and can really be skipped for now
+5. Reddit.com - Used to pull data from their subreddits
+   1. You can create an account [here](https://www.reddit.com/register/)
+   2. Register a new application [here](https://www.reddit.com/prefs/apps)
+   3. Create a valid User-Agent string by the rules defined [here](https://github.com/reddit-archive/reddit/wiki/API)
+   4. Once all that is setup add the following entries to the `.env` file:
+      1. `REDDIT_USER_AGENT`
+      2. `REDDIT_CLIENT_ID` - found in the application registration
+      3. `REDDIT_CLIENT_SECRET` - found in the application registration
+      4. `REDDIT_USERNAME`
+      5. `REDDIT_PASSWORD`
 
 ### Other Important Commands
 
@@ -90,7 +100,7 @@ rush clean
 
 ## Important Info
 
-When submitting PRs **always** remember to run `rush clean` before submitting a PR and merging it. We do **NOT** want auto generated files in the source code to reduce noise.
+When submitting PRs **always** remember to run `rush clean` before submitting a PR and merging it. We do **NOT** want auto generated files in the source code to reduce noise. If you forget to run this command, there is now an automated Action that will alert you when it finds any of the build files present on a PR branch.
 
 ## Container Development
 

@@ -1,4 +1,10 @@
 import { polygonIOApiRequest } from './base-request.service';
+import { Logger } from 'trader-sdk';
+
+const log = new Logger.default({
+    isPretty: true,
+    name: 'Polygon-IO Tickers'
+});
 //https://polygon.io/docs/get_v2_reference_tickers_anchor
 
 export interface TickerSymbolRequestOptions {
@@ -22,7 +28,7 @@ export const getTickerSymbolPage = async (page: number, options?: TickerSymbolRe
         }
         return resp;
     } catch (err) {
-        console.error(err);
+        log.error(err);
         throw err;
     }
 };

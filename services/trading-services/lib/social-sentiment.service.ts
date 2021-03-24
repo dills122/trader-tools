@@ -1,7 +1,12 @@
 import { SocialSentiment } from 'api-service';
-import { Emailer, util } from 'trader-sdk';
+import { Emailer, util, Logger } from 'trader-sdk';
 import _ from 'lodash';
 import { mjml } from 'templating-service';
+
+const log = new Logger.default({
+    isPretty: true,
+    name: 'Social Sentiment IO Report'
+});
 
 const SocialSentimentIO = SocialSentiment.SocialSentimentIO;
 
@@ -32,7 +37,7 @@ export const service = async () => {
             email: 'insidertradingtips1220@gmail.com'
         });
     } catch (err) {
-        console.error(err);
+        log.error(err);
         throw Error('Error Generating Sentiment Report');
     }
 };

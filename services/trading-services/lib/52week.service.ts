@@ -1,5 +1,10 @@
 import { IEX } from 'api-service';
-import { util, Emailer } from 'trader-sdk';
+import { util, Emailer, Logger } from 'trader-sdk';
+
+const log = new Logger.default({
+    isPretty: true,
+    name: '52 Week Low Report'
+});
 
 export const service = async () => {
     try {
@@ -20,6 +25,6 @@ export const service = async () => {
             email: 'insidertradingtips1220@gmail.com'
         });
     } catch (err) {
-        console.error(err);
+        log.error(err);
     }
 };

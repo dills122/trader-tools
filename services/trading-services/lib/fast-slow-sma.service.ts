@@ -1,7 +1,12 @@
 import { IEX } from 'api-service';
-import { Emailer, Strategies } from 'trader-sdk';
+import { Emailer, Strategies, Logger } from 'trader-sdk';
 import { getWatchlist, sliceArrayByFullChunks } from 'trader-sdk/lib/util';
 import { mjml } from 'templating-service';
+
+const log = new Logger.default({
+    isPretty: true,
+    name: 'Fast Slow SMA Report'
+});
 
 export const service = async () => {
     const results: any[] = [];
@@ -31,7 +36,7 @@ export const service = async () => {
             email: 'insidertradingtips1220@gmail.com'
         });
     } catch (err) {
-        console.error(err);
+        log.error(err);
         throw Error('Error creating Fast/Slow SMA report');
     }
 };

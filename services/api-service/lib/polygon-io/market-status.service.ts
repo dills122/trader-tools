@@ -1,11 +1,17 @@
 import { polygonIOApiRequest } from './base-request.service';
+import { Logger } from 'trader-sdk';
+
+const log = new Logger.default({
+    isPretty: true,
+    name: 'Polygon-IO Market Status'
+});
 
 export const getMarketStatus = async () => {
     try {
         const resp = await polygonIOApiRequest<MarketStatusResponse>('/marketstatus/now', {}, 'v1');
         return resp;
     } catch (err) {
-        console.error(err);
+        log.error(err);
         throw err;
     }
 };

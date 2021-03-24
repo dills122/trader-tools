@@ -1,4 +1,6 @@
 import * as dotenv from "dotenv";
+import Logger from './logger';
+
 dotenv.config({ path: __dirname + '/../../../.env' });
 
 const send = require('gmail-send')({
@@ -6,6 +8,11 @@ const send = require('gmail-send')({
     pass: process.env.EMAIL_PASSWORD,
     to: process.env.EMAIL_USERNAME,
     subject: 'Tips incoming'
+});
+
+const log = new Logger({
+    isPretty: true,
+    name: 'Emailer'
 });
 export interface EmailArgs {
     email?: string,
@@ -27,7 +34,7 @@ export const sendEmail = async (args: EmailArgs) => {
             
         });
     } catch (err) {
-        console.log(err);
+        log.error(err);
     }
 };
 

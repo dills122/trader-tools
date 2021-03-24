@@ -1,5 +1,11 @@
 import { connect } from '../base.service';
 import * as Mapper from '../shared-mapper';
+import { Logger } from 'trader-sdk';
+
+const log = new Logger.default({
+    isPretty: true,
+    name: 'Reddit Post Discussion'
+});
 
 export const getPostDiscussion = async (postId: string) => {
     try {
@@ -14,7 +20,7 @@ export const getPostDiscussion = async (postId: string) => {
         }
         return comments.map(page => Mapper.mapComment(page));
     } catch (err) {
-        console.error(err);
+        log.error(err);
         throw err;
     }
 };

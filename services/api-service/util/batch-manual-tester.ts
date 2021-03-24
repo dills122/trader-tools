@@ -1,4 +1,4 @@
-import { historicBatch } from '../lib/historic-batch-chart.service';
+import { historicBatch } from '../lib/iex/historic-batch-chart.service';
 
 (async () => {
     const batchResults = await historicBatch({

@@ -1,5 +1,11 @@
 import { connect } from '../base.service';
 import * as Mapper from '../shared-mapper';
+import { Logger } from 'trader-sdk';
+
+const log = new Logger.default({
+    isPretty: true,
+    name: 'Reddit Front Page'
+});
 
 export const getFrontPage = async (subreddit: string) => {
     try {
@@ -13,7 +19,7 @@ export const getFrontPage = async (subreddit: string) => {
         }
         return posts.map(page => Mapper.mapPost(page));
     } catch (err) {
-        console.error(err);
+        log.error(err);
         throw err;
     }
 };

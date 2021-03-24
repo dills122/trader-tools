@@ -1,5 +1,10 @@
 import { mjml } from 'templating-service';
-import { Emailer, LinkGenerator } from 'trader-sdk';
+import { Emailer, LinkGenerator, Logger } from 'trader-sdk';
+
+const log = new Logger.default({
+    isPretty: true,
+    name: 'Link Report'
+});
 
 export const service = async () => {
     try {
@@ -13,7 +18,7 @@ export const service = async () => {
             email: 'insidertradingtips1220@gmail.com'
         });
     } catch(err) {
-        console.error(err);
+        log.error(err);
         throw Error('Error creating Link Report');
     }
 };

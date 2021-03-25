@@ -1,7 +1,7 @@
 import { mjml } from 'templating-service';
 import { Emailer, LinkGenerator } from 'trader-sdk';
 
-export const service = async () => {
+export const service = async (): Promise<void> => {
     try {
         const linkObjects = LinkGenerator.generateLinkList();
         const renderedTemplate = await mjml.createTemplateFromFile('link-report.template.mjml', {
@@ -12,7 +12,7 @@ export const service = async () => {
             subject: 'Link Report',
             email: 'insidertradingtips1220@gmail.com'
         });
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         throw Error('Error creating Link Report');
     }

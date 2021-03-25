@@ -5,16 +5,16 @@ import { mjml } from 'templating-service';
 
 const SocialSentimentIO = SocialSentiment.SocialSentimentIO;
 
-export const service = async () => {
+export const service = async (): Promise<void> => {
     try {
         let aggregatedResults: SocialSentiment.SocialSentimentIO.StockSentimentResult[] = [];
         const pageOne = await SocialSentimentIO.dailyStockSentiment(1);
         const maxNumberOfPages = _.round(pageOne.count / 50, 0);
         const randomPageNumberList = _.slice(util.shuffleArray(_.range(2, maxNumberOfPages)), 0, SocialSentimentIO.rateLimit() - 1);
-        
+
         aggregatedResults = aggregatedResults.concat(pageOne.results);
-        
-        for (let page of randomPageNumberList) {
+
+        for (const page of randomPageNumberList) {
             const pageResults = await SocialSentimentIO.dailyStockSentiment(page);
             aggregatedResults = aggregatedResults.concat(pageResults.results);
         }

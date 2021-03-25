@@ -3,8 +3,8 @@ import { Emailer, Strategies } from 'trader-sdk';
 import { getWatchlist, sliceArrayByFullChunks } from 'trader-sdk/lib/util';
 import { mjml } from 'templating-service';
 
-export const service = async () => {
-    const results: any[] = [];
+export const service = async (): Promise<void> => {
+    const results: Record<string, unknown>[] = [];
     try {
         const stocks = getWatchlist();
         for (const stock of stocks) {
@@ -21,7 +21,7 @@ export const service = async () => {
                 hasCrossDown: Indicator.hasCrossDown(),
                 hasCrossUp: Indicator.hasCrossUp()
             });
-        };
+        }
         const renderedEmailTemplate = await mjml.createTemplateFromFile('fast-slow-sma.template.mjml', {
             trends: results
         });

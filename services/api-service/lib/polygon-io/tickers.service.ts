@@ -6,9 +6,9 @@ export interface TickerSymbolRequestOptions {
     type?: 'CS' | 'REIT' | 'PUB' | 'MF', // https://polygon.io/docs/get_v2_reference_types_anchor
     market?: 'stocks' | 'crypto' | 'fx',
     locale?: 'us' | 'g'
-};
+}
 
-export const getTickerSymbolPage = async (page: number, options?: TickerSymbolRequestOptions) => {
+export const getTickerSymbolPage = async (page: number, options?: TickerSymbolRequestOptions): Promise<RawTickerPageResponse> => {
     try {
         const resp = await polygonIOApiRequest<RawTickerPageResponse>('/reference/tickers', {
             page,
@@ -33,7 +33,7 @@ export interface RawTickerPageResponse {
     count: number,
     status: string,
     tickers: TickerSymbolResponse[]
-};
+}
 
 export interface TickerSymbolResponse {
     ticker: string,
@@ -49,4 +49,4 @@ export interface TickerSymbolResponse {
     },
     updated: string,
     url: string
-};
+}

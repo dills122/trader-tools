@@ -10,8 +10,8 @@ export interface CryptoSymbolsData {
     type: string,
     isEnabled: boolean,
     region: string
-};
+}
 
-export const cryptoSymbols = async () => {
+export const cryptoSymbols = async (): Promise<CryptoSymbolsData[]> => {
     return await IEXCloud<CryptoSymbolsData[]>('/ref-data/crypto/symbols');
 };

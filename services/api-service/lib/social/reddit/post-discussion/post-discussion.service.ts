@@ -1,7 +1,8 @@
 import { connect } from '../base.service';
 import * as Mapper from '../shared-mapper';
+import { Comment } from '../shared-types';
 
-export const getPostDiscussion = async (postId: string) => {
+export const getPostDiscussion = async (postId: string): Promise<Comment[]> => {
     try {
         const connection = connect();
         const submissionInst = connection.getSubmission(postId);

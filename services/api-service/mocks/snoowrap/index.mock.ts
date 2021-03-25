@@ -80,7 +80,7 @@ export const getPostList = (size: number, subreddit?: string, comments?: Comment
     return posts;
 };
 
-export const getPostAndCommentList = (postCount: number = 5, commentCount: number = 10, subreddit?: string) => {
+export const getPostAndCommentList = (postCount = 5, commentCount = 10, subreddit?: string) => {
     const comments = getCommentList(commentCount, subreddit);
     return getPostList(postCount, subreddit, comments);
 };

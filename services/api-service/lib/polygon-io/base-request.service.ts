@@ -19,15 +19,11 @@ export const polygonIOApiRequest = async <T>(
     params = {},
     apiversion = APIVersion
 ): Promise<T> => {
-    try {
-        const url = `${baseURL}${apiversion}${endpoint}`;
-        const resp = await tokenPlugin.get(url, {
-            searchParams: {
-                ...params
-            }
-        });
-        return JSON.parse(resp.body);
-    } catch (error) {
-        throw error;
-    }
+    const url = `${baseURL}${apiversion}${endpoint}`;
+    const resp = await tokenPlugin.get(url, {
+        searchParams: {
+            ...params
+        }
+    });
+    return JSON.parse(resp.body);
 };

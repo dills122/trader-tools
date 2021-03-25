@@ -7,7 +7,7 @@ export interface VotableContent {
     stickied: boolean,
     subreddit: string,
     timestamp: string
-};
+}
 
 export interface Post extends VotableContent {
     title: string,
@@ -20,7 +20,7 @@ export interface Post extends VotableContent {
     locked: boolean,
     postId: string,
     comments: Comment[]
-};
+}
 
 export interface Comment extends VotableContent {
     body: string,
@@ -28,8 +28,8 @@ export interface Comment extends VotableContent {
     removed: boolean,
     approved: boolean,
     isSubmitter: boolean
-};
+}
 
 export interface CommentExtended extends Comment {
     tickerSymbol: string
-};
+}

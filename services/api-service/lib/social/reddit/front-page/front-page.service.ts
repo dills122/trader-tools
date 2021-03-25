@@ -1,7 +1,8 @@
 import { connect } from '../base.service';
 import * as Mapper from '../shared-mapper';
+import { Post } from '../shared-types';
 
-export const getFrontPage = async (subreddit: string) => {
+export const getFrontPage = async (subreddit: string): Promise<Post[]> => {
     try {
         const connection = connect();
         const subredditInst = connection.getSubreddit(subreddit);

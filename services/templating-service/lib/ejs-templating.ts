@@ -4,7 +4,7 @@ import { join } from 'path';
 
 const fs = fsCb.promises;
 
-export const createTemplateFromFile = async (templateName: string, templateData: object) => {
+export const createTemplateFromFile = async (templateName: string, templateData: Record<string, unknown>): Promise<string> => {
     try {
         const template = await fs.readFile(join(__dirname, '..', 'templates', templateName), { encoding: 'utf8' });
         const renderedTemplate = ejs.render(template, templateData);
@@ -17,7 +17,7 @@ export const createTemplateFromFile = async (templateName: string, templateData:
     }
 };
 
-export const createTemplateFromString = (templateString: string, templateData: object) => {
+export const createTemplateFromString = (templateString: string, templateData: Record<string, unknown>): string => {
     if (templateString.length === 0) {
         throw Error('Given template string was empty');
     }

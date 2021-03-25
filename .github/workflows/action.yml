@@ -21,6 +21,14 @@ jobs:
           node-version: 14
       - run: node common/scripts/install-run-rush.js install
       - run: node common/scripts/install-run-rush.js lint
+  prettier_linter_job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: node common/scripts/install-run-rush.js prettier
   pr_job:
     runs-on: ubuntu-latest
     steps:

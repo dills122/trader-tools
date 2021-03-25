@@ -1,19 +1,19 @@
-import { BaseRefiner, BaseRefinerArgs } from "./base";
+import { AggregatedRefinedSentimentData, BaseRefiner, BaseRefinerArgs } from "./base";
 
 export const config = {
     scoreThreshold: .8 //TODO this needs to be figured out through testing
 };
 
-export interface GeneralRefinerStrategyArgs extends BaseRefinerArgs { };
+export type GeneralRefinerStrategyArgs = BaseRefinerArgs;
 
 export class GeneralRefinerStrategy extends BaseRefiner {
     constructor(args: GeneralRefinerStrategyArgs) {
         super(args);
     }
 
-    refine() {
+    refine(): AggregatedRefinedSentimentData[] {
         const groupedEntities = this.groupBySymbol();
         return this.aggregateGroupedBySymbolData(groupedEntities);
         //TODO build out refining when the threshold is figured out
     }
-};
+}

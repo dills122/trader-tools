@@ -6,7 +6,7 @@ import { SentimentAnalysisFilterFlags } from "../../sharedTypes";
 
 export interface CommentFilterArgs extends SentimentAnalysisFilterFlags {
     comments: Socials.Reddit.Types.Comment[]
-};
+}
 
 export class CommentFilter {
     private comments: Socials.Reddit.Types.Comment[];
@@ -56,4 +56,4 @@ export class CommentFilter {
         });
         return nonProfaneCheckedInput;
     }
-};
+}

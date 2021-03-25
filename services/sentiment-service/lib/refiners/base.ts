@@ -12,16 +12,16 @@ export interface AggregatedRefinedSentimentData {
     negativeSentiment: number,
     neutralSentiment: number,
     sentimentScore: number
-};
+}
 
 export interface BaseRefinerArgs {
     sentimentData: GenericSentimentAnalysisResult[],
 
-};
+}
 
 interface GroupedBySymbol {
     [key: string]: GenericSentimentAnalysisResult[]
-};
+}
 
 export class BaseRefiner {
     private sentimentData: GenericSentimentAnalysisResult[];
@@ -31,15 +31,16 @@ export class BaseRefiner {
         _.assign(this, args);
     }
 
-    refine() {
+    refine(): AggregatedRefinedSentimentData[] {
         const grouped = this.groupBySymbol();
         return this.aggregateGroupedBySymbolData(grouped);
     }
 
     protected groupBySymbol(): GroupedBySymbol {
         const symbolObjectAgg: GroupedBySymbol = {};
-        for (let sentimentEntity of this.sentimentData) {
+        for (const sentimentEntity of this.sentimentData) {
             const symbol = sentimentEntity.symbol;
+            // eslint-disable-next-line no-prototype-builtins
             if (symbolObjectAgg.hasOwnProperty(symbol)) {
                 symbolObjectAgg[symbol].push(sentimentEntity);
             } else {
@@ -49,9 +50,9 @@ export class BaseRefiner {
         return symbolObjectAgg;
     }
 
-    protected aggregateGroupedBySymbolData(groupedEntities: GroupedBySymbol) {
+    protected aggregateGroupedBySymbolData(groupedEntities: GroupedBySymbol): AggregatedRefinedSentimentData[] {
         const symbols = _.keys(groupedEntities);
-        for (let symbol of symbols) {
+        for (const symbol of symbols) {
             const sentimentEntities = groupedEntities[symbol];
             const aggregatedSentimentData = this.calculateAggregatedSentimentData(sentimentEntities, symbol);
             this.aggregatedSentimentData.push(aggregatedSentimentData);
@@ -111,4 +112,4 @@ export class BaseRefiner {
         const neutralWeightValue = _.chain(neutralEntities).divide(totalEntities).divide(10).multiply(avgSentiment).round(4).value();
         return avgSentiment - neutralWeightValue;
     }
-};
+}

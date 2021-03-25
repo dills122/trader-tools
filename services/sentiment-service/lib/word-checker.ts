@@ -7,7 +7,7 @@ const configCache: {
     words: []
 };
 
-export const checker = (input: string) => {
+export const checker = (input: string): boolean => {
     if (configCache.words.length <= 0) {
         configCache.words = fs.readFileSync(WordList, 'utf8').split('\n');
     }

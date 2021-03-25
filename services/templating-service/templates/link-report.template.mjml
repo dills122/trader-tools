@@ -2,15 +2,13 @@
   <mj-body>
     <mj-section background-color="#5D6D7E">
       <mj-column>
-        <mj-text font-style="italic" font-size="20px" color="#FDFEFE">
-          Link Report
-        </mj-text>
+        <mj-text font-style="italic" font-size="20px" color="#FDFEFE"> Link Report </mj-text>
       </mj-column>
     </mj-section>
     <mj-section>
       <mj-column>
         <mj-table cellpadding="5">
-          <tr style="border-bottom:2px solid #ecedee;text-align:left">
+          <tr style="border-bottom: 2px solid #ecedee; text-align: left">
             <th>Symbol</th>
             <th>Finviz</th>
             <th>OpenInsider</th>
@@ -24,9 +22,7 @@
           </tr>
           <% stockLinks.forEach(function(linkObject){ %>
           <tr>
-            <td>
-              <%= linkObject.symbol %>
-            </td>
+            <td><%= linkObject.symbol %></td>
             <td>
               <a href="<%= linkObject.Finviz %>">Link</a>
             </td>

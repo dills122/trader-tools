@@ -1,86 +1,86 @@
-import _ from "lodash";
-import { Post, Comment, CommentExtended } from "../../lib/social/reddit/shared-types";
+import _ from 'lodash';
+import { Post, Comment, CommentExtended } from '../../lib/social/reddit/shared-types';
 
 export const PostBase: Post = {
-    body: '',
-    title: '',
-    hidden: false,
-    stickied: false,
-    locked: false,
-    isMultiMedia: false,
-    timestamp: '',
-    downs: 100,
-    ups: 100,
-    score: 0,
-    url: '',
-    user: '',
-    flair: '',
-    subreddit: '',
-    postId: '',
-    comments: []
+  body: '',
+  title: '',
+  hidden: false,
+  stickied: false,
+  locked: false,
+  isMultiMedia: false,
+  timestamp: '',
+  downs: 100,
+  ups: 100,
+  score: 0,
+  url: '',
+  user: '',
+  flair: '',
+  subreddit: '',
+  postId: '',
+  comments: []
 };
 
 export const CommentBase: Comment = {
-    approved: true,
-    body: 'This is a body',
-    downs: 100,
-    ups: 100,
-    isSubmitter: false,
-    removed: false,
-    score: 0,
-    spam: false,
-    stickied: false,
-    timestamp: '',
-    user: '',
-    subreddit: ''
+  approved: true,
+  body: 'This is a body',
+  downs: 100,
+  ups: 100,
+  isSubmitter: false,
+  removed: false,
+  score: 0,
+  spam: false,
+  stickied: false,
+  timestamp: '',
+  user: '',
+  subreddit: ''
 };
 
 export const CommentExtendedBase: CommentExtended = {
-    ...CommentBase,
-    tickerSymbol: ''
+  ...CommentBase,
+  tickerSymbol: ''
 };
 
 export const getCommentList = (size: number, subreddit?: string) => {
-    const comments: Comment[] = [];
-    for (let i = 0; i < size; i++) {
-        const clonedSchema = _.cloneDeep(CommentBase);
-        if (subreddit) {
-            clonedSchema.subreddit = subreddit;
-        }
-        comments.push(clonedSchema);
+  const comments: Comment[] = [];
+  for (let i = 0; i < size; i++) {
+    const clonedSchema = _.cloneDeep(CommentBase);
+    if (subreddit) {
+      clonedSchema.subreddit = subreddit;
     }
-    return comments;
+    comments.push(clonedSchema);
+  }
+  return comments;
 };
 
 export const getCommentListExtended = (size: number, tickerSymbol: string, subreddit?: string) => {
-    const comments: CommentExtended[] = [];
-    for (let i = 0; i < size; i++) {
-        const clonedSchema = _.cloneDeep(CommentExtendedBase);
-        if (subreddit) {
-            clonedSchema.subreddit = subreddit;
-        }
-        clonedSchema.tickerSymbol = tickerSymbol;
-        comments.push(clonedSchema);
+  const comments: CommentExtended[] = [];
+  for (let i = 0; i < size; i++) {
+    const clonedSchema = _.cloneDeep(CommentExtendedBase);
+    if (subreddit) {
+      clonedSchema.subreddit = subreddit;
     }
-    return comments;
+    clonedSchema.tickerSymbol = tickerSymbol;
+    comments.push(clonedSchema);
+  }
+  return comments;
 };
 
 export const getPostList = (size: number, subreddit?: string, comments?: Comment[]) => {
-    const posts: Post[] = [];
-    for (let i = 0; i < size; i++) {
-        const clonedSchema = _.cloneDeep(PostBase);
-        if (subreddit) {
-            clonedSchema.subreddit = subreddit;
-        }
-        if (comments) {
-            clonedSchema.comments = _.cloneDeep(comments);
-        }
-        posts.push(clonedSchema);
+  const posts: Post[] = [];
+  for (let i = 0; i < size; i++) {
+    const clonedSchema = _.cloneDeep(PostBase);
+    if (subreddit) {
+      clonedSchema.subreddit = subreddit;
     }
-    return posts;
+    if (comments) {
+      clonedSchema.comments = _.cloneDeep(comments);
+    }
+    posts.push(clonedSchema);
+  }
+  return posts;
 };
 
 export const getPostAndCommentList = (postCount = 5, commentCount = 10, subreddit?: string) => {
-    const comments = getCommentList(commentCount, subreddit);
-    return getPostList(postCount, subreddit, comments);
+  const comments = getCommentList(commentCount, subreddit);
+  return getPostList(postCount, subreddit, comments);
 };

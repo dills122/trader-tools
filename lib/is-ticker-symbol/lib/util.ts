@@ -2,7 +2,7 @@ import { IEX } from "api-service";
 import _ from "lodash";
 import { config } from "./external-sources.config";
 
-export const mapPolygonFilterTypes = (filterType?: string) => {
+export const mapPolygonFilterTypes = (filterType?: string): "CS" | "REIT" | "PUB" | "MF"  | undefined => {
     if (!filterType) {
         return undefined;
     }
@@ -16,7 +16,7 @@ export const mapPolygonFilterTypes = (filterType?: string) => {
     return undefined;
 };
 
-export const mapNasdaqFilterTypes = (filterType?: string) => {
+export const mapNasdaqFilterTypes = (filterType?: string): string[] => {
     if (!filterType) {
         return Object.keys(config.fileMapping);
     }
@@ -30,7 +30,7 @@ export const mapNasdaqFilterTypes = (filterType?: string) => {
     return Object.keys(config.fileMapping);
 };
 
-export const filterIexByFilterType = (list: IEX.Symbols.SymbolsReferenceData[], filterType?: string) => {
+export const filterIexByFilterType = (list: IEX.Symbols.SymbolsReferenceData[], filterType?: string): IEX.Symbols.SymbolsReferenceData[] => {
     if (!filterType || filterType === 'all') {
         return list;
     }

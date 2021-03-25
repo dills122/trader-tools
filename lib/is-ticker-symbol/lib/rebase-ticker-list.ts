@@ -11,12 +11,12 @@ export interface JsonMarketDataSchema {
     active: boolean,
     region: string,
     type?: string
-};
+}
 
 export interface RebaseTickerListArgs {
     excludedSources?: string[],
     filterType?: 'cs' | 'all' | 'mutal'
-};
+}
 
 const validSources = [
     'polygonio',
@@ -41,7 +41,7 @@ export class RebaseTickerList {
         }
     }
 
-    async rebase() {
+    async rebase(): Promise<void> {
         try {
             if (!this.checkIfExcludedSource('nasdaq')) {
                 await this.gatherAndSetupNasdaqFTPData();
@@ -129,22 +129,18 @@ export class RebaseTickerList {
     }
 
     private async createOrOverwriteDataFiles() {
-        try {
-            const data = {
-                json: this.jsonMarketDataList,
-                symbols: this.symbolDataList
-            };
-            const dataStringified = JSON.stringify(data);
-            await fs.writeFile(path.resolve(__dirname, '..', 'config.json'), dataStringified, {
-                encoding: 'utf8'
-            });
-        } catch (err) {
-            throw err;
-        }
+        const data = {
+            json: this.jsonMarketDataList,
+            symbols: this.symbolDataList
+        };
+        const dataStringified = JSON.stringify(data);
+        await fs.writeFile(path.resolve(__dirname, '..', 'config.json'), dataStringified, {
+            encoding: 'utf8'
+        });
     }
 
-    private parseCsvData(csvString: string): Promise<any[]> {
-        const parsedCsvObjs: any[] = [];
+    private parseCsvData(csvString: string): Promise<unknown[]> {
+        const parsedCsvObjs: unknown[] = [];
         return new Promise((resolve, reject) => {
             parseString(csvString, {
                 headers: true,
@@ -162,13 +158,16 @@ export class RebaseTickerList {
     }
 
     private async mapToJson() {
-        for (let marketCsvData of this.allMarketCsvDataList) {
+        for (const marketCsvData of this.allMarketCsvDataList) {
             if (!marketCsvData) {
                 continue;
             }
             const csvDataRows = await this.parseCsvData(marketCsvData);
             console.log(`Items Found in NASDAQ: ${csvDataRows.length}`);
-            for (let row of csvDataRows) {
+            for (const row of csvDataRows) {
+                if (!row || typeof row !== 'string') {
+                    continue;
+                }
                 this.jsonMarketDataList.push({
                     name: row['Security Name'],
                     symbol: row['Symbol'],
@@ -192,4 +191,4 @@ export class RebaseTickerList {
             return json.symbol;
         });
     }
-};
+}

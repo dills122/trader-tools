@@ -1,16 +1,11 @@
 import jsftp from 'jsftp';
-import _ from 'lodash';
 import { IEX, PolygonIO } from 'api-service';
 import { config, FileMappingType } from './external-sources.config';
 import { filterIexByFilterType, mapNasdaqFilterTypes, mapPolygonFilterTypes } from './util';
 
-export const retrieveIEXData = async (filterType?: string) => {
-    try {
-        const symbols = await IEX.Symbols.symbols();
-        return filterIexByFilterType(symbols, filterType);
-    } catch (err) {
-        throw err;
-    }
+export const retrieveIEXData = async (filterType?: string): Promise<IEX.Symbols.SymbolsReferenceData[]> => {
+    const symbols = await IEX.Symbols.symbols();
+    return filterIexByFilterType(symbols, filterType);
 };
 
 export const retrieveNASDAQData = async (market: string): Promise<string> => {
@@ -42,7 +37,8 @@ export const retrieveNASDAQData = async (market: string): Promise<string> => {
                 }
             });
 
-            socket.on("end", _ => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+            socket.on("end", (_: any) => {
                 if (csvStr.length <= 0) {
                     return reject(Error('No data found for the given file'));
                 }
@@ -58,7 +54,7 @@ export const retrieveNASDAQData = async (market: string): Promise<string> => {
 export const retrieveNASDAQDataList = async (filterType: string): Promise<string[]> => {
     const csvDataList: string[] = [];
     const supportedMarkets = mapNasdaqFilterTypes(filterType);
-    for (let market of supportedMarkets) {
+    for (const market of supportedMarkets) {
         try {
             const csvFileData = await retrieveNASDAQData(market);
             csvDataList.push(csvFileData);
@@ -73,10 +69,10 @@ export const retrieveNASDAQDataList = async (filterType: string): Promise<string
     return csvDataList;
 };
 
-export const getPolygonIOData = async (filterType?: string) => {
+export const getPolygonIOData = async (filterType?: string): Promise<PolygonIO.Tickers.TickerSymbolResponse[]> => {
     let count = 0;
     let shouldContinue = true;
-    let totalPageCount: number = 1;
+    let totalPageCount = 1;
     let tickers: PolygonIO.Tickers.TickerSymbolResponse[] = [];
     do {
         try {

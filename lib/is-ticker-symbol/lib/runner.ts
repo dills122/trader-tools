@@ -45,6 +45,7 @@ const checkCLIArgs = () => {
         const args = checkCLIArgs();
         const RebaseInst = new RebaseTickerList({
             excludedSources: args.excludedSources.length > 0 ? args.excludedSources : undefined,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             filterType: <any>args.filterType
         });
         console.log('Starting Rebase Service');

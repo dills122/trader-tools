@@ -1,7 +1,7 @@
 export interface FileMappingType {
     name: string,
     ext: string
-};
+}
 
 export const config = {
     baseServerURI: 'ftp.nasdaqtrader.com',

@@ -12,7 +12,7 @@ if (configCache.symbols.length <= 0 ||
 export interface Options {
     output?: boolean,
     matchTolerance?: number
-};
+}
 
 /**
  * Checks if a given string matches a public companies ticker symbol
@@ -20,7 +20,7 @@ export interface Options {
  * @param options optional settings to change functionality of matching, output
  * @returns true if match found, false else
  */
-export const isTickerSymbol = (symbol: string, options: Options = {}) => {
+export const isTickerSymbol = (symbol: string, options: Options = {}): string | boolean => {
     const symbols = configCache.symbols as string[];
     if(options.output) {
         const fuse = new Fuse(symbols, {
@@ -72,6 +72,7 @@ export const isCompanyName = (inputString: string, matchTolerance = .2): {
 
 //TODO create a less strict mode, fuzzy match type checking
 
-export const getTickerSymbols = () => configCache.symbols as string[];
+export const getTickerSymbols = (): string[] => configCache.symbols as string[];
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getTickerSymbolDetailList = () => configCache.json;

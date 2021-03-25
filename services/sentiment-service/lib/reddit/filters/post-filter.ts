@@ -25,27 +25,32 @@ export class PostFilter {
             //     this.filteredPosts.push(post);
             //     continue;
             // }
-
-            if (this.chaosMode) {
-                this.filteredPosts.push(post);
-                continue;
-            }
-
-            if (this.discussionMode) {
-                const flairFilter = new FlairFilter({
-                    filterType: 'discussion',
-                    flair: post.flair || '',
-                    subreddit: post.subreddit
-                });
-                if (flairFilter.filter()) {
+            try {
+                if (this.chaosMode) {
                     this.filteredPosts.push(post);
+                    continue;
                 }
-                continue;
-            }
 
-            if (this.ddMode) {
-                // Not supported yet
-                continue;
+                if (this.discussionMode) {
+                    const flairFilter = new FlairFilter({
+                        filterType: 'discussion',
+                        flair: post.flair || '',
+                        subreddit: post.subreddit
+                    });
+                    if (flairFilter.filter()) {
+                        this.filteredPosts.push(post);
+                    }
+                    continue;
+                }
+
+                if (this.ddMode) {
+                    // Not supported yet
+                    continue;
+                }
+            } catch (err) {
+                console.error(err);
+                // continue;
+                throw err;
             }
         }
         return this.filteredPosts;

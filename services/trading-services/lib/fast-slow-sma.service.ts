@@ -1,4 +1,4 @@
-import { HistoricPrices } from 'api-service';
+import { IEX } from 'api-service';
 import { Emailer, Strategies } from 'trader-sdk';
 import { getWatchlist, sliceArrayByFullChunks } from 'trader-sdk/lib/util';
 import { mjml } from 'templating-service';
@@ -8,7 +8,7 @@ export const service = async () => {
     try {
         const stocks = getWatchlist();
         for (const stock of stocks) {
-            const stockCandleCollection = await HistoricPrices.historic({
+            const stockCandleCollection = await IEX.HistoricPrices.historic({
                 symbol: stock,
                 timeframe: '2y'
             });

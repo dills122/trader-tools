@@ -22,7 +22,7 @@ export interface Options {
  */
 export const isTickerSymbol = (symbol: string, options: Options = {}) => {
     const symbols = configCache.symbols as string[];
-    if(options.output) {
+    if (options.output) {
         const fuse = new Fuse(symbols, {
             threshold: options.matchTolerance || .2
         });
@@ -68,6 +68,19 @@ export const isCompanyName = (inputString: string, matchTolerance = .2): {
         isMatch: true,
         name: <string>match.item
     };
+};
+
+export const lookupTickerByCompanyName = (companyName: string): string => {
+    const tickerSymbolData = getTickerSymbolDetailList();
+    const isCompany = isCompanyName(companyName);
+    if (!isCompany.isMatch) {
+        return '';
+    }
+    const tickerData = _.find(tickerSymbolData, { name: isCompany.name });
+    if(!tickerData) {
+        return '';
+    }
+    return tickerData.symbol;
 };
 
 //TODO create a less strict mode, fuzzy match type checking

@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import BadWords from 'bad-words';
 import { Socials } from "api-service";
-import { extractStockOrCryptoTicker } from '../../standardize-input';
 import { SentimentAnalysisFilterFlags } from "../../sharedTypes";
+import { EquityFilter } from './equity-filter';
 
 export interface CommentFilterArgs extends SentimentAnalysisFilterFlags {
     comments: Socials.Reddit.Types.Comment[]
@@ -20,19 +20,26 @@ export class CommentFilter {
         // Stickied posts are normally informational to the thread and not worth reading
         const nonEmptyComments = this.removeStickiedAndEmptyComments();
 
-        const commentsWithTickerLikeSymbols: Socials.Reddit.Types.CommentExtended[] = nonEmptyComments.map((comment) => {
-            const commentData = comment.body;
-            const possibleTickerSymbols = extractStockOrCryptoTicker(commentData);
-            return {
-                ...comment,
-                tickerSymbol: possibleTickerSymbols[0]
-            };
-        }).filter((comment) => !!comment.tickerSymbol);
+        const commentsWithTickerLikeSymbols = this.filterCommentsWithCompaniesMentioned(nonEmptyComments);
 
         if (this.matureFilter) {
             return this.removeMatureComments(commentsWithTickerLikeSymbols);
         }
         return commentsWithTickerLikeSymbols;
+    }
+
+    private filterCommentsWithCompaniesMentioned(filteredComments: Socials.Reddit.Types.Comment[]) {
+        return filteredComments.map((comment) => {
+            const commentData = comment.body;
+            const filter = new EquityFilter({
+                stringToAnalyze: commentData
+            });
+            filter.filter();
+            return {
+                ...comment,
+                tickerSymbol: filter.getTickerSymbolIfPresent()
+            };
+        }).filter((comment) => comment.tickerSymbol && !_.isEmpty(comment.tickerSymbol));
     }
 
     private removeStickiedAndEmptyComments() {

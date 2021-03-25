@@ -1,4 +1,5 @@
 import { Socials } from "api-service";
+import _ from "lodash";
 import { analyze, SentimentAnalysisResult } from '../../analyze-sentiment';
 import { SentimentConfig } from "../../sentiment.config";
 import { standardizeInput } from '../../standardize-input';
@@ -85,10 +86,17 @@ export class CommentListSentimentAnalyzer {
         });
 
         return commentWithTickerSymbol.map((body) => {
-            return {
-                ...body,
-                comment: standardizeInput(body.comment, this.subredditConfig.whitelist)
-            };
-        });
+            try {
+                return {
+                    ...body,
+                    comment: standardizeInput(body.comment, this.subredditConfig.whitelist)
+                };
+            } catch (err) {
+                return {
+                    ...body,
+                    comment: []
+                };
+            }
+        }).filter(obj => !_.isEmpty(obj.comment));
     }
 };

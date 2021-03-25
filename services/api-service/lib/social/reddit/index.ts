@@ -3,3 +3,4 @@ export * as Base from './base.service';
 export * as Mapper from './shared-mapper';
 export * as Types from './shared-types';
 export * as FrontPageService from './front-page';
+export * as PostDiscussionService from './post-discussion';

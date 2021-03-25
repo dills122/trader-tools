@@ -21,5 +21,8 @@ export const config = {
         'stocks',
         'stonks',
         'wallstreetbets'
+    ],
+    commonMissHitWords: [
+        'stock'
     ]
 };

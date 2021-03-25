@@ -27,7 +27,20 @@
       "name": "test",
       "summary": "runs all tests",
       "enableParallelism": false
+    },
+    {
+      "commandKind": "bulk",
+      "name": "lint",
+      "summary": "runs eslint aganist all packages",
+      "enableParallelism": true
+    },
+    {
+      "commandKind": "bulk",
+      "name": "lint:fix",
+      "summary": "runs eslint and tries to fix any issues it finds in any of the packages",
+      "enableParallelism": true
     }
+
     // {
     //   /**
     //    * (Required) Determines the type of custom command.

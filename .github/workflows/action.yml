@@ -12,6 +12,14 @@ jobs:
                 node-version: 14
             - run: chmod +x "${GITHUB_WORKSPACE}/.github/scripts/build-file-linter.sh"
             - run: "${GITHUB_WORKSPACE}/.github/scripts/build-file-linter.sh"
+    eslint_linter_job:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                node-version: 14
+            - run: node common/scripts/install-run-rush.js lint
     pr_job:
         runs-on: ubuntu-latest
         steps:

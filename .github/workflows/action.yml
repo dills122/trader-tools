@@ -19,6 +19,7 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                 node-version: 14
+            - run: node common/scripts/install-run-rush.js install
             - run: node common/scripts/install-run-rush.js lint
     pr_job:
         runs-on: ubuntu-latest

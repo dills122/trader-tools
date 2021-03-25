@@ -17,7 +17,7 @@ export const transform = (obj: SentimentAnalysisResultExtended, subreddit: strin
 export const transformList = (analysisObject: CommentListAnalyzerResult): GenericSentimentAnalysisResult[] => {
     const aggregatedResults: GenericSentimentAnalysisResult[] = [];
 
-    for (let entry of [...analysisObject.negativeComments, ...analysisObject.neutralComments, ...analysisObject.positiveComments]) {
+    for (const entry of [...analysisObject.negativeComments, ...analysisObject.neutralComments, ...analysisObject.positiveComments]) {
         aggregatedResults.push(transform(entry, analysisObject.subreddit, analysisObject.title));
     }
     return aggregatedResults;

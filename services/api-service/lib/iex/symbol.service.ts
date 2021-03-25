@@ -12,8 +12,8 @@ export interface SymbolsReferenceData {
     iexId: string,
     figi: string,
     cik: string
-};
+}
 
-export const symbols = async () => {
+export const symbols = async (): Promise<SymbolsReferenceData[]> => {
     return await IEXCloud<SymbolsReferenceData[]>('/ref-data/symbols');
 };

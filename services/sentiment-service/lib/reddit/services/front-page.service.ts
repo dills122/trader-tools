@@ -9,7 +9,7 @@ export interface FrontPageServiceArgs {
     subreddit: string,
     analyzer: string,
     filterFlags: SentimentAnalysisFilterFlags
-};
+}
 
 export class FrontPageService {
     private subreddit: string;
@@ -25,40 +25,36 @@ export class FrontPageService {
         console.log(this.analyzer);
     }
 
-    async service() {
-        try {
-            const frontPagePosts = await FrontPageGather.frontPageGather(this.subreddit);
+    async service(): Promise<void> {
+        const frontPagePosts = await FrontPageGather.frontPageGather(this.subreddit);
 
-            const filteredPosts = this.filterPosts(frontPagePosts);
+        const filteredPosts = this.filterPosts(frontPagePosts);
 
-            console.log('Filtered Posts:', filteredPosts.map(post => post.title));
+        console.log('Filtered Posts:', filteredPosts.map(post => post.title));
 
-            for (let post of filteredPosts) {
+        for (const post of filteredPosts) {
 
-                const discussionThread = await FrontPageGather.discussionGather(post.postId);
+            const discussionThread = await FrontPageGather.discussionGather(post.postId);
 
-                //Continue to next post if no comments present
-                if (discussionThread.length <= 0) {
-                    continue;
-                }
-
-                const filteredComments = this.filterComments(discussionThread);
-
-                console.log('Filtered Comments:', filteredComments.map(comment => comment.body));
-
-                //If a post has no comments after filtering, continue to next post
-                if (filteredComments.length <= 0) {
-                    continue;
-                }
-
-                this.analyizeCommentCollection(filteredComments, post.title);
+            //Continue to next post if no comments present
+            if (discussionThread.length <= 0) {
+                continue;
             }
-        } catch (err) {
-            throw err;
+
+            const filteredComments = this.filterComments(discussionThread);
+
+            console.log('Filtered Comments:', filteredComments.map(comment => comment.body));
+
+            //If a post has no comments after filtering, continue to next post
+            if (filteredComments.length <= 0) {
+                continue;
+            }
+
+            this.analyizeCommentCollection(filteredComments, post.title);
         }
     }
 
-    getSentimentAnalysisResults() {
+    getSentimentAnalysisResults(): CommentAnalyzer.CommentListAnalyzerResult[] {
         return this.analyizedCommentsList;
     }
 
@@ -99,4 +95,4 @@ export class FrontPageService {
             this.analyizedCommentsList.push(commentAnalysisResults);
         }
     }
-};
+}

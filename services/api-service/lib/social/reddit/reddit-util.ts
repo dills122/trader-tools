@@ -1,5 +1,5 @@
 
-export const trimAndFixUrl = (url: string, format: 'json' | 'xml' = 'json') => {
+export const trimAndFixUrl = (url: string, format: 'json' | 'xml' = 'json'): string => {
     const isSlash = url.slice(-1) === '/';
     let modifiedURL = url;
     if (isSlash) {
@@ -8,7 +8,7 @@ export const trimAndFixUrl = (url: string, format: 'json' | 'xml' = 'json') => {
     return `${modifiedURL}.${format}`;
 };
 
-export const trimSubredditName = (subreddit: string) => {
+export const trimSubredditName = (subreddit: string): string => {
     if (!subreddit.includes('r/')) {
         return subreddit;
     }

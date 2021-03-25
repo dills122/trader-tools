@@ -1,6 +1,6 @@
 import { polygonIOApiRequest } from './base-request.service';
 
-export const getTickerNewsItems = async (ticker: string) => {
+export const getTickerNewsItems = async (ticker: string): Promise<TickerNewsItemResponse[]> => {
     try {
         const resp = await polygonIOApiRequest<TickerNewsItemResponse[]>(`/meta/symbols/${ticker}/news`, {}, 'v1');
         return resp;
@@ -19,4 +19,4 @@ export interface TickerNewsItemResponse {
     summary: string,
     image: string,
     keywords: string[]
-};
+}

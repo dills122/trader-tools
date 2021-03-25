@@ -5,7 +5,7 @@ import { isWithinGivenBuffer } from '../util';
 export class BandWidth extends BollingerBands {
     protected bandWidths: number[] = [];
     protected percentBs: number[] = [];
-    protected averageBandWidthOverPeriod: number = 0;
+    protected averageBandWidthOverPeriod = 0;
     constructor(args: BollingerBandsArgs) {
         super(args);
         this.calculateBandWidthsOverPeriod();
@@ -40,16 +40,16 @@ export class BandWidth extends BollingerBands {
         this.averageBandWidthOverPeriod = sumOfBandWidths / this.period;
     }
 
-    getAverageBandwidth() {
+    getAverageBandwidth(): number {
         return this.averageBandWidthOverPeriod;
     }
 
     /**
      * calculates if the bands are narrowing, signaling lower volatility
      */
-    hasNarrowingBandwidth() {
+    hasNarrowingBandwidth(): boolean {
         const downwardTrendsInARow: number[] = [];
-        let downwardTrendCount: number = 0;
+        let downwardTrendCount = 0;
         for (let i = 0; i < this.bandWidths.length; i++) {
             const bandWidth = this.bandWidths[i];
             const lastValue = this.bandWidths[i === 0 ? i : i - 1];
@@ -73,8 +73,8 @@ export class BandWidth extends BollingerBands {
     /**
      * calculates if there was any points to signal an over buy
      */
-    isOverBought() {
-        let overBoughtSignals: number = 0;
+    isOverBought(): boolean {
+        let overBoughtSignals = 0;
         _.each(this.percentBs, (percentB) => {
             if (isWithinGivenBuffer(percentB, 1, 2) || percentB > 1) {
                 overBoughtSignals++;
@@ -86,8 +86,8 @@ export class BandWidth extends BollingerBands {
     /**
      * calculates if there was any points to signal an over sell
      */
-    isOverSold() {
-        let overSoldSignals: number = 0;
+    isOverSold(): boolean {
+        let overSoldSignals = 0;
         _.each(this.percentBs, (percentB) => {
             if (isWithinGivenBuffer(percentB, 0, 2) || percentB < 0) {
                 overSoldSignals++;
@@ -95,4 +95,4 @@ export class BandWidth extends BollingerBands {
         });
         return overSoldSignals > 0;
     }
-};
+}

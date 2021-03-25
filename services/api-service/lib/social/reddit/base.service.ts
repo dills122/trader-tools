@@ -11,7 +11,7 @@ const Username = process.env.REDDIT_USERNAME;
 const Password = process.env.REDDIT_PASSWORD;
 
 
-export const connect = () => {
+export const connect = (): snoowrap => {
     if (![UserAgent, ClientId, ClientSecret, Username, Password].every(i => i !== undefined)) {
         throw Error('Unable to connect, credentials were not loaded correctly');
     }

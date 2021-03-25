@@ -4,7 +4,7 @@ import { CandleCollection } from "./candles/candles";
 export interface BaseIndicatorArgs {
     candles: CandleCollection,
     period?: number
-};
+}
 
 export default class BaseIndicator {
     protected candles: CandleCollection;
@@ -14,27 +14,27 @@ export default class BaseIndicator {
         this.calculatePeriod(this.period);
     }
 
-    setOrUpdateCandles(candles: CandleCollection) {
+    setOrUpdateCandles(candles: CandleCollection): void {
         this.candles = candles;
     }
 
-    getCandles() {
+    getCandles(): CandleCollection {
         return this.candles;
     }
 
-    getClosePrices() {
+    getClosePrices(): number[] {
         return _.map(this.candles, 'close');
     }
 
-    getLowPrices() {
+    getLowPrices(): number[] {
         return _.map(this.candles, 'low');
     }
 
-    getHighPrices() {
+    getHighPrices(): number[] {
         return _.map(this.candles, 'high');
     }
 
-    getVolumeAmount() {
+    getVolumeAmount(): number[] {
         return _.map(this.candles, 'volume');
     }
 

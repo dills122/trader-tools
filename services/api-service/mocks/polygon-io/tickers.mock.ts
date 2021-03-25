@@ -27,7 +27,7 @@ const TickerSymbolResponseBase: TickerSymbolResponse = {
 
 export const getListOfTickerSymbols = (symbols: string[]) => {
     const symbolList: TickerSymbolResponse[] = [];
-    for (let symbol in symbols) {
+    for (const symbol in symbols) {
         const cloned = _.cloneDeep(TickerSymbolResponseBase);
         cloned.ticker = symbol;
         symbolList.push(cloned);

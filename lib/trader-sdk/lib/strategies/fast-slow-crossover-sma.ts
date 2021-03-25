@@ -15,7 +15,7 @@ export const config = {
 
 export interface FastSlowSMACrossOverArgs {
     candles: CandleCollection
-};
+}
 
 export class FastSlowSMACrossOver {
     private candles: CandleCollection;
@@ -45,7 +45,7 @@ export class FastSlowSMACrossOver {
         return new SMA({ candles: periodCandles, period: config.slowPeriod }).getSMAForPeriod();
     }
 
-    hasRecentCrossUp() {
+    hasRecentCrossUp(): boolean {
         const recentSegmentLength = _.min([this.slowPeriodSMAs.length, 2]) || 0;
         const slowSlice = _.chain(this.slowPeriodSMAs)
             .clone()
@@ -56,7 +56,7 @@ export class FastSlowSMACrossOver {
         });
     }
 
-    hasRecentCrossDown() {
+    hasRecentCrossDown(): boolean {
         const recentSegmentLength = _.min([this.slowPeriodSMAs.length, 2]) || 0;
         const slowSlice = _.chain(this.slowPeriodSMAs)
             .clone()
@@ -68,7 +68,7 @@ export class FastSlowSMACrossOver {
         });
     }
 
-    hasCrossUp() {
+    hasCrossUp(): boolean {
         const crossUpValues = dependencies.CrossUp.calculate({
             lineA: this.slowPeriodSMAs,
             lineB: this.fastPeriodSMAs
@@ -76,7 +76,7 @@ export class FastSlowSMACrossOver {
         return _.some(crossUpValues, (up) => up);
     }
 
-    hasCrossDown() {
+    hasCrossDown(): boolean {
         const crossDownValues = dependencies.CrossDown.calculate({
             lineA: this.slowPeriodSMAs,
             lineB: this.fastPeriodSMAs

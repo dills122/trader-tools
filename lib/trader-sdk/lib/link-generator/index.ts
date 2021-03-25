@@ -1,7 +1,6 @@
 import watchlist from '../watchlist.config';
-import _ from 'lodash';
 
-export const generator = (linkTemplate: LinkTemplates, symbol: string) => {
+export const generator = (linkTemplate: LinkTemplates, symbol: string): string => {
     const upperSymbol = symbol.toUpperCase();
     return linkTemplate.replace('<>', upperSymbol);
 };
@@ -17,16 +16,16 @@ export enum LinkTemplates {
     AtomFinance = 'https://atom.finance/quote/<>',
     YahooFinance = 'https://finance.yahoo.com/quote/<>',
     SeekingAlpha = 'https://seekingalpha.com/symbol/<>'
-};
+}
 
-export const generateLinkList = () => {
-    const links: object[] = [];
-    for (let symbol in watchlist) {
+export const generateLinkList = (): Record<string, unknown>[] => {
+    const links: Record<string, unknown>[] = [];
+    for (const symbol in watchlist) {
         const { exchange } = watchlist[symbol];
         const entry = {
             symbol: symbol
         };
-        for (let linkTemplates of Object.entries(LinkTemplates)) {
+        for (const linkTemplates of Object.entries(LinkTemplates)) {
             const [key] = linkTemplates;
             if (key === 'TradingView') {
                 entry[key] = generator(LinkTemplates[key], `${exchange}-${symbol}`);

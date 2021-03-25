@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import _ from 'lodash';
 import { Candle, CandleCollection } from '../lib/candles/candles';
 
@@ -44,8 +45,8 @@ export function buildCandlesFromArrays({
     return candles;
 }
 
-export function generateArrayOfNumbers(length: number, seedNumber: number = Math.random() * 10, bufferValue: number = 0) {
-    let numbers: number[] = [];
+export function generateArrayOfNumbers(length: number, seedNumber: number = Math.random() * 10, bufferValue = 0) {
+    const numbers: number[] = [];
     for (let i = 0; i < length; i++) {
         const buffer = Math.random() * bufferValue;
         numbers.push(buffer ? seedNumber - buffer : seedNumber);

@@ -1,7 +1,7 @@
 import * as ejs from './ejs-templating';
 import mjml from 'mjml';
 
-export const createTemplateFromFile = async (templateLocation: string, templateData: object) => {
+export const createTemplateFromFile = async (templateLocation: string, templateData: Record<string, unknown>): Promise<string> => {
     let renderedTemplate: string;
     try {
         renderedTemplate = await ejs.createTemplateFromFile(templateLocation, templateData);
@@ -22,7 +22,7 @@ export const createTemplateFromFile = async (templateLocation: string, templateD
     return renderedEmailResults.html;
 };
 
-export const createTemplateFromString = (templateString: string, templateData: object) => {
+export const createTemplateFromString = (templateString: string, templateData: Record<string, unknown>): string => {
     if (templateString.length === 0) {
         throw Error('Given template string was empty');
     }

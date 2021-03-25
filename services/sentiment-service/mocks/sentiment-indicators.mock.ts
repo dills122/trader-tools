@@ -20,7 +20,7 @@ export const fillerStatements = [
     'what are stocks?'
 ];
 
-export const getRandomStatement = (type: 'negative' | 'positive' | 'filler', symbol: string) => {
+export const getRandomStatement = (type: 'negative' | 'positive' | 'filler', symbol: string): string => {
     let maxNumber: number, randomIndex: number;
     switch (type) {
         case 'positive':
@@ -40,7 +40,7 @@ export const getRandomStatement = (type: 'negative' | 'positive' | 'filler', sym
     }
 };
 
-export const templateSymbol = (templateString: string, symbol: string) => {
+export const templateSymbol = (templateString: string, symbol: string): string => {
     if (!templateString || templateString.length <= 0) {
         throw Error('string is empty or undefined, cannot proceed');
     }

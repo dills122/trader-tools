@@ -12,7 +12,7 @@ export const GenericSentimentAnalysisResultBase: GenericSentimentAnalysisResult 
     title: ''
 };
 
-export const getGenericSentimentResult = (symbol?: string, score: number = .8): GenericSentimentAnalysisResult => {
+export const getGenericSentimentResult = (symbol?: string, score = .8): GenericSentimentAnalysisResult => {
     const obj = _.cloneDeep(GenericSentimentAnalysisResultBase);
     if (symbol) {
         obj.symbol = symbol;
@@ -21,7 +21,7 @@ export const getGenericSentimentResult = (symbol?: string, score: number = .8): 
     return obj;
 };
 
-export const getGenericSentimentResultList = (size: number = 5, symbol?: string, score: number = .8): GenericSentimentAnalysisResult[] => {
+export const getGenericSentimentResultList = (size = 5, symbol?: string, score = .8): GenericSentimentAnalysisResult[] => {
     const genericSentimentList: GenericSentimentAnalysisResult[] = [];
     for (let i = 0; i < size; i++) {
         genericSentimentList.push(getGenericSentimentResult(symbol, score));

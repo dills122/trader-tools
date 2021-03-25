@@ -1,6 +1,6 @@
 import { polygonIOApiRequest } from './base-request.service';
 
-export const getHistoricQuote = async (ticker: string, date: string = new Date().toLocaleDateString("en-US")) => {
+export const getHistoricQuote = async (ticker: string, date: string = new Date().toLocaleDateString("en-US")): Promise<HistoricQuoteResponse> => {
     try {
         const resp = await polygonIOApiRequest<HistoricQuoteResponse>(`/open-close/${ticker}/${date}`, {}, 'v1');
         return resp;
@@ -21,4 +21,4 @@ export interface HistoricQuoteResponse {
     volume: number,
     afterHours: number,
     preMarket: number
-};
+}

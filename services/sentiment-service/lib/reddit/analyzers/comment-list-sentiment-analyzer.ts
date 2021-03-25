@@ -9,7 +9,7 @@ export interface CommentListAnalyzerArgs {
     comments: Socials.Reddit.Types.CommentExtended[],
     title: string,
     subreddit: string
-};
+}
 
 export interface CommentListAnalyzerResult {
     title: string,
@@ -17,12 +17,12 @@ export interface CommentListAnalyzerResult {
     positiveComments: SentimentAnalysisResultExtended[],
     negativeComments: SentimentAnalysisResultExtended[],
     neutralComments: SentimentAnalysisResultExtended[]
-};
+}
 
 export interface SentimentAnalysisResultExtended extends SentimentAnalysisResult {
     comment: string[],
     tickerSymbol: string
-};
+}
 
 export class CommentListSentimentAnalyzer {
     private comments: Socials.Reddit.Types.CommentExtended[];
@@ -99,4 +99,4 @@ export class CommentListSentimentAnalyzer {
             }
         }).filter(obj => !_.isEmpty(obj.comment));
     }
-};
+}

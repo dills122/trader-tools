@@ -6,7 +6,7 @@ export interface SentimentAnalysisResult {
     status: sentimentStatusType,
     score: number,
     standardizedInput: string
-};
+}
 
 export const analyze = (standardizedInput: string[]): SentimentAnalysisResult => {
     const analyzer = new SentimentAnalyzer('English', PorterStemmer, 'afinn');

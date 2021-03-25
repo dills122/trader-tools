@@ -16,7 +16,7 @@ export default class SMA extends BaseIndicator {
         })) || 0;
     }
 
-    getSMAForPeriod() {
+    getSMAForPeriod(): number {
         return this.sma;
     }
-};
+}

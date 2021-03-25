@@ -3,7 +3,7 @@ import { trimSubredditName } from "./reddit-util";
 import { Comment, Post } from "./shared-types";
 
 export const mapPost = (apiSchema: Submission): Post => {
-    let schema = {
+    const schema = {
         body: apiSchema.selftext,
         title: apiSchema.title,
         hidden: apiSchema.hidden,

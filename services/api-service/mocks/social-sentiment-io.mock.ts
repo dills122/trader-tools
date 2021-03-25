@@ -22,7 +22,7 @@ export const StockSentimentResultBase: StockSentimentResult = {
 
 export const getStockSentimentResultList = (tickerSymbols: string[]) => {
     const results: StockSentimentResult[] = [];
-    for (let symbol of tickerSymbols) {
+    for (const symbol of tickerSymbols) {
         const clonedSentimentResult = _.cloneDeep(StockSentimentResultBase);
         clonedSentimentResult.stock = symbol;
         results.push(clonedSentimentResult);
@@ -34,7 +34,7 @@ export const getDailyStockSentimentResults = (tickerSymbols: string[], length: n
     const clonedObj = _.cloneDeep(DailyStockSentimentResultsBase);
     clonedObj.count = length;
     clonedObj.results = [];
-    for (let symbol of tickerSymbols) {
+    for (const symbol of tickerSymbols) {
         const clonedSentimentResult = _.cloneDeep(StockSentimentResultBase);
         clonedSentimentResult.stock = symbol;
         clonedObj.results.push(clonedSentimentResult);

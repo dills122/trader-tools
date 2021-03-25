@@ -1,6 +1,6 @@
 import { polygonIOApiRequest } from './base-request.service';
 
-export const getMarketStatus = async () => {
+export const getMarketStatus = async (): Promise<MarketStatusResponse> => {
     try {
         const resp = await polygonIOApiRequest<MarketStatusResponse>('/marketstatus/now', {}, 'v1');
         return resp;
@@ -19,4 +19,4 @@ export interface MarketStatusResponse {
     currencies: {
         [key: string]: string
     }
-};
+}

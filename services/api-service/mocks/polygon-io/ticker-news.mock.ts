@@ -24,7 +24,7 @@ export const getTickerNewsItem = (symbols: string[], title?: string, summary?: s
     return cloned;
 };
 
-export const getTickerNewsItemList = (symbols: string[], size: number = 5, title: string[] = [], summary: string[] = []) => {
+export const getTickerNewsItemList = (symbols: string[], size = 5, title: string[] = [], summary: string[] = []) => {
     const newItemsList: TickerNewsItemResponse[] = [];
     for (let i = 0; i < size; i++) {
         const newItem = getTickerNewsItem(symbols, title[i], summary[i]);

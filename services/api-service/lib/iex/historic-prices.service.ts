@@ -3,11 +3,11 @@ import IEXCloud from './iexcloud.service';
 export interface HistoricPricesArgs {
     symbol: string,
     timeframe: Timeframe
-};
+}
 
 export type Timeframe = '1m' | '3m' | '6m' | '1y' | '2y' | '3y' | '1d' | '5d' | '10d';
 
-export const historic = async (args: HistoricPricesArgs) => {
+export const historic = async (args: HistoricPricesArgs): Promise<HistoricPriceCollection> => {
     return await IEXCloud<HistoricPriceCollection>(`/stock/${args.symbol}/chart/${args.timeframe}`);
 };
 
@@ -40,4 +40,4 @@ export interface HistoricPriceQuote {
     label: number,
     change: number,
     changePercent: number
-};
+}

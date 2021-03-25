@@ -12,9 +12,9 @@ export interface EmailArgs {
     body?: string,
     html?: string,
     subject: string
-};
+}
 
-export const sendEmail = async (args: EmailArgs) => {
+export const sendEmail = async (args: EmailArgs): Promise<void> => {
     if((!args.body && !args.html)) {
         throw Error('Missing a required args, body or html is needed');
     }

@@ -1,6 +1,6 @@
 import { describe } from 'mocha';
 import { expect } from 'chai';
-import { cleanUpTickerSymbol } from '../lib/ticker-symbols';
+import { cleanUpTickerSymbol, containsFilter } from '../lib/ticker-symbols';
 
 describe('TicketSymbol::', function () {
   describe('cleanUpTickerSymbol::', () => {
@@ -23,6 +23,25 @@ describe('TicketSymbol::', function () {
     it('should return an empty string given an empty string', () => {
       const cleanedText = cleanUpTickerSymbol('');
       expect(cleanedText).to.equal('');
+    });
+  });
+
+  describe('containsFilter::', () => {
+    it('should find a string with a filter', () => {
+      const hasFilter = containsFilter('$F', '$');
+      expect(hasFilter).to.be.true;
+    });
+    it('should find a string with a filter', () => {
+      const hasFilter = containsFilter('<F', '<');
+      expect(hasFilter).to.be.true;
+    });
+    it('should NOT find a string with a filter', () => {
+      const hasFilter = containsFilter('F', '$');
+      expect(hasFilter).to.be.false;
+    });
+    it('should NOT find a string with a filter', () => {
+      const hasFilter = containsFilter('F', '<');
+      expect(hasFilter).to.be.false;
     });
   });
 });

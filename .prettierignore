@@ -13,7 +13,6 @@ shrinkwrap.json
 
 # Build outputs
 dist
-lib
 types
 
 # Prettier reformats code blocks inside Markdown, which affects rendered output

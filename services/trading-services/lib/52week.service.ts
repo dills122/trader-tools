@@ -1,7 +1,7 @@
 import { IEX } from 'api-service';
 import { util, Emailer } from 'trader-sdk';
 
-export const service = async () => {
+export const service = async (): Promise<void> => {
     try {
         const results = await util.asyncFilter(util.getWatchlist(), async (symbol) => {
             const { week52Low, latestPrice } = await IEX.Quote.quote(symbol);

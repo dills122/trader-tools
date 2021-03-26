@@ -2,20 +2,20 @@ import { expect } from 'chai';
 import { assert } from 'console';
 import * as Lib from '../index';
 
-const goodSymbols = ['TSLA', 'AAPL', 'MSFT', 'ABR'];
+const goodSymbols = ['TSLA', 'AAPL', 'MSFT', 'ABR', 'F'];
 const badSymbols = ['Cupertino', 'information', 'Company'];
 
 describe('Lib', function () {
     this.timeout(6000);
     describe('isTickerSymbol::', () => {
         it('Should find match', () => {
-            for (let symbol of goodSymbols) {
+            for (const symbol of goodSymbols) {
                 const isTickerSymbol = Lib.isTickerSymbol(symbol);
                 expect(isTickerSymbol).is.true;
             }
         });
         it('Should find match and output it', () => {
-            for (let symbol of goodSymbols) {
+            for (const symbol of goodSymbols) {
                 const tickerSymbol = Lib.isTickerSymbol(symbol, {
                     output: true
                 });
@@ -24,7 +24,7 @@ describe('Lib', function () {
             }
         });
         it('Should not a find match', () => {
-            for (let symbol of badSymbols) {
+            for (const symbol of badSymbols) {
                 const isTickerSymbol = Lib.isTickerSymbol(symbol);
                 expect(isTickerSymbol).is.false;
             }
@@ -33,12 +33,12 @@ describe('Lib', function () {
 
     describe('isCompanyName::', () => {
         it('Should find match', () => {
-            let isCompanyName = Lib.isCompanyName('Ford Motor Company');
+            let isCompanyName = Lib.isCompanyName('Ford Motor Co');
             expect(isCompanyName.isMatch).to.be.true;
-            expect(isCompanyName.name).and.equals('Ford Motor Company');
-            isCompanyName = Lib.isCompanyName('Ford Motor Company', .2);
+            expect(isCompanyName.name).and.equals('Ford Motor Co.');
+            isCompanyName = Lib.isCompanyName('Ford Motor Co.', .2);
             expect(isCompanyName.isMatch).to.be.true;
-            expect(isCompanyName.name).and.equals('Ford Motor Company');
+            expect(isCompanyName.name).and.equals('Ford Motor Co.');
         });
         it('Should not find match', () => {
             let isCompanyName = Lib.isCompanyName('akfsklasklfks');

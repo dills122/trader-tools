@@ -11,7 +11,7 @@ export interface GenericRedditServiceArgs {
     subreddit?: string, // this is optional because it can run all whitelisted service
     analyzer: analyzerType,
     filterFlags: SentimentAnalysisFilterFlags
-};
+}
 
 export class GenericRedditService {
     private serviceAnalysisType: serviceAnalysisType;
@@ -24,7 +24,7 @@ export class GenericRedditService {
 
     }
 
-    async service() {
+    async service(): Promise<GenericSentimentAnalysisResult[]> {
         if (this.serviceAnalysisType === 'front-page') {
             try {
                 const serviceInst = new FrontPageService({
@@ -43,11 +43,11 @@ export class GenericRedditService {
         throw Error('Unsupported service type');
     }
 
-    mapToGenericSentimentSchema(commentThreadList: CommentListAnalyzerResult[]) {
+    mapToGenericSentimentSchema(commentThreadList: CommentListAnalyzerResult[]): GenericSentimentAnalysisResult[] {
         let genericSentimentList: GenericSentimentAnalysisResult[] = [];
-        for (let commentThread of commentThreadList) {
+        for (const commentThread of commentThreadList) {
             genericSentimentList = genericSentimentList.concat(GenericCommentTransformer.transformList(commentThread));
         }
         return genericSentimentList;
     }
-};
+}

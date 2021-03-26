@@ -7,7 +7,7 @@ const dependencies = {
     MFIIndicator
 };
 
-export interface MFIArgs extends BaseIndicatorArgs { };
+export type MFIArgs = BaseIndicatorArgs;
 
 export default class MFI extends BaseIndicator {
     protected mfis: number[];
@@ -30,15 +30,15 @@ export default class MFI extends BaseIndicator {
         });
     }
 
-    getMfisOverPeriod() {
+    getMfisOverPeriod(): number[] {
         return this.mfis;
     }
 
-    setOrUpdatePeriod(period: number) {
+    setOrUpdatePeriod(period: number): void {
         this.period = period;
     }
 
-    getPeriod() {
+    getPeriod(): number {
         return this.period;
     }
 }

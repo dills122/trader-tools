@@ -24,17 +24,13 @@ export const iexApiRequest = async <T>(
     endpoint: string,
     params = {}
 ): Promise<T> => {
-    try {
-        const url = `${prefix()}${apiversion}${endpoint}`;
-        const resp = await tokenPlugin.get(url, {
-            searchParams: {
-                ...params
-            }
-        });
-        return JSON.parse(resp.body);
-    } catch (error) {
-        throw error;
-    }
+    const url = `${prefix()}${apiversion}${endpoint}`;
+    const resp = await tokenPlugin.get(url, {
+        searchParams: {
+            ...params
+        }
+    });
+    return JSON.parse(resp.body);
 };
 
 export default iexApiRequest;

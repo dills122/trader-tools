@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { analyzerType, GenericSentimentAnalysisResult, SentimentAnalysisFilterFlags, serviceAnalysisType, socialSourceType } from '../sharedTypes';
 import { General } from '../refiners';
 import { GenericService } from '../reddit/services';
+import { AggregatedRefinedSentimentData } from '../refiners/base';
 
 export interface SentimentAnalysisServiceArgs {
     socialSource: socialSourceType,
@@ -9,7 +10,7 @@ export interface SentimentAnalysisServiceArgs {
     serviceAnalysisType: serviceAnalysisType,
     filterFlags?: SentimentAnalysisFilterFlags,
     subreddit?: string
-};
+}
 
 export class GenericSentimentAnalysisService {
     private socialSource: socialSourceType;
@@ -23,9 +24,9 @@ export class GenericSentimentAnalysisService {
         this.analyzeFilterFlags();
     }
 
-    async analyze() {
+    async analyze(): Promise<AggregatedRefinedSentimentData[]> {
         switch (this.socialSource) {
-            case 'reddit':
+            case 'reddit': {
                 const serviceInst = new GenericService.GenericRedditService({
                     analyzer: this.analyzer,
                     filterFlags: this.filterFlags,
@@ -34,6 +35,7 @@ export class GenericSentimentAnalysisService {
                 });
                 const sentimentData = await serviceInst.service();
                 return this.refineSentimentData(sentimentData);
+            }
             default:
                 throw Error('Unsupported social source provided');
         }

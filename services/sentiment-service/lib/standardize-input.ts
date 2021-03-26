@@ -14,7 +14,7 @@ export interface StandardizeInputOptions {
     disableStopWords?: boolean,
     disableProfanityFilter?: boolean,
     disableTickerSymbolFilter?: boolean
-};
+}
 
 export const standardizeInput = (input: string, whitelist: string[] = [], options?: StandardizeInputOptions) => {
     const { disableProfanityFilter, disableStopWords, disableTickerSymbolFilter } = options || {};
@@ -60,7 +60,7 @@ export const standardizeInput = (input: string, whitelist: string[] = [], option
     return tokenizedLexedInput;
 };
 
-export const extractStockOrCryptoTicker = (input: string, whitelist?: string[]) => {
+export const extractStockOrCryptoTicker = (input: string, whitelist?: string[]): string[] => {
     const lexedInput: string = aposToLexForm(input);
 
     const tokenizer = new WordTokenizer();
@@ -69,7 +69,7 @@ export const extractStockOrCryptoTicker = (input: string, whitelist?: string[]) 
     const filteredInput = StopWord.removeStopwords(tokenizedLexedInput);
     const tickerSymbols: string[] = [];
 
-    for (let tokenInput of filteredInput) {
+    for (const tokenInput of filteredInput) {
         const isTickerSymbolCheck = isTickerSymbol(tokenInput);
         if (!isTickerSymbolCheck) {
             continue;

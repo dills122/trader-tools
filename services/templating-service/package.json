@@ -1,13 +1,15 @@
 {
   "name": "templating-service",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register test/*.spec.ts",
     "build": "tsc -p .",
     "compile": "tsc",
-    "clean": "tsc --build --clean"
+    "clean": "tsc --build --clean",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
   },
   "author": "",
   "license": "ISC",
@@ -33,6 +35,9 @@
     "@types/uuid": "~8.3.0",
     "@types/mjml": "~4.7.0",
     "proxyquire": "~2.1.3",
-    "@types/proxyquire": "~1.3.28"
+    "@types/proxyquire": "~1.3.28",
+    "eslint": "~7.22.0",
+    "@typescript-eslint/parser": "~4.19.0",
+    "@typescript-eslint/eslint-plugin": "~4.19.0"
   }
 }

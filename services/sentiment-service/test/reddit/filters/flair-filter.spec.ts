@@ -8,72 +8,73 @@ const BadFlair = flairConfig.subreddits.wallstreetbets.bad[0];
 const NeturalFlair = flairConfig.subreddits.wallstreetbets.netural[0];
 
 describe('Reddit::', () => {
-    describe('Filters::', () => {
-        describe('FlairFilter::', () => {
-            it('Should execute happy path for shitpost filter type', () => {
-                const isApproved = new FlairFilter({
-                    filterType: 'shitpost',
-                    subreddit: subreddit,
-                    flair: GoodFlair
-                }).filter();
-                expect(isApproved).to.be.true;
-            });
-            it('Should execute happy path for shitpost filter type', () => {
-                const isApproved = new FlairFilter({
-                    filterType: 'shitpost',
-                    subreddit: subreddit,
-                    flair: NeturalFlair
-                }).filter();
-                expect(isApproved).to.be.true;
-            });
-            it('Should execute happy path for shitpost filter type and filter out', () => {
-                const isApproved = new FlairFilter({
-                    filterType: 'shitpost',
-                    subreddit: subreddit,
-                    flair: BadFlair
-                }).filter();
-                expect(isApproved).to.be.false;
-            });
-            it('Should execute happy path for discussion filter type', () => {
-                const isApproved = new FlairFilter({
-                    filterType: 'discussion',
-                    subreddit: subreddit,
-                    flair: 'discussion'
-                }).filter();
-                expect(isApproved).to.be.true;
-            });
-            it('Should execute happy path for discussion filter type and filter out', () => {
-                const isApproved = new FlairFilter({
-                    filterType: 'discussion',
-                    subreddit: subreddit,
-                    flair: BadFlair
-                }).filter();
-                expect(isApproved).to.be.false;
-            });
-            it('Should execute happy path for chaos filter type', () => {
-                const isApproved = new FlairFilter({
-                    filterType: 'chaos',
-                    subreddit: subreddit,
-                    flair: BadFlair
-                }).filter();
-                expect(isApproved).to.be.true;
-            });
-            it('Should execute happy path for chaos filter type and filter out', () => {
-                const isApproved = new FlairFilter({
-                    filterType: 'chaos',
-                    subreddit: subreddit,
-                    flair: GoodFlair
-                }).filter();
-                expect(isApproved).to.be.false;
-            });
-            it('Should error out if a not supported subreddit is given', () => {
-                const thrws = () => new FlairFilter({
-                    filterType: 'chaos',
-                    subreddit: 'fake',
-                    flair: GoodFlair
-                });
-                assert.throws(thrws);
-            });
-        });
+  describe('Filters::', () => {
+    describe('FlairFilter::', () => {
+      it('Should execute happy path for shitpost filter type', () => {
+        const isApproved = new FlairFilter({
+          filterType: 'shitpost',
+          subreddit: subreddit,
+          flair: GoodFlair
+        }).filter();
+        expect(isApproved).to.be.true;
+      });
+      it('Should execute happy path for shitpost filter type', () => {
+        const isApproved = new FlairFilter({
+          filterType: 'shitpost',
+          subreddit: subreddit,
+          flair: NeturalFlair
+        }).filter();
+        expect(isApproved).to.be.true;
+      });
+      it('Should execute happy path for shitpost filter type and filter out', () => {
+        const isApproved = new FlairFilter({
+          filterType: 'shitpost',
+          subreddit: subreddit,
+          flair: BadFlair
+        }).filter();
+        expect(isApproved).to.be.false;
+      });
+      it('Should execute happy path for discussion filter type', () => {
+        const isApproved = new FlairFilter({
+          filterType: 'discussion',
+          subreddit: subreddit,
+          flair: 'discussion'
+        }).filter();
+        expect(isApproved).to.be.true;
+      });
+      it('Should execute happy path for discussion filter type and filter out', () => {
+        const isApproved = new FlairFilter({
+          filterType: 'discussion',
+          subreddit: subreddit,
+          flair: BadFlair
+        }).filter();
+        expect(isApproved).to.be.false;
+      });
+      it('Should execute happy path for chaos filter type', () => {
+        const isApproved = new FlairFilter({
+          filterType: 'chaos',
+          subreddit: subreddit,
+          flair: BadFlair
+        }).filter();
+        expect(isApproved).to.be.true;
+      });
+      it('Should execute happy path for chaos filter type and filter out', () => {
+        const isApproved = new FlairFilter({
+          filterType: 'chaos',
+          subreddit: subreddit,
+          flair: GoodFlair
+        }).filter();
+        expect(isApproved).to.be.false;
+      });
+      it('Should error out if a not supported subreddit is given', () => {
+        const thrws = () =>
+          new FlairFilter({
+            filterType: 'chaos',
+            subreddit: 'fake',
+            flair: GoodFlair
+          });
+        assert.throws(thrws);
+      });
     });
+  });
 });

@@ -5,7 +5,7 @@ import { FlairFilter } from './flair-filter';
 
 export interface PostFilterArgs extends SentimentAnalysisFilterFlags {
     posts: Socials.Reddit.Types.Post[]
-};
+}
 
 export class PostFilter {
     private discussionMode: boolean;
@@ -18,8 +18,8 @@ export class PostFilter {
         _.assign(this, args);
     }
 
-    filter() {
-        for (let post of this.posts) {
+    filter(): Socials.Reddit.Types.Post[] {
+        for (const post of this.posts) {
             //TODO reimplement this feature
             // if (this.stickedMode && this.isSticked(post)) {
             //     this.filteredPosts.push(post);
@@ -56,7 +56,7 @@ export class PostFilter {
         return this.filteredPosts;
     }
 
-    isSticked(post: Socials.Reddit.Types.Post) {
+    isSticked(post: Socials.Reddit.Types.Post): boolean {
         return post.stickied;
     }
-};
+}

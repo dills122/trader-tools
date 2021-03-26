@@ -12,11 +12,11 @@ export interface Band {
     lower: number,
     middle: number,
     upper: number
-};
+}
 
 export interface BollingerBandsArgs extends BaseIndicatorArgs {
     stdDev?: number
-};
+}
 
 export class BollingerBands extends BaseIndicator {
     protected stdDev: number;
@@ -40,19 +40,19 @@ export class BollingerBands extends BaseIndicator {
         });
     }
 
-    setOrUpdatePeriod(period: number) {
+    setOrUpdatePeriod(period: number): void {
         this.period = period;
     }
 
-    getPeriod() {
+    getPeriod(): number {
         return this.period;
     }
 
-    setOrUpdateStandardDeviation(stdDev: number) {
+    setOrUpdateStandardDeviation(stdDev: number): void {
         this.stdDev = stdDev;
     }
 
-    getStandardDeviation() {
+    getStandardDeviation(): number {
         return this.stdDev;
     }
 }

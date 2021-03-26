@@ -9,7 +9,7 @@ import { buildUniformCandlesFromArray } from '../../test-utils';
 
 describe('Bollinger Bands::', function () {
     let sandbox: Sinon.SinonSandbox;
-    let stubs: any = {};
+    const stubs: any = {};
 
     beforeEach(() => {
         sandbox = Sinon.createSandbox();

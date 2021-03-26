@@ -16,7 +16,7 @@ export interface FlairConfigSubredditItem {
     bad: string[],
     netural: string[],
     discussion: string[]
-};
+}
 
 export interface FlairFilterArgs {
     flair: string,
@@ -28,7 +28,7 @@ export interface FlairFilterArgs {
      * discussion: only looking for discussion/news types
      * chaos: only going for shitposting/memeing type posts
      */
-};
+}
 
 export class FlairFilter {
     private flair: string;
@@ -42,7 +42,7 @@ export class FlairFilter {
         this.subredditConfig = flairConfig.subreddits[this.subreddit];
     }
 
-    filter() {
+    filter(): boolean {
         this.checkSubreddit();
         switch (this.filterType) {
             case 'shitpost':

@@ -1,4 +1,5 @@
-export const HappyPathMock = [{
+export const HappyPathMock = [
+  {
     close: 0,
     high: 0,
     low: 0,
@@ -25,4 +26,5 @@ export const HappyPathMock = [{
     label: 0,
     change: 0,
     changePercent: 0
-}];
+  }
+];

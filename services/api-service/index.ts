@@ -6,17 +6,11 @@ import * as IEX from './lib/iex';
 import * as Mocks from './mocks';
 
 export default {
-    IEX,
-    SocialSentiment,
-    Socials,
-    Mocks,
-    PolygonIO
+  IEX,
+  SocialSentiment,
+  Socials,
+  Mocks,
+  PolygonIO
 };
 
-export {
-    IEX,
-    SocialSentiment,
-    Socials,
-    Mocks,
-    PolygonIO
-};
+export { IEX, SocialSentiment, Socials, Mocks, PolygonIO };

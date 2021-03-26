@@ -10,7 +10,7 @@
     <mj-section>
       <mj-column>
         <mj-table cellpadding="5">
-          <tr style="border-bottom:2px solid #ecedee;text-align:left">
+          <tr style="border-bottom: 2px solid #ecedee; text-align: left">
             <th>Symbol</th>
             <th>Score</th>
             <th>Avg 7 Days</th>
@@ -19,21 +19,11 @@
           </tr>
           <% stockLinks.forEach(function(sentimentObject){ %>
           <tr>
-            <td>
-              <%= sentimentObject.symbol %>
-            </td>
-            <td>
-              <%= sentimentObject.score %>
-            </td>
-            <td>
-              <%= sentimentObject.avg_7_days %>
-            </td>
-            <td>
-              <%= sentimentObject.avg_14_days %>
-            </td>
-            <td>
-              <%= sentimentObject.avg_30_days %>
-            </td>
+            <td><%= sentimentObject.symbol %></td>
+            <td><%= sentimentObject.score %></td>
+            <td><%= sentimentObject.avg_7_days %></td>
+            <td><%= sentimentObject.avg_14_days %></td>
+            <td><%= sentimentObject.avg_30_days %></td>
           </tr>
           <% }); %>
         </mj-table>

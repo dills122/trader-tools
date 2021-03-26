@@ -9,11 +9,11 @@ export interface EquityFilterArgs {
     stringToAnalyze: string,
     matchTolerance?: number,
     blacklist?: string[]
-};
+}
 
 export class EquityFilter {
     private stringToAnalyze: string;
-    private matchTolerance: number = .2;
+    private matchTolerance = .2;
     private tokenizedInputString: string[];
     private matchedTickerSymbol: string;
     private blacklist: string[] = [];
@@ -30,7 +30,7 @@ export class EquityFilter {
         this.standardizeData();
     }
 
-    filter() {
+    filter(): string {
         const ticker = this.checkForTickerSymbol();
         if (ticker) {
             this.matchedTickerSymbol = ticker;
@@ -61,7 +61,7 @@ export class EquityFilter {
         this.tokenizedInputString = filteredInput;
     }
 
-    public getTickerSymbolIfPresent() {
+    public getTickerSymbolIfPresent(): string {
         return this.matchedTickerSymbol;
     }
 
@@ -115,4 +115,4 @@ export class EquityFilter {
         }
         return _.round(1 - desiredTolerance, 2);
     }
-};
+}

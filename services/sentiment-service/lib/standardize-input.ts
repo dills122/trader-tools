@@ -16,7 +16,7 @@ export interface StandardizeInputOptions {
     disableTickerSymbolFilter?: boolean
 }
 
-export const standardizeInput = (input: string, whitelist: string[] = [], options?: StandardizeInputOptions) => {
+export const standardizeInput = (input: string, whitelist: string[] = [], options?: StandardizeInputOptions): string[] => {
     const { disableProfanityFilter, disableStopWords, disableTickerSymbolFilter } = options || {};
     const lexedInput: string = aposToLexForm(input);
     const loweredLexedInput = lexedInput.toLowerCase();

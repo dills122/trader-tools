@@ -121,6 +121,38 @@ Clean Up all the compilation files
 rush clean
 ```
 
+Run all the Packages tests at once
+
+```bash
+rush test
+```
+
+Check all the packages for linting errors
+
+```bash
+rush lint
+```
+
+Check and fix any linting errors possible
+
+```bash
+rush lint:fix
+```
+
+Checks the packages for formatting violations
+
+```bash
+rush prettier
+```
+
+Checks and formats all the packages
+
+```bash
+rush prettier-format
+```
+
+For a complete list of available custom commands check here: `common\config\rush\command-line.json:13`
+
 ## Important Info
 
 When submitting PRs **always** remember to run `rush clean` before submitting a PR and merging it. We do **NOT** want auto generated files in the source code to reduce noise. If you forget to run this command, there is now an automated Action that will alert you when it finds any of the build files present on a PR branch.

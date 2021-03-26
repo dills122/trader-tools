@@ -10,6 +10,7 @@ This mono-repo contains various tools and apps all centered around stocks/equiti
   - [Getting Started](#getting-started)
     - [Other Setup Items](#other-setup-items)
       - [External Services Setup](#external-services-setup)
+    - [Linter/Formatter Setup](#linterformatter-setup)
     - [Other Important Commands](#other-important-commands)
   - [Important Info](#important-info)
   - [Container Development](#container-development)
@@ -83,6 +84,28 @@ In `~/` create an `.env` file, if one doesn't already exist. You'll need to foll
       3. `REDDIT_CLIENT_SECRET` - found in the application registration
       4. `REDDIT_USERNAME`
       5. `REDDIT_PASSWORD`
+
+
+### Linter/Formatter Setup
+
+Eslint and Prettier are both used in the repo and will need to be installed for PRs to pass build checks,
+
+Eslint will need to be installed globally, `npm i -g eslint` and the eslint VS-Code extension can be useful, but is not required
+
+Prettier will need to be installed globally also, `npm i -g prettier` and the prettier VS-Code extension is highly recommended and to have it configured to format on save, which is described below.
+
+To set Prettier to format on save you will need to go to your JSON settings in VS-Code and add one or all of the lines below:
+
+```JSON
+// Default (format when you paste)
+"editor.formatOnPaste": true,
+// Default (format when you save)
+"editor.formatOnSave": true,
+//Language specific
+"[javascript]": {
+   "editor.formatOnSave": true
+},
+```
 
 ### Other Important Commands
 

@@ -1,20 +1,21 @@
 import _ from 'lodash';
 import {
+  AnalyzerOptions,
   analyzerType,
+  FlagsAndOptions,
   GenericSentimentAnalysisResult,
   SentimentAnalysisFilterFlags,
   serviceAnalysisType,
   socialSourceType
-} from '../sharedTypes';
+} from '../shared-types';
 import { General } from '../refiners';
 import { GenericService } from '../reddit/services';
 import { AggregatedRefinedSentimentData } from '../refiners/base';
 
-export interface SentimentAnalysisServiceArgs {
+export interface SentimentAnalysisServiceArgs extends FlagsAndOptions {
   socialSource: socialSourceType;
   analyzer: analyzerType;
   serviceAnalysisType: serviceAnalysisType;
-  filterFlags?: SentimentAnalysisFilterFlags;
   subreddit?: string;
 }
 
@@ -24,6 +25,8 @@ export class GenericSentimentAnalysisService {
   private serviceAnalysisType: serviceAnalysisType;
   private subreddit: string;
   private filterFlags: SentimentAnalysisFilterFlags;
+  private analyzerOptions: AnalyzerOptions;
+  private whitelist: string[] = [];
 
   constructor(args: SentimentAnalysisServiceArgs) {
     _.assign(this, args);
@@ -37,7 +40,9 @@ export class GenericSentimentAnalysisService {
           analyzer: this.analyzer,
           filterFlags: this.filterFlags,
           serviceAnalysisType: this.serviceAnalysisType,
-          subreddit: this.subreddit
+          subreddit: this.subreddit,
+          analyzerOptions: this.analyzerOptions,
+          whitelist: this.whitelist
         });
         const sentimentData = await serviceInst.service();
         return this.refineSentimentData(sentimentData);

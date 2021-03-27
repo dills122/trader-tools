@@ -2,19 +2,18 @@ import { Socials } from 'api-service';
 import _ from 'lodash';
 import { analyze, SentimentAnalysisResult } from '../../analyze-sentiment';
 import { SentimentConfig } from '../../sentiment.config';
-import { standardizeInput, StandardizeInputOptions } from '../../standardize-input';
+import { AnalyzerOptions } from '../../shared-types';
+import { standardizeInput } from '../../standardize-input';
 import { config, SubredditConfigSchema } from '../config';
 
 export interface CommentListAnalyzerArgs {
   comments: Socials.Reddit.Types.CommentExtended[];
   title: string;
   subreddit: string;
-  options?: CommentListAnalyzerOptions;
+  options?: AnalyzerOptions;
   whitelist?: string[];
   whitelistEnabled?: boolean;
 }
-
-export type CommentListAnalyzerOptions = StandardizeInputOptions;
 
 export interface CommentListAnalyzerResult {
   title: string;
@@ -37,7 +36,7 @@ export class CommentListSentimentAnalyzer {
   private positiveComments: SentimentAnalysisResultExtended[] = [];
   private negativeComments: SentimentAnalysisResultExtended[] = [];
   private neutralComments: SentimentAnalysisResultExtended[] = [];
-  private standardizeOptions: CommentListAnalyzerOptions;
+  private standardizeOptions: AnalyzerOptions;
   private whitelist: string[] = [];
 
   constructor(args: CommentListAnalyzerArgs) {

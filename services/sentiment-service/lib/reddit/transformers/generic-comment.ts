@@ -1,4 +1,4 @@
-import { GenericSentimentAnalysisResult } from '../../sharedTypes';
+import { GenericSentimentAnalysisResult } from '../../shared-types';
 import {
   CommentListAnalyzerResult,
   SentimentAnalysisResultExtended

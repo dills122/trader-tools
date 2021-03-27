@@ -2,15 +2,12 @@ import _ from 'lodash';
 import { Socials } from 'api-service';
 import { CommentFilter, PostFilter } from '../filters';
 import { CommentAnalyzer } from '../analyzers';
-import { SentimentAnalysisFilterFlags } from '../../sharedTypes';
+import { AnalyzerOptions, FlagsAndOptions, SentimentAnalysisFilterFlags } from '../../shared-types';
 import { FrontPageGather } from '../gatherer-services';
 import { config } from '../config';
-export interface FrontPageServiceArgs {
+export interface FrontPageServiceArgs extends FlagsAndOptions {
   subreddit: string;
   analyzer: string;
-  filterFlags: SentimentAnalysisFilterFlags;
-  analyzerOptions?: CommentAnalyzer.CommentListAnalyzerOptions;
-  whitelist?: string[];
 }
 
 export class FrontPageService {
@@ -18,7 +15,7 @@ export class FrontPageService {
   private analyzer: string;
   private filterFlags: SentimentAnalysisFilterFlags;
   private analyizedCommentsList: CommentAnalyzer.CommentListAnalyzerResult[] = [];
-  private analyzerOptions: CommentAnalyzer.CommentListAnalyzerOptions;
+  private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
 
   constructor(args: FrontPageServiceArgs) {

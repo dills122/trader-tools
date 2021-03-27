@@ -1,22 +1,20 @@
 import _ from 'lodash';
 import {
+  AnalyzerOptions,
   analyzerType,
+  FlagsAndOptions,
   GenericSentimentAnalysisResult,
   SentimentAnalysisFilterFlags,
   serviceAnalysisType
-} from '../../sharedTypes';
+} from '../../shared-types';
 import { FrontPageService } from './front-page.service';
 import { GenericCommentTransformer } from '../../reddit/transformers';
 import { CommentListAnalyzerResult } from '../analyzers/comment-list-sentiment-analyzer';
-import { CommentAnalyzer } from '../analyzers';
 
-export interface GenericRedditServiceArgs {
+export interface GenericRedditServiceArgs extends FlagsAndOptions {
   serviceAnalysisType: serviceAnalysisType;
   subreddit?: string; // this is optional because it can run all whitelisted service
   analyzer: analyzerType;
-  filterFlags: SentimentAnalysisFilterFlags;
-  analyzerOptions?: CommentAnalyzer.CommentListAnalyzerOptions;
-  whitelist?: string[];
 }
 
 export class GenericRedditService {
@@ -24,7 +22,7 @@ export class GenericRedditService {
   private subreddit: string;
   private analyzer: analyzerType;
   private filterFlags: SentimentAnalysisFilterFlags;
-  private analyzerOptions: CommentAnalyzer.CommentListAnalyzerOptions;
+  private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
 
   constructor(args: GenericRedditServiceArgs) {

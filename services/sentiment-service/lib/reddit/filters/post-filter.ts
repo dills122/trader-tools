@@ -1,6 +1,6 @@
 import { Socials } from 'api-service';
 import _ from 'lodash';
-import { SentimentAnalysisFilterFlags } from '../../sharedTypes';
+import { SentimentAnalysisFilterFlags } from '../../shared-types';
 import { FlairFilter } from './flair-filter';
 
 export interface PostFilterArgs extends SentimentAnalysisFilterFlags {

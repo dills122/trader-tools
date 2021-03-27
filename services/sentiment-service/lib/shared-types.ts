@@ -1,3 +1,5 @@
+import { StandardizeInputOptions } from './standardize-input';
+
 export type serviceAnalysisType = 'front-page';
 export type socialSourceType = 'reddit';
 export type analyzerType = 'natural';
@@ -29,4 +31,12 @@ export interface GenericSentimentAnalysisResult {
   source: socialSourceType;
   sourceKey: string;
   title?: string;
+}
+
+export type AnalyzerOptions = StandardizeInputOptions;
+
+export interface FlagsAndOptions {
+  filterFlags?: SentimentAnalysisFilterFlags;
+  analyzerOptions?: AnalyzerOptions;
+  whitelist?: string[];
 }

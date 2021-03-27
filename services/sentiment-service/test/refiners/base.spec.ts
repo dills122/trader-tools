@@ -1,14 +1,14 @@
 import { describe } from 'mocha';
 import { expect, assert } from 'chai';
 import Sinon from 'sinon';
-import { GenericSentimentAnalysisResult } from '../../lib/sharedTypes';
+import { GenericSentimentAnalysisResult } from '../../lib/shared-types';
 import { getGenericSentimentResultList } from '../../mocks/generic-sentiment.mock';
 import { BaseRefiner } from '../../lib/refiners/base';
 import _ from 'lodash';
 
 describe('Refiners::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let spies: any = {};
+  const spies: any = {};
   let sentimentEntities: GenericSentimentAnalysisResult[] = [];
   describe('Base::', () => {
     beforeEach(() => {

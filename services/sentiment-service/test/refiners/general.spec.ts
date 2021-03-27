@@ -1,7 +1,7 @@
 import { describe } from 'mocha';
 import { expect, assert } from 'chai';
 import Sinon from 'sinon';
-import { GenericSentimentAnalysisResult } from '../../lib/sharedTypes';
+import { GenericSentimentAnalysisResult } from '../../lib/shared-types';
 import { getGenericSentimentResultList } from '../../mocks/generic-sentiment.mock';
 import { GeneralRefinerStrategy } from '../../lib/refiners/general';
 import _ from 'lodash';
@@ -9,7 +9,7 @@ import _ from 'lodash';
 //TODO this will need to be updated after back-testing
 describe('Refiners::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let spies: any = {};
+  const spies: any = {};
   let sentimentEntities: GenericSentimentAnalysisResult[] = [];
   describe('General::', () => {
     beforeEach(() => {

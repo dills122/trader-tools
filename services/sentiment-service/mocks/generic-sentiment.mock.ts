@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { GenericSentimentAnalysisResult } from '../lib/sharedTypes';
+import { GenericSentimentAnalysisResult } from '../lib/shared-types';
 
 export const GenericSentimentAnalysisResultBase: GenericSentimentAnalysisResult = {
   content: '',

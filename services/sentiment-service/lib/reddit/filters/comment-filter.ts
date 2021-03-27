@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import BadWords from 'bad-words';
 import { Socials } from 'api-service';
-import { SentimentAnalysisFilterFlags } from '../../sharedTypes';
+import { SentimentAnalysisFilterFlags } from '../../shared-types';
 import { EquityFilter } from './equity-filter';
 
 export interface CommentFilterArgs extends SentimentAnalysisFilterFlags {

@@ -7,7 +7,8 @@ export const config = {
   subreddits: {
     wallstreetbets: {
       name: 'wallstreetbets',
-      whitelist: ['moon', 'diamond-hands']
+      whitelist: ['moon', 'diamond-hands'],
+      phraseList: ['to the moon', 'too the moon', 'diamond hands', 'hold the line']
     }
   },
   supportedSubreddits: [

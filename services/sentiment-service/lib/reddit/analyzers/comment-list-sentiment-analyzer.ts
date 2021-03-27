@@ -2,6 +2,7 @@ import { Socials } from 'api-service';
 import _ from 'lodash';
 import { analyze, SentimentAnalysisResult } from '../../analyze-sentiment';
 import { SentimentConfig } from '../../sentiment.config';
+import { AnalyzerOptions } from '../../shared-types';
 import { standardizeInput } from '../../standardize-input';
 import { config, SubredditConfigSchema } from '../config';
 
@@ -9,6 +10,9 @@ export interface CommentListAnalyzerArgs {
   comments: Socials.Reddit.Types.CommentExtended[];
   title: string;
   subreddit: string;
+  options?: AnalyzerOptions;
+  whitelist?: string[];
+  whitelistEnabled?: boolean;
 }
 
 export interface CommentListAnalyzerResult {
@@ -32,12 +36,20 @@ export class CommentListSentimentAnalyzer {
   private positiveComments: SentimentAnalysisResultExtended[] = [];
   private negativeComments: SentimentAnalysisResultExtended[] = [];
   private neutralComments: SentimentAnalysisResultExtended[] = [];
+  private standardizeOptions: AnalyzerOptions;
+  private whitelist: string[] = [];
 
   constructor(args: CommentListAnalyzerArgs) {
     this.comments = args.comments;
     this.title = args.title;
     this.subreddit = args.subreddit;
     this.subredditConfig = config.subreddits[this.subreddit];
+    if (args.options) {
+      this.standardizeOptions = args.options;
+    }
+    if (args.whitelistEnabled || (args.whitelist && args.whitelist.length > 0)) {
+      this.whitelist = args.whitelist || this.subredditConfig.whitelist;
+    }
   }
 
   analyze(): CommentListAnalyzerResult {
@@ -90,7 +102,7 @@ export class CommentListSentimentAnalyzer {
         try {
           return {
             ...body,
-            comment: standardizeInput(body.comment, this.subredditConfig.whitelist)
+            comment: standardizeInput(body.comment, this.whitelist, this.standardizeOptions)
           };
         } catch (err) {
           return {

@@ -3,7 +3,6 @@ const aposToLexForm = require('apos-to-lex-form');
 import SpellCorrector from 'spelling-corrector';
 import StopWord from 'stopword';
 import BadWords from 'bad-words';
-import { cleanUpTickerSymbol } from './ticker-symbols';
 import { isTickerSymbol } from 'is-ticker-symbol';
 import { checker } from './word-checker';
 
@@ -62,27 +61,4 @@ export const standardizeInput = (
   }
 
   return tokenizedLexedInput;
-};
-
-export const extractStockOrCryptoTicker = (input: string, whitelist?: string[]): string[] => {
-  const lexedInput: string = aposToLexForm(input);
-
-  const tokenizer = new WordTokenizer();
-  const tokenizedLexedInput = tokenizer.tokenize(lexedInput);
-
-  const filteredInput = StopWord.removeStopwords(tokenizedLexedInput);
-  const tickerSymbols: string[] = [];
-
-  for (const tokenInput of filteredInput) {
-    const isTickerSymbolCheck = isTickerSymbol(tokenInput);
-    if (!isTickerSymbolCheck) {
-      continue;
-    }
-    const cleanedUpTickerSymbol = cleanUpTickerSymbol(tokenInput);
-    if (whitelist && whitelist.length > 0 && !whitelist.includes(cleanedUpTickerSymbol)) {
-      continue;
-    }
-    tickerSymbols.push(cleanedUpTickerSymbol);
-  }
-  return [...new Set(tickerSymbols)];
 };

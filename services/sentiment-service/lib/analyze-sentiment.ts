@@ -1,6 +1,6 @@
 import { SentimentAnalyzer, PorterStemmer } from 'natural';
 import { SentimentConfig } from './sentiment.config';
-import { sentimentStatusType } from './sharedTypes';
+import { sentimentStatusType } from './shared-types';
 
 export interface SentimentAnalysisResult {
   status: sentimentStatusType;

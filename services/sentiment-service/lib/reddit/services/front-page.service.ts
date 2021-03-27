@@ -9,6 +9,8 @@ export interface FrontPageServiceArgs {
   subreddit: string;
   analyzer: string;
   filterFlags: SentimentAnalysisFilterFlags;
+  analyzerOptions?: CommentAnalyzer.CommentListAnalyzerOptions;
+  whitelist?: string[];
 }
 
 export class FrontPageService {
@@ -16,6 +18,8 @@ export class FrontPageService {
   private analyzer: string;
   private filterFlags: SentimentAnalysisFilterFlags;
   private analyizedCommentsList: CommentAnalyzer.CommentListAnalyzerResult[] = [];
+  private analyzerOptions: CommentAnalyzer.CommentListAnalyzerOptions;
+  private whitelist: string[] = [];
 
   constructor(args: FrontPageServiceArgs) {
     _.assign(this, args);
@@ -90,7 +94,9 @@ export class FrontPageService {
     const CommentAnalyzerInst = new CommentAnalyzer.CommentListSentimentAnalyzer({
       comments: comments,
       subreddit: this.subreddit,
-      title: title
+      title: title,
+      options: this.analyzerOptions,
+      whitelist: this.whitelist
     });
 
     const commentAnalysisResults = CommentAnalyzerInst.analyze();

@@ -1,22 +1,22 @@
 import { polygonIOApiRequest } from './base-request.service';
 
 export const getMarketStatus = async (): Promise<MarketStatusResponse> => {
-    try {
-        const resp = await polygonIOApiRequest<MarketStatusResponse>('/marketstatus/now', {}, 'v1');
-        return resp;
-    } catch (err) {
-        console.error(err);
-        throw err;
-    }
+  try {
+    const resp = await polygonIOApiRequest<MarketStatusResponse>('/marketstatus/now', {}, 'v1');
+    return resp;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
 };
 
 export interface MarketStatusResponse {
-    market: string,
-    serverTime: string,
-    exchanges: {
-        [key: string]: string
-    },
-    currencies: {
-        [key: string]: string
-    }
+  market: string;
+  serverTime: string;
+  exchanges: {
+    [key: string]: string;
+  };
+  currencies: {
+    [key: string]: string;
+  };
 }

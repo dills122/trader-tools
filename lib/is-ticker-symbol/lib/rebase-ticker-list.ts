@@ -6,189 +6,192 @@ import _ from 'lodash';
 import path from 'path';
 
 export interface JsonMarketDataSchema {
-    name: string,
-    symbol: string,
-    active: boolean,
-    region: string,
-    type?: string
+  name: string;
+  symbol: string;
+  active: boolean;
+  region: string;
+  type?: string;
 }
 
 export interface RebaseTickerListArgs {
-    excludedSources?: string[],
-    filterType?: 'cs' | 'all' | 'mutal'
+  excludedSources?: string[];
+  filterType?: 'cs' | 'all' | 'mutal';
 }
 
-const validSources = [
-    'polygonio',
-    'iex',
-    'nasdaq'
-];
+const validSources = ['polygonio', 'iex', 'nasdaq'];
 
 export class RebaseTickerList {
-    private allMarketCsvDataList: string[];
-    private jsonMarketDataList: JsonMarketDataSchema[] = [];
-    private symbolDataList: string[] = [];
-    private excludedSources: string[];
-    private filterType: string;
+  private allMarketCsvDataList: string[];
+  private jsonMarketDataList: JsonMarketDataSchema[] = [];
+  private symbolDataList: string[] = [];
+  private excludedSources: string[];
+  private filterType: string;
 
-    constructor(args?: RebaseTickerListArgs) {
-        if (args?.excludedSources && args.excludedSources.every(source => validSources.includes(source))) {
-            this.excludedSources = args.excludedSources;
-        }
-        if (args?.filterType) {
-            this.filterType = args.filterType;
-            console.log(`Has filter type: ${this.filterType}`);
-        }
+  constructor(args?: RebaseTickerListArgs) {
+    if (args?.excludedSources && args.excludedSources.every((source) => validSources.includes(source))) {
+      this.excludedSources = args.excludedSources;
     }
-
-    async rebase(): Promise<void> {
-        try {
-            if (!this.checkIfExcludedSource('nasdaq')) {
-                await this.gatherAndSetupNasdaqFTPData();
-            }
-            if (!this.checkIfExcludedSource('iex')) {
-                await this.gatherAndSetupIEXData();
-            }
-            if (!this.checkIfExcludedSource('polygonio')) {
-                await this.gatherAndSetupPolygonIO();
-            }
-            if (this.jsonMarketDataList.length <= 0) {
-                throw Error('No data to proceed, cannot proceed');
-            }
-            this.filterDuplicates();
-            this.filterNonActive();
-            this.mapToSymbolList();
-            console.log(`Total Tickers Found: ${this.symbolDataList.length}`);
-            await this.createOrOverwriteDataFiles();
-        } catch (err) {
-            console.error(err);
-            throw err;
-        }
+    if (args?.filterType) {
+      this.filterType = args.filterType;
+      console.log(`Has filter type: ${this.filterType}`);
     }
+  }
 
-    private checkIfExcludedSource(source: string) {
-        if (!this.excludedSources) {
-            return false;
-        }
-        return this.excludedSources.includes(source);
+  async rebase(): Promise<void> {
+    try {
+      if (!this.checkIfExcludedSource('nasdaq')) {
+        await this.gatherAndSetupNasdaqFTPData();
+      }
+      if (!this.checkIfExcludedSource('iex')) {
+        await this.gatherAndSetupIEXData();
+      }
+      if (!this.checkIfExcludedSource('polygonio')) {
+        await this.gatherAndSetupPolygonIO();
+      }
+      if (this.jsonMarketDataList.length <= 0) {
+        throw Error('No data to proceed, cannot proceed');
+      }
+      this.filterDuplicates();
+      this.filterNonActive();
+      this.mapToSymbolList();
+      console.log(`Total Tickers Found: ${this.symbolDataList.length}`);
+      await this.createOrOverwriteDataFiles();
+    } catch (err) {
+      console.error(err);
+      throw err;
     }
+  }
 
-    private async gatherAndSetupNasdaqFTPData() {
-        try {
-            this.allMarketCsvDataList = await retrieveNASDAQDataList(this.filterType);
-            await this.mapToJson();
-        } catch (err) {
-            console.error(err);
-        }
+  private checkIfExcludedSource(source: string) {
+    if (!this.excludedSources) {
+      return false;
     }
+    return this.excludedSources.includes(source);
+  }
 
-    private async gatherAndSetupIEXData() {
-        try {
-            const IEXSymbolsList = await retrieveIEXData(this.filterType);
-            const mappedSymbolsList = this.mapIEXToMarketDataSchema(IEXSymbolsList);
-            console.log(`Items Found in IEX: ${mappedSymbolsList.length}`);
-            this.jsonMarketDataList = this.jsonMarketDataList.concat(mappedSymbolsList);
-        } catch (err) {
-            console.error(err);
-        }
+  private async gatherAndSetupNasdaqFTPData() {
+    try {
+      this.allMarketCsvDataList = await retrieveNASDAQDataList(this.filterType);
+      await this.mapToJson();
+    } catch (err) {
+      console.error(err);
     }
+  }
 
-    private async gatherAndSetupPolygonIO() {
-        try {
-            const TickersList = await getPolygonIOData(this.filterType);
-            const mappedSymbolsList = this.mapPolygonToMarketDataSchema(TickersList);
-            console.log(`Items Found in Polygon: ${mappedSymbolsList.length}`);
-            this.jsonMarketDataList = this.jsonMarketDataList.concat(mappedSymbolsList);
-        } catch (err) {
-            console.error(err);
-        }
+  private async gatherAndSetupIEXData() {
+    try {
+      const IEXSymbolsList = await retrieveIEXData(this.filterType);
+      const mappedSymbolsList = this.mapIEXToMarketDataSchema(IEXSymbolsList);
+      console.log(`Items Found in IEX: ${mappedSymbolsList.length}`);
+      this.jsonMarketDataList = this.jsonMarketDataList.concat(mappedSymbolsList);
+    } catch (err) {
+      console.error(err);
     }
+  }
 
-    private mapIEXToMarketDataSchema(IEXSymbolsList: IEX.Symbols.SymbolsReferenceData[]): JsonMarketDataSchema[] {
-        return IEXSymbolsList.map((symbolObject) => {
-            return {
-                name: symbolObject.name,
-                symbol: symbolObject.symbol,
-                active: symbolObject.isEnabled,
-                region: symbolObject.region,
-                type: symbolObject.type.toLowerCase()
-            };
+  private async gatherAndSetupPolygonIO() {
+    try {
+      const TickersList = await getPolygonIOData(this.filterType);
+      const mappedSymbolsList = this.mapPolygonToMarketDataSchema(TickersList);
+      console.log(`Items Found in Polygon: ${mappedSymbolsList.length}`);
+      this.jsonMarketDataList = this.jsonMarketDataList.concat(mappedSymbolsList);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  private mapIEXToMarketDataSchema(
+    IEXSymbolsList: IEX.Symbols.SymbolsReferenceData[]
+  ): JsonMarketDataSchema[] {
+    return IEXSymbolsList.map((symbolObject) => {
+      return {
+        name: symbolObject.name,
+        symbol: symbolObject.symbol,
+        active: symbolObject.isEnabled,
+        region: symbolObject.region,
+        type: symbolObject.type.toLowerCase()
+      };
+    });
+  }
+
+  private mapPolygonToMarketDataSchema(
+    TickersList: PolygonIO.Tickers.TickerSymbolResponse[]
+  ): JsonMarketDataSchema[] {
+    return TickersList.map((symbolObject) => {
+      return {
+        name: symbolObject.name,
+        symbol: symbolObject.ticker,
+        active: symbolObject.active,
+        region: symbolObject.locale,
+        type: symbolObject.type.toLowerCase()
+      };
+    });
+  }
+
+  private async createOrOverwriteDataFiles() {
+    const data = {
+      json: this.jsonMarketDataList,
+      symbols: this.symbolDataList
+    };
+    const dataStringified = JSON.stringify(data);
+    await fs.writeFile(path.resolve(__dirname, '..', 'config.json'), dataStringified, {
+      encoding: 'utf8'
+    });
+  }
+
+  private parseCsvData(csvString: string): Promise<unknown[]> {
+    const parsedCsvObjs: unknown[] = [];
+    return new Promise((resolve, reject) => {
+      parseString(csvString, {
+        headers: true,
+        delimiter: '|'
+      })
+        .on('error', (error) => {
+          console.error(error);
+          return reject(error);
+        })
+        .on('data', (row) => {
+          parsedCsvObjs.push(row);
+        })
+        .on('end', (rowCount) => {
+          console.log(`Parsed ${rowCount} rows`);
+          return resolve(parsedCsvObjs);
         });
-    }
+    });
+  }
 
-    private mapPolygonToMarketDataSchema(TickersList: PolygonIO.Tickers.TickerSymbolResponse[]): JsonMarketDataSchema[] {
-        return TickersList.map((symbolObject) => {
-            return {
-                name: symbolObject.name,
-                symbol: symbolObject.ticker,
-                active: symbolObject.active,
-                region: symbolObject.locale,
-                type: symbolObject.type.toLowerCase()
-            };
-        });
-    }
-
-    private async createOrOverwriteDataFiles() {
-        const data = {
-            json: this.jsonMarketDataList,
-            symbols: this.symbolDataList
-        };
-        const dataStringified = JSON.stringify(data);
-        await fs.writeFile(path.resolve(__dirname, '..', 'config.json'), dataStringified, {
-            encoding: 'utf8'
-        });
-    }
-
-    private parseCsvData(csvString: string): Promise<unknown[]> {
-        const parsedCsvObjs: unknown[] = [];
-        return new Promise((resolve, reject) => {
-            parseString(csvString, {
-                headers: true,
-                delimiter: '|'
-            }).on('error', error => {
-                console.error(error);
-                return reject(error);
-            }).on('data', row => {
-                parsedCsvObjs.push(row);
-            }).on('end', rowCount => {
-                console.log(`Parsed ${rowCount} rows`);
-                return resolve(parsedCsvObjs);
-            });
-        });
-    }
-
-    private async mapToJson() {
-        for (const marketCsvData of this.allMarketCsvDataList) {
-            if (!marketCsvData) {
-                continue;
-            }
-            const csvDataRows = await this.parseCsvData(marketCsvData);
-            console.log(`Items Found in NASDAQ: ${csvDataRows.length}`);
-            for (const row of csvDataRows) {
-                if (!row || typeof row !== 'string') {
-                    continue;
-                }
-                this.jsonMarketDataList.push({
-                    name: row['Security Name'],
-                    symbol: row['Symbol'],
-                    active: true,
-                    region: 'US', //TODO might need to update
-                });
-            }
+  private async mapToJson() {
+    for (const marketCsvData of this.allMarketCsvDataList) {
+      if (!marketCsvData) {
+        continue;
+      }
+      const csvDataRows = await this.parseCsvData(marketCsvData);
+      console.log(`Items Found in NASDAQ: ${csvDataRows.length}`);
+      for (const row of csvDataRows) {
+        if (!row || typeof row !== 'string') {
+          continue;
         }
-    }
-
-    private filterDuplicates() {
-        this.jsonMarketDataList = _.uniqBy(this.jsonMarketDataList, 'symbol');
-    }
-
-    private filterNonActive() {
-        this.jsonMarketDataList = _.filter(this.jsonMarketDataList, json => json.active);
-    }
-
-    private mapToSymbolList() {
-        this.symbolDataList = this.jsonMarketDataList.map((json) => {
-            return json.symbol;
+        this.jsonMarketDataList.push({
+          name: row['Security Name'],
+          symbol: row['Symbol'],
+          active: true,
+          region: 'US' //TODO might need to update
         });
+      }
     }
+  }
+
+  private filterDuplicates() {
+    this.jsonMarketDataList = _.uniqBy(this.jsonMarketDataList, 'symbol');
+  }
+
+  private filterNonActive() {
+    this.jsonMarketDataList = _.filter(this.jsonMarketDataList, (json) => json.active);
+  }
+
+  private mapToSymbolList() {
+    this.symbolDataList = this.jsonMarketDataList.map((json) => {
+      return json.symbol;
+    });
+  }
 }

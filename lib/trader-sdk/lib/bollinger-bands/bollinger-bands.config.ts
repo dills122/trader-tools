@@ -1,4 +1,4 @@
 export default {
-    period: 20,
-    stdDev: 2
+  period: 20,
+  stdDev: 2
 };

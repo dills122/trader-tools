@@ -1,9 +1,7 @@
 import * as MFI from './mfi';
 
 export default {
-    MFI
+  MFI
 };
 
-export {
-    MFI
-};
+export { MFI };

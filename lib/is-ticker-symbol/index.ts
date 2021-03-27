@@ -4,14 +4,13 @@ import _ from 'lodash';
 
 const configCache = config;
 
-if (configCache.symbols.length <= 0 ||
-    Object.keys(configCache.json).length <= 0) {
-    throw Error('Unable to proceed, config data is empty, this is a maintainer issue');
+if (configCache.symbols.length <= 0 || Object.keys(configCache.json).length <= 0) {
+  throw Error('Unable to proceed, config data is empty, this is a maintainer issue');
 }
 
 export interface Options {
-    output?: boolean,
-    matchTolerance?: number
+  output?: boolean;
+  matchTolerance?: number;
 }
 
 /**
@@ -21,22 +20,19 @@ export interface Options {
  * @returns true if match found, false else
  */
 export const isTickerSymbol = (symbol: string, options: Options = {}): string | boolean => {
-    const symbols = configCache.symbols as string[];
-    if (options.output) {
-        const fuse = new Fuse(symbols, {
-            threshold: options.matchTolerance || .2
-        });
-        const matches = fuse.search(symbol);
-        if (matches.length <= 0) {
-            return false;
-        }
-        const match = _.chain(matches)
-            .orderBy(['score'], ['asc'])
-            .first()
-            .value();
-        return <string>match.item;
+  const symbols = configCache.symbols as string[];
+  if (options.output) {
+    const fuse = new Fuse(symbols, {
+      threshold: options.matchTolerance || 0.2
+    });
+    const matches = fuse.search(symbol);
+    if (matches.length <= 0) {
+      return false;
     }
-    return symbols.includes(symbol);
+    const match = _.chain(matches).orderBy(['score'], ['asc']).first().value();
+    return <string>match.item;
+  }
+  return symbols.includes(symbol);
 };
 
 /**
@@ -45,42 +41,42 @@ export const isTickerSymbol = (symbol: string, options: Options = {}): string | 
  * @param matchTolerance optional, set match tolerance; 0 perfect match, 1 mismatch
  * @returns true if match found, false else
  */
-export const isCompanyName = (inputString: string, matchTolerance = .2): {
-    isMatch: boolean,
-    name: string
+export const isCompanyName = (
+  inputString: string,
+  matchTolerance = 0.2
+): {
+  isMatch: boolean;
+  name: string;
 } => {
-    const names = configCache.json.map(company => company.name);
-    const fuse = new Fuse(names, {
-        threshold: matchTolerance
-    });
-    const matches = fuse.search(inputString);
-    if (matches.length <= 0) {
-        return {
-            isMatch: false,
-            name: ''
-        };
-    }
-    const match = _.chain(matches)
-        .orderBy(['score'], ['asc'])
-        .first()
-        .value();
+  const names = configCache.json.map((company) => company.name);
+  const fuse = new Fuse(names, {
+    threshold: matchTolerance
+  });
+  const matches = fuse.search(inputString);
+  if (matches.length <= 0) {
     return {
-        isMatch: true,
-        name: <string>match.item
+      isMatch: false,
+      name: ''
     };
+  }
+  const match = _.chain(matches).orderBy(['score'], ['asc']).first().value();
+  return {
+    isMatch: true,
+    name: <string>match.item
+  };
 };
 
 export const lookupTickerByCompanyName = (companyName: string): string => {
-    const tickerSymbolData = getTickerSymbolDetailList();
-    const isCompany = isCompanyName(companyName);
-    if (!isCompany.isMatch) {
-        return '';
-    }
-    const tickerData = _.find(tickerSymbolData, { name: isCompany.name });
-    if(!tickerData) {
-        return '';
-    }
-    return tickerData.symbol;
+  const tickerSymbolData = getTickerSymbolDetailList();
+  const isCompany = isCompanyName(companyName);
+  if (!isCompany.isMatch) {
+    return '';
+  }
+  const tickerData = _.find(tickerSymbolData, { name: isCompany.name });
+  if (!tickerData) {
+    return '';
+  }
+  return tickerData.symbol;
 };
 
 //TODO create a less strict mode, fuzzy match type checking

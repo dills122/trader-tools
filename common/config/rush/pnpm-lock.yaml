@@ -12,6 +12,7 @@ dependencies:
   '@types/ejs': 3.0.5
   '@types/express': 4.17.11
   '@types/jsftp': 2.1.0
+  '@types/lodash': 4.14.168
   '@types/meow': 5.0.0
   '@types/mjml': 4.7.0
   '@types/mocha': 8.2.0
@@ -31,11 +32,12 @@ dependencies:
   dotenv: 8.2.0
   ejs: 3.1.5
   eslint: 7.22.0
-  eslint-config-airbnb-typescript: 12.3.1_eslint@7.22.0+typescript@4.1.3
   express: 4.17.1
   fuse.js: 6.4.6
   gmail-send: 1.8.10
+  got: 11.8.2
   jsftp: 2.1.3
+  lodash: 4.17.21
   meow: 9.0.0
   mjml: 4.8.1
   mocha: 8.2.1
@@ -235,7 +237,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.0
       '@types/keyv': 3.1.1
-      '@types/node': 14.14.22
+      '@types/node': 14.14.25
       '@types/responselike': 1.0.0
     dev: false
     resolution:
@@ -296,7 +298,7 @@ packages:
       integrity: sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==
   /@types/keyv/3.1.1:
     dependencies:
-      '@types/node': 14.14.22
+      '@types/node': 14.14.25
     dev: false
     resolution:
       integrity: sha512-MPtoySlAZQ37VoLaPcTHCu1RWJ4llDkULYZIzOYxlhxBqYPB0RsRlmMU0R6tahtFe27mIdkHV+551ZWV4PLmVw==
@@ -384,7 +386,7 @@ packages:
       integrity: sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
   /@types/responselike/1.0.0:
     dependencies:
-      '@types/node': 14.14.22
+      '@types/node': 14.14.25
     dev: false
     resolution:
       integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==
@@ -2194,24 +2196,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-QMpWwzeA64U69HzOEzI37UNc73xXkhTg8LuqsfKX9W7LjiQY3yRvViVn7ZhuJWLTV4136vsLJf2sXiZKmdykbw==
-  /got/11.8.1:
-    dependencies:
-      '@sindresorhus/is': 4.0.0
-      '@szmarczak/http-timer': 4.0.5
-      '@types/cacheable-request': 6.0.1
-      '@types/responselike': 1.0.0
-      cacheable-lookup: 5.0.4
-      cacheable-request: 7.0.1
-      decompress-response: 6.0.0
-      http2-wrapper: 1.0.0-beta.5.2
-      lowercase-keys: 2.0.0
-      p-cancelable: 2.0.0
-      responselike: 2.0.0
-    dev: false
-    engines:
-      node: '>=10.19.0'
-    resolution:
-      integrity: sha512-9aYdZL+6nHmvJwHALLwKSUZ0hMwGaJGYv3hoPLPgnT8BoBXm1SjnZeky+91tfwJaDzun2s4RsBRy48IEYv2q2Q==
   /got/11.8.2:
     dependencies:
       '@sindresorhus/is': 4.0.0
@@ -5234,7 +5218,7 @@ packages:
       chai: 4.2.0
       dotenv: 8.2.0
       eslint: 7.22.0
-      got: 11.8.1
+      got: 11.8.2
       lodash: 4.17.21
       mocha: 8.2.1
       sinon: 9.2.3
@@ -5244,7 +5228,7 @@ packages:
     dev: false
     name: '@rush-temp/api-service'
     resolution:
-      integrity: sha512-m3VLWD9dcH9BE2lw0Cj0NDmDuSkLUST9uz2aur4vIo5fV0Lg64ewEv38+B9uWpRL10aNax+HcKLhEfts0LP/Jg==
+      integrity: sha512-mIvkzeFfyVX46Xb62R1M3qAdhAsYJA3OpFUAgOnBWAk5NAtPXvG3sRh75J6+aiWjUtEswTnSo4cVP41tEizPbg==
       tarball: 'file:projects/api-service.tgz'
     version: 0.0.0
   'file:projects/cron-app.tgz_typescript@4.1.3':
@@ -5296,7 +5280,7 @@ packages:
     dev: false
     name: '@rush-temp/is-ticker-symbol'
     resolution:
-      integrity: sha512-rlWqgkqF/F/p5I1o7OL7/HCbpz06a/WX3kdGPRHG3DTucnEE+2y0ZjlMQUbY4P8CLHU/7nBZlyNDFWhd4LSaxA==
+      integrity: sha512-L3d0e8X9z1pN3s0xbJN1CUdQHmL3/X+izaMXvjz0NftYIeQoOFtmFeq/PNQe9aTzSG2M0+hfMkNZz9K2ujf3xg==
       tarball: 'file:projects/is-ticker-symbol.tgz'
     version: 0.0.0
   'file:projects/sentiment-service.tgz':
@@ -5333,7 +5317,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-service'
     resolution:
-      integrity: sha512-TC5siZGSlUqNxuWIgNVRMxNPA/TETcsSnyLq4uUucL7el3lhrhTjATresGqM+bfciQ/ggyiiLSaXx+WkmyZMog==
+      integrity: sha512-2q9YPvhetmfHhd3cB2lBBT/KSpVIEN/qvy/5vEuJvrqdVA8XhCOwLfw6qy6VJzkiwPlTE5e/EdS4GUacm+MNPQ==
       tarball: 'file:projects/sentiment-service.tgz'
     version: 0.0.0
   'file:projects/templating-service.tgz':
@@ -5364,7 +5348,7 @@ packages:
     dev: false
     name: '@rush-temp/templating-service'
     resolution:
-      integrity: sha512-ZCiL5CP1FCqrwbs/roTX+ITdehLUObB2tCOSGsI2Pc0TAl7oyDCbma3AOPw+0732dXDL2ml98ChxTxLD6fVYfw==
+      integrity: sha512-5po6WfOqe2v1Qr1RA/3zz3Uczp3Tk6XGsD0mYUQ/SVFVsYzFXXfbK+abaRigxZy+TyZM+5tAaZ5hC69Q0ZR1lA==
       tarball: 'file:projects/templating-service.tgz'
     version: 0.0.0
   'file:projects/trader-sdk.tgz':
@@ -5380,7 +5364,7 @@ packages:
       dotenv: 8.2.0
       eslint: 7.22.0
       gmail-send: 1.8.10
-      lodash: 4.17.20
+      lodash: 4.17.21
       mocha: 8.2.1
       sinon: 9.2.3
       technicalindicators: 3.1.0
@@ -5389,7 +5373,7 @@ packages:
     dev: false
     name: '@rush-temp/trader-sdk'
     resolution:
-      integrity: sha512-V2P1Y2IWSUQ3OD9tvMvYatvXQGKquPFaKSFEgvXuv/Nc5c3d7FsBoV1vQcYkn85KfdMk+XlG355dVB4JXfDocw==
+      integrity: sha512-X9anPnuvK71HfcERgpUcrfv+FtCmB2VYhUGCPESDxjukntZ4ZorTNydT6bIdK9cCjK7wiu+jOokYy6P1zTfWeQ==
       tarball: 'file:projects/trader-sdk.tgz'
     version: 0.0.0
   'file:projects/trading-services.tgz':
@@ -5398,12 +5382,12 @@ packages:
       '@typescript-eslint/eslint-plugin': 4.19.0_dd8049005b20625afbdfeb351963a396
       '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.1.3
       eslint: 7.22.0
-      lodash: 4.17.20
+      lodash: 4.17.21
       typescript: 4.1.3
     dev: false
     name: '@rush-temp/trading-services'
     resolution:
-      integrity: sha512-XFl02Fdbpsq9ISVU/LrQ6h3fy13iG5NHhMrK8eCE8pYceegkuhZ5y8DE3+Gc83swR8wd3nMFd0exmnV78ozlbw==
+      integrity: sha512-sPH1Sqebv10OxTzYemtNW5fnooNKPrj3JSSdiHtxoM2qrS4wnITgqlDwTMac523yproEzR3vWYeC0nrpBfxiWw==
       tarball: 'file:projects/trading-services.tgz'
     version: 0.0.0
 registry: ''
@@ -5421,6 +5405,7 @@ specifiers:
   '@types/ejs': ~3.0.5
   '@types/express': ~4.17.11
   '@types/jsftp': ~2.1.0
+  '@types/lodash': ~4.14.168
   '@types/meow': ~5.0.0
   '@types/mjml': ~4.7.0
   '@types/mocha': ~8.2.0
@@ -5440,11 +5425,12 @@ specifiers:
   dotenv: ~8.2.0
   ejs: ~3.1.5
   eslint: ~7.22.0
-  eslint-config-airbnb-typescript: ~12.3.1
   express: ~4.17.1
   fuse.js: ~6.4.6
   gmail-send: ~1.8.10
+  got: ~11.8.2
   jsftp: ~2.1.3
+  lodash: ~4.17.21
   meow: ~9.0.0
   mjml: ~4.8.1
   mocha: ~8.2.1

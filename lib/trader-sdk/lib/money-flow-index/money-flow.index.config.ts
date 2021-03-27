@@ -1,3 +1,3 @@
 export default {
-    period: 14
+  period: 14
 };

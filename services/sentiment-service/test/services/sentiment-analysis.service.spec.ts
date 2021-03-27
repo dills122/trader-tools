@@ -11,8 +11,8 @@ const subreddit = 'wallstreetbets';
 
 describe('Services::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let spies: any = {};
-  let stubs: any = {};
+  const spies: any = {};
+  const stubs: any = {};
   describe('SentimentAnalysis::', () => {
     beforeEach(() => {
       sandbox = Sinon.createSandbox();

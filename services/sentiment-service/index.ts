@@ -5,3 +5,4 @@ export * as WordChecker from './lib/word-checker';
 export * as Reddit from './lib/reddit';
 export * as Services from './lib/services';
 export * as Refiners from './lib/refiners';
+export * as Extractors from './lib/extractors';

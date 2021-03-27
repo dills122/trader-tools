@@ -6,19 +6,12 @@ import * as Strategies from './lib/strategies';
 import * as LinkGenerator from './lib/link-generator';
 
 export default {
-    watchlist,
-    util,
-    Emailer,
-    BollingerBands,
-    Strategies,
-    LinkGenerator
+  watchlist,
+  util,
+  Emailer,
+  BollingerBands,
+  Strategies,
+  LinkGenerator
 };
 
-export {
-    watchlist,
-    util,
-    Emailer,
-    BollingerBands,
-    Strategies,
-    LinkGenerator
-};
+export { watchlist, util, Emailer, BollingerBands, Strategies, LinkGenerator };

@@ -2,11 +2,8 @@ import { BandWidth } from './band-width';
 import * as BollingerBands from './bollinger-bands';
 
 export default {
-    BandWidth,
-    BollingerBands
+  BandWidth,
+  BollingerBands
 };
 
-export {
-    BandWidth,
-    BollingerBands
-};
+export { BandWidth, BollingerBands };

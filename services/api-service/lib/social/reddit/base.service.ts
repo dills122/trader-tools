@@ -1,6 +1,5 @@
 import snoowrap from 'snoowrap';
-import * as dotenv from "dotenv";
-
+import * as dotenv from 'dotenv';
 
 dotenv.config({ path: __dirname + '/../../../.env' });
 
@@ -10,17 +9,16 @@ const ClientSecret = process.env.REDDIT_CLIENT_SECRET;
 const Username = process.env.REDDIT_USERNAME;
 const Password = process.env.REDDIT_PASSWORD;
 
-
 export const connect = (): snoowrap => {
-    if (![UserAgent, ClientId, ClientSecret, Username, Password].every(i => i !== undefined)) {
-        throw Error('Unable to connect, credentials were not loaded correctly');
-    }
-    const connection = new snoowrap({
-        userAgent: UserAgent || '', // Typescript complaining
-        clientId: ClientId,
-        clientSecret: ClientSecret,
-        username: Username,
-        password: Password
-    });
-    return connection;
+  if (![UserAgent, ClientId, ClientSecret, Username, Password].every((i) => i !== undefined)) {
+    throw Error('Unable to connect, credentials were not loaded correctly');
+  }
+  const connection = new snoowrap({
+    userAgent: UserAgent || '', // Typescript complaining
+    clientId: ClientId,
+    clientSecret: ClientSecret,
+    username: Username,
+    password: Password
+  });
+  return connection;
 };

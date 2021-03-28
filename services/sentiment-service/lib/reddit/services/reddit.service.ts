@@ -32,6 +32,13 @@ export class GenericRedditService {
   async service(): Promise<GenericSentimentAnalysisResult[]> {
     if (this.serviceAnalysisType === 'front-page') {
       try {
+        console.log('Executing Reddit Front Page Service', {
+          analyzer: this.analyzer,
+          filterFlags: this.filterFlags,
+          subreddit: this.subreddit,
+          analyzerOptions: this.analyzerOptions,
+          whitelist: this.whitelist
+        });
         const serviceInst = new FrontPageService({
           analyzer: this.analyzer,
           filterFlags: this.filterFlags,
@@ -41,6 +48,10 @@ export class GenericRedditService {
         });
         await serviceInst.service();
         const redditSentimentAnalysisData = serviceInst.getSentimentAnalysisResults();
+        console.log(
+          'Finished Executing Service; Number of Results Found:',
+          redditSentimentAnalysisData.length
+        );
         return this.mapToGenericSentimentSchema(redditSentimentAnalysisData);
       } catch (err) {
         console.error(err);

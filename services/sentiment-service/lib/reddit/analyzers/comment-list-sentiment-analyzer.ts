@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { analyze, SentimentAnalysisResult } from '../../analyze-sentiment';
 import { SentimentConfig } from '../../sentiment.config';
 import { AnalyzerOptions } from '../../shared-types';
-import { standardizeInput } from '../../standardize-input';
+import { InputStandardizer } from '../../standardize-input';
 import { config, SubredditConfigSchema } from '../config';
 
 export interface CommentListAnalyzerArgs {
@@ -53,15 +53,16 @@ export class CommentListSentimentAnalyzer {
   }
 
   analyze(): CommentListAnalyzerResult {
+    console.log('Stanardizing Comment List');
     const standardizedComments = this.standardizeData();
-
+    console.log('Analyzing Comment List');
     const analyizedComments = standardizedComments.map((standizedCommentData) => {
       return {
         ...standizedCommentData,
         ...analyze(standizedCommentData.comment)
       };
     });
-
+    console.log('Beginning Sentiment Filtering');
     const positiveComments = analyizedComments.filter((comment) => {
       return comment.score >= SentimentConfig.positive;
     });
@@ -96,13 +97,18 @@ export class CommentListSentimentAnalyzer {
         tickerSymbol: comment.tickerSymbol
       };
     });
+    const Standardizer = new InputStandardizer({
+      options: this.standardizeOptions,
+      whitelist: this.whitelist
+    });
 
     return commentWithTickerSymbol
       .map((body) => {
         try {
+          console.log('Standarizing Comment: ', body.comment);
           return {
             ...body,
-            comment: standardizeInput(body.comment, this.whitelist, this.standardizeOptions)
+            comment: Standardizer.standardize(body.comment)
           };
         } catch (err) {
           return {
@@ -111,6 +117,6 @@ export class CommentListSentimentAnalyzer {
           };
         }
       })
-      .filter((obj) => !_.isEmpty(obj.comment));
+      .filter((obj) => obj.comment.length > 0);
   }
 }

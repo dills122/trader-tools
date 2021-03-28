@@ -12,7 +12,6 @@ export interface FrontPageServiceArgs extends FlagsAndOptions {
 
 export class FrontPageService {
   private subreddit: string;
-  private analyzer: string;
   private filterFlags: SentimentAnalysisFilterFlags;
   private analyizedCommentsList: CommentAnalyzer.CommentListAnalyzerResult[] = [];
   private analyzerOptions: AnalyzerOptions;
@@ -23,7 +22,6 @@ export class FrontPageService {
     if (!config.supportedSubreddits.includes(this.subreddit)) {
       throw Error('Unsupported subreddit');
     }
-    console.log(this.analyzer);
   }
 
   async service(): Promise<void> {
@@ -37,6 +35,7 @@ export class FrontPageService {
     );
 
     for (const post of filteredPosts) {
+      console.log('Gathering Discussion Thread from post: ', post.title);
       const discussionThread = await FrontPageGather.discussionGather(post.postId);
 
       //Continue to next post if no comments present
@@ -88,6 +87,7 @@ export class FrontPageService {
   }
 
   private analyizeCommentCollection(comments, title: string) {
+    console.log('Starting Comment Analysis');
     const CommentAnalyzerInst = new CommentAnalyzer.CommentListSentimentAnalyzer({
       comments: comments,
       subreddit: this.subreddit,
@@ -104,5 +104,6 @@ export class FrontPageService {
     ) {
       this.analyizedCommentsList.push(commentAnalysisResults);
     }
+    console.log('Finished Comment Analysis');
   }
 }

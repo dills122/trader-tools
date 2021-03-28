@@ -1,7 +1,8 @@
 import snoowrap from 'snoowrap';
 import * as dotenv from 'dotenv';
+import path from 'path';
 
-dotenv.config({ path: __dirname + '/../../../.env' });
+dotenv.config({ path: path.join(__dirname, '/./../../../../../.env') });
 
 const UserAgent = process.env.REDDIT_USER_AGENT;
 const ClientId = process.env.REDDIT_CLIENT_ID;

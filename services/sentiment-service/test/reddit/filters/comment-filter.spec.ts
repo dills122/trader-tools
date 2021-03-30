@@ -55,6 +55,34 @@ describe('Reddit::', () => {
         const firstPost = filteredComments[0];
         assert(!firstPost);
       });
+
+      it('Should execute happy path and filter out new-line chars from the comments', () => {
+        mocks = _.cloneDeep(Mocks.Snoowrap.getCommentList(1, subreddit));
+        mocks[0].body = 'Fuck $ABR its trash.\n\n cannot make any money out here!';
+        const filteredComments = new CommentFilter({
+          comments: mocks,
+          matureFilter: false
+        }).filter();
+        assert(filteredComments);
+        expect(filteredComments).to.have.length(1);
+        const firstPost = filteredComments[0];
+        assert(firstPost);
+        expect(firstPost.body).to.not.include('\n');
+      });
+
+      it('Should execute happy path and filter out new-line chars from the comments', () => {
+        mocks = _.cloneDeep(Mocks.Snoowrap.getCommentList(1, subreddit));
+        mocks[0].body = 'Fuck $ABR its trash.\n cannot make any money out here!';
+        const filteredComments = new CommentFilter({
+          comments: mocks,
+          matureFilter: false
+        }).filter();
+        assert(filteredComments);
+        expect(filteredComments).to.have.length(1);
+        const firstPost = filteredComments[0];
+        assert(firstPost);
+        expect(firstPost.body).to.not.include('\n');
+      });
     });
   });
 });

@@ -18,9 +18,10 @@ export class CommentFilter {
 
   filter(): Socials.Reddit.Types.CommentExtended[] {
     // Stickied posts are normally informational to the thread and not worth reading
-    const nonEmptyComments = this.removeStickiedAndEmptyComments();
+    this.removeStickiedAndEmptyComments();
+    this.removeNewLinesIfPresent();
 
-    const commentsWithTickerLikeSymbols = this.filterCommentsWithCompaniesMentioned(nonEmptyComments);
+    const commentsWithTickerLikeSymbols = this.filterCommentsWithCompaniesMentioned(this.comments);
 
     if (this.matureFilter) {
       return this.removeMatureComments(commentsWithTickerLikeSymbols);
@@ -52,7 +53,7 @@ export class CommentFilter {
     const nonEmptyComments = nonStickiedComments.filter((comment) => {
       return comment.body && comment.body.length > 0;
     });
-
+    this.comments = nonEmptyComments;
     return nonEmptyComments;
   }
 
@@ -64,5 +65,19 @@ export class CommentFilter {
       return !badWordFilter.isProfane(commentData);
     });
     return nonProfaneCheckedInput;
+  }
+
+  private removeNewLinesIfPresent() {
+    this.comments = this.comments.map((comment) => {
+      if (!comment.body.includes('\n')) {
+        return comment;
+      }
+      const cleanedString = comment.body.replace(/\r?\n|\r/g, '');
+      return {
+        ...comment,
+        body: cleanedString
+      };
+    });
+    return this.comments;
   }
 }

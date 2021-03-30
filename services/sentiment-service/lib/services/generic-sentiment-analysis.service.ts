@@ -36,6 +36,14 @@ export class GenericSentimentAnalysisService {
   async analyze(): Promise<AggregatedRefinedSentimentData[]> {
     switch (this.socialSource) {
       case 'reddit': {
+        console.log('Executing Reddit Generic Service', {
+          analyzer: this.analyzer,
+          filterFlags: this.filterFlags,
+          serviceAnalysisType: this.serviceAnalysisType,
+          subreddit: this.subreddit,
+          analyzerOptions: this.analyzerOptions,
+          whitelist: this.whitelist
+        });
         const serviceInst = new GenericService.GenericRedditService({
           analyzer: this.analyzer,
           filterFlags: this.filterFlags,
@@ -45,6 +53,7 @@ export class GenericSentimentAnalysisService {
           whitelist: this.whitelist
         });
         const sentimentData = await serviceInst.service();
+        console.log('Finished Executing Reddit Service');
         return this.refineSentimentData(sentimentData);
       }
       default:

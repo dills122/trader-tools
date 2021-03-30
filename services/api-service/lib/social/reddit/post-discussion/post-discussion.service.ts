@@ -6,9 +6,9 @@ export const getPostDiscussion = async (postId: string): Promise<Comment[]> => {
   try {
     const connection = connect();
     const submissionInst = connection.getSubmission(postId);
-    //TODO update this with a more efficient model
-    const comments = await submissionInst.comments.fetchAll({
-      amount: 250 //TODO update these
+    const comments = await submissionInst.comments.fetchMore({
+      amount: 250,
+      append: true
     });
     if (!comments || comments.length <= 0) {
       throw Error('No posts found');

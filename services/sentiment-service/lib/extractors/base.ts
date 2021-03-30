@@ -37,7 +37,6 @@ export class Extractor {
   }
 
   extract(inputString?: string | string[]): string[] {
-    console.log(inputString);
     if (inputString) {
       this.setCorrectInputValue(inputString);
     }

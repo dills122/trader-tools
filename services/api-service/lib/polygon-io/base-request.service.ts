@@ -3,7 +3,7 @@ import got from 'got';
 
 const baseURL = 'https://api.polygon.io/';
 
-dotenv.config({ path: __dirname + '/../../../.env' });
+dotenv.config({ path: __dirname + '/../../../../.env' });
 
 const pk = process.env.POLYGONIO_PUBLIC_KEY_TEST || process.env.POLYGONIO_PUBLIC_KEY;
 const APIVersion = process.env.POLYGONIO_API_VERSION;

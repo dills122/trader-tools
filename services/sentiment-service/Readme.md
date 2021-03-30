@@ -14,6 +14,11 @@ Package responsible for gathering social data source's discussions and analyzing
 
 ## Architecture Overview
 
+![Overall Flow Diagram](./documentation/Generic%20Sentiment%20Process.png)
+
+https://www.zenflowchart.com/docs/view/8rVoJX7axkRzJeyv4Ek3
+
+
 Individual sentiment services all follow a very specific design and flow thats key parts will be described below:
 
 1. Service - parent type, executes 1 or a number of different sentiment analysis strategies
@@ -23,6 +28,13 @@ Individual sentiment services all follow a very specific design and flow thats k
 5. Analyzer - refines each filtered discussion entity and runs sentiment analysis
 6. Transformer - maps a data source specific analysis results to a generic schema
 7. Refiner - refines and aggregates sentiment analysis results
+8. Extractor - mainly used by filters to help extract desired information from the discussion threads
+
+### Component Flow Diagram
+
+![Component Flow Diagram](./documentation/Component%20Flow.png)
+
+https://www.zenflowchart.com/docs/view/yLkQWjnegJRgrdwZ1p0G
 
 ## Testing
 

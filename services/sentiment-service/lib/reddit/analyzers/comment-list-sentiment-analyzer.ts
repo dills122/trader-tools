@@ -1,6 +1,6 @@
 import { Socials } from 'api-service';
 import _ from 'lodash';
-import { analyze, SentimentAnalysisResult } from '../../analyze-sentiment';
+import { SentimentAnalyzer, SentimentAnalysisResult } from '../../analyze-sentiment';
 import { SentimentConfig } from '../../sentiment.config';
 import { AnalyzerOptions } from '../../shared-types';
 import { InputStandardizer } from '../../standardize-input';
@@ -56,10 +56,11 @@ export class CommentListSentimentAnalyzer {
     console.log('Stanardizing Comment List');
     const standardizedComments = this.standardizeData();
     console.log('Analyzing Comment List');
+    const analyzer = new SentimentAnalyzer();
     const analyizedComments = standardizedComments.map((standizedCommentData) => {
       return {
         ...standizedCommentData,
-        ...analyze(standizedCommentData.comment)
+        ...analyzer.analyze(standizedCommentData.comment)
       };
     });
     console.log('Beginning Sentiment Filtering');

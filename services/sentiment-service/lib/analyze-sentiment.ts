@@ -1,4 +1,4 @@
-import { SentimentAnalyzer, PorterStemmer } from 'natural';
+import { SentimentAnalyzer as Analyzer, PorterStemmer } from 'natural';
 import { SentimentConfig } from './sentiment.config';
 import { sentimentStatusType } from './shared-types';
 
@@ -8,31 +8,37 @@ export interface SentimentAnalysisResult {
   standardizedInput: string;
 }
 
-export const analyze = (standardizedInput: string[]): SentimentAnalysisResult => {
-  const analyzer = new SentimentAnalyzer('English', PorterStemmer, 'afinn');
-  const analysis = analyzer.getSentiment(standardizedInput);
-  // Netural Area
-  if (analysis > SentimentConfig.negative && analysis < SentimentConfig.positive) {
-    return {
-      status: 'netural',
-      score: analysis,
-      standardizedInput: standardizedInput.join(' ')
-    };
-  }
-  const isPositive = SentimentConfig.positive <= analysis;
-  const isVeryPositive = SentimentConfig.veryPositive <= analysis;
-  const isVeryNegative = SentimentConfig.veryNegative >= analysis;
-  if (isPositive) {
-    return {
-      status: isVeryPositive ? 'very-positive' : 'positive',
-      score: analysis,
-      standardizedInput: standardizedInput.join(' ')
-    };
+export class SentimentAnalyzer {
+  private analyzer: Analyzer;
+  constructor() {
+    this.analyzer = new Analyzer('English', PorterStemmer, 'afinn');
   }
 
-  return {
-    status: isVeryNegative ? 'very-negative' : 'negative',
-    score: analysis,
-    standardizedInput: standardizedInput.join(' ')
-  };
-};
+  analyze(standardizedInput: string[]): SentimentAnalysisResult {
+    const analysis = this.analyzer.getSentiment(standardizedInput);
+    // Netural Area
+    if (analysis > SentimentConfig.negative && analysis < SentimentConfig.positive) {
+      return {
+        status: 'netural',
+        score: analysis,
+        standardizedInput: standardizedInput.join(' ')
+      };
+    }
+    const isPositive = SentimentConfig.positive <= analysis;
+    const isVeryPositive = SentimentConfig.veryPositive <= analysis;
+    const isVeryNegative = SentimentConfig.veryNegative >= analysis;
+    if (isPositive) {
+      return {
+        status: isVeryPositive ? 'very-positive' : 'positive',
+        score: analysis,
+        standardizedInput: standardizedInput.join(' ')
+      };
+    }
+
+    return {
+      status: isVeryNegative ? 'very-negative' : 'negative',
+      score: analysis,
+      standardizedInput: standardizedInput.join(' ')
+    };
+  }
+}

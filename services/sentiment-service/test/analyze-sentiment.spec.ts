@@ -1,6 +1,6 @@
 import { describe } from 'mocha';
 import { expect, assert } from 'chai';
-import { analyze } from '../lib/analyze-sentiment';
+import { SentimentAnalyzer } from '../lib/analyze-sentiment';
 import { InputStandardizer } from '../lib/standardize-input';
 import { SentimentConfig } from '../lib/sentiment.config';
 
@@ -13,7 +13,7 @@ describe('AnalyzeSentiment::', function () {
     expect(standardizedInput).to.contain('great');
     expect(standardizedInput).to.contain('stock');
 
-    const sentimentResults = analyze(standardizedInput);
+    const sentimentResults = new SentimentAnalyzer().analyze(standardizedInput);
     expect(sentimentResults.status).to.equal('very-positive');
     expect(sentimentResults.score).to.greaterThan(SentimentConfig.positive);
   });
@@ -25,7 +25,7 @@ describe('AnalyzeSentiment::', function () {
     expect(standardizedInput).to.contain('good');
     expect(standardizedInput).to.contain('stock');
 
-    const sentimentResults = analyze(standardizedInput);
+    const sentimentResults = new SentimentAnalyzer().analyze(standardizedInput);
     expect(sentimentResults.status).to.equal('very-positive');
     expect(sentimentResults.score).to.greaterThan(SentimentConfig.positive);
   });
@@ -37,7 +37,7 @@ describe('AnalyzeSentiment::', function () {
     expect(standardizedInput).to.contain('great');
     expect(standardizedInput).to.contain('stock');
 
-    const sentimentResults = analyze(standardizedInput);
+    const sentimentResults = new SentimentAnalyzer().analyze(standardizedInput);
     expect(sentimentResults.status).to.equal('very-positive');
     expect(sentimentResults.score).to.greaterThan(SentimentConfig.positive);
   });
@@ -49,7 +49,7 @@ describe('AnalyzeSentiment::', function () {
     expect(standardizedInput).to.contain('great');
     expect(standardizedInput).to.contain('stock');
 
-    const sentimentResults = analyze(standardizedInput);
+    const sentimentResults = new SentimentAnalyzer().analyze(standardizedInput);
     expect(sentimentResults.status).to.equal('negative');
     expect(sentimentResults.score).to.lessThan(SentimentConfig.positive);
     assert.isAtLeast(sentimentResults.score, SentimentConfig.veryNegative);

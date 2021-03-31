@@ -33,6 +33,18 @@ export interface GenericSentimentAnalysisResult {
   title?: string;
 }
 
+export interface AggregatedRefinedSentimentData {
+  symbol: string;
+  conversationEntityCount: number;
+  conversationPostiveCount: number;
+  conversationNegativeCount: number;
+  conversationNeutralCount: number;
+  positiveSentiment: number;
+  negativeSentiment: number;
+  neutralSentiment: number;
+  sentimentScore: number;
+}
+
 export type AnalyzerOptions = StandardizeInputOptions;
 
 export interface FlagsAndOptions {

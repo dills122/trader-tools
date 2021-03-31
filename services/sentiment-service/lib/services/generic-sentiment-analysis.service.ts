@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import {
+  AggregatedRefinedSentimentData,
   AnalyzerOptions,
   analyzerType,
   FlagsAndOptions,
@@ -10,7 +11,6 @@ import {
 } from '../shared-types';
 import { General } from '../refiners';
 import { GenericService } from '../reddit/services';
-import { AggregatedRefinedSentimentData } from '../refiners/base';
 
 export interface SentimentAnalysisServiceArgs extends FlagsAndOptions {
   socialSource: socialSourceType;

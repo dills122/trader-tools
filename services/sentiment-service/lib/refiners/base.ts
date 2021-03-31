@@ -1,18 +1,6 @@
-import { GenericSentimentAnalysisResult } from '../shared-types';
+import { AggregatedRefinedSentimentData, GenericSentimentAnalysisResult } from '../shared-types';
 import { SentimentConfig } from '../sentiment.config';
 import _ from 'lodash';
-
-export interface AggregatedRefinedSentimentData {
-  symbol: string;
-  conversationEntityCount: number;
-  conversationPostiveCount: number;
-  conversationNegativeCount: number;
-  conversationNeutralCount: number;
-  positiveSentiment: number;
-  negativeSentiment: number;
-  neutralSentiment: number;
-  sentimentScore: number;
-}
 
 export interface BaseRefinerArgs {
   sentimentData: GenericSentimentAnalysisResult[];

@@ -1,4 +1,5 @@
-import { AggregatedRefinedSentimentData, BaseRefiner, BaseRefinerArgs } from './base';
+import { AggregatedRefinedSentimentData } from '../shared-types';
+import { BaseRefiner, BaseRefinerArgs } from './base';
 
 export const config = {
   scoreThreshold: 0.8 //TODO this needs to be figured out through testing

@@ -3,6 +3,7 @@ import BadWords from 'bad-words';
 import { Socials } from 'api-service';
 import { SentimentAnalysisFilterFlags } from '../../shared-types';
 import { EquityFilter } from './equity-filter';
+import { EntityFilter } from './entity-filter';
 
 export interface CommentFilterArgs extends SentimentAnalysisFilterFlags {
   comments: Socials.Reddit.Types.Comment[];
@@ -19,7 +20,7 @@ export class CommentFilter {
   filter(): Socials.Reddit.Types.CommentExtended[] {
     // Stickied posts are normally informational to the thread and not worth reading
     this.removeStickiedAndEmptyComments();
-    this.removeNewLinesIfPresent();
+    this.executeEntityFilter();
 
     const commentsWithTickerLikeSymbols = this.filterCommentsWithCompaniesMentioned(this.comments);
 
@@ -67,15 +68,13 @@ export class CommentFilter {
     return nonProfaneCheckedInput;
   }
 
-  private removeNewLinesIfPresent() {
+  private executeEntityFilter() {
+    const entityFilter = new EntityFilter();
     this.comments = this.comments.map((comment) => {
-      if (!comment.body.includes('\n')) {
-        return comment;
-      }
-      const cleanedString = comment.body.replace(/\r?\n|\r/g, '');
+      entityFilter.filter(comment.body);
       return {
         ...comment,
-        body: cleanedString
+        body: entityFilter.getCleanString()
       };
     });
     return this.comments;

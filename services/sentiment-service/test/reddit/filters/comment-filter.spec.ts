@@ -83,6 +83,38 @@ describe('Reddit::', () => {
         assert(firstPost);
         expect(firstPost.body).to.not.include('\n');
       });
+
+      it('Should execute happy path and filter out subreddit mentions from the comments', () => {
+        mocks = _.cloneDeep(Mocks.Snoowrap.getCommentList(1, subreddit));
+        mocks[0].body = 'Checkout the new subreddit r/TV, and hold $GME.';
+        const filteredComments = new CommentFilter({
+          comments: mocks,
+          matureFilter: false
+        }).filter();
+        assert(filteredComments);
+        expect(filteredComments).to.have.length(1);
+        const firstPost = filteredComments[0];
+        assert(firstPost);
+        expect(firstPost.body).to.not.include('r/TV');
+      });
+
+      it('Should execute happy path and filter out markdown link entities from the comments', () => {
+        mocks = _.cloneDeep(Mocks.Snoowrap.getCommentList(1, subreddit));
+        mocks[0].body =
+          'Fuck $ABR its trash.\n cannot make any money out here!\n [https://www.channelnewsasia.com/news/business/goldman-sold-us-10-5-billion-of-stocks-in-block-trade-spree--bloomberg-news-14507154](https://www.channelnewsasia.com/news/business/goldman-sold-us-10-5-billion-of-stocks-in-block-trade-spree--bloomberg-news-14507154)';
+        const filteredComments = new CommentFilter({
+          comments: mocks,
+          matureFilter: false
+        }).filter();
+        assert(filteredComments);
+        expect(filteredComments).to.have.length(1);
+        const firstPost = filteredComments[0];
+        assert(firstPost);
+        expect(firstPost.body).to.not.include('\n');
+        expect(firstPost.body).to.not.include(
+          '[https://www.channelnewsasia.com/news/business/goldman-sold-us-10-5-billion-of-stocks-in-block-trade-spree--bloomberg-news-14507154](https://www.channelnewsasia.com/news/business/goldman-sold-us-10-5-billion-of-stocks-in-block-trade-spree--bloomberg-news-14507154)'
+        );
+      });
     });
   });
 });

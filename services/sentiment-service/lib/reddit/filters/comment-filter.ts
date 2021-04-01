@@ -4,17 +4,29 @@ import { Socials } from 'api-service';
 import { SentimentAnalysisFilterFlags } from '../../shared-types';
 import { EquityFilter } from './equity-filter';
 import { EntityFilter } from './entity-filter';
+import { config, SubredditConfigSchema } from '../config';
 
 export interface CommentFilterArgs extends SentimentAnalysisFilterFlags {
   comments: Socials.Reddit.Types.Comment[];
+  subreddit: string;
+  equityWhitelistEnabled?: boolean;
+  equityWhitelist?: string[];
 }
 
 export class CommentFilter {
   private comments: Socials.Reddit.Types.Comment[];
   private matureFilter: boolean;
+  private whitelist: string[];
+  private subreddit: string;
+  private subredditConfig: SubredditConfigSchema;
 
   constructor(args: CommentFilterArgs) {
     _.assign(this, args);
+    this.subreddit = args.subreddit;
+    this.subredditConfig = config.subreddits[this.subreddit];
+    if (args.equityWhitelistEnabled || (args.equityWhitelist && args.equityWhitelist.length > 0)) {
+      this.whitelist = args.equityWhitelist || this.subredditConfig.whitelist;
+    }
   }
 
   filter(): Socials.Reddit.Types.CommentExtended[] {
@@ -31,11 +43,12 @@ export class CommentFilter {
   }
 
   private filterCommentsWithCompaniesMentioned(filteredComments: Socials.Reddit.Types.Comment[]) {
-    return filteredComments
+    const commentsWithTickers = filteredComments
       .map((comment) => {
         const commentData = comment.body;
         const filter = new EquityFilter({
-          stringToAnalyze: commentData
+          stringToAnalyze: commentData,
+          equityWhitelist: this.whitelist
         });
         filter.filter();
         return {
@@ -44,6 +57,10 @@ export class CommentFilter {
         };
       })
       .filter((comment) => comment.tickerSymbol && !_.isEmpty(comment.tickerSymbol));
+    if (this.whitelist && this.whitelist.length > 0) {
+      return commentsWithTickers.filter((comment) => this.whitelist.includes(comment.tickerSymbol));
+    }
+    return commentsWithTickers;
   }
 
   private removeStickiedAndEmptyComments() {

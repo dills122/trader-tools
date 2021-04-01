@@ -9,17 +9,19 @@ export interface ExtractorArgs {
   filterPattern?: string[];
   inputString?: string | string[];
   matchTolerance?: number;
+  strictMode?: boolean;
 }
 
 export class Extractor {
   protected whitelist: string[] = [];
   protected filterPattern: string[] = [];
   protected inputString: string;
-  protected formattedString: string[] = [];
+  protected standardizedString: string[] = [];
   protected tickers: string[] = [];
   protected matchTolerance: number;
+  protected strictMode: boolean;
 
-  constructor(args: ExtractorArgs) {
+  constructor(args: ExtractorArgs = {}) {
     if (args.whitelist) {
       this.whitelist = args.whitelist;
     }
@@ -32,19 +34,22 @@ export class Extractor {
     if (args.matchTolerance) {
       this.matchTolerance = args.matchTolerance;
     }
+    if (args.strictMode !== undefined) {
+      this.strictMode = args.strictMode;
+    }
   }
 
   extract(inputString?: string | string[]): string[] {
     if (inputString) {
       this.setCorrectInputValue(inputString);
     }
-    if (!this.inputString && this.formattedString.length <= 0) {
+    if (!this.inputString && this.standardizedString.length <= 0) {
       throw Error('No string to extract ticker symbols from');
     }
-    if (this.formattedString.length <= 0 && !_.isEmpty(this.inputString)) {
+    if (this.standardizedString.length <= 0 && !_.isEmpty(this.inputString)) {
       this.standardizeInput();
     }
-    console.log('Starting extraction', this.formattedString);
+    console.log('Starting extraction', this.standardizedString);
     this.iterateWords();
     this.removeDuplicateTickers();
     console.log('Finished extraction', this.tickers);
@@ -52,26 +57,30 @@ export class Extractor {
   }
 
   private iterateWords() {
-    for (const word of this.formattedString) {
+    for (const word of this.standardizedString) {
       if (this.checkIfCommonWord(word)) {
         continue;
       }
       const isInWhiteList = this.checkAganistWhitelist(word);
       if (isInWhiteList) {
-        const ticker = this.getTickerIfExists(word);
-        this.addTickerToListIfExists(ticker);
+        this.getTickerCleanUpAndAddToList(word);
       }
       const containsFilterPattern = this.checkAganistFilterPatterns(word);
       if (containsFilterPattern) {
-        const cleanedUpPossibleTicker = cleanUpTickerSymbol(word);
-        const ticker = this.getTickerIfExists(cleanedUpPossibleTicker);
-        this.addTickerToListIfExists(ticker);
+        this.getTickerCleanUpAndAddToList(word);
+      }
+      if (this.strictMode) {
+        continue;
       }
       //Base case
-      const cleanedUpPossibleTicker = cleanUpTickerSymbol(word);
-      const ticker = this.getTickerIfExists(cleanedUpPossibleTicker);
-      this.addTickerToListIfExists(ticker);
+      this.getTickerCleanUpAndAddToList(word);
     }
+  }
+
+  private getTickerCleanUpAndAddToList(word: string) {
+    const cleanedUpPossibleTicker = cleanUpTickerSymbol(word);
+    const ticker = this.getTickerIfExists(cleanedUpPossibleTicker);
+    this.addTickerToListIfExists(ticker);
   }
 
   private checkIfCommonWord(word: string): boolean {
@@ -85,13 +94,13 @@ export class Extractor {
         disableSpellCheckFilter: true
       }
     });
-    this.formattedString = Standardizer.standardize(this.inputString);
-    return this.formattedString;
+    this.standardizedString = Standardizer.standardize(this.inputString);
+    return this.standardizedString;
   }
 
   private setCorrectInputValue(inputString) {
     if (Array.isArray(inputString)) {
-      this.formattedString = inputString;
+      this.standardizedString = inputString;
     } else {
       this.inputString = inputString;
     }

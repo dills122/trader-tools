@@ -9,6 +9,7 @@ export interface EquityFilterArgs {
   stringToAnalyze: string;
   matchTolerance?: number;
   blacklist?: string[];
+  equityWhitelist?: string[];
 }
 
 export class EquityFilter {

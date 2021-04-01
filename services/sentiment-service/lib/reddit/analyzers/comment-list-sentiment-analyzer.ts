@@ -3,14 +3,15 @@ import { SentimentAnalyzer, SentimentAnalysisResult } from '../../analyze-sentim
 import { SentimentConfig } from '../../sentiment.config';
 import { AnalyzerOptions } from '../../shared-types';
 import { InputStandardizer } from '../../standardize-input';
+import { config } from '../config';
+
+const FilterPatterns = config.tickerFilterPatterns;
 
 export interface CommentListAnalyzerArgs {
   comments: Socials.Reddit.Types.CommentExtended[];
   title: string;
   subreddit: string;
   options?: AnalyzerOptions;
-  whitelist?: string[];
-  whitelistEnabled?: boolean;
 }
 
 export interface CommentListAnalyzerResult {
@@ -84,27 +85,27 @@ export class CommentListSentimentAnalyzer {
   }
 
   private standardizeData() {
-    const commentWithTickerSymbol = this.comments.map((comment) => {
-      return {
-        comment: comment.body,
-        tickerSymbol: comment.tickerSymbol
-      };
-    });
     const Standardizer = new InputStandardizer({
       options: this.standardizeOptions
     });
 
-    return commentWithTickerSymbol
-      .map((body) => {
+    return this.comments
+      .map((comment) => {
         try {
-          console.log('Standarizing Comment: ', body.comment);
+          console.log('Standarizing Comment: ', comment.body);
+          const standardizedComment = Standardizer.standardize(comment.body);
+          const standardizedCommentWithoutTicker = Standardizer.scrubTickerFromInput(
+            standardizedComment,
+            comment.tickerSymbol,
+            FilterPatterns
+          );
           return {
-            ...body,
-            comment: Standardizer.standardize(body.comment)
+            ...comment,
+            comment: standardizedCommentWithoutTicker
           };
         } catch (err) {
           return {
-            ...body,
+            ...comment,
             comment: []
           };
         }

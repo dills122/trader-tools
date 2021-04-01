@@ -27,6 +27,7 @@ export class GenericSentimentAnalysisService {
   private filterFlags: SentimentAnalysisFilterFlags;
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
+  private equityWhitelistEnabled: boolean;
 
   constructor(args: SentimentAnalysisServiceArgs) {
     _.assign(this, args);
@@ -50,7 +51,8 @@ export class GenericSentimentAnalysisService {
           serviceAnalysisType: this.serviceAnalysisType,
           subreddit: this.subreddit,
           analyzerOptions: this.analyzerOptions,
-          whitelist: this.whitelist
+          equityWhitelist: this.whitelist,
+          equityWhitelistEnabled: this.equityWhitelistEnabled
         });
         const sentimentData = await serviceInst.service();
         console.log('Finished Executing Reddit Service');

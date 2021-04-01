@@ -3,17 +3,14 @@ const aposToLexForm = require('apos-to-lex-form');
 import SpellCorrector from 'spelling-corrector';
 import StopWord from 'stopword';
 import BadWords from 'bad-words';
-import { isTickerSymbol } from 'is-ticker-symbol';
-import { checker } from './word-checker';
 
 export interface StandardizeInputOptions {
   disableStopWords?: boolean;
   disableProfanityFilter?: boolean;
-  disableTickerSymbolFilter?: boolean;
+  disableSpellCheckFilter?: boolean;
 }
 
 export interface InputStandardizerArgs {
-  whitelist?: string[];
   options?: StandardizeInputOptions;
 }
 
@@ -21,7 +18,6 @@ export class InputStandardizer {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private SpellCorrectorInst: any;
   private options: StandardizeInputOptions;
-  private whitelist: string[];
   constructor(args: InputStandardizerArgs = {}) {
     const SpellCorrectorInst = new SpellCorrector();
     SpellCorrectorInst.loadDictionary();
@@ -29,17 +25,10 @@ export class InputStandardizer {
     if (args.options) {
       this.options = args.options;
     }
-    if (args.whitelist) {
-      this.whitelist = args.whitelist;
-    }
   }
 
-  standardize(
-    input: string,
-    whitelist: string[] = this.whitelist || [],
-    options: StandardizeInputOptions = this.options
-  ): string[] {
-    const { disableProfanityFilter, disableStopWords, disableTickerSymbolFilter } = options || {};
+  standardize(input: string, options: StandardizeInputOptions = this.options): string[] {
+    const { disableProfanityFilter, disableStopWords, disableSpellCheckFilter } = options || {};
     const lexedInput: string = aposToLexForm(input);
     const loweredLexedInput = lexedInput.toLowerCase();
     const alphaOnlyLoweredLexedInput = loweredLexedInput.replace(/[^a-zA-Z\s]+/g, '');
@@ -47,29 +36,18 @@ export class InputStandardizer {
     const tokenizer = new WordTokenizer();
     let tokenizedLexedInput: string[] = tokenizer.tokenize(alphaOnlyLoweredLexedInput);
 
-    const badWordFilter = new BadWords();
-
     if (!disableProfanityFilter) {
+      const badWordFilter = new BadWords();
       tokenizedLexedInput = tokenizedLexedInput.filter((word) => {
         return !badWordFilter.isProfane(word.toUpperCase());
       });
     }
 
-    if (!disableTickerSymbolFilter) {
-      tokenizedLexedInput = tokenizedLexedInput.filter((word) => {
-        if (whitelist.includes(word)) {
-          return true;
-        }
-        if (checker(word)) {
-          return true;
-        }
-        return !isTickerSymbol(word.toUpperCase());
+    if (!disableSpellCheckFilter) {
+      tokenizedLexedInput = tokenizedLexedInput.map((word) => {
+        return this.SpellCorrectorInst.correct(word);
       });
     }
-
-    tokenizedLexedInput = tokenizedLexedInput.map((word) => {
-      return this.SpellCorrectorInst.correct(word);
-    });
 
     if (!disableStopWords) {
       tokenizedLexedInput = StopWord.removeStopwords(tokenizedLexedInput);
@@ -80,5 +58,30 @@ export class InputStandardizer {
     }
 
     return tokenizedLexedInput;
+  }
+
+  scrubTickerFromInput(
+    inputString: string | string[],
+    ticker: string,
+    filterPatterns: string[] = []
+  ): string[] {
+    ticker = ticker.toLowerCase();
+    if (typeof inputString === 'string') {
+      inputString = this.standardize(inputString, {
+        disableProfanityFilter: true,
+        disableSpellCheckFilter: true,
+        disableStopWords: true
+      });
+    }
+    return inputString.filter((token) => {
+      if (ticker === token) {
+        return false;
+      }
+      const matchWithFilterPattern = filterPatterns.some((pattern) => token === `${pattern}${ticker}`);
+      if (matchWithFilterPattern) {
+        return false;
+      }
+      return true;
+    });
   }
 }

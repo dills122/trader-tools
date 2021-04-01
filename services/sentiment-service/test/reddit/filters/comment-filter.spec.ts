@@ -22,7 +22,8 @@ describe('Reddit::', () => {
         const second = mocks[1];
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: true
+          matureFilter: true,
+          subreddit
         }).filter();
         assert(filteredComments);
         expect(filteredComments).to.have.length(1);
@@ -35,7 +36,8 @@ describe('Reddit::', () => {
       it('Should execute happy path for nonShitpostingMode, return empty results', () => {
         const filteredComments = new CommentFilter({
           comments: [mocks[0]],
-          matureFilter: true
+          matureFilter: true,
+          subreddit
         }).filter();
         assert(filteredComments);
         expect(filteredComments).to.have.length(0);
@@ -48,7 +50,8 @@ describe('Reddit::', () => {
         mocks[0].body = 'Fuck $ABR its trash';
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: true
+          matureFilter: true,
+          subreddit
         }).filter();
         assert(filteredComments);
         expect(filteredComments).to.have.length(0);
@@ -61,7 +64,8 @@ describe('Reddit::', () => {
         mocks[0].body = 'Fuck $ABR its trash.\n\n cannot make any money out here!';
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: false
+          matureFilter: false,
+          subreddit
         }).filter();
         assert(filteredComments);
         expect(filteredComments).to.have.length(1);
@@ -75,7 +79,8 @@ describe('Reddit::', () => {
         mocks[0].body = 'Fuck $ABR its trash.\n cannot make any money out here!';
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: false
+          matureFilter: false,
+          subreddit
         }).filter();
         assert(filteredComments);
         expect(filteredComments).to.have.length(1);
@@ -89,7 +94,8 @@ describe('Reddit::', () => {
         mocks[0].body = 'Checkout the new subreddit r/TV, and hold $GME.';
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: false
+          matureFilter: false,
+          subreddit
         }).filter();
         assert(filteredComments);
         expect(filteredComments).to.have.length(1);
@@ -104,7 +110,8 @@ describe('Reddit::', () => {
           'Fuck $ABR its trash.\n cannot make any money out here!\n [https://www.channelnewsasia.com/news/business/goldman-sold-us-10-5-billion-of-stocks-in-block-trade-spree--bloomberg-news-14507154](https://www.channelnewsasia.com/news/business/goldman-sold-us-10-5-billion-of-stocks-in-block-trade-spree--bloomberg-news-14507154)';
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: false
+          matureFilter: false,
+          subreddit
         }).filter();
         assert(filteredComments);
         expect(filteredComments).to.have.length(1);

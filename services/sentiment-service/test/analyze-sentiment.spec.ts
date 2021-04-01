@@ -7,8 +7,9 @@ import { SentimentConfig } from '../lib/sentiment.config';
 describe('AnalyzeSentiment::', function () {
   it('Should analyze input and find positive sentiment', () => {
     const input = 'This $ABR is a great stock';
-
-    const standardizedInput = new InputStandardizer().standardize(input);
+    const standardizer = new InputStandardizer();
+    const tokenizedWithoutTicker = standardizer.scrubTickerFromInput(input, 'ABR', ['$']);
+    const standardizedInput = standardizer.standardize(tokenizedWithoutTicker.join(' '));
     expect(standardizedInput).to.have.length(2);
     expect(standardizedInput).to.contain('great');
     expect(standardizedInput).to.contain('stock');
@@ -20,7 +21,9 @@ describe('AnalyzeSentiment::', function () {
 
   it('Should analyze input and find positive sentiment', () => {
     const input = 'This $ABR is a good stock';
-    const standardizedInput = new InputStandardizer().standardize(input);
+    const standardizer = new InputStandardizer();
+    const tokenizedWithoutTicker = standardizer.scrubTickerFromInput(input, 'ABR', ['$']);
+    const standardizedInput = standardizer.standardize(tokenizedWithoutTicker.join(' '));
     expect(standardizedInput).to.have.length(2);
     expect(standardizedInput).to.contain('good');
     expect(standardizedInput).to.contain('stock');
@@ -32,7 +35,9 @@ describe('AnalyzeSentiment::', function () {
 
   it('Should analyze input and find positive sentiment', () => {
     const input = 'This $ABR is a fucking great stock';
-    const standardizedInput = new InputStandardizer().standardize(input);
+    const standardizer = new InputStandardizer();
+    const tokenizedWithoutTicker = standardizer.scrubTickerFromInput(input, 'ABR', ['$']);
+    const standardizedInput = standardizer.standardize(tokenizedWithoutTicker.join(' '));
     expect(standardizedInput).to.have.length(2);
     expect(standardizedInput).to.contain('great');
     expect(standardizedInput).to.contain('stock');
@@ -44,7 +49,9 @@ describe('AnalyzeSentiment::', function () {
 
   it('Should analyze input and find negative sentiment', () => {
     const input = 'This $ABR is not a great stock and you should not buy it';
-    const standardizedInput = new InputStandardizer().standardize(input);
+    const standardizer = new InputStandardizer();
+    const tokenizedWithoutTicker = standardizer.scrubTickerFromInput(input, 'ABR', ['$']);
+    const standardizedInput = standardizer.standardize(tokenizedWithoutTicker.join(' '));
     expect(standardizedInput.length).to.be.greaterThan(3);
     expect(standardizedInput).to.contain('great');
     expect(standardizedInput).to.contain('stock');

@@ -24,6 +24,7 @@ export class GenericRedditService {
   private filterFlags: SentimentAnalysisFilterFlags;
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
+  private equityWhitelistEnabled: boolean;
 
   constructor(args: GenericRedditServiceArgs) {
     _.assign(this, args);
@@ -37,14 +38,15 @@ export class GenericRedditService {
           filterFlags: this.filterFlags,
           subreddit: this.subreddit,
           analyzerOptions: this.analyzerOptions,
-          whitelist: this.whitelist
+          equityWhitelist: this.whitelist
         });
         const serviceInst = new FrontPageService({
           analyzer: this.analyzer,
           filterFlags: this.filterFlags,
           subreddit: this.subreddit,
           analyzerOptions: this.analyzerOptions,
-          whitelist: this.whitelist
+          equityWhitelist: this.whitelist,
+          equityWhitelistEnabled: this.equityWhitelistEnabled
         });
         await serviceInst.service();
         const redditSentimentAnalysisData = serviceInst.getSentimentAnalysisResults();

@@ -16,12 +16,17 @@ export class FrontPageService {
   private analyizedCommentsList: CommentAnalyzer.CommentListAnalyzerResult[] = [];
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
+  private equityWhitelistEnabled: boolean;
 
   constructor(args: FrontPageServiceArgs) {
     _.assign(this, args);
     if (!config.supportedSubreddits.includes(this.subreddit)) {
       throw Error('Unsupported subreddit');
     }
+    if (args.equityWhitelist && args.equityWhitelist.length > 0) {
+      this.whitelist = args.equityWhitelist;
+    }
+    this.equityWhitelistEnabled = args.equityWhitelistEnabled || false;
   }
 
   async service(): Promise<void> {
@@ -37,7 +42,6 @@ export class FrontPageService {
     for (const post of filteredPosts) {
       console.log('Gathering Discussion Thread from post: ', post.title);
       const discussionThread = await FrontPageGather.discussionGather(post.postId);
-
       //Continue to next post if no comments present
       if (discussionThread.length <= 0) {
         continue;
@@ -80,7 +84,10 @@ export class FrontPageService {
   private filterComments(comments: Socials.Reddit.Types.Comment[]) {
     const filteredCommentsInst = new CommentFilter.CommentFilter({
       comments: comments,
-      ...this.filterFlags
+      ...this.filterFlags,
+      subreddit: this.subreddit,
+      equityWhitelist: this.whitelist,
+      equityWhitelistEnabled: this.equityWhitelistEnabled
     });
 
     return filteredCommentsInst.filter();
@@ -92,8 +99,7 @@ export class FrontPageService {
       comments: comments,
       subreddit: this.subreddit,
       title: title,
-      options: this.analyzerOptions,
-      whitelist: this.whitelist
+      options: this.analyzerOptions
     });
 
     const commentAnalysisResults = CommentAnalyzerInst.analyze();

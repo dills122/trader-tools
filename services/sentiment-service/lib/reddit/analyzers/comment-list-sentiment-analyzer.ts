@@ -1,18 +1,17 @@
 import { Socials } from 'api-service';
-import _ from 'lodash';
 import { SentimentAnalyzer, SentimentAnalysisResult } from '../../analyze-sentiment';
 import { SentimentConfig } from '../../sentiment.config';
 import { AnalyzerOptions } from '../../shared-types';
 import { InputStandardizer } from '../../standardize-input';
-import { config, SubredditConfigSchema } from '../config';
+import { config } from '../config';
+
+const FilterPatterns = config.tickerFilterPatterns;
 
 export interface CommentListAnalyzerArgs {
   comments: Socials.Reddit.Types.CommentExtended[];
   title: string;
   subreddit: string;
   options?: AnalyzerOptions;
-  whitelist?: string[];
-  whitelistEnabled?: boolean;
 }
 
 export interface CommentListAnalyzerResult {
@@ -32,23 +31,17 @@ export class CommentListSentimentAnalyzer {
   private comments: Socials.Reddit.Types.CommentExtended[];
   private title: string;
   private subreddit: string;
-  private subredditConfig: SubredditConfigSchema;
   private positiveComments: SentimentAnalysisResultExtended[] = [];
   private negativeComments: SentimentAnalysisResultExtended[] = [];
   private neutralComments: SentimentAnalysisResultExtended[] = [];
   private standardizeOptions: AnalyzerOptions;
-  private whitelist: string[] = [];
 
   constructor(args: CommentListAnalyzerArgs) {
     this.comments = args.comments;
     this.title = args.title;
     this.subreddit = args.subreddit;
-    this.subredditConfig = config.subreddits[this.subreddit];
     if (args.options) {
       this.standardizeOptions = args.options;
-    }
-    if (args.whitelistEnabled || (args.whitelist && args.whitelist.length > 0)) {
-      this.whitelist = args.whitelist || this.subredditConfig.whitelist;
     }
   }
 
@@ -92,28 +85,27 @@ export class CommentListSentimentAnalyzer {
   }
 
   private standardizeData() {
-    const commentWithTickerSymbol = this.comments.map((comment) => {
-      return {
-        comment: comment.body,
-        tickerSymbol: comment.tickerSymbol
-      };
-    });
     const Standardizer = new InputStandardizer({
-      options: this.standardizeOptions,
-      whitelist: this.whitelist
+      options: this.standardizeOptions
     });
 
-    return commentWithTickerSymbol
-      .map((body) => {
+    return this.comments
+      .map((comment) => {
         try {
-          console.log('Standarizing Comment: ', body.comment);
+          console.log('Standarizing Comment: ', comment.body);
+          const standardizedComment = Standardizer.standardize(comment.body);
+          const standardizedCommentWithoutTicker = Standardizer.scrubTickerFromInput(
+            standardizedComment,
+            comment.tickerSymbol,
+            FilterPatterns
+          );
           return {
-            ...body,
-            comment: Standardizer.standardize(body.comment)
+            ...comment,
+            comment: standardizedCommentWithoutTicker
           };
         } catch (err) {
           return {
-            ...body,
+            ...comment,
             comment: []
           };
         }

@@ -50,5 +50,6 @@ export type AnalyzerOptions = StandardizeInputOptions;
 export interface FlagsAndOptions {
   filterFlags?: SentimentAnalysisFilterFlags;
   analyzerOptions?: AnalyzerOptions;
-  whitelist?: string[];
+  equityWhitelist?: string[];
+  equityWhitelistEnabled?: boolean;
 }

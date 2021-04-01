@@ -1,11 +1,9 @@
 import _ from 'lodash';
 import { isCompanyName, lookupTickerByCompanyName } from 'is-ticker-symbol';
-import { WordTokenizer } from 'natural';
-import StopWord from 'stopword';
 import { config } from '../config';
 import { checker } from '../../word-checker';
-const aposToLexForm = require('apos-to-lex-form');
 import { RedditExtractor } from '../extractors';
+import { InputStandardizer } from '../../standardize-input';
 
 export interface EquityFilterArgs {
   stringToAnalyze: string;
@@ -36,11 +34,16 @@ export class EquityFilter {
     if (this.tokenizedInputString.length <= 0) {
       return '';
     }
-    const ticker = this.checkForTickerSymbol();
-    if (ticker) {
-      console.log('Found Ticker Match: ', ticker);
-      this.matchedTickerSymbol = ticker;
-      return this.getTickerSymbolIfPresent();
+    try {
+      const ticker = this.checkForTickerSymbol();
+      if (ticker) {
+        console.log('Found Ticker Match: ', ticker);
+        this.matchedTickerSymbol = ticker;
+        return this.getTickerSymbolIfPresent();
+      }
+    } catch (err) {
+      console.error(err);
+      return '';
     }
     const companyName = this.checkForCompanyName();
     if (companyName) {
@@ -68,12 +71,14 @@ export class EquityFilter {
 
   //TODO this should be a shared service, not dupped
   private standardizeData() {
-    const lexedInput: string = aposToLexForm(this.stringToAnalyze);
-    const alphaOnlyLoweredLexedInput = lexedInput.toLowerCase().replace(/[^a-zA-Z\s]+/g, '');
-    const tokenizer = new WordTokenizer();
-    const tokenizedLexedInput = tokenizer.tokenize(alphaOnlyLoweredLexedInput);
-    const filteredStopWordInput = StopWord.removeStopwords(tokenizedLexedInput);
-    const filteredBlacklistInput = this.filterAganistBlacklist(filteredStopWordInput);
+    const Standardizer = new InputStandardizer({
+      options: {
+        disableProfanityFilter: true,
+        disableSpellCheckFilter: true
+      }
+    });
+    const standardizedString = Standardizer.standardize(this.stringToAnalyze);
+    const filteredBlacklistInput = this.filterAganistBlacklist(standardizedString);
     const filteredCommonWordInput = this.filterAganistCommonWordChecker(filteredBlacklistInput);
     this.tokenizedInputString = filteredCommonWordInput;
   }

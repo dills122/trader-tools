@@ -37,7 +37,6 @@ export class FrontPageService {
     for (const post of filteredPosts) {
       console.log('Gathering Discussion Thread from post: ', post.title);
       const discussionThread = await FrontPageGather.discussionGather(post.postId);
-
       //Continue to next post if no comments present
       if (discussionThread.length <= 0) {
         continue;

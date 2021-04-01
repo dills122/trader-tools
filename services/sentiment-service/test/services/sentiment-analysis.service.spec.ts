@@ -26,6 +26,7 @@ describe('Services::', function () {
         <any>'disableAllFilterFlagsOfType'
       );
       const discussionPost = Mocks.Snoowrap.getPostList(1, subreddit)[0];
+      discussionPost.title = 'This is a good discussion thread';
       discussionPost.flair = 'discussion';
       const nonDiscussionPost = Mocks.Snoowrap.getPostList(1, subreddit)[0];
       nonDiscussionPost.flair = 'meme';
@@ -57,7 +58,7 @@ describe('Services::', function () {
         expect(spies.disableAllFilterFlagsOfTypeSpy.callCount).to.equal(0);
 
         await serviceInst.analyze();
-      });
+      }).timeout(12000);
 
       it('should throw due to an unsupported social source', async () => {
         const serviceInst = new GenericSentimentAnalysisService({

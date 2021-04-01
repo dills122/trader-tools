@@ -1,10 +1,8 @@
-import { WordTokenizer } from 'natural';
 import { isTickerSymbol } from 'is-ticker-symbol';
-const aposToLexForm = require('apos-to-lex-form');
-import StopWord from 'stopword';
 import * as WordChecker from '../word-checker';
 import { cleanUpTickerSymbol, containsFilter } from '../ticker-symbols';
 import _ from 'lodash';
+import { InputStandardizer } from '../standardize-input';
 
 export interface ExtractorArgs {
   whitelist?: string[];
@@ -81,11 +79,13 @@ export class Extractor {
   }
 
   private standardizeInput(): string[] {
-    const loweredInputStr = this.inputString.toLowerCase();
-    const lexedInput: string = aposToLexForm(loweredInputStr);
-    const tokenizer = new WordTokenizer();
-    const tokenizedLexedInput = tokenizer.tokenize(lexedInput);
-    this.formattedString = StopWord.removeStopwords(tokenizedLexedInput);
+    const Standardizer = new InputStandardizer({
+      options: {
+        disableProfanityFilter: true,
+        disableSpellCheckFilter: true
+      }
+    });
+    this.formattedString = Standardizer.standardize(this.inputString);
     return this.formattedString;
   }
 

@@ -14,7 +14,7 @@ export const negativeSentimentStatements = [
 
 export const fillerStatements = [
   'To the moon!',
-  'I like it',
+  'I like it, think its going places',
   'Im new here and do not understand this',
   'what are stocks?'
 ];

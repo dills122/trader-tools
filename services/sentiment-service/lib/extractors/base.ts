@@ -123,7 +123,7 @@ export class Extractor {
   }
 
   private getTickerIfExists(inputString: string): string {
-    const tickerResults = isTickerSymbol(inputString, {
+    const tickerResults = isTickerSymbol(inputString.toUpperCase(), {
       output: true,
       matchTolerance: this.matchTolerance || 0.2
     });

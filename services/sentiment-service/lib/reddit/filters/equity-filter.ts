@@ -46,6 +46,7 @@ export class EquityFilter {
       console.error(err);
       return '';
     }
+    //TODO need to rework this
     const companyName = this.checkForCompanyName();
     if (companyName) {
       console.log('Found Company Name Match: ', companyName);
@@ -74,14 +75,18 @@ export class EquityFilter {
   private standardizeData() {
     const Standardizer = new InputStandardizer({
       options: {
-        disableProfanityFilter: true,
+        disableProfanityFilter: false,
         disableSpellCheckFilter: true
       }
     });
-    const standardizedString = Standardizer.standardize(this.stringToAnalyze);
-    const filteredBlacklistInput = this.filterAganistBlacklist(standardizedString);
-    const filteredCommonWordInput = this.filterAganistCommonWordChecker(filteredBlacklistInput);
-    this.tokenizedInputString = filteredCommonWordInput;
+    try {
+      const standardizedString = Standardizer.standardize(this.stringToAnalyze);
+      const filteredBlacklistInput = this.filterAganistBlacklist(standardizedString);
+      const filteredCommonWordInput = this.filterAganistCommonWordChecker(filteredBlacklistInput);
+      this.tokenizedInputString = filteredCommonWordInput;
+    } catch (err) {
+      this.tokenizedInputString = [];
+    }
   }
 
   private checkForCompanyName() {

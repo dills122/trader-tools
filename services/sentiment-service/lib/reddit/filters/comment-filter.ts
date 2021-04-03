@@ -30,8 +30,9 @@ export class CommentFilter {
   }
 
   filter(): Socials.Reddit.Types.CommentExtended[] {
+    this.removeNonEmptyComments();
     // Stickied posts are normally informational to the thread and not worth reading
-    this.removeStickiedAndEmptyComments();
+    this.removeStickiedComments();
     this.executeEntityFilter();
 
     const commentsWithTickerLikeSymbols = this.filterCommentsWithCompaniesMentioned(this.comments);
@@ -63,19 +64,20 @@ export class CommentFilter {
     return commentsWithTickers;
   }
 
-  private removeStickiedAndEmptyComments() {
-    const nonStickiedComments = this.comments.filter((comment) => {
+  private removeStickiedComments() {
+    this.comments = this.comments.filter((comment) => {
       return !comment.stickied;
     });
+  }
 
-    const nonEmptyComments = nonStickiedComments.filter((comment) => {
+  private removeNonEmptyComments() {
+    this.comments = this.comments.filter((comment) => {
       return comment.body && comment.body.length > 0;
     });
-    this.comments = nonEmptyComments;
-    return nonEmptyComments;
   }
 
   private removeMatureComments(filteredComments: Socials.Reddit.Types.CommentExtended[]) {
+    //TODO Make this into its own filter service, could be the start of a generic filter type
     const badWordFilter = new BadWords();
 
     const nonProfaneCheckedInput = filteredComments.filter((comment) => {

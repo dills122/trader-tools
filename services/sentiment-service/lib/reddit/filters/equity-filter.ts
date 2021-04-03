@@ -4,12 +4,16 @@ import { config } from '../config';
 import { checker } from '../../word-checker';
 import { RedditExtractor } from '../extractors';
 import { InputStandardizer } from '../../standardize-input';
+import { Loggers } from 'trader-sdk';
+
+const AuditLogger = Loggers.Audit.logger;
 
 export interface EquityFilterArgs {
   stringToAnalyze: string;
   matchTolerance?: number;
   blacklist?: string[];
   equityWhitelist?: string[];
+  auditMode?: boolean;
 }
 
 export class EquityFilter {
@@ -18,16 +22,22 @@ export class EquityFilter {
   private tokenizedInputString: string[];
   private matchedTickerSymbol: string;
   private blacklist: string[] = [];
+  private whitelist: string[] = [];
+
+  private disableCompanyMatching = true; // setting this so I can disable until rework
+  //Testing Param
+  private auditMode: boolean;
 
   constructor(args: EquityFilterArgs) {
     this.stringToAnalyze = args.stringToAnalyze;
     if (args.matchTolerance) {
       this.matchTolerance = this.setMatchTolerance(args.matchTolerance);
     }
-    this.blacklist = config.commonMissHitWords;
-    if (args.blacklist) {
-      this.blacklist = args.blacklist;
+    if (args.equityWhitelist) {
+      this.whitelist = args.equityWhitelist;
     }
+    this.blacklist = args.blacklist || config.commonMissHitWords;
+    this.auditMode = args.auditMode || false;
     this.standardizeData();
   }
 
@@ -46,14 +56,16 @@ export class EquityFilter {
       console.error(err);
       return '';
     }
-    //TODO need to rework this
-    const companyName = this.checkForCompanyName();
-    if (companyName) {
-      console.log('Found Company Name Match: ', companyName);
-      const ticker = lookupTickerByCompanyName(companyName);
-      if (ticker) {
-        this.matchedTickerSymbol = ticker;
-        return this.getTickerSymbolIfPresent();
+    if (!this.disableCompanyMatching) {
+      //TODO need to rework this
+      const companyName = this.checkForCompanyName();
+      if (companyName) {
+        console.log('Found Company Name Match: ', companyName);
+        const ticker = lookupTickerByCompanyName(companyName);
+        if (ticker) {
+          this.matchedTickerSymbol = ticker;
+          return this.getTickerSymbolIfPresent();
+        }
       }
     }
     return '';
@@ -71,18 +83,20 @@ export class EquityFilter {
     return input.filter((word) => !checker(word));
   }
 
-  //TODO this should be a shared service, not dupped
   private standardizeData() {
     const Standardizer = new InputStandardizer({
       options: {
-        disableProfanityFilter: false,
+        disableProfanityFilter: true, //TODO do more testing to see how this impacts results
         disableSpellCheckFilter: true
       }
     });
     try {
       const standardizedString = Standardizer.standardize(this.stringToAnalyze);
+      AuditLogger.log(`Standardized: ${standardizedString}`, this.auditMode);
       const filteredBlacklistInput = this.filterAganistBlacklist(standardizedString);
+      AuditLogger.log(`Blacklist Flitered: ${filteredBlacklistInput}`, this.auditMode);
       const filteredCommonWordInput = this.filterAganistCommonWordChecker(filteredBlacklistInput);
+      AuditLogger.log(`Common Word Flitered: ${filteredCommonWordInput}`, this.auditMode);
       this.tokenizedInputString = filteredCommonWordInput;
     } catch (err) {
       this.tokenizedInputString = [];
@@ -120,7 +134,8 @@ export class EquityFilter {
 
   private checkForTickerSymbol(): string {
     const tickers = new RedditExtractor({
-      matchTolerance: this.matchTolerance
+      matchTolerance: this.matchTolerance,
+      whitelist: this.whitelist
     }).extract(this.tokenizedInputString);
     return _.first(tickers) || '';
   }

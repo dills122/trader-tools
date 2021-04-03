@@ -13,6 +13,7 @@ This mono-repo contains various tools and apps all centered around stocks/equiti
     - [Linter/Formatter Setup](#linterformatter-setup)
     - [Other Important Commands](#other-important-commands)
   - [Important Info](#important-info)
+  - [Updating Package Versions](#updating-package-versions)
   - [Container Development](#container-development)
   - [Deployments](#deployments)
 
@@ -156,6 +157,31 @@ For a complete list of available custom commands check here: `common\config\rush
 ## Important Info
 
 When submitting PRs **always** remember to run `rush clean` before submitting a PR and merging it. We do **NOT** want auto generated files in the source code to reduce noise. If you forget to run this command, there is now an automated Action that will alert you when it finds any of the build files present on a PR branch.
+
+## Updating Package Versions
+
+To update the package versions you need to run a few commands.
+
+To check to see what all has been changed and if its good to bump versions execute:
+
+```bash
+rush change
+```
+
+You might need to run another command if some issues come up, this command will list any of the issues rush found:
+
+```bash
+rush check
+```
+
+Once you're good to go with all the checks to bump versions:
+
+```bash
+# will bump the default version policy, usually the lockstep one
+rush version --bump
+# will bump a specific version policy
+rush version --bump --version-policy={policyName}
+```
 
 ## Container Development
 

@@ -1,0 +1,17 @@
+{
+  "name": "is-ticker-symbol",
+  "entries": [
+    {
+      "version": "0.2.9",
+      "tag": "is-ticker-symbol_v0.2.9",
+      "date": "Sat, 03 Apr 2021 03:38:47 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Dependency api-service version bump from ^0.2.0 to ^0.2.10."
+          }
+        ]
+      }
+    }
+  ]
+}

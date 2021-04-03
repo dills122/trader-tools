@@ -1,0 +1,17 @@
+{
+  "name": "sentiment-service",
+  "entries": [
+    {
+      "version": "0.2.10",
+      "tag": "sentiment-service_v0.2.10",
+      "date": "Sat, 03 Apr 2021 03:38:47 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Dependency is-ticker-symbol version bump from ^0.2.0 to ^0.2.9."
+          }
+        ]
+      }
+    }
+  ]
+}

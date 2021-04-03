@@ -381,31 +381,38 @@
   "projects": [
     {
       "packageName": "trader-sdk",
-      "projectFolder": "lib/trader-sdk"
+      "projectFolder": "lib/trader-sdk",
+      "versionPolicyName": "traderService"
     },
     {
       "packageName": "is-ticker-symbol",
-      "projectFolder": "lib/is-ticker-symbol"
+      "projectFolder": "lib/is-ticker-symbol",
+      "versionPolicyName": "tickerLib"
     },
     {
       "packageName": "api-service",
-      "projectFolder": "services/api-service"
+      "projectFolder": "services/api-service",
+      "versionPolicyName": "traderService"
     },
     {
       "packageName": "trading-services",
-      "projectFolder": "services/trading-services"
+      "projectFolder": "services/trading-services",
+      "versionPolicyName": "traderService"
     },
     {
       "packageName": "templating-service",
-      "projectFolder": "services/templating-service"
+      "projectFolder": "services/templating-service",
+      "versionPolicyName": "traderService"
     },
     {
       "packageName": "sentiment-service",
-      "projectFolder": "services/sentiment-service"
+      "projectFolder": "services/sentiment-service",
+      "versionPolicyName": "traderService"
     },
     {
       "packageName": "cron-app",
-      "projectFolder": "apps/cron-app"
+      "projectFolder": "apps/cron-app",
+      "versionPolicyName": "traderService"
     }
     // {
     //   /**

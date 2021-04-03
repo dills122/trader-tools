@@ -99,6 +99,7 @@ export class CommentListSentimentAnalyzer {
             comment.tickerSymbol,
             FilterPatterns
           );
+          console.log('Standardized Comment: ', standardizedCommentWithoutTicker);
           return {
             ...comment,
             comment: standardizedCommentWithoutTicker

@@ -57,6 +57,8 @@ export class Extractor {
   }
 
   private iterateWords() {
+    //TODO should update this to something better
+    const whitelistMode = this.whitelist.length > 0;
     for (const word of this.standardizedString) {
       if (this.checkIfCommonWord(word)) {
         continue;
@@ -64,6 +66,9 @@ export class Extractor {
       const isInWhiteList = this.checkAganistWhitelist(word);
       if (isInWhiteList) {
         this.getTickerCleanUpAndAddToList(word);
+      }
+      if (whitelistMode) {
+        continue;
       }
       const containsFilterPattern = this.checkAganistFilterPatterns(word);
       if (containsFilterPattern) {
@@ -110,7 +115,7 @@ export class Extractor {
     if (this.whitelist.length <= 0) {
       return false;
     }
-    return this.whitelist.includes(word);
+    return this.whitelist.includes(word.toLowerCase()) || this.whitelist.includes(word.toUpperCase());
   }
 
   private checkAganistFilterPatterns(word: string) {
@@ -123,7 +128,7 @@ export class Extractor {
   }
 
   private getTickerIfExists(inputString: string): string {
-    const tickerResults = isTickerSymbol(inputString, {
+    const tickerResults = isTickerSymbol(inputString.toUpperCase(), {
       output: true,
       matchTolerance: this.matchTolerance || 0.2
     });

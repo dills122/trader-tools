@@ -25,7 +25,8 @@
     "bad-words": "~3.0.4",
     "api-service": "^0.2.0",
     "lodash": "~4.17.21",
-    "is-ticker-symbol": "^0.2.0"
+    "is-ticker-symbol": "^0.2.0",
+    "trader-sdk": "~0.2.9"
   },
   "devDependencies": {
     "typescript": "~4.1.3",

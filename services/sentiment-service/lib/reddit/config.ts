@@ -22,6 +22,6 @@ export const config = {
     'stonks',
     'wallstreetbets'
   ],
-  commonMissHitWords: ['stock'],
+  commonMissHitWords: ['stock', 'eod', 'ipo', 'lmao', 'rh', 'th', 'wtf'],
   tickerFilterPatterns: ['$']
 };

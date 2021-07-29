@@ -30,6 +30,13 @@
     },
     {
       "commandKind": "bulk",
+      "name": "ui-test",
+      "summary": "runs all tests for ui projects",
+      "enableParallelism": false,
+      "ignoreMissingScript": true
+    },
+    {
+      "commandKind": "bulk",
       "name": "lint",
       "summary": "runs eslint aganist all packages",
       "enableParallelism": true

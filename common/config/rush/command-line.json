@@ -14,13 +14,15 @@
       "commandKind": "bulk",
       "name": "compile",
       "summary": "compilies all of the projects typescript",
-      "enableParallelism": true
+      "enableParallelism": true,
+      "ignoreMissingScript": true
     },
     {
       "commandKind": "bulk",
       "name": "clean",
       "summary": "removes all of the compilation generated files",
-      "enableParallelism": true
+      "enableParallelism": true,
+      "ignoreMissingScript": true
     },
     {
       "commandKind": "bulk",

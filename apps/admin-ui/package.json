@@ -11,7 +11,9 @@
     "serve:ssr": "node dist/admin-ui/server/main.js",
     "build:ssr": "ng build && ng run admin-ui:server",
     "build": "echo \"Use build:ssr for build process\" && exit 0",
-    "prerender": "ng run admin-ui:prerender"
+    "prerender": "ng run admin-ui:prerender",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
   },
   "private": true,
   "dependencies": {
@@ -47,6 +49,9 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "4.3.2"
+    "typescript": "4.3.2",
+    "eslint": "7.22.0",
+    "@typescript-eslint/parser": "4.19.0",
+    "@typescript-eslint/eslint-plugin": "4.19.0"
   }
 }

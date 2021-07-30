@@ -10,6 +10,7 @@ export class CustomHttpClientService {
   constructor(
     private httpClient: HttpClient,
     private transferState: TransferState,
+    // eslint-disable-next-line @typescript-eslint/ban-types
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 

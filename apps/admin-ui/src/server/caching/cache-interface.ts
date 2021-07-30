@@ -1,18 +1,16 @@
 import * as cache from 'memory-cache';
 
 export default class {
-  constructor() {}
-
-  put(id: string, data: string) {
-    return cache.put(id, data);
+  put(id: string, data: string): void {
+    cache.put(id, data);
   }
-  get(id: string) {
+  get(id: string): string {
     return cache.get(id);
   }
-  delete(id: string) {
-    return cache.del(id);
+  delete(id: string): void {
+    cache.del(id);
   }
-  clear() {
+  clear(): void {
     cache.clear();
   }
 }

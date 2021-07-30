@@ -413,6 +413,11 @@
       "packageName": "cron-app",
       "projectFolder": "apps/cron-app",
       "versionPolicyName": "traderService"
+    },
+    {
+      "packageName": "admin-ui",
+      "projectFolder": "apps/admin-ui",
+      "versionPolicyName": "traderService"
     }
     // {
     //   /**

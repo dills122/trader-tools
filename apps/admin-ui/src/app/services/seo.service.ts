@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { SEOMetaData } from '../shared/meta-data.interface';
 

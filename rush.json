@@ -417,7 +417,12 @@
     {
       "packageName": "admin-ui",
       "projectFolder": "apps/admin-ui",
-      "versionPolicyName": "traderService"
+      "versionPolicyName": "adminService"
+    },
+    {
+      "packageName": "admin-api",
+      "projectFolder": "apps/admin-api",
+      "versionPolicyName": "adminService"
     }
     // {
     //   /**

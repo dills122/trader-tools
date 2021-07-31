@@ -94,6 +94,12 @@
     "nextBump": "patch"
   },
   {
+    "policyName": "adminService",
+    "definitionName": "lockStepVersion",
+    "version": "0.1.0",
+    "nextBump": "patch"
+  },
+  {
     "policyName": "tickerLib",
     "definitionName": "individualVersion"
   }

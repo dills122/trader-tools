@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package sentimentApi;
+
+service GenericSentimentService {
+    rpc Analyze (AnalysisRequest) returns (AnalysisResponse) {}
+}
+
+message AnalysisRequest {
+    string socialSource = 1;
+    string analyzer = 2;
+    string serviceAnalysisType = 3;
+    string subreddit = 4;
+}
+
+message AnalysisResponse {
+    repeated SentimentAnalysisResult analysisResults = 1;
+}
+
+message SentimentAnalysisResult {
+    string content = 1;
+    repeated string stanardizedContent = 2;
+    string symbol = 3;
+    string sentimentStatus = 4;
+    double score = 5;
+    string source = 6;
+    string sourceKey = 7;
+    string title = 8;
+}

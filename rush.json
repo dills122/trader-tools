@@ -423,6 +423,11 @@
       "packageName": "admin-api",
       "projectFolder": "apps/admin-api",
       "versionPolicyName": "adminService"
+    },
+    {
+      "packageName": "sentiment-api",
+      "projectFolder": "apps/sentiment-api",
+      "versionPolicyName": "traderService"
     }
     // {
     //   /**

@@ -12,6 +12,7 @@ dependencies:
   '@angular/platform-server': 12.1.4_876f642dcbf857bf4eb623d9a8a70613
   '@angular/router': 12.1.4_7a7a41c59a19791c3d230d827b9b3c54
   '@fast-csv/parse': 4.3.6
+  '@grpc/grpc-js': 1.3.6
   '@hapi/code': 8.0.3
   '@hapi/hapi': 20.1.5
   '@hapi/lab': 24.3.2
@@ -23,13 +24,16 @@ dependencies:
   '@rush-temp/api-service': 'file:projects/api-service.tgz'
   '@rush-temp/cron-app': 'file:projects/cron-app.tgz'
   '@rush-temp/is-ticker-symbol': 'file:projects/is-ticker-symbol.tgz'
+  '@rush-temp/sentiment-api': 'file:projects/sentiment-api.tgz'
   '@rush-temp/sentiment-service': 'file:projects/sentiment-service.tgz'
   '@rush-temp/templating-service': 'file:projects/templating-service.tgz'
   '@rush-temp/trader-sdk': 'file:projects/trader-sdk.tgz'
   '@rush-temp/trading-services': 'file:projects/trading-services.tgz'
   '@types/bad-words': 3.0.0
   '@types/chai': 4.2.14
+  '@types/dotenv': 8.2.0
   '@types/ejs': 3.0.5
+  '@types/google-protobuf': 3.15.3
   '@types/hapi__hapi': 20.0.9
   '@types/jasmine': 3.8.2
   '@types/jsftp': 2.1.0
@@ -48,11 +52,13 @@ dependencies:
   apos-to-lex-form: 1.0.5
   bad-words: 3.0.4
   chai: 4.2.0
-  dotenv: 8.2.0
   ejs: 3.1.5
   fuse.js: 6.4.6
   gmail-send: 1.8.10
+  google-protobuf: 3.17.3
   got: 11.8.2
+  grpc-tools: 1.11.2
+  grpc_tools_node_protoc_ts: 5.3.0
   jasmine-core: 3.8.0
   jsftp: 2.1.3
   karma: 6.3.4
@@ -65,6 +71,7 @@ dependencies:
   memory-cache: 0.2.0
   meow: 9.0.0
   mjml: 4.8.1
+  mocha: 8.2.1
   mustache: 4.1.0
   natural: 4.0.0
   node-cron: 2.0.3
@@ -75,6 +82,7 @@ dependencies:
   spelling-corrector: 3.0.0
   stopword: 1.0.6
   technicalindicators: 3.1.0
+  ts-node: 9.1.1
   tslib: 2.3.0
   uuid: 8.3.2
   word-list: 3.1.0
@@ -1923,6 +1931,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-uRsLYksqpbDmWaSmzvJcuApSEe38+6NQZBUsuAyMZKqHxH0g1wcJgsKUvN3WC8tewaqFjBMMGrkHmC+T7k8LvA==
+  /@grpc/grpc-js/1.3.6:
+    dependencies:
+      '@types/node': 14.14.25
+    dev: false
+    engines:
+      node: ^8.13.0 || >=10.10.0
+    resolution:
+      integrity: sha512-v7+LQFbqZKmd/Tvf5/j1Xlbq6jXL/4d+gUtm2TNX4QiEC3ELWADmGr2dGlUyLl6aKTuYfsN72vAsO5zmavYkEg==
   /@hapi/accept/5.0.2:
     dependencies:
       '@hapi/boom': 9.1.3
@@ -2316,6 +2332,21 @@ packages:
     dev: false
     resolution:
       integrity: sha512-EUCPEkaRPvmHjWAAZkWMT7JDzpw7FKB00WTISaiXsbNOd5hCHg77XLA8sLYLFDo1zepYLo2w7GstN8YBqRXZfA==
+  /@mapbox/node-pre-gyp/1.0.5:
+    dependencies:
+      detect-libc: 1.0.3
+      https-proxy-agent: 5.0.0
+      make-dir: 3.1.0
+      node-fetch: 2.6.1
+      nopt: 5.0.0
+      npmlog: 4.1.2
+      rimraf: 3.0.2
+      semver: 7.3.5
+      tar: 6.1.2
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-4srsKPXWlIxp5Vbqz5uLfBN+du2fJChBoYn/f2h991WLdk7jUvcSk/McVLSv/X+xQIPI8eGD5GjrnygdyHnhPA==
   /@ngtools/webpack/12.1.4_5f2270662d6ecac712bb92e9e2174958:
     dependencies:
       '@angular/compiler-cli': 12.1.4_50e5778a52a1b3d2b9e0cfa5ddc705cc
@@ -2638,6 +2669,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-W98JrE0j2K78swW4ukqMleo8R7h/pFETjM2DQ90MF6XK2i4LO4W3gQ71Lt4w3bfm2EvVSyWHplECvB5sK22yFQ==
+  /@types/bytebuffer/5.0.42:
+    dependencies:
+      '@types/long': 4.0.1
+      '@types/node': 14.14.25
+    dev: false
+    resolution:
+      integrity: sha512-lEgKojWUAc/MG2t649oZS5AfYFP2xRNPoDuwDBlBMjHXd8MaGPgFgtCXUK7inZdBOygmVf10qxc1Us8GXC96aw==
   /@types/cacheable-request/6.0.1:
     dependencies:
       '@types/http-cache-semantics': 4.0.0
@@ -2669,6 +2707,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-vt+kDhq/M2ayberEtJcIN/hxXy1Pk+59g2FV/ZQceeaTyCtCucjL2Q7FXlFjtWn4n15KCr1NE2lNNFhp0lEThw==
+  /@types/dotenv/8.2.0:
+    dependencies:
+      dotenv: 8.2.0
+    deprecated: 'This is a stub types definition. dotenv provides its own type definitions, so you do not need this installed.'
+    dev: false
+    resolution:
+      integrity: sha512-ylSC9GhfRH7m1EUXBXofhgx4lUWmFeQDINW5oLuS+gxWdfUeW4zJdeVTYVkexEW+e2VUvlZR2kGnGGipAWR7kw==
   /@types/ejs/3.0.5:
     dev: false
     resolution:
@@ -2723,6 +2768,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-w+LsMxKyYQm347Otw+IfBXOv9UWVjpHpCDdbBMt8Kz/xbvCYNjP+0qPh91Km3iKfSRLBB0P7fAMf0KHrPu+MyA==
+  /@types/google-protobuf/3.15.3:
+    dev: false
+    resolution:
+      integrity: sha512-MDpu7lit927cdLtBzTPUFjXGANFUnu5ThPqjygY8XmCyI/oDlIA0jAi4sffGOxYaLK2CCxAuU9wGxsgAQbA6FQ==
   /@types/hapi__catbox/10.2.4:
     dev: false
     resolution:
@@ -2791,6 +2840,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
+  /@types/long/4.0.1:
+    dev: false
+    resolution:
+      integrity: sha512-5tXH6Bx/kNGd3MgffdmP4dy2Z+G4eaXw0SE81Tq3BNadtnMR5/ySMzX4SLEzHJzSmPNn4HIdpQsBvXMUykr58w==
   /@types/memory-cache/0.2.1:
     dev: false
     resolution:
@@ -2937,12 +2990,12 @@ packages:
       '@typescript-eslint/experimental-utils': 4.19.0_eslint@7.22.0+typescript@4.3.2
       '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
       '@typescript-eslint/scope-manager': 4.19.0
-      debug: 4.2.0
+      debug: 4.3.1
       eslint: 7.22.0
       functional-red-black-tree: 1.0.1
       lodash: 4.17.21
       regexpp: 3.1.0
-      semver: 7.3.4
+      semver: 7.3.5
       tsutils: 3.21.0_typescript@4.3.2
       typescript: 4.3.2
     dev: false
@@ -2983,7 +3036,7 @@ packages:
       integrity: sha512-m31cPEnbuCqXtEZQJOXAHsHvtoDi9OVaeL5wZnO2KZTnkvELk+u6J6jHg+NzvWQxk+87Zjbc4lJS4NHmgImz6Q==
   /@typescript-eslint/experimental-utils/4.19.0_eslint@7.22.0+typescript@4.3.2:
     dependencies:
-      '@types/json-schema': 7.0.7
+      '@types/json-schema': 7.0.8
       '@typescript-eslint/scope-manager': 4.19.0
       '@typescript-eslint/types': 4.19.0
       '@typescript-eslint/typescript-estree': 4.19.0_typescript@4.3.2
@@ -3682,6 +3735,13 @@ packages:
     dev: false
     resolution:
       integrity: sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=
+  /ascli/1.0.1:
+    dependencies:
+      colour: 0.7.1
+      optjs: 3.2.2
+    dev: false
+    resolution:
+      integrity: sha1-vPpZdKYvGOgcq660lzKrSoj5Brw=
   /asn1/0.2.4:
     dependencies:
       safer-buffer: 2.1.2
@@ -4151,6 +4211,14 @@ packages:
     dev: false
     resolution:
       integrity: sha1-y5T662HIaWRR2zZTThQi+U8K7og=
+  /bytebuffer/5.0.1:
+    dependencies:
+      long: 3.2.0
+    dev: false
+    engines:
+      node: '>=0.8'
+    resolution:
+      integrity: sha1-WC7qSxqHO20CCkjVjfhfC7ps/d0=
   /bytes/3.0.0:
     dev: false
     engines:
@@ -4624,6 +4692,12 @@ packages:
       node: '>=0.1.90'
     resolution:
       integrity: sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA==
+  /colour/0.7.1:
+    dev: false
+    engines:
+      node: '>=0.8'
+    resolution:
+      integrity: sha1-nLFpkX7F0SwHNtPoaFdG3xyt93g=
   /combined-stream/1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -5480,6 +5554,13 @@ packages:
     dev: false
     resolution:
       integrity: sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
+  /detect-libc/1.0.3:
+    dev: false
+    engines:
+      node: '>=0.10'
+    hasBin: true
+    resolution:
+      integrity: sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
   /detect-node/2.0.4:
     dev: false
     resolution:
@@ -5668,6 +5749,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-8eaHa17IwJUPAiB+SoTYBo5mCdeMgdcAoXJ59m6DT1vw+5iLS3gNoqYaRowaBKtGVrOF1Jz4yDTgYKLK2kvfJg==
+  /dotenv/10.0.0:
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
   /dotenv/8.2.0:
     dev: false
     engines:
@@ -7009,6 +7096,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-QMpWwzeA64U69HzOEzI37UNc73xXkhTg8LuqsfKX9W7LjiQY3yRvViVn7ZhuJWLTV4136vsLJf2sXiZKmdykbw==
+  /google-protobuf/3.15.8:
+    dev: false
+    resolution:
+      integrity: sha512-2jtfdqTaSxk0cuBJBtTTWsot4WtR9RVr2rXg7x7OoqiuOKopPrwXpM1G4dXIkLcUNRh3RKzz76C8IOkksZSeOw==
+  /google-protobuf/3.17.3:
+    dev: false
+    resolution:
+      integrity: sha512-OVPzcSWIAJ+d5yiHyeaLrdufQtrvaBrF4JQg+z8ynTkbO3uFcujqXszTumqg1cGsAsjkWnI+M5B1xZ19yR4Wyg==
   /got/11.8.2:
     dependencies:
       '@sindresorhus/is': 4.0.0
@@ -7041,6 +7136,37 @@ packages:
     dev: false
     resolution:
       integrity: sha1-Dqd0NxXbjY3ixe3hd14bRayFwC8=
+  /grpc-tools/1.11.2:
+    dependencies:
+      '@mapbox/node-pre-gyp': 1.0.5
+    dev: false
+    hasBin: true
+    requiresBuild: true
+    resolution:
+      integrity: sha512-4+EgpnnkJraamY++oyBCw5Hp9huRYfgakjNVKbiE3PgO9Tv5ydVlRo7ZyGJ0C0SEiA7HhbVc1sNNtIyK7FiEtg==
+  /grpc/1.24.11:
+    dependencies:
+      '@mapbox/node-pre-gyp': 1.0.5
+      '@types/bytebuffer': 5.0.42
+      lodash.camelcase: 4.3.0
+      lodash.clone: 4.5.0
+      nan: 2.14.2
+      protobufjs: 5.0.3
+    deprecated: This library will not receive further updates other than security fixes. We recommend using @grpc/grpc-js instead.
+    dev: false
+    engines:
+      node: '>=4'
+    requiresBuild: true
+    resolution:
+      integrity: sha512-8/AQdFCzCeCDWW3SoaMNp6ccbRvTQEH1O1u1uFtt29eWsg5gSZCJ3m6fbkduEIh3smY7WAPP+LgVJ5n3nZRxcA==
+  /grpc_tools_node_protoc_ts/5.3.0:
+    dependencies:
+      google-protobuf: 3.15.8
+      handlebars: 4.7.7
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-XC+8BUXqJAmDQ+qxAbUogXgONY+04cBpAB4MaxY3ghgnwW4mUfO+D/8kC7MzrJ1ijHlNInLPr1eSAJ/9RxLSVw==
   /guess-parser/0.4.22:
     dependencies:
       '@wessberg/ts-evaluator': 0.0.27
@@ -8665,6 +8791,14 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==
+  /lodash.camelcase/4.3.0:
+    dev: false
+    resolution:
+      integrity: sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
+  /lodash.clone/4.5.0:
+    dev: false
+    resolution:
+      integrity: sha1-GVhwRQ9aExkkeN9Lw9I9LeoZB7Y=
   /lodash.clonedeep/4.5.0:
     dev: false
     resolution:
@@ -8727,7 +8861,7 @@ packages:
       integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
   /log-symbols/4.0.0:
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
     dev: false
     engines:
       node: '>=10'
@@ -8760,6 +8894,12 @@ packages:
       node: '>= 0.6.0'
     resolution:
       integrity: sha512-Hesni4s5UkWkwCGJMQGAh71PaLUmKFM60dHvq0zi/vDhhrzuk+4GgNbTXJ12YYQJn6ZKBDNIjYcuQGKudvqrIw==
+  /long/3.2.0:
+    dev: false
+    engines:
+      node: '>=0.6'
+    resolution:
+      integrity: sha1-2CG3E4yhy1gcFymQ7xTbIAtcR0s=
   /longest/1.0.1:
     dev: false
     engines:
@@ -9670,7 +9810,6 @@ packages:
       integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
   /nan/2.14.2:
     dev: false
-    optional: true
     resolution:
       integrity: sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ==
   /nanoid/3.1.12:
@@ -10166,6 +10305,10 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha512-74RlY5FCnhq4jRxVUPKDaRwrVNXMqsGsiW6AJw4XK8hmtm10wC0ypZBLw5IIp85NZMr91+qd1RvvENwg7jjRFw==
+  /optjs/3.2.2:
+    dev: false
+    resolution:
+      integrity: sha1-aabOicRCpEQDFBrS+bNwvVu29O4=
   /ora/5.4.1:
     dependencies:
       bl: 4.1.0
@@ -11317,6 +11460,18 @@ packages:
     dev: false
     resolution:
       integrity: sha1-IS1b/hMYMGpCD2QCuOJv85ZHqEk=
+  /protobufjs/5.0.3:
+    dependencies:
+      ascli: 1.0.1
+      bytebuffer: 5.0.1
+      glob: 7.1.7
+      yargs: 3.10.0
+    dev: false
+    engines:
+      node: '>=0.8'
+    hasBin: true
+    resolution:
+      integrity: sha512-55Kcx1MhPZX0zTbVosMQEO5R6/rikNXd9b6RQK4KSPcrSIIwoXTtebIczUrXlwaSrbz4x8XUVThGPob1n8I4QA==
   /proxy-addr/2.0.6:
     dependencies:
       forwarded: 0.1.2
@@ -13273,6 +13428,22 @@ packages:
         optional: true
     resolution:
       integrity: sha512-6szn3+J9WyG2hE+5W8e0ruZrzyk1uFLYye6IGMBadnOzDh8aP7t8CbFpsfCiEx2+wMixAhjFt7lOZC4+l+WbEA==
+  /ts-node/9.1.1:
+    dependencies:
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      source-map-support: 0.5.19
+      yn: 3.1.1
+    dev: false
+    engines:
+      node: '>=10.0.0'
+    hasBin: true
+    peerDependencies:
+      typescript: '>=2.7'
+    resolution:
+      integrity: sha512-hPlt7ZACERQGf03M253ytLY3dHbGNGrAq9qIHWUY9XHYl1z7wYngSr3OQ5xmui8o2AaxsONxIzjafLUiWBo1Fg==
   /ts-node/9.1.1_typescript@4.3.2:
     dependencies:
       arg: 4.1.3
@@ -14293,7 +14464,7 @@ packages:
     dev: false
     name: '@rush-temp/admin-api'
     resolution:
-      integrity: sha512-gaWbifltMPLP4lMFVNEI/yRW2NQfhEJic5FR3oCMzxhKFI9RrDPJf6KFIGO2iy49Dncpg5mmo/f1C4D7tObhhA==
+      integrity: sha512-ogAAIW7t52xxoUXuGOC3uZrJfCIz6m4ABW5vcJ+h4msYGL63z2YPra1KF8m62+VfEt1diDouZvn7W+YhP/KCag==
       tarball: 'file:projects/admin-api.tgz'
     version: 0.0.0
   'file:projects/admin-ui.tgz':
@@ -14411,6 +14582,27 @@ packages:
     resolution:
       integrity: sha512-FC+pePplW2vp6GqT4qZNd9RLuyW05xSQJCTJrvBqVZUS37Hvw2ZWNyXSQQz9Lmc8Y/zn0ogHJMi9zsr86YGVrg==
       tarball: 'file:projects/is-ticker-symbol.tgz'
+    version: 0.0.0
+  'file:projects/sentiment-api.tgz':
+    dependencies:
+      '@grpc/grpc-js': 1.3.6
+      '@types/dotenv': 8.2.0
+      '@types/google-protobuf': 3.15.3
+      '@types/node': 14.14.25
+      '@typescript-eslint/eslint-plugin': 4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7
+      '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
+      dotenv: 10.0.0
+      eslint: 7.22.0
+      google-protobuf: 3.17.3
+      grpc: 1.24.11
+      grpc-tools: 1.11.2
+      grpc_tools_node_protoc_ts: 5.3.0
+      typescript: 4.3.2
+    dev: false
+    name: '@rush-temp/sentiment-api'
+    resolution:
+      integrity: sha512-uYfICVeQ8SRs16VDoIPXbGBT010kwFTYwDmRhxDQn9dzZheBwt0aT/HjsG/b3/YRFJSZIHY/8QXQtoDlJy6B8Q==
+      tarball: 'file:projects/sentiment-api.tgz'
     version: 0.0.0
   'file:projects/sentiment-service.tgz':
     dependencies:
@@ -14534,6 +14726,7 @@ specifiers:
   '@angular/platform-server': ~12.1.0
   '@angular/router': ~12.1.0
   '@fast-csv/parse': ~4.3.6
+  '@grpc/grpc-js': ^1.3.6
   '@hapi/code': ^8.0.3
   '@hapi/hapi': ^20.1.5
   '@hapi/lab': ^24.3.2
@@ -14545,13 +14738,16 @@ specifiers:
   '@rush-temp/api-service': 'file:./projects/api-service.tgz'
   '@rush-temp/cron-app': 'file:./projects/cron-app.tgz'
   '@rush-temp/is-ticker-symbol': 'file:./projects/is-ticker-symbol.tgz'
+  '@rush-temp/sentiment-api': 'file:./projects/sentiment-api.tgz'
   '@rush-temp/sentiment-service': 'file:./projects/sentiment-service.tgz'
   '@rush-temp/templating-service': 'file:./projects/templating-service.tgz'
   '@rush-temp/trader-sdk': 'file:./projects/trader-sdk.tgz'
   '@rush-temp/trading-services': 'file:./projects/trading-services.tgz'
   '@types/bad-words': ~3.0.0
   '@types/chai': ~4.2.14
+  '@types/dotenv': ^8.2.0
   '@types/ejs': ~3.0.5
+  '@types/google-protobuf': ^3.15.3
   '@types/hapi__hapi': ^20.0.9
   '@types/jasmine': ~3.8.0
   '@types/jsftp': ~2.1.0
@@ -14570,11 +14766,13 @@ specifiers:
   apos-to-lex-form: ~1.0.5
   bad-words: ~3.0.4
   chai: ~4.2.0
-  dotenv: ~8.2.0
   ejs: ~3.1.5
   fuse.js: ~6.4.6
   gmail-send: ~1.8.10
+  google-protobuf: ^3.17.3
   got: ~11.8.2
+  grpc-tools: ^1.11.2
+  grpc_tools_node_protoc_ts: ^5.3.0
   jasmine-core: ~3.8.0
   jsftp: ~2.1.3
   karma: ~6.3.0
@@ -14587,6 +14785,7 @@ specifiers:
   memory-cache: ^0.2.0
   meow: ~9.0.0
   mjml: ~4.8.1
+  mocha: ~8.2.1
   mustache: ^4.1.0
   natural: ~4.0.0
   node-cron: ~2.0.3
@@ -14597,6 +14796,7 @@ specifiers:
   spelling-corrector: ~3.0.0
   stopword: ~1.0.6
   technicalindicators: ~3.1.0
+  ts-node: ~9.1.1
   tslib: ^2.2.0
   uuid: ~8.3.2
   word-list: ~3.1.0

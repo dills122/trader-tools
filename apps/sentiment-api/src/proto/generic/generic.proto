@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package sentimentApi;
+package generic;
 
 service GenericSentimentService {
     rpc Analyze (AnalysisRequest) returns (AnalysisResponse) {}

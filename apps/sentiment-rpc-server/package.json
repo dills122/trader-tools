@@ -21,7 +21,8 @@
     "@grpc/proto-loader": "~0.6.4",
     "dotenv": "^10.0.0",
     "google-protobuf": "^3.17.3",
-    "sentiment-service": "~0.2.10"
+    "sentiment-service": "~0.2.10",
+    "grpc-tools": "~0.2.10"
   },
   "devDependencies": {
     "@types/google-protobuf": "^3.15.3",

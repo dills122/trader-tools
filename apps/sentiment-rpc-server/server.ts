@@ -1,15 +1,12 @@
 import * as grpc from '@grpc/grpc-js';
-import * as protoLoader from '@grpc/proto-loader';
-import { ProtoGrpcType } from './generated/generic';
-import GenericHandler from './src/handlers/generic.handler';
+import grpcTools from 'grpc-tools';
+
+import config from './src/proto.config';
 
 const host = '0.0.0.0:9090';
 
 function getServer(): grpc.Server {
-  const packageDefinition = protoLoader.loadSync('./src/proto/generic/generic.proto');
-  const proto = (grpc.loadPackageDefinition(packageDefinition) as unknown) as ProtoGrpcType;
-  const server = new grpc.Server();
-  server.addService(proto.generic.GenericSentimentService.service, GenericHandler.handler);
+  const server = grpcTools.serverFactory(config);
   return server;
 }
 

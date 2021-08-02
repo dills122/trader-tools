@@ -1,4 +1,4 @@
-// Original file: src/proto/generic/generic.proto
+// Original file: src/protos/generic/generic.proto
 
 export interface AnalysisRequest {
   socialSource?: string;
@@ -8,8 +8,8 @@ export interface AnalysisRequest {
 }
 
 export interface AnalysisRequest__Output {
-  socialSource?: string;
-  analyzer?: string;
-  serviceAnalysisType?: string;
-  subreddit?: string;
+  socialSource: string;
+  analyzer: string;
+  serviceAnalysisType: string;
+  subreddit: string;
 }

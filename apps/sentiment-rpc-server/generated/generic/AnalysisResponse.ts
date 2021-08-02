@@ -1,4 +1,4 @@
-// Original file: src/proto/generic/generic.proto
+// Original file: src/protos/generic/generic.proto
 
 import type {
   SentimentAnalysisResult as _generic_SentimentAnalysisResult,
@@ -10,5 +10,5 @@ export interface AnalysisResponse {
 }
 
 export interface AnalysisResponse__Output {
-  analysisResults?: _generic_SentimentAnalysisResult__Output[];
+  analysisResults: _generic_SentimentAnalysisResult__Output[];
 }

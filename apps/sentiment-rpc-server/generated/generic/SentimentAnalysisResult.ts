@@ -1,4 +1,4 @@
-// Original file: src/proto/generic/generic.proto
+// Original file: src/protos/generic/generic.proto
 
 export interface SentimentAnalysisResult {
   content?: string;
@@ -12,12 +12,12 @@ export interface SentimentAnalysisResult {
 }
 
 export interface SentimentAnalysisResult__Output {
-  content?: string;
-  stanardizedContent?: string[];
-  symbol?: string;
-  sentimentStatus?: string;
-  score?: number;
-  source?: string;
-  sourceKey?: string;
-  title?: string;
+  content: string;
+  stanardizedContent: string[];
+  symbol: string;
+  sentimentStatus: string;
+  score: number;
+  source: string;
+  sourceKey: string;
+  title: string;
 }

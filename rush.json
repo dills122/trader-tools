@@ -425,8 +425,13 @@
       "versionPolicyName": "adminService"
     },
     {
-      "packageName": "sentiment-api",
-      "projectFolder": "apps/sentiment-api",
+      "packageName": "sentiment-rpc-server",
+      "projectFolder": "apps/sentiment-rpc-server",
+      "versionPolicyName": "traderService"
+    },
+    {
+      "packageName": "grpc-tools",
+      "projectFolder": "lib/grpc-tools",
       "versionPolicyName": "traderService"
     }
     // {

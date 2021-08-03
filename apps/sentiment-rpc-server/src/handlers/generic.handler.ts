@@ -1,7 +1,6 @@
 import * as grpc from '@grpc/grpc-js';
 import { Services } from 'sentiment-service';
 
-import { ProtoGrpcType } from '../../generated/generic';
 import { AnalysisRequest } from '../../generated/generic/AnalysisRequest';
 import { GenericSentimentServiceHandlers } from '../../generated/generic/GenericSentimentService';
 import { AnalysisResponse } from '../../generated/generic/AnalysisResponse';
@@ -42,8 +41,4 @@ const genericHandler: GenericSentimentServiceHandlers = {
   }
 };
 
-//Figure out the best way to export this for generic usage
-export default {
-  // service: GenericService, // Service interface
-  handler: genericHandler // Service interface definitions
-};
+export default genericHandler;

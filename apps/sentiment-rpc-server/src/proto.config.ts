@@ -10,7 +10,7 @@ export default {
       protoPath: globalFilePaths('/generic/generic.proto'),
       namespace: 'generic',
       serviceName: 'GenericSentimentService',
-      serviceDefinitions: GenericService.handler
+      serviceDefinitions: GenericService
     }
   }
 };

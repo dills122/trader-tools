@@ -1,9 +1,9 @@
-import { WordTokenizer } from 'natural';
 import { Loggers } from 'trader-sdk';
 const aposToLexForm = require('apos-to-lex-form');
 import SpellCorrector from 'spelling-corrector';
 import StopWord from 'stopword';
 import BadWords from 'bad-words';
+import * as tokenizers from './tokenizers';
 
 const AuditLogger = Loggers.Audit.logger;
 
@@ -42,8 +42,7 @@ export class InputStandardizer {
     const symbolStrippedInput = loweredLexedInput.replace(/[^a-zA-Z\s]+/g, '');
     AuditLogger.log(`Symbol Stripped: ${symbolStrippedInput}`, this.auditMode);
 
-    const tokenizer = new WordTokenizer(); //TODO this needs looked into to see what the best one is to use and if I can build a strat to switch them in scenerios
-    let tokenizedLexedInput: string[] = tokenizer.tokenize(symbolStrippedInput);
+    let tokenizedLexedInput: string[] = this.tokenizeInput(symbolStrippedInput);
     AuditLogger.log(`Tokenized: ${tokenizedLexedInput}`, this.auditMode);
 
     if (!disableProfanityFilter) {
@@ -71,6 +70,20 @@ export class InputStandardizer {
     }
     AuditLogger.log(`Final Product: ${tokenizedLexedInput}`, this.auditMode);
     return tokenizedLexedInput;
+  }
+
+  //Future state would be to actually have a way to return it in different forms, sentences, all words, etc
+  private tokenizeInput(inputString: string): string[] {
+    let tokenList: string[] = [];
+    const sentenceTokenizer = new tokenizers.Sentence.SentenceTokenizer({
+      stringToAnalyze: inputString
+    });
+    const wordTokenizer = new tokenizers.Word.WordTokenizer();
+    sentenceTokenizer.tokenize().forEach((sentenceToken) => {
+      const wordTokens = wordTokenizer.tokenize(sentenceToken);
+      tokenList = tokenList.concat(wordTokens);
+    });
+    return tokenList;
   }
 
   scrubTickerFromInput(

@@ -1,6 +1,6 @@
 import { assert, expect } from 'chai';
 import { EquityFilter } from '../../../lib/reddit/filters/equity-filter';
-import { WordTokenizer } from 'natural';
+import { InputStandardizer } from '../../../lib/standardize-input';
 import Sinon from 'sinon';
 
 describe('Reddit::', () => {
@@ -77,7 +77,7 @@ describe('Reddit::', () => {
         expect(result).to.be.a('string').and.length(0);
       });
       it('Should NOT error out if standardize input returns nothing', () => {
-        stubs.tokenizerStub = sandbox.stub(WordTokenizer.prototype, 'tokenize').returns([]);
+        stubs.tokenizerStub = sandbox.stub(InputStandardizer.prototype, <any>'tokenizeInput').returns([]);
         const filter = new EquityFilter({
           stringToAnalyze: `Cant believe $stocks are crusing this good`
         });

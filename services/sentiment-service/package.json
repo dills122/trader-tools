@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register test/**/**/*.spec.ts",
+    "test": "mocha -r ts-node/register \"test/**/*.spec.ts\"",
     "test:integration": "mocha -r ts-node/register test-integrations/**/**/*.spec.ts",
     "test:e2e": "mocha -r ts-node/register integrations/**/**/*.spec.ts",
     "build": "tsc -p .",

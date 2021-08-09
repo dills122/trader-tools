@@ -24,10 +24,8 @@ const genericHandler: GenericSentimentServiceHandlers = {
     if (!isSentimentAnalysisServiceArgs(call.request)) {
       return callback(Error('Incorrect request data'));
     }
-    //Need to figure out how to correctly type map here
     const service = new Services.Generic.GenericSentimentAnalysisService(call.request);
 
-    //Need to fix this setup
     service
       .analyze()
       .then((response) => {

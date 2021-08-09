@@ -8,14 +8,14 @@
     "test:integrations": "mocha -r ts-node/register integrations/**/*.spec.ts",
     "build": "tsc -p .",
     "compile": "tsc",
-    "clean": "tsc --build --clean",
+    "clean": "tsc --build --clean && rm -rf ./types",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "~4.1.3",
+    "typescript": "4.3.2",
     "mocha": "~8.2.1",
     "@types/mocha": "~8.2.0",
     "chai": "~4.2.0",

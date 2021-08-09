@@ -29,6 +29,8 @@ This is mono-repo is setup with an overall basic folder structure that will be e
 
 ## Getting Started
 
+Currently this project requires bash for command line functionality. There are some commands used that are bash specific.
+
 You'll need to install `rush` globally first.
 
 ```bash

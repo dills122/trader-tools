@@ -2,7 +2,7 @@ import grpcTools from 'grpc-tools';
 import { describe } from 'mocha';
 import { expect } from 'chai';
 import Sinon from 'sinon';
-import GenericRPC from '../../src/rpc/generic.rpc';
+import GenericRPC from '../../src/services/generic/generic.rpc';
 
 const subreddit = 'wallstreetbets';
 

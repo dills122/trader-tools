@@ -1,12 +1,12 @@
 import grpcTools from 'grpc-tools';
 
-import config from '../proto.config';
+import config from '../../proto.config';
 
 const { GenericSentimentService } = config.Services;
-import { ProtoGrpcType } from '../../generated/generic';
-import { GenericSentimentServiceClient } from '../../generated/generic/GenericSentimentService';
-import { AnalysisRequest__Output } from '../../generated/generic/AnalysisRequest';
-import { SentimentAnalysisResult__Output } from '../../generated/generic/SentimentAnalysisResult';
+import { ProtoGrpcType } from '../../../generated/generic';
+import { GenericSentimentServiceClient } from '../../../generated/generic/GenericSentimentService';
+import { AnalysisRequest__Output } from '../../../generated/generic/AnalysisRequest';
+import { SentimentAnalysisResult__Output } from '../../../generated/generic/SentimentAnalysisResult';
 
 export default (args: AnalysisRequest__Output): Promise<SentimentAnalysisResult__Output[]> => {
   const rpcClient = grpcTools.clientFactory<ProtoGrpcType, GenericSentimentServiceClient>(

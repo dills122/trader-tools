@@ -1,7 +1,7 @@
-import rpc from './src/rpc';
+import services from './src/services';
 
 export default {
-  rpc
+  services
 };
 
-export { rpc };
+export { services };

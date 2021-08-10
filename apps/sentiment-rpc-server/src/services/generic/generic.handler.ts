@@ -1,13 +1,13 @@
 import * as grpc from '@grpc/grpc-js';
 import { Services } from 'sentiment-service';
 
-import { AnalysisRequest } from '../../generated/generic/AnalysisRequest';
-import { GenericSentimentServiceHandlers } from '../../generated/generic/GenericSentimentService';
-import { AnalysisResponse } from '../../generated/generic/AnalysisResponse';
+import { AnalysisRequest } from '../../../generated/generic/AnalysisRequest';
+import { GenericSentimentServiceHandlers } from '../../../generated/generic/GenericSentimentService';
+import { AnalysisResponse } from '../../../generated/generic/AnalysisResponse';
 
 //TODO fix the types to hopefully not need this
 export const isSentimentAnalysisServiceArgs = (
-  object: any
+  object: AnalysisRequest
 ): object is Services.Generic.SentimentAnalysisServiceArgs => {
   return object.socialSource === 'reddit' && object.analyzer === 'natural';
 };

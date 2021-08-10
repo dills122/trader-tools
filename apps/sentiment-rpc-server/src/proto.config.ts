@@ -1,7 +1,7 @@
-const { join } = require('path');
+import { join } from 'path';
 const protoDefinitionPath = 'protos';
 
-import GenericService from './handlers/generic.handler';
+import GenericService from './services/generic/generic.handler';
 
 export default {
   protoDefinitionPath,

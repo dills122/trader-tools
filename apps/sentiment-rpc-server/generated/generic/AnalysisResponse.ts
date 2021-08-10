@@ -1,4 +1,4 @@
-// Original file: src/protos/generic/generic.proto
+// Original file: src/services/generic/generic.proto
 
 import type {
   SentimentAnalysisResult as _generic_SentimentAnalysisResult,

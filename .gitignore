@@ -71,3 +71,6 @@ types/
 **/types/
 
 services/templating-service/test-templates/
+
+*.crt
+*.key

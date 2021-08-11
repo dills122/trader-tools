@@ -6,6 +6,8 @@ import path from 'path';
 import config from './src/proto.config';
 
 const host = '0.0.0.0:9090';
+const ip = process.env.IP;
+const port = process.env.PORT;
 
 function getServer(): grpc.Server {
   const server = grpcTools.serverFactory(config);
@@ -31,9 +33,9 @@ function getCredentials(): grpc.ServerCredentials {
 
 if (require.main === module) {
   const server = getServer();
-
   const creds = getCredentials();
-  server.bindAsync(host, creds, (err: Error | null, port: number) => {
+  const serverAddress = host && ip ? `${ip}:${port}` : host;
+  server.bindAsync(serverAddress, creds, (err: Error | null, port: number) => {
     if (err) {
       console.error(`Server error: ${err.message}`);
     } else {

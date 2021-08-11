@@ -7,10 +7,13 @@ import { ProtoGrpcType } from '../../../generated/generic';
 import { GenericSentimentServiceClient } from '../../../generated/generic/GenericSentimentService';
 import { AnalysisRequest__Output } from '../../../generated/generic/AnalysisRequest';
 import { SentimentAnalysisResult__Output } from '../../../generated/generic/SentimentAnalysisResult';
+import buildCredentials from '../../util/client-credential-builder';
 
 export default (args: AnalysisRequest__Output): Promise<SentimentAnalysisResult__Output[]> => {
+  const credentials = buildCredentials();
   const rpcClient = grpcTools.clientFactory<ProtoGrpcType, GenericSentimentServiceClient>(
-    GenericSentimentService
+    GenericSentimentService,
+    credentials
   );
   const deadline = new Date();
   deadline.setSeconds(deadline.getSeconds() + 5);

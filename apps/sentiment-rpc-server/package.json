@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -p .",
     "build:proto": "sh ./scripts/protoc/protoc.sh",
-    "build:proto:win": "./scripts/protoc/protoc.ps1",
+    "cert:gen": "sh ./scripts/cert-gen/generate.sh",
     "compile": "tsc",
     "clean": "tsc --build --clean && rm -rf ./types",
     "lint": "eslint . --ext .ts",

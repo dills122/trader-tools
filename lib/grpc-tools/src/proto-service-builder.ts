@@ -1,7 +1,7 @@
 import grpc from '@grpc/grpc-js';
 import protoLoader from '@grpc/proto-loader';
 import _ from 'lodash';
-import joi from '@hapi/joi';
+import joi from 'joi';
 import { ServiceConfig, ServicePackageItem } from './shared';
 
 const schema = joi.object().keys({

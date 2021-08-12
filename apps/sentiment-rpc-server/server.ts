@@ -5,12 +5,12 @@ import path from 'path';
 
 import config from './src/proto.config';
 
-const host = '0.0.0.0:9090';
+const host = 'localhost:9090';
 const ip = process.env.IP;
 const port = process.env.PORT;
 
 function getServer(): grpc.Server {
-  const server = grpcTools.serverFactory(config);
+  const server = grpcTools.serverFactory(config, new grpc.Server());
   return server;
 }
 
@@ -19,11 +19,11 @@ function getCredentials(): grpc.ServerCredentials {
     return grpc.ServerCredentials.createInsecure();
   } else {
     return grpc.ServerCredentials.createSsl(
-      fs.readFileSync(path.join(process.cwd(), 'certs', 'ca-cert.pem')),
+      fs.readFileSync(path.join(process.cwd(), 'certs', 'ca.cert')),
       [
         {
-          private_key: fs.readFileSync(path.join(process.cwd(), 'certs', 'server-key.pem')),
-          cert_chain: fs.readFileSync(path.join(process.cwd(), 'certs', 'server-cert.pem'))
+          private_key: fs.readFileSync(path.join(process.cwd(), 'certs', 'service.key')),
+          cert_chain: fs.readFileSync(path.join(process.cwd(), 'certs', 'service.pem'))
         }
       ],
       true

@@ -24,18 +24,22 @@ const genericHandler: GenericSentimentServiceHandlers = {
     if (!isSentimentAnalysisServiceArgs(call.request)) {
       return callback(Error('Incorrect request data'));
     }
-    const service = new Services.Generic.GenericSentimentAnalysisService(call.request);
 
-    service
-      .analyze()
-      .then((response) => {
-        return callback(null, {
-          analysisResults: response
-        });
-      })
-      .catch((err) => {
-        return callback(err);
-      });
+    return callback(null, {
+      analysisResults: []
+    });
+    // const service = new Services.Generic.GenericSentimentAnalysisService(call.request);
+
+    // service
+    //   .analyze()
+    //   .then((response) => {
+    //     return callback(null, {
+    //       analysisResults: response
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     return callback(err);
+    //   });
   }
 };
 

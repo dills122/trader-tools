@@ -20,6 +20,7 @@ export default (args: AnalysisRequest__Output): Promise<SentimentAnalysisResult_
   return new Promise((resolve, reject) => {
     rpcClient.waitForReady(deadline, (error?: Error) => {
       if (error) {
+        console.error(error);
         reject(Error('Client connection error'));
       } else {
         rpcClient.Analyze(args, (err, response) => {

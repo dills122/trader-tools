@@ -1,8 +1,8 @@
-import grpc from '@grpc/grpc-js';
-import protoLoader from '@grpc/proto-loader';
+import * as grpc from '@grpc/grpc-js';
+import * as protoLoader from '@grpc/proto-loader';
 import { ServiceConfigItem } from './shared';
 
-const server_address = 'localhost:50051'; //TODO update with arg
+const server_address = 'localhost:9090'; //TODO update with arg
 
 export default <T, B>(
   config: ServiceConfigItem,

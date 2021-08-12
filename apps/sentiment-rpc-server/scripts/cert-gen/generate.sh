@@ -1,27 +1,15 @@
 #!/bin/bash
 
-rm *.pem
+pushd ./certs
 
-# 1. Generate CA's private key and self-signed certificate
-openssl req -x509 -newkey rsa:4096 -days 365 -nodes -keyout ca-key.pem -out ca-cert.pem -subj "/C=US/ST=Michigan/L=Detroit/O=Steele Inc/OU=IT/CN=*.dsteele.dev/emailAddress=dylansteele57@gmail.com"
+openssl genrsa -out ca.key 4096
 
-echo "CA's self-signed certificate"
-openssl x509 -in ca-cert.pem -noout -text
+openssl req -x509 -newkey rsa:4096 -days 365 -nodes -keyout ca.key -out ca.cert -subj "/C=US/ST=Michigan/L=Detroit/O=Steele Inc/OU=IT/CN=*.dsteele.dev/emailAddress=dylansteele57@gmail.com"
 
-# 2. Generate web server's private key and certificate signing request (CSR)
-openssl req -newkey rsa:4096 -nodes -keyout server-key.pem -out server-req.pem -subj "/C=US/ST=Michigan/L=Detroit/O=Steele Inc/OU=IT/CN=*.dsteele.dev/emailAddress=dylansteele57@gmail.com"
+openssl genrsa -out service.key 4096
 
-# 3. Use CA's private key to sign web server's CSR and get back the signed certificate
-openssl x509 -req -in server-req.pem -days 60 -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -out server-cert.pem -extfile server-ext.cnf
+openssl req -new -key service.key -out service.csr -config ../local.cert.conf
 
-echo "Server's signed certificate"
-openssl x509 -in server-cert.pem -noout -text
+openssl x509 -req -in service.csr -CA ca.cert -CAkey ca.key -CAcreateserial -out service.pem -days 365 -sha256 -extfile ../local.cert.conf -extensions req_ext
 
-# 4. Generate client's private key and certificate signing request (CSR)
-openssl req -newkey rsa:4096 -nodes -keyout client-key.pem -out client-req.pem -subj "/C=US/ST=Michigan/L=Detroit/O=Steele Inc/OU=IT/CN=*.dsteele.dev/emailAddress=dylansteele57@gmail.com"
-
-# 5. Use CA's private key to sign client's CSR and get back the signed certificate
-openssl x509 -req -in client-req.pem -days 60 -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -out client-cert.pem -extfile client-ext.cnf
-
-echo "Client's signed certificate"
-openssl x509 -in client-cert.pem -noout -text
+popd

@@ -7,9 +7,9 @@ export default (): grpc.ChannelCredentials => {
     return grpc.credentials.createInsecure();
   } else {
     return grpc.credentials.createSsl(
-      fs.readFileSync(path.join(process.cwd(), 'certs', 'ca-cert.pem')),
-      fs.readFileSync(path.join(process.cwd(), 'certs', 'server-key.pem')),
-      fs.readFileSync(path.join(process.cwd(), 'certs', 'server-cert.pem'))
+      fs.readFileSync(path.join(process.cwd(), 'certs', 'ca.cert')),
+      fs.readFileSync(path.join(process.cwd(), 'certs', 'service.key')),
+      fs.readFileSync(path.join(process.cwd(), 'certs', 'service.pem'))
     );
   }
 };

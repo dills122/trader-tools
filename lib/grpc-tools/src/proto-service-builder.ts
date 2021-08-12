@@ -1,5 +1,5 @@
-import grpc from '@grpc/grpc-js';
-import protoLoader from '@grpc/proto-loader';
+import * as grpc from '@grpc/grpc-js';
+import * as protoLoader from '@grpc/proto-loader';
 import _ from 'lodash';
 import joi from 'joi';
 import { ServiceConfig, ServicePackageItem } from './shared';

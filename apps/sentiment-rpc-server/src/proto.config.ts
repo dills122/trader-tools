@@ -1,5 +1,5 @@
 import { join } from 'path';
-const protoDefinitionPath = 'protos';
+const protoDefinitionPath = 'services';
 
 import GenericService from './services/generic/generic.handler';
 

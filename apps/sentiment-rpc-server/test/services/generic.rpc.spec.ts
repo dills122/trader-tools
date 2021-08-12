@@ -1,8 +1,10 @@
-import grpcTools from 'grpc-tools';
+import * as grpc from '@grpc/grpc-js';
 import { describe } from 'mocha';
 import { expect } from 'chai';
 import Sinon from 'sinon';
 import GenericRPC from '../../src/services/generic/generic.rpc';
+import * as credUtil from '../../src/util/client-credential-builder';
+import * as clientFactoryWrapper from '../../src/util/client-wrapper';
 
 const subreddit = 'wallstreetbets';
 
@@ -13,11 +15,14 @@ describe('RPC::', function () {
 
     beforeEach(() => {
       sandbox = Sinon.createSandbox();
+      stubs.buildCredentialsStub = sandbox
+        .stub(credUtil, 'default')
+        .returns(grpc.credentials.createInsecure());
       stubs.waitForReadyStub = sandbox.stub().callsArg(1);
       stubs.AnalyzeStub = sandbox.stub().callsArgWith(1, null, {
         analysisResults: []
       });
-      stubs.clientFactoryStub = sandbox.stub(grpcTools, 'clientFactory').returns({
+      stubs.clientFactoryWrapperStub = sandbox.stub(clientFactoryWrapper, 'default').returns({
         waitForReady: stubs.waitForReadyStub,
         Analyze: stubs.AnalyzeStub
       });

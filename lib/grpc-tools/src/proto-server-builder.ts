@@ -1,6 +1,6 @@
 import buildPackageDefinitions from './proto-service-builder';
 import { ServiceConfig } from './shared';
-import grpc from '@grpc/grpc-js';
+import * as grpc from '@grpc/grpc-js';
 import _ from 'lodash';
 
 export default (config: ServiceConfig, server = new grpc.Server()): grpc.Server => {

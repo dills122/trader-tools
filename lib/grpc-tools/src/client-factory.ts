@@ -1,13 +1,11 @@
-import grpc from '@grpc/grpc-js';
-import protoLoader from '@grpc/proto-loader';
+import * as grpc from '@grpc/grpc-js';
+import * as protoLoader from '@grpc/proto-loader';
 import { ServiceConfigItem } from './shared';
-
-const server_address = 'localhost:50051'; //TODO update with arg
 
 export default <T, B>(
   config: ServiceConfigItem,
   credentials: grpc.ChannelCredentials,
-  serverAddress: string = server_address
+  serverAddress: string
 ): B => {
   const packageDef = protoLoader.loadSync(config.protoPath);
   const grpcObj = (grpc.loadPackageDefinition(packageDef) as unknown) as T;

@@ -1,5 +1,3 @@
-import grpcTools from 'grpc-tools';
-
 import config from '../../proto.config';
 
 const { GenericSentimentService } = config.Services;
@@ -8,10 +6,11 @@ import { GenericSentimentServiceClient } from '../../../generated/generic/Generi
 import { AnalysisRequest__Output } from '../../../generated/generic/AnalysisRequest';
 import { SentimentAnalysisResult__Output } from '../../../generated/generic/SentimentAnalysisResult';
 import buildCredentials from '../../util/client-credential-builder';
+import clientFactoryWrapper from '../../util/client-wrapper';
 
 export default (args: AnalysisRequest__Output): Promise<SentimentAnalysisResult__Output[]> => {
   const credentials = buildCredentials();
-  const rpcClient = grpcTools.clientFactory<ProtoGrpcType, GenericSentimentServiceClient>(
+  const rpcClient = clientFactoryWrapper<ProtoGrpcType, GenericSentimentServiceClient>(
     GenericSentimentService,
     credentials
   );
@@ -20,6 +19,7 @@ export default (args: AnalysisRequest__Output): Promise<SentimentAnalysisResult_
   return new Promise((resolve, reject) => {
     rpcClient.waitForReady(deadline, (error?: Error) => {
       if (error) {
+        console.error(error);
         reject(Error('Client connection error'));
       } else {
         rpcClient.Analyze(args, (err, response) => {

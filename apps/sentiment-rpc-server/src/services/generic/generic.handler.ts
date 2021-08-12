@@ -24,6 +24,7 @@ const genericHandler: GenericSentimentServiceHandlers = {
     if (!isSentimentAnalysisServiceArgs(call.request)) {
       return callback(Error('Incorrect request data'));
     }
+
     const service = new Services.Generic.GenericSentimentAnalysisService(call.request);
 
     service

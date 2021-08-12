@@ -1,0 +1,16 @@
+# docker-compose.yml
+
+version: '3.7'
+services:
+  cron-app:
+    build:
+      context: .
+      dockerfile: ./apps/cron-app/Dockerfile
+  nginx:
+    image: nginx:1.19-alpine
+    ports:
+      - '8020:8020'
+    volumes:
+      - ./.docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - cron-app

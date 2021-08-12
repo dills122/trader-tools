@@ -11,3 +11,5 @@ export default {
   protoServiceBuilder,
   shared
 };
+
+export { clientFactory, serverFactory, protoServerBuilder, protoServiceBuilder, shared };

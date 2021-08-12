@@ -1,12 +1,12 @@
 {
   "apps": [
     {
-      "name": "cron",
-      "script": "./cron-runner.js",
+      "name": "admin-ui",
+      "script": "npm",
+      "args": "start",
       "merge_logs": true,
       "max_restarts": 20,
-      "instances": "max",
-      "exec_mode": "cluster",
+      "instances": "1",
       "max_memory_restart": "200M",
       "env": {
         "NODE_ENV": "production"

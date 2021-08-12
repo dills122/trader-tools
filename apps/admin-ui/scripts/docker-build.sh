@@ -8,4 +8,4 @@ rush install
 rush build
 
 mkdir ../prod
-rush deploy --project cron-app --target-folder ../prod
+rush deploy --project admin-ui --target-folder ../prod

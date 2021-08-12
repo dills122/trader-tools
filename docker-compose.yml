@@ -18,6 +18,12 @@ services:
       dockerfile: ./apps/admin-ui/Dockerfile
       ports:
         - '5025:5025'
+  sentiment-api:
+    build:
+      context: .
+      dockerfile: ./apps/sentiment-rpc-server/Dockerfile
+      ports:
+        - '9090:9090'
   nginx:
     image: nginx:1.19-alpine
     ports:
@@ -28,3 +34,4 @@ services:
       - cron-app
       - admin-api
       - admin-ui
+      - sentiment-api

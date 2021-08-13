@@ -71,7 +71,7 @@
     },
     {
       "projectName": "admin-ui",
-      "additionalProjectsToInclude": ["admin-api"]
+      "additionalProjectsToInclude": ["admin-api", "sentiment-rpc-server"]
     }
     // {
     //   /**

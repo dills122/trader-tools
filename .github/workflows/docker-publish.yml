@@ -9,13 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Docker Build, Tag, Push
     steps:
-      - name: Checkout
       - uses: actions/checkout@v2
+      - uses: docker/build-push-action@v1
         with:
           node-version: 14
-      - name: Build container image
-        uses: docker/build-push-action@v1
-        with:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
           registry: docker.pkg.github.com

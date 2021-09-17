@@ -3,7 +3,7 @@ name: Docker Base CD
 on:
   push:
     paths:
-      - '.docker/DockerFile'
+      - 'DockerFile'
 
 jobs:
   docker:
@@ -24,6 +24,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./.docker/DockerFile
+          context: .
           push: true
-          tag_with_sha: true
+          tags: user/app:latest

@@ -26,6 +26,7 @@ describe('RPC::', function () {
         waitForReady: stubs.waitForReadyStub,
         Analyze: stubs.AnalyzeStub
       });
+      stubs.consoleStub = sandbox.stub(console, 'error').returns();
     });
 
     afterEach(() => {

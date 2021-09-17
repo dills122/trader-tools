@@ -2,8 +2,8 @@ name: Docker Base CD
 
 on:
   push:
-    paths:
-      - 'DockerFile'
+    branches:
+      - master
 
 jobs:
   docker:

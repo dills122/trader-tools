@@ -26,4 +26,4 @@ jobs:
         with:
           context: ./.docker/DockerFile
           push: true
-          tag_with_sha: true
+          tags: user/app:latest

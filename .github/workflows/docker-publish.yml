@@ -3,7 +3,7 @@ name: Docker Base CD
 on:
   push:
     paths:
-      - './DockerFile'
+      - 'DockerFile'
 
 jobs:
   docker:

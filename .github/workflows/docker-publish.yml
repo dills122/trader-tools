@@ -10,7 +10,9 @@ jobs:
     name: Docker Build, Tag, Push
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        with:
+          node-version: 14
       - name: Build container image
         uses: docker/build-push-action@v1
         with:

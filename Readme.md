@@ -1,5 +1,7 @@
 # Trader Tools
 
+[![CI Job](https://github.com/dills122/trader-tools/actions/workflows/ci.action.yml/badge.svg)](https://github.com/dills122/trader-tools/actions/workflows/ci.action.yml)
+
 This mono-repo contains various tools and apps all centered around stocks/equities/cryptos.
 
 # Table of Contents

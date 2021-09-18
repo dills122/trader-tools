@@ -15,7 +15,7 @@
     "start": "node server.js",
     "test": "mocha -r ts-node/register \"test/**/*.spec.ts\"",
     "pm2": "pm2 start processes.json --no-daemon",
-    "pm2:dev": "ts-node-dev --respawn --transpile-only ./start.ts"
+    "pm2:dev": "ts-node-dev --respawn --transpile-only ./server.ts"
   },
   "keywords": [],
   "author": "",

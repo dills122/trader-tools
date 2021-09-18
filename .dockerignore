@@ -1,6 +1,6 @@
 .git
 .gitignore
-node_modules/
-temp/
-prod/
+**/node_modules/
+common/temp/
+common/prod/
 .github/

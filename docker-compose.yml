@@ -1,5 +1,3 @@
-# docker-compose.yml
-
 version: '3.7'
 services:
   cron-app:
@@ -12,12 +10,6 @@ services:
       dockerfile: ./apps/admin-api/Dockerfile
     ports:
       - '5050:5050'
-  admin-ui:
-    build:
-      context: .
-      dockerfile: ./apps/admin-ui/Dockerfile
-    ports:
-      - '5025:5025'
   sentiment-api:
     build:
       context: .
@@ -25,14 +17,10 @@ services:
     ports:
       - '9090:9090'
   nginx:
-    image: nginx:1.19-alpine
-    ports:
-      - '80:80'
-      - '443:443'
-    volumes:
-      - ./.docker/nginx/conf.d:/etc/nginx/conf.d
+    extends:
+      file: common-services.yml
+      service: nginx-base
     depends_on:
       - cron-app
       - admin-api
-      - admin-ui
       - sentiment-api

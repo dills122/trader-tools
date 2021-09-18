@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  admin-ui:
+    build:
+      context: .
+      dockerfile: ./apps/admin-ui/Dockerfile
+    ports:
+      - '5025:5025'
+  nginx:
+    volumes:
+      - ./.docker/nginx/conf.d/dev-proxy.conf:/etc/nginx/conf.d/proxy.conf
+    depends_on:
+      - admin-ui

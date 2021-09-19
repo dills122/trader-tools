@@ -6,8 +6,19 @@ services:
       dockerfile: ./apps/admin-ui/Dockerfile
     ports:
       - '${ADMIN_UI_PORT}:4200'
+    environment:
+      - DOCKER=1
   nginx:
     volumes:
       - ./.docker/nginx/conf.d/dev-proxy.conf:/etc/nginx/conf.d/proxy.conf
     depends_on:
       - admin-ui
+  admin-api:
+    environment:
+      - DOCKER=1
+  cron-app:
+    environment:
+      - DOCKER=1
+  sentiment-api:
+    environment:
+      - DOCKER=1

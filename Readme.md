@@ -1,6 +1,7 @@
 # Trader Tools
 
 [![CI Job](https://github.com/dills122/trader-tools/actions/workflows/ci.action.yml/badge.svg)](https://github.com/dills122/trader-tools/actions/workflows/ci.action.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/dills122/trader-tools/badge)](https://www.codefactor.io/repository/github/dills122/trader-tools)
 
 This mono-repo contains various tools and apps all centered around stocks/equities/cryptos.
 

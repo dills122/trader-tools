@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: ./apps/admin-ui/Dockerfile
     ports:
-      - '5025:5025'
+      - '${ADMIN_UI_PORT}:4200'
   nginx:
     volumes:
       - ./.docker/nginx/conf.d/dev-proxy.conf:/etc/nginx/conf.d/proxy.conf

@@ -6,5 +6,5 @@ rm -rf ./common/temp
 rush update --purge
 rush build
 mkdir ./prod
-rush deploy --project $1 --target-folder ./prod
+rush deploy --project "$1" --target-folder ./prod
 cp ./.env ./prod/

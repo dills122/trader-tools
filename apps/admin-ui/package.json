@@ -15,7 +15,7 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "pm2": "pm2 start processes.json --no-daemon",
-    "start:docker": "ng serve --host 0.0.0.0 --disable-host-check"
+    "start:dev": "npx ng serve --host 0.0.0.0 --disable-host-check"
   },
   "private": true,
   "dependencies": {

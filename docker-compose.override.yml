@@ -1,18 +1,10 @@
 version: '3.7'
 services:
-  admin-ui:
-    build:
-      context: .
-      dockerfile: ./apps/admin-ui/Dockerfile
-    ports:
-      - '${ADMIN_UI_PORT}:4200'
-    environment:
-      - DOCKER=1
   nginx:
     volumes:
-      - ./.docker/nginx/conf.d/dev-proxy.conf:/etc/nginx/conf.d/proxy.conf
-    depends_on:
-      - admin-ui
+      - './.docker/nginx/conf.d/dev-api-proxy.conf:/etc/nginx/conf.d/api.conf:ro'
+      - './.docker/nginx/conf.d/dev-ui-proxy.conf:/etc/nginx/conf.d/ui.conf:ro'
+      - './.docker/nginx/conf.d/base.conf:/etc/nginx/conf.d/base.conf:ro'
   admin-api:
     environment:
       - DOCKER=1

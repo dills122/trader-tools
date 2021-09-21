@@ -191,6 +191,10 @@ rush version --bump --version-policy={policyName}
 
 ## Container Development
 
+To have your docker dev environment work you will need to update your `hosts` file to accommodate the services urls.
+
+A PowerShell script is available in the `scripts` folder that will automatically set these up or you can manually navigate to your systems hosts file location `C:\System32\drivers\etc\hosts` or `/etc/hosts` and add all of the entries listed in the PowerShell script mentioned above.
+
 A docker dev environment is available to use with the following commands.
 
 ```bash
@@ -199,9 +203,16 @@ rush docker-up:dev
 ```
 
 ```bash
+# Spin up new Dev Env but builds fresh
+docker compose up -d --build
+```
+
+```bash
 # Shuts down the Env
 rush docker-down:dev
 ```
+
+If you also want to have the `admin-ui` up and running too, you will have to run that in another terminal window. using the `start:dev` command
 
 For more commands you can always run `rush --help` and all native, as well as custom commands will be listed their.
 

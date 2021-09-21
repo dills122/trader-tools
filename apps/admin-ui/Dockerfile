@@ -12,8 +12,9 @@ RUN mkdir ./prod
 RUN rush deploy --project admin-ui --target-folder ./prod
 RUN cp ./.env ./prod/
 WORKDIR /tmp/prod/apps/admin-ui
+RUN npm i -g @angular/cli
 RUN chown -R app /tmp/prod
 USER app
 # RUN source /.env I think its not getting copied over on the deploy build or something
 
-CMD ["pm2-runtime", "start", "processes.json"]
+CMD ["npm", "run", "start:docker"]

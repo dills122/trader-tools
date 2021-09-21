@@ -10,13 +10,17 @@
     "clean": "tsc --build --clean && rm -rf ./types",
     "start": "node start.js",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "lint:fix": "eslint . --ext .ts --fix",
+    "pm2": "pm2 start processes.json --no-daemon",
+    "pm2:dev": "ts-node-dev --respawn --transpile-only ./start.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hapi/hapi": "^20.1.5"
+    "@hapi/hapi": "^20.1.5",
+    "pm2": "^5.1.0",
+    "dotenv": "~10.0.0"
   },
   "devDependencies": {
     "@hapi/code": "^8.0.3",
@@ -27,6 +31,7 @@
     "@typescript-eslint/parser": "^4.28.5",
     "eslint": "^7.32.0",
     "typescript": "^4.3.2",
-    "lab-transform-typescript": "~3.0.1"
+    "lab-transform-typescript": "~3.0.1",
+    "ts-node-dev": "^1.1.8"
   }
 }

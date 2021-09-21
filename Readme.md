@@ -52,6 +52,8 @@ rush install
 
 You'll need to create an `.env` file with a few key-value pair to ensure all the services work correctly.
 
+An example file, `.env.example`, is available in the root directory and has all of the currently used ENV variables in all projects.
+
 In `~/` create an `.env` file, if one doesn't already exist. You'll need to follow the proceeding steps to finish setting up the external services and the `.env` items
 
 #### External Services Setup
@@ -190,23 +192,30 @@ rush version --bump --version-policy={policyName}
 
 ## Container Development
 
-Building the docker container
+To have your docker dev environment work you will need to update your `hosts` file to accommodate the services urls.
+
+A PowerShell script is available in the `scripts` folder that will automatically set these up or you can manually navigate to your systems hosts file location `C:\System32\drivers\etc\hosts` or `/etc/hosts` and add all of the entries listed in the PowerShell script mentioned above.
+
+A docker dev environment is available to use with the following commands.
 
 ```bash
-sudo docker build -t "repo:tagHere" ./
+# Spin up new Dev Env
+rush docker-up:dev
 ```
-
-Run container with port open
 
 ```bash
-sudo docker run -p 8080:8080 "containerId" &
+# Spin up new Dev Env but builds fresh
+docker compose up -d --build
 ```
-
-Run container and remote into it
 
 ```bash
-sudo docker run -it "containerId" /bin/bash
+# Shuts down the Env
+rush docker-down:dev
 ```
+
+If you also want to have the `admin-ui` up and running too, you will have to run that in another terminal window. using the `start:dev` command
+
+For more commands you can always run `rush --help` and all native, as well as custom commands will be listed their.
 
 ## Deployments
 

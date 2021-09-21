@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  cron-app:
+    build:
+      context: .
+      dockerfile: ./apps/cron-app/Dockerfile
+    restart: always
+  admin-api:
+    build:
+      context: .
+      dockerfile: ./apps/admin-api/Dockerfile
+    ports:
+      - '${ADMIN_API_PORT}:${ADMIN_API_PORT}'
+    restart: always
+  sentiment-api:
+    build:
+      context: .
+      dockerfile: ./apps/sentiment-rpc-server/Dockerfile
+    ports:
+      - '${SENTIMENT_RPC_PORT}:${SENTIMENT_RPC_PORT}'
+    restart: always
+  nginx:
+    extends:
+      file: common-services.yml
+      service: nginx-base
+    restart: always
+    depends_on:
+      - admin-api

@@ -1,7 +1,6 @@
-const host = 'localhost:9090';
-const ip = process.env.IP;
-const port = process.env.PORT;
+const PORT = process.env.SENTIMENT_RPC_PORT || 9090;
+const HOST = 'localhost';
 
 export const buildHostStr = (): string => {
-  return host && ip ? `${ip}:${port}` : host;
+  return `${HOST}:${PORT}`;
 };

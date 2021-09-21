@@ -2,15 +2,7 @@ FROM ghcr.io/dills122/trader-tools:master
 WORKDIR /tmp
 COPY ../ .
 
-# Add bash for testing and being able to run shell in container
-RUN apk add --update bash && rm -rf /var/cache/apk/*
-RUN adduser -S app
-RUN rm -rf ./common/temp
-RUN rush update --purge
-RUN rush build
-RUN mkdir ./prod
-RUN rush deploy --project sentiment-rpc-server --target-folder ./prod
-RUN cp ./.env ./prod/
+RUN sh ./scripts/docker-build.sh sentiment-rpc-server
 WORKDIR /tmp/prod/apps/sentiment-rpc-server
 RUN chown -R app /tmp/prod
 USER app

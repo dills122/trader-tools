@@ -1,13 +1,9 @@
 import Hapi from '@hapi/hapi';
 import { routes } from '.';
 
-const isRunningInDocker = process.env.DOCKER;
-const PORT = process.env.ADMIN_API_PORT || 5050;
-const HOST = isRunningInDocker ? 'admin-api' : 'localhost';
-
 const server: Hapi.Server = Hapi.server({
-  port: PORT,
-  host: HOST
+  port: 3000,
+  host: 'localhost'
 });
 
 const initialize = async () => {

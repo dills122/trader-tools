@@ -13,9 +13,7 @@
     "build": "echo \"Use build:ssr for build process\" && exit 0",
     "prerender": "ng run admin-ui:prerender",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix",
-    "pm2": "pm2 start processes.json --no-daemon",
-    "start:dev": "npx ng serve --host 0.0.0.0 --disable-host-check"
+    "lint:fix": "eslint . --ext .ts --fix"
   },
   "private": true,
   "dependencies": {
@@ -34,8 +32,7 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4",
-    "@nguniversal/common": "~12.1.0",
-    "pm2": "^5.1.0"
+    "@nguniversal/common": "~12.1.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.1.3",

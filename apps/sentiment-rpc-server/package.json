@@ -13,9 +13,7 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "start:dev": "ts-node server.ts",
     "start": "node server.js",
-    "test": "mocha -r ts-node/register \"test/**/*.spec.ts\"",
-    "pm2": "pm2 start processes.json --no-daemon",
-    "pm2:dev": "ts-node-dev --respawn --transpile-only ./server.ts"
+    "test": "mocha -r ts-node/register \"test/**/*.spec.ts\""
   },
   "keywords": [],
   "author": "",
@@ -26,8 +24,7 @@
     "dotenv": "^10.0.0",
     "google-protobuf": "^3.17.3",
     "sentiment-service": "~0.2.10",
-    "grpc-tools": "~0.2.10",
-    "pm2": "^5.1.0"
+    "grpc-tools": "~0.2.10"
   },
   "devDependencies": {
     "@types/chai": "~4.2.14",
@@ -42,7 +39,6 @@
     "mocha": "~8.2.1",
     "sinon": "~9.2.3",
     "ts-node": "^10.1.0",
-    "typescript": "4.3.2",
-    "ts-node-dev": "^1.1.8"
+    "typescript": "4.3.2"
   }
 }

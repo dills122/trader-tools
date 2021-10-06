@@ -3,9 +3,6 @@ import grpcTools from 'grpc-tools';
 import fs from 'fs';
 import path from 'path';
 import { buildHostStr } from './src/util/host';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 import config from './src/proto.config';
 

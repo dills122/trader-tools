@@ -1,19 +1,16 @@
-FROM ghcr.io/dills122/trader-tools:master
+FROM ghcr.io/dills122/rushjs-base-img:edge
 WORKDIR /tmp
-COPY ../ .
+COPY ../../ .
 
-# Add bash for testing and being able to run shell in container
-RUN apk add --update bash && rm -rf /var/cache/apk/*
 RUN adduser -S app
-RUN rm -rf ./common/temp
-RUN rush update --purge
-RUN rush build
-RUN mkdir ./prod
-RUN rush deploy --project sentiment-rpc-server --target-folder ./prod
-RUN cp ./.env ./prod/
+RUN rm -rf ./common/temp \
+    && rush update --purge \
+    && rush build
+RUN mkdir ./prod \
+    && rush deploy --project sentiment-rpc-server --target-folder ./prod \
+    && cp ./.env ./prod/
 WORKDIR /tmp/prod/apps/sentiment-rpc-server
 RUN chown -R app /tmp/prod
 USER app
-# RUN source /.env I think its not getting copied over on the deploy build or something
 
 CMD ["pm2-runtime", "start", "processes.json"]

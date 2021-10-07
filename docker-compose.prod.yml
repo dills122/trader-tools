@@ -1,0 +1,6 @@
+version: '3.7'
+services:
+  nginx:
+    volumes:
+      - ./.docker/nginx/conf.d/prod-proxy.conf:/etc/nginx/conf.d/proxy.conf
+# will need to have another volume for the built angular admin code

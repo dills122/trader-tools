@@ -64,6 +64,30 @@
       "commandKind": "global",
       "shellCommand": "prettier . --write",
       "summary": "Formats all the repos code"
+    },
+    {
+      "name": "docker-up:dev",
+      "commandKind": "global",
+      "shellCommand": "docker compose up -d",
+      "summary": "Starts dev docker env"
+    },
+    {
+      "name": "docker-down:dev",
+      "commandKind": "global",
+      "shellCommand": "docker compose down",
+      "summary": "Shut down dev docker env"
+    },
+    {
+      "name": "docker-up:prod",
+      "commandKind": "global",
+      "shellCommand": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d",
+      "summary": "Starts prod docker env"
+    },
+    {
+      "name": "docker-down:prod",
+      "commandKind": "global",
+      "shellCommand": "docker compose -f docker-compose.yml -f docker-compose.prod.yml down",
+      "summary": "Shut down prod docker env"
     }
 
     // {

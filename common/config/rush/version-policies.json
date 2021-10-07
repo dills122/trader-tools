@@ -90,13 +90,13 @@
   {
     "policyName": "traderService",
     "definitionName": "lockStepVersion",
-    "version": "0.2.10",
+    "version": "0.2.11",
     "nextBump": "patch"
   },
   {
     "policyName": "adminService",
     "definitionName": "lockStepVersion",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "nextBump": "patch"
   },
   {

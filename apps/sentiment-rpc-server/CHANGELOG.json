@@ -1,0 +1,11 @@
+{
+  "name": "sentiment-rpc-server",
+  "entries": [
+    {
+      "version": "0.2.11",
+      "tag": "sentiment-rpc-server_v0.2.11",
+      "date": "Thu, 07 Oct 2021 00:12:18 GMT",
+      "comments": {}
+    }
+  ]
+}

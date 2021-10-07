@@ -2,6 +2,12 @@
   "name": "api-service",
   "entries": [
     {
+      "version": "0.2.11",
+      "tag": "api-service_v0.2.11",
+      "date": "Thu, 07 Oct 2021 00:12:18 GMT",
+      "comments": {}
+    },
+    {
       "version": "0.2.10",
       "tag": "api-service_v0.2.10",
       "date": "Sat, 03 Apr 2021 03:38:47 GMT",

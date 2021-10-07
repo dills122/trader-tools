@@ -1,6 +1,6 @@
 {
   "name": "cron-app",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "runs all trading cron jobs",
   "main": "cron-runner.js",
   "scripts": {
@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "trading-services": "^0.2.10",
+    "trading-services": "^0.2.11",
     "node-cron": "~2.0.3",
     "express": "~4.17.1",
     "pm2": "^5.1.0"

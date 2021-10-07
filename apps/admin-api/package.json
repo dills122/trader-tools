@@ -1,6 +1,6 @@
 {
   "name": "admin-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "start.js",
   "scripts": {
@@ -26,11 +26,11 @@
     "@hapi/code": "^8.0.3",
     "@hapi/lab": "^24.3.2",
     "@types/hapi__hapi": "^20.0.9",
-    "@types/node": "^14.14.22",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
-    "eslint": "^7.32.0",
-    "typescript": "^4.3.2",
+    "@types/node": "~14.14.22",
+    "@typescript-eslint/eslint-plugin": "~4.19.0",
+    "@typescript-eslint/parser": "~4.19.0",
+    "eslint": "~7.22.0",
+    "typescript": "4.3.2",
     "lab-transform-typescript": "~3.0.1",
     "ts-node-dev": "^1.1.8"
   }

@@ -3,6 +3,7 @@ import { assert, expect } from 'chai';
 import { CommentFilter } from '../../../lib/reddit/filters/comment-filter';
 import { Mocks, Socials } from 'api-service';
 import _ from 'lodash';
+import { FilterType } from '../../../lib/reddit/filters';
 
 const subreddit = 'wallstreetbets';
 
@@ -22,7 +23,7 @@ describe('Reddit::', () => {
         const second = mocks[1];
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: true,
+          filterType: FilterType.discussion,
           subreddit
         }).filter();
         assert(filteredComments);
@@ -36,7 +37,7 @@ describe('Reddit::', () => {
       it('Should execute happy path for nonShitpostingMode, return empty results', () => {
         const filteredComments = new CommentFilter({
           comments: [mocks[0]],
-          matureFilter: true,
+          filterType: FilterType.discussion,
           subreddit
         }).filter();
         assert(filteredComments);
@@ -50,7 +51,7 @@ describe('Reddit::', () => {
         mocks[0].body = 'Fuck $ABR its trash';
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: true,
+          filterType: FilterType.discussion,
           subreddit
         }).filter();
         assert(filteredComments);
@@ -64,7 +65,7 @@ describe('Reddit::', () => {
         mocks[0].body = 'Fuck $ABR its trash.\n\n cannot make any money out here!';
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: false,
+          filterType: FilterType.shitpost,
           subreddit
         }).filter();
         assert(filteredComments);
@@ -79,7 +80,7 @@ describe('Reddit::', () => {
         mocks[0].body = 'Fuck $ABR its trash.\n cannot make any money out here!';
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: false,
+          filterType: FilterType.shitpost,
           subreddit
         }).filter();
         assert(filteredComments);
@@ -94,7 +95,7 @@ describe('Reddit::', () => {
         mocks[0].body = 'Checkout the new subreddit r/TV, and hold $GME.';
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: false,
+          filterType: FilterType.shitpost,
           subreddit
         }).filter();
         assert(filteredComments);
@@ -110,7 +111,7 @@ describe('Reddit::', () => {
           'Fuck $ABR its trash.\n cannot make any money out here!\n [https://www.channelnewsasia.com/news/business/goldman-sold-us-10-5-billion-of-stocks-in-block-trade-spree--bloomberg-news-14507154](https://www.channelnewsasia.com/news/business/goldman-sold-us-10-5-billion-of-stocks-in-block-trade-spree--bloomberg-news-14507154)';
         const filteredComments = new CommentFilter({
           comments: mocks,
-          matureFilter: false,
+          filterType: FilterType.shitpost,
           subreddit
         }).filter();
         assert(filteredComments);

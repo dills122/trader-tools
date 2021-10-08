@@ -4,12 +4,12 @@ import {
   analyzerType,
   FlagsAndOptions,
   GenericSentimentAnalysisResult,
-  SentimentAnalysisFilterFlags,
   serviceAnalysisType
 } from '../../shared-types';
 import { FrontPageService } from './front-page.service';
 import { GenericCommentTransformer } from '../../reddit/transformers';
 import { CommentListAnalyzerResult } from '../analyzers/comment-list-sentiment-analyzer';
+import { FilterType } from '../filters';
 
 export interface GenericRedditServiceArgs extends FlagsAndOptions {
   serviceAnalysisType: serviceAnalysisType;
@@ -21,7 +21,7 @@ export class GenericRedditService {
   private serviceAnalysisType: serviceAnalysisType;
   private subreddit: string;
   private analyzer: analyzerType;
-  private filterFlags: SentimentAnalysisFilterFlags;
+  private filterType: FilterType;
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
   private equityWhitelistEnabled: boolean;
@@ -35,14 +35,14 @@ export class GenericRedditService {
       try {
         console.log('Executing Reddit Front Page Service', {
           analyzer: this.analyzer,
-          filterFlags: this.filterFlags,
+          filterType: this.filterType,
           subreddit: this.subreddit,
           analyzerOptions: this.analyzerOptions,
           equityWhitelist: this.whitelist
         });
         const serviceInst = new FrontPageService({
           analyzer: this.analyzer,
-          filterFlags: this.filterFlags,
+          filterType: this.filterType,
           subreddit: this.subreddit,
           analyzerOptions: this.analyzerOptions,
           equityWhitelist: this.whitelist,

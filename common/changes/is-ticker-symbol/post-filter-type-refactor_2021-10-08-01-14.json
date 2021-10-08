@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "changeType": 1,
+      "comment": "Dependency api-service version bump from ^0.2.11 to ^0.2.12.",
+      "packageName": "is-ticker-symbol"
+    }
+  ],
+  "packageName": "is-ticker-symbol",
+  "email": "dylansteele57@gmail.com"
+}

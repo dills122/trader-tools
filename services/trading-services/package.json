@@ -1,6 +1,6 @@
 {
   "name": "trading-services",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -21,9 +21,9 @@
     "@typescript-eslint/eslint-plugin": "~4.19.0"
   },
   "dependencies": {
-    "api-service": "^0.2.11",
-    "trader-sdk": "^0.2.11",
+    "api-service": "^0.2.12",
+    "trader-sdk": "^0.2.12",
     "lodash": "~4.17.21",
-    "templating-service": "^0.2.11"
+    "templating-service": "^0.2.12"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "api-service",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
   "dependencies": {
     "got": "~11.8.2",
     "dotenv": "~10.0.0",
-    "trader-sdk": "^0.2.11",
+    "trader-sdk": "^0.2.12",
     "lodash": "~4.17.21",
     "snoowrap": "~1.22.0"
   }

@@ -1,16 +1,17 @@
 import _ from 'lodash';
 import BadWords from 'bad-words';
 import { Socials } from 'api-service';
-import { SentimentAnalysisFilterFlags } from '../../shared-types';
 import { EquityFilter } from './equity-filter';
 import { EntityFilter } from './entity-filter';
 import { config, SubredditConfigSchema } from '../config';
+import { FilterType } from './';
 
-export interface CommentFilterArgs extends SentimentAnalysisFilterFlags {
+export interface CommentFilterArgs {
   comments: Socials.Reddit.Types.Comment[];
   subreddit: string;
   equityWhitelistEnabled?: boolean;
   equityWhitelist?: string[];
+  filterType: FilterType; //TODO does not seemed to be used here
 }
 
 export class CommentFilter {
@@ -19,11 +20,13 @@ export class CommentFilter {
   private whitelist: string[];
   private subreddit: string;
   private subredditConfig: SubredditConfigSchema;
+  private filterType: FilterType;
 
   constructor(args: CommentFilterArgs) {
     _.assign(this, args);
     this.subreddit = args.subreddit;
     this.subredditConfig = config.subreddits[this.subreddit];
+    this.matureFilter = this.shouldEnableMatureLanguageFilter();
     if (args.equityWhitelistEnabled || (args.equityWhitelist && args.equityWhitelist.length > 0)) {
       this.whitelist = args.equityWhitelist || this.subredditConfig.whitelist;
     }
@@ -62,6 +65,10 @@ export class CommentFilter {
       return commentsWithTickers.filter((comment) => this.whitelist.includes(comment.tickerSymbol));
     }
     return commentsWithTickers;
+  }
+
+  private shouldEnableMatureLanguageFilter() {
+    return ![FilterType.shitpost, FilterType.chaos].includes(this.filterType);
   }
 
   private removeStickiedComments() {

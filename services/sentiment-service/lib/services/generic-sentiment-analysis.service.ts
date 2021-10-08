@@ -5,12 +5,12 @@ import {
   analyzerType,
   FlagsAndOptions,
   GenericSentimentAnalysisResult,
-  SentimentAnalysisFilterFlags,
   serviceAnalysisType,
   socialSourceType
 } from '../shared-types';
 import { General } from '../refiners';
 import { GenericService } from '../reddit/services';
+import { FilterType } from '../reddit/filters';
 
 export interface SentimentAnalysisServiceArgs extends FlagsAndOptions {
   socialSource: socialSourceType;
@@ -24,14 +24,13 @@ export class GenericSentimentAnalysisService {
   private analyzer: analyzerType;
   private serviceAnalysisType: serviceAnalysisType;
   private subreddit: string;
-  private filterFlags: SentimentAnalysisFilterFlags;
+  private filterType: FilterType;
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
   private equityWhitelistEnabled: boolean;
 
   constructor(args: SentimentAnalysisServiceArgs) {
     _.assign(this, args);
-    this.analyzeFilterFlags();
   }
 
   async analyze(): Promise<AggregatedRefinedSentimentData[]> {
@@ -39,7 +38,7 @@ export class GenericSentimentAnalysisService {
       case 'reddit': {
         console.log('Executing Reddit Generic Service', {
           analyzer: this.analyzer,
-          filterFlags: this.filterFlags,
+          filterType: this.filterType,
           serviceAnalysisType: this.serviceAnalysisType,
           subreddit: this.subreddit,
           analyzerOptions: this.analyzerOptions,
@@ -47,7 +46,7 @@ export class GenericSentimentAnalysisService {
         });
         const serviceInst = new GenericService.GenericRedditService({
           analyzer: this.analyzer,
-          filterFlags: this.filterFlags,
+          filterType: this.filterType,
           serviceAnalysisType: this.serviceAnalysisType,
           subreddit: this.subreddit,
           analyzerOptions: this.analyzerOptions,
@@ -61,54 +60,6 @@ export class GenericSentimentAnalysisService {
       default:
         throw Error('Unsupported social source provided');
     }
-  }
-
-  private analyzeFilterFlags() {
-    if (!this.filterFlags) {
-      //Default case if nothing is provided
-      return this.setFilterFlags({
-        discussionMode: true
-      });
-    }
-    const { chaosMode, discussionMode, ddMode } = this.filterFlags;
-    if (chaosMode) {
-      return this.setFilterFlags({
-        ...this.disableAllFilterFlagsOfType(this.filterFlags, 'mode'),
-        chaosMode: true,
-        matureFilter: false
-      });
-    }
-    if (discussionMode) {
-      return this.setFilterFlags({
-        ...this.disableAllFilterFlagsOfType(this.filterFlags, 'mode'),
-        discussionMode: true
-      });
-    }
-    if (ddMode) {
-      return this.setFilterFlags({
-        ...this.disableAllFilterFlagsOfType(this.filterFlags, 'mode'),
-        ddMode: true
-      });
-    }
-    //Default case if all are false or empty object
-    return this.setFilterFlags({
-      discussionMode: true
-    });
-  }
-
-  private setFilterFlags(filterFlags: SentimentAnalysisFilterFlags) {
-    this.filterFlags = filterFlags;
-  }
-
-  private disableAllFilterFlagsOfType(filterFlags: SentimentAnalysisFilterFlags, type: 'mode' | 'filter') {
-    for (const [key] of Object.entries(filterFlags)) {
-      const isDesiredType = key.toLowerCase().includes(type);
-      if (!isDesiredType) {
-        continue;
-      }
-      filterFlags[key] = false;
-    }
-    return filterFlags;
   }
 
   private refineSentimentData(sentimentData: GenericSentimentAnalysisResult[]) {

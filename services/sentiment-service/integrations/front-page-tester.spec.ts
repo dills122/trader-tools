@@ -1,4 +1,5 @@
 import { assert, expect } from 'chai';
+import { FilterType } from '../lib/reddit/filters';
 import { Generic } from '../lib/services';
 
 describe('Tester::', function () {
@@ -8,9 +9,7 @@ describe('Tester::', function () {
       analyzer: 'natural',
       serviceAnalysisType: 'front-page',
       socialSource: 'reddit',
-      filterFlags: {
-        discussionMode: true
-      },
+      filterType: FilterType.general,
       subreddit: 'wallstreetbets'
     });
 

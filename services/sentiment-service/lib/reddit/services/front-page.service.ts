@@ -2,9 +2,10 @@ import _ from 'lodash';
 import { Socials } from 'api-service';
 import { CommentFilter, PostFilter } from '../filters';
 import { CommentAnalyzer } from '../analyzers';
-import { AnalyzerOptions, FlagsAndOptions, SentimentAnalysisFilterFlags } from '../../shared-types';
+import { AnalyzerOptions, FlagsAndOptions } from '../../shared-types';
 import { FrontPageGather } from '../gatherer-services';
 import { config } from '../config';
+import { FilterType } from '../filters';
 export interface FrontPageServiceArgs extends FlagsAndOptions {
   subreddit: string;
   analyzer: string;
@@ -12,7 +13,7 @@ export interface FrontPageServiceArgs extends FlagsAndOptions {
 
 export class FrontPageService {
   private subreddit: string;
-  private filterFlags: SentimentAnalysisFilterFlags;
+  private filterType: FilterType;
   private analyizedCommentsList: CommentAnalyzer.CommentListAnalyzerResult[] = [];
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
@@ -70,9 +71,7 @@ export class FrontPageService {
   private filterPosts(postList: Socials.Reddit.Types.Post[]) {
     const postFilterInst = new PostFilter.PostFilter({
       posts: postList,
-      discussionMode: this.filterFlags.discussionMode,
-      chaosMode: this.filterFlags.chaosMode,
-      ddMode: this.filterFlags.ddMode
+      filterType: this.filterType
     });
     const filteredPosts = postFilterInst.filter();
     if (filteredPosts.length <= 0) {
@@ -84,10 +83,10 @@ export class FrontPageService {
   private filterComments(comments: Socials.Reddit.Types.Comment[]) {
     const filteredCommentsInst = new CommentFilter.CommentFilter({
       comments: comments,
-      ...this.filterFlags,
       subreddit: this.subreddit,
       equityWhitelist: this.whitelist,
-      equityWhitelistEnabled: this.equityWhitelistEnabled
+      equityWhitelistEnabled: this.equityWhitelistEnabled,
+      filterType: this.filterType
     });
 
     return filteredCommentsInst.filter();

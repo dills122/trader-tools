@@ -10,6 +10,7 @@ import { FrontPageService } from './front-page.service';
 import { GenericCommentTransformer } from '../../reddit/transformers';
 import { CommentListAnalyzerResult } from '../analyzers/comment-list-sentiment-analyzer';
 import { FilterType } from '../filters';
+import { OverrideFlags } from '../filters/models/override-flags';
 
 export interface GenericRedditServiceArgs extends FlagsAndOptions {
   serviceAnalysisType: serviceAnalysisType;
@@ -25,6 +26,7 @@ export class GenericRedditService {
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
   private equityWhitelistEnabled: boolean;
+  private overrideTypes: OverrideFlags;
 
   constructor(args: GenericRedditServiceArgs) {
     _.assign(this, args);
@@ -46,7 +48,8 @@ export class GenericRedditService {
           subreddit: this.subreddit,
           analyzerOptions: this.analyzerOptions,
           equityWhitelist: this.whitelist,
-          equityWhitelistEnabled: this.equityWhitelistEnabled
+          equityWhitelistEnabled: this.equityWhitelistEnabled,
+          overrideTypes: this.overrideTypes
         });
         await serviceInst.service();
         const redditSentimentAnalysisData = serviceInst.getSentimentAnalysisResults();

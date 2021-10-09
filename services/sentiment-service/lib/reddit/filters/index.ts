@@ -1,6 +1,6 @@
-export * as FlairFilter from './flair-filter';
-export * as PostFilter from './post-filter';
-export * as CommentFilter from './comment-filter';
-export * as EquityFilter from './equity-filter';
-export * as EntityFilter from './entity-filter';
+export * from './flair-filter';
+export * from './post-filter';
+export * from './comment-filter';
+export * from './equity-filter';
+export * from './entity-filter';
 export * from './models';

@@ -11,12 +11,17 @@ import {
 import { General } from '../refiners';
 import { GenericService } from '../reddit/services';
 import { FilterType } from '../reddit/filters';
+import {
+  OverrideFlags,
+  initialState as OverrideFiltersInitialState
+} from '../reddit/filters/models/override-flags';
 
-export interface SentimentAnalysisServiceArgs extends FlagsAndOptions {
+export interface SentimentAnalysisServiceArgs extends Omit<FlagsAndOptions, 'overrideTypes'> {
   socialSource: socialSourceType;
   analyzer: analyzerType;
   serviceAnalysisType: serviceAnalysisType;
   subreddit?: string;
+  overrideTypes?: OverrideFlags;
 }
 
 export class GenericSentimentAnalysisService {
@@ -28,9 +33,14 @@ export class GenericSentimentAnalysisService {
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
   private equityWhitelistEnabled: boolean;
+  private overrideTypes: OverrideFlags;
 
   constructor(args: SentimentAnalysisServiceArgs) {
     _.assign(this, args);
+    this.overrideTypes = {
+      ...OverrideFiltersInitialState,
+      ...(args.overrideTypes || {})
+    };
   }
 
   async analyze(): Promise<AggregatedRefinedSentimentData[]> {
@@ -51,7 +61,8 @@ export class GenericSentimentAnalysisService {
           subreddit: this.subreddit,
           analyzerOptions: this.analyzerOptions,
           equityWhitelist: this.whitelist,
-          equityWhitelistEnabled: this.equityWhitelistEnabled
+          equityWhitelistEnabled: this.equityWhitelistEnabled,
+          overrideTypes: this.overrideTypes
         });
         const sentimentData = await serviceInst.service();
         console.log('Finished Executing Reddit Service');

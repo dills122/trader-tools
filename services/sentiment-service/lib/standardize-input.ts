@@ -39,6 +39,10 @@ export class InputStandardizer {
     AuditLogger.log(`Lexed: ${lexedInput}`, this.auditMode);
     const loweredLexedInput = lexedInput.toLowerCase();
 
+    /**
+     * TODO I think you would want to keep symbols like .,;: for the sentence tokenizer to pickup
+     * Would need to ensure all symbols are filtered out later on though
+     */
     const symbolStrippedInput = loweredLexedInput.replace(/[^a-zA-Z\s]+/g, '');
     AuditLogger.log(`Symbol Stripped: ${symbolStrippedInput}`, this.auditMode);
 
@@ -69,6 +73,13 @@ export class InputStandardizer {
       throw Error('No results found after standardizing input');
     }
     AuditLogger.log(`Final Product: ${tokenizedLexedInput}`, this.auditMode);
+    /**
+     * TODO future output should be an object of:
+     * dirtyInput: original input string | string
+     * scrubbedInputWordTokenized: clean word tokenized output | string[]
+     * scrubbedInput: clean non-tokenized output | string
+     * scrubbedInputSentenceTokenized: clean sentence tokenized output | string[]
+     */
     return tokenizedLexedInput;
   }
 

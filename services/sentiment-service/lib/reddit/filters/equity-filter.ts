@@ -41,9 +41,9 @@ export class EquityFilter {
     this.standardizeData();
   }
 
-  filter(): string {
+  filter(): string | null {
     if (this.tokenizedInputString.length <= 0) {
-      return '';
+      return null;
     }
     try {
       const ticker = this.checkForTickerSymbol();
@@ -54,7 +54,7 @@ export class EquityFilter {
       }
     } catch (err) {
       console.error(err);
-      return '';
+      return null;
     }
     if (!this.disableCompanyMatching) {
       //TODO need to rework this
@@ -68,7 +68,7 @@ export class EquityFilter {
         }
       }
     }
-    return '';
+    return null;
   }
 
   public getTickerSymbolIfPresent(): string {

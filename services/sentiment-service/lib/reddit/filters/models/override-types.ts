@@ -1,6 +1,6 @@
 export interface OverrideTypes {
-  matureLanguageFilter: boolean;
-  postMustContainSecurity: boolean;
+  matureLanguageFilter?: boolean;
+  postMustContainSecurity?: boolean;
 }
 
 export const initialState = {

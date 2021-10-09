@@ -1,4 +1,4 @@
-export interface OverrideTypes {
+export interface OverrideFlags {
   matureLanguageFilter?: boolean;
   postMustContainSecurity?: boolean;
 }
@@ -6,4 +6,4 @@ export interface OverrideTypes {
 export const initialState = {
   matureLanguageFilter: true,
   postMustContainSecurity: false
-} as OverrideTypes;
+} as OverrideFlags;

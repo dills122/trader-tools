@@ -60,21 +60,21 @@ describe('Reddit::', () => {
           stringToAnalyze: `Cant believe stocks are crusing this good`
         });
         const result = filter.filter();
-        expect(result).to.be.a('string').and.length(0);
+        expect(result).to.be.null;
       });
       it('Should NOT find a stock ticker symbol', () => {
         const filter = new EquityFilter({
           stringToAnalyze: `Holy moly the market it crazyy`
         });
         const result = filter.filter();
-        expect(result).to.be.a('string').and.length(0);
+        expect(result).to.be.null;
       });
       it('Should NOT find a stock ticker symbol', () => {
         const filter = new EquityFilter({
           stringToAnalyze: `Cant believe $stocks are crusing this good`
         });
         const result = filter.filter();
-        expect(result).to.be.a('string').and.length(0);
+        expect(result).to.be.null;
       });
       it('Should NOT error out if standardize input returns nothing', () => {
         stubs.tokenizerStub = sandbox.stub(InputStandardizer.prototype, <any>'tokenizeInput').returns([]);
@@ -83,7 +83,7 @@ describe('Reddit::', () => {
         });
         expect(stubs.tokenizerStub.callCount).to.equal(1);
         const result = filter.filter();
-        expect(result).to.be.equal('');
+        expect(result).to.be.null;
       });
 
       describe('Blacklist::', () => {
@@ -99,7 +99,7 @@ describe('Reddit::', () => {
             blacklist: ['lmao']
           });
           const resultWithUpdatedBlacklist = filter.filter();
-          expect(resultWithUpdatedBlacklist).to.be.a('string').and.length(0);
+          expect(resultWithUpdatedBlacklist).to.be.null;
         });
         it('Custom blacklist should trump config one', () => {
           const stringToAnalyze = `I need you to get me those important documents to me by eod. is that possible?`;
@@ -108,7 +108,7 @@ describe('Reddit::', () => {
             auditMode: true
           });
           const result = filter.filter();
-          expect(result).to.be.a('string').and.not.equal('EOD');
+          expect(result).to.be.null;
           filter = new EquityFilter({
             stringToAnalyze,
             blacklist: ['lmao']
@@ -126,7 +126,7 @@ describe('Reddit::', () => {
           });
           const result = filter.filter();
           expect(result).to.not.equal(ticker);
-          expect(result).to.be.a('string').and.length(0);
+          expect(result).to.be.null;
         });
         it('Should only get tickers from the whitelist', () => {
           const nonMatchTicker = 'F';

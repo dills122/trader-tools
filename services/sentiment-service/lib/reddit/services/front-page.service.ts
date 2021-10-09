@@ -6,7 +6,7 @@ import { AnalyzerOptions, FlagsAndOptions } from '../../shared-types';
 import { FrontPageGather } from '../gatherer-services';
 import { config } from '../config';
 import { FilterType } from '../filters';
-import { OverrideTypes } from '../filters/models/override-types';
+import { OverrideFlags } from '../filters/models/override-flags';
 export interface FrontPageServiceArgs extends FlagsAndOptions {
   subreddit: string;
   analyzer: string;
@@ -19,7 +19,7 @@ export class FrontPageService {
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
   private equityWhitelistEnabled: boolean;
-  private overrideTypes: OverrideTypes;
+  private overrideTypes: OverrideFlags;
 
   constructor(args: FrontPageServiceArgs) {
     _.assign(this, args);

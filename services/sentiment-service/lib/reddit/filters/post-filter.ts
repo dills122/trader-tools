@@ -2,22 +2,20 @@
 import { Socials } from 'api-service';
 import _ from 'lodash';
 import { FlairFilter } from './flair-filter';
-import { FilterType } from './';
-import { OverrideTypes } from './models/override-types';
+import { EquityFilter, FilterType } from './';
+import { OverrideFlags } from './models/override-flags';
 
 export interface PostFilterArgs {
   posts: Socials.Reddit.Types.Post[];
   filterType: FilterType;
-  overrideTypes: OverrideTypes;
+  overrideTypes: OverrideFlags;
 }
 
-//TODO create Overrides/Flags object for additional feature flags
-// onlyDirectReferences - only grab posts hat mention a stock in the title directly
 export class PostFilter {
   private posts: Socials.Reddit.Types.Post[];
   private filteredPosts: Socials.Reddit.Types.Post[] = [];
   private filterType: FilterType;
-  private overrideTypes: OverrideTypes;
+  private overrideTypes: OverrideFlags;
 
   constructor(args: PostFilterArgs) {
     _.assign(this, args);
@@ -26,11 +24,19 @@ export class PostFilter {
   filter(): Socials.Reddit.Types.Post[] {
     this.filterPostsByFlairType();
     if (this.overrideTypes.postMustContainSecurity) {
-      // const equityFilter = new EquityFilter({
-      // })
+      this.filterPostsByTitlesContainingSecurityMentions();
     }
-    //Add another filter to check if title has stock symbol in it
     return this.filteredPosts;
+  }
+
+  private filterPostsByTitlesContainingSecurityMentions() {
+    this.filteredPosts = this.filteredPosts.filter((post) => {
+      const equityFilter = new EquityFilter({
+        stringToAnalyze: post.title
+      });
+      const securitySymbolIfPresent = equityFilter.filter();
+      return securitySymbolIfPresent;
+    });
   }
 
   private filterPostsByFlairType() {

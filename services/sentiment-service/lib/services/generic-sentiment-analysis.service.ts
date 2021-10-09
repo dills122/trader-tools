@@ -12,16 +12,16 @@ import { General } from '../refiners';
 import { GenericService } from '../reddit/services';
 import { FilterType } from '../reddit/filters';
 import {
-  OverrideTypes,
+  OverrideFlags,
   initialState as OverrideFiltersInitialState
-} from '../reddit/filters/models/override-types';
+} from '../reddit/filters/models/override-flags';
 
 export interface SentimentAnalysisServiceArgs extends Omit<FlagsAndOptions, 'overrideTypes'> {
   socialSource: socialSourceType;
   analyzer: analyzerType;
   serviceAnalysisType: serviceAnalysisType;
   subreddit?: string;
-  overrideTypes?: OverrideTypes;
+  overrideTypes?: OverrideFlags;
 }
 
 export class GenericSentimentAnalysisService {
@@ -33,7 +33,7 @@ export class GenericSentimentAnalysisService {
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
   private equityWhitelistEnabled: boolean;
-  private overrideTypes: OverrideTypes;
+  private overrideTypes: OverrideFlags;
 
   constructor(args: SentimentAnalysisServiceArgs) {
     _.assign(this, args);

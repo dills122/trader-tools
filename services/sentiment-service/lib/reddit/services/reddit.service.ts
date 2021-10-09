@@ -10,7 +10,7 @@ import { FrontPageService } from './front-page.service';
 import { GenericCommentTransformer } from '../../reddit/transformers';
 import { CommentListAnalyzerResult } from '../analyzers/comment-list-sentiment-analyzer';
 import { FilterType } from '../filters';
-import { OverrideTypes } from '../filters/models/override-types';
+import { OverrideFlags } from '../filters/models/override-flags';
 
 export interface GenericRedditServiceArgs extends FlagsAndOptions {
   serviceAnalysisType: serviceAnalysisType;
@@ -26,7 +26,7 @@ export class GenericRedditService {
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
   private equityWhitelistEnabled: boolean;
-  private overrideTypes: OverrideTypes;
+  private overrideTypes: OverrideFlags;
 
   constructor(args: GenericRedditServiceArgs) {
     _.assign(this, args);

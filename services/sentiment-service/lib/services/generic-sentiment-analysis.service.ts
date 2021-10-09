@@ -11,7 +11,10 @@ import {
 import { General } from '../refiners';
 import { GenericService } from '../reddit/services';
 import { FilterType } from '../reddit/filters';
-import { OverrideTypes } from '../reddit/filters/models/override-types';
+import {
+  OverrideTypes,
+  initialState as OverrideFiltersInitialState
+} from '../reddit/filters/models/override-types';
 
 export interface SentimentAnalysisServiceArgs extends Omit<FlagsAndOptions, 'overrideTypes'> {
   socialSource: socialSourceType;
@@ -34,6 +37,10 @@ export class GenericSentimentAnalysisService {
 
   constructor(args: SentimentAnalysisServiceArgs) {
     _.assign(this, args);
+    this.overrideTypes = {
+      ...OverrideFiltersInitialState,
+      ...(args.overrideTypes || {})
+    };
   }
 
   async analyze(): Promise<AggregatedRefinedSentimentData[]> {

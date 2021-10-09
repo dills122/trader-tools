@@ -5,6 +5,7 @@ import { FrontPageService } from '../../../lib/reddit/services/front-page.servic
 import _ from 'lodash';
 import Sinon from 'sinon';
 import { FilterType } from '../../../lib/reddit/filters';
+import { initialState as OverrideFiltersInitialState } from '../../../lib/reddit/filters';
 
 const subreddit = 'wallstreetbets';
 
@@ -27,7 +28,8 @@ describe('Reddit::', () => {
           analyzer: 'natural',
           filterType: FilterType.general,
           serviceAnalysisType: 'front-page',
-          subreddit: subreddit
+          subreddit: subreddit,
+          overrideTypes: OverrideFiltersInitialState
         });
         await serviceInst.service();
         expect(stubs.frontPageServiceStub.callCount).to.equal(1);
@@ -38,7 +40,8 @@ describe('Reddit::', () => {
           analyzer: 'natural',
           filterType: FilterType.general,
           serviceAnalysisType: 'front-page',
-          subreddit: subreddit
+          subreddit: subreddit,
+          overrideTypes: OverrideFiltersInitialState
         });
         try {
           await serviceInst.service();

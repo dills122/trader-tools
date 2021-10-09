@@ -4,6 +4,7 @@ import { PostFilter } from '../../../lib/reddit/filters/post-filter';
 import { Mocks, Socials } from 'api-service';
 import _ from 'lodash';
 import { FilterType } from '../../../lib/reddit/filters';
+import { initialState as OverrideFiltersInitialState } from '../../../lib/reddit/filters';
 
 const subreddit = 'wallstreetbets';
 
@@ -22,7 +23,8 @@ describe('Reddit::', () => {
       it('Should execute happy path for discussionMode', () => {
         const filteredPosts = new PostFilter({
           posts: mocks,
-          filterType: FilterType.discussion
+          filterType: FilterType.discussion,
+          overrideTypes: OverrideFiltersInitialState
         }).filter();
         assert(filteredPosts);
         expect(filteredPosts).to.have.length(1);
@@ -54,7 +56,8 @@ describe('Reddit::', () => {
       it('Should execute happy path for nonShitpostingMode', () => {
         const filteredPosts = new PostFilter({
           posts: mocks,
-          filterType: FilterType.discussion
+          filterType: FilterType.discussion,
+          overrideTypes: OverrideFiltersInitialState
         }).filter();
         assert(filteredPosts);
         expect(filteredPosts).to.have.length(1);
@@ -67,7 +70,8 @@ describe('Reddit::', () => {
       it('Should execute default happy path, chaos mode', () => {
         const filteredPosts = new PostFilter({
           posts: mocks,
-          filterType: FilterType.chaos
+          filterType: FilterType.chaos,
+          overrideTypes: OverrideFiltersInitialState
         }).filter();
         assert(filteredPosts);
         expect(filteredPosts).to.have.length(2);
@@ -78,7 +82,8 @@ describe('Reddit::', () => {
       it('Should execute happy path when empty set is given', () => {
         const filteredPosts = new PostFilter({
           posts: [],
-          filterType: FilterType.discussion
+          filterType: FilterType.discussion,
+          overrideTypes: OverrideFiltersInitialState
         }).filter();
         assert(filteredPosts);
         expect(filteredPosts).to.have.length(0);

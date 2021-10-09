@@ -1,4 +1,5 @@
 import { FilterType } from './reddit/filters';
+import { OverrideTypes } from './reddit/filters/models/override-types';
 import { StandardizeInputOptions } from './standardize-input';
 
 export type serviceAnalysisType = 'front-page';
@@ -43,4 +44,5 @@ export interface FlagsAndOptions {
   analyzerOptions?: AnalyzerOptions;
   equityWhitelist?: string[];
   equityWhitelistEnabled?: boolean;
+  overrideTypes: OverrideTypes;
 }

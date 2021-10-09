@@ -6,6 +6,7 @@ import { AnalyzerOptions, FlagsAndOptions } from '../../shared-types';
 import { FrontPageGather } from '../gatherer-services';
 import { config } from '../config';
 import { FilterType } from '../filters';
+import { OverrideTypes } from '../filters/models/override-types';
 export interface FrontPageServiceArgs extends FlagsAndOptions {
   subreddit: string;
   analyzer: string;
@@ -18,6 +19,7 @@ export class FrontPageService {
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
   private equityWhitelistEnabled: boolean;
+  private overrideTypes: OverrideTypes;
 
   constructor(args: FrontPageServiceArgs) {
     _.assign(this, args);
@@ -69,9 +71,10 @@ export class FrontPageService {
   }
 
   private filterPosts(postList: Socials.Reddit.Types.Post[]) {
-    const postFilterInst = new PostFilter.PostFilter({
+    const postFilterInst = new PostFilter({
       posts: postList,
-      filterType: this.filterType
+      filterType: this.filterType,
+      overrideTypes: this.overrideTypes
     });
     const filteredPosts = postFilterInst.filter();
     if (filteredPosts.length <= 0) {
@@ -81,7 +84,7 @@ export class FrontPageService {
   }
 
   private filterComments(comments: Socials.Reddit.Types.Comment[]) {
-    const filteredCommentsInst = new CommentFilter.CommentFilter({
+    const filteredCommentsInst = new CommentFilter({
       comments: comments,
       subreddit: this.subreddit,
       equityWhitelist: this.whitelist,

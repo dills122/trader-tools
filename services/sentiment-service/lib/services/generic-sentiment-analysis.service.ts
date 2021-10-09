@@ -11,12 +11,14 @@ import {
 import { General } from '../refiners';
 import { GenericService } from '../reddit/services';
 import { FilterType } from '../reddit/filters';
+import { OverrideTypes } from '../reddit/filters/models/override-types';
 
-export interface SentimentAnalysisServiceArgs extends FlagsAndOptions {
+export interface SentimentAnalysisServiceArgs extends Omit<FlagsAndOptions, 'overrideTypes'> {
   socialSource: socialSourceType;
   analyzer: analyzerType;
   serviceAnalysisType: serviceAnalysisType;
   subreddit?: string;
+  overrideTypes?: OverrideTypes;
 }
 
 export class GenericSentimentAnalysisService {
@@ -28,6 +30,7 @@ export class GenericSentimentAnalysisService {
   private analyzerOptions: AnalyzerOptions;
   private whitelist: string[] = [];
   private equityWhitelistEnabled: boolean;
+  private overrideTypes: OverrideTypes;
 
   constructor(args: SentimentAnalysisServiceArgs) {
     _.assign(this, args);
@@ -51,7 +54,8 @@ export class GenericSentimentAnalysisService {
           subreddit: this.subreddit,
           analyzerOptions: this.analyzerOptions,
           equityWhitelist: this.whitelist,
-          equityWhitelistEnabled: this.equityWhitelistEnabled
+          equityWhitelistEnabled: this.equityWhitelistEnabled,
+          overrideTypes: this.overrideTypes
         });
         const sentimentData = await serviceInst.service();
         console.log('Finished Executing Reddit Service');

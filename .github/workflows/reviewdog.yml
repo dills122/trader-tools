@@ -14,5 +14,5 @@ jobs:
           locale: 'US'
           exclude: |
             */.git/*
-            /**/**/pnpm-lock.yaml
-            /**/**/.rush/
+            */pnpm-lock.yaml/*
+            */.rush/*

@@ -21,7 +21,7 @@
     "chai": "~4.2.0",
     "@types/chai": "~4.2.14",
     "sinon": "~9.2.3",
-    "@types/sinon": "~9.0.10",
+    "@types/sinon": "~10.0.11",
     "ts-node": "~9.1.1",
     "eslint": "~7.22.0",
     "@typescript-eslint/parser": "~4.19.0",

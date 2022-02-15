@@ -29,7 +29,7 @@
     "sinon": "~9.2.3",
     "@types/sinon": "~9.0.10",
     "ts-node": "~9.1.1",
-    "@types/node": "~14.14.22",
+    "@types/node": "~17.0.18",
     "@types/ejs": "~3.0.5",
     "@types/mustache": "~4.1.1",
     "@types/uuid": "~8.3.0",

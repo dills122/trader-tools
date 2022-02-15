@@ -34,7 +34,7 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4",
-    "@nguniversal/common": "~12.1.0",
+    "@nguniversal/common": "~13.0.2",
     "pm2": "^5.1.0"
   },
   "devDependencies": {

@@ -36,7 +36,7 @@
     "@types/meow": "~5.0.0",
     "eslint": "~7.22.0",
     "@typescript-eslint/parser": "~4.19.0",
-    "@typescript-eslint/eslint-plugin": "~4.19.0"
+    "@typescript-eslint/eslint-plugin": "~4.33.0"
   },
   "dependencies": {
     "fuse.js": "~6.4.6",

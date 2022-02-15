@@ -56,7 +56,6 @@ dependencies:
   '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
   apos-to-lex-form: 1.0.5
   bad-words: 3.0.4
-  chai: 4.2.0
   dotenv: 10.0.0
   ejs: 3.1.5
   eslint: 7.22.0
@@ -4202,6 +4201,20 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-XQU3bhBukrOsQCuwZndwGcCVQHyZi53fQ6Ys1Fym7E4olpIqqZZhhoFJoaKVvV17lWQoXYwgWN2nF5crA8J2jw==
+  /chai/4.3.6:
+    dependencies:
+      assertion-error: 1.1.0
+      check-error: 1.0.2
+      deep-eql: 3.0.1
+      get-func-name: 2.0.0
+      loupe: 2.3.4
+      pathval: 1.1.1
+      type-detect: 4.0.8
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-bbcp3YfHCUzMOvKqsztczerVgBKSsEijCySNlHHbX3VG1nskvqjz5Rfso1gGwD6w6oOV3eI60pKuMOV5MV7p3Q==
   /chalk/1.1.3:
     dependencies:
       ansi-styles: 2.2.1
@@ -8736,6 +8749,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-MKCy2jj3N3DoKUoNIuZiXtd9AJc=
+  /loupe/2.3.4:
+    dependencies:
+      get-func-name: 2.0.0
+    dev: false
+    resolution:
+      integrity: sha512-OvKfgCC2Ndby6aSTREl5aCCPTNIzlDfQZvZxNUrBrihDhL3xcrYegTblhmEiCrg2kKQz4XsFIaemE5BF4ybSaQ==
   /lower-case/1.1.4:
     dev: false
     resolution:
@@ -10501,6 +10520,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-uULm1L3mUwBe9rcTYd74cn0GReA=
+  /pathval/1.1.1:
+    dev: false
+    resolution:
+      integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==
   /performance-now/2.1.0:
     dev: false
     resolution:
@@ -13499,7 +13522,7 @@ packages:
         optional: true
     resolution:
       integrity: sha512-Q/m3vEwzYwLZKmV6/0VlFxcZzVV/xcgOt+Tx/VjaaRHyiBcFlV0541yrT09QjzzCxlDZ34OzKjrFAynlmtflEg==
-  /ts-node/10.1.0_c372e32bdda0579a2b85590edb961a5f:
+  /ts-node/10.1.0_fd7c9963416b10178bb9d6335f71c78d:
     dependencies:
       '@tsconfig/node10': 1.0.8
       '@tsconfig/node12': 1.0.9
@@ -13511,7 +13534,7 @@ packages:
       diff: 4.0.2
       make-error: 1.3.6
       source-map-support: 0.5.19
-      typescript: 4.3.4
+      typescript: 4.3.2
       yn: 3.1.1
     dev: false
     engines:
@@ -14588,7 +14611,7 @@ packages:
       lab-transform-typescript: 3.0.1_typescript@4.3.2
       mocha: 9.0.3
       pm2: 5.1.0
-      ts-node: 10.1.0_c372e32bdda0579a2b85590edb961a5f
+      ts-node: 10.1.0_fd7c9963416b10178bb9d6335f71c78d
       ts-node-dev: 1.1.8_typescript@4.3.2
       typescript: 4.3.2
     dev: false
@@ -14661,7 +14684,7 @@ packages:
     dev: false
     name: '@rush-temp/api-service'
     resolution:
-      integrity: sha512-ZJASBx8lwnSThS+a5DyYurdrSMlZxNuIueawvMPXqsR0YczEJDAHBfBvOSXkD2GK/NQrmnu9UbQP5851oGMj7Q==
+      integrity: sha512-SuBMC3EaIlqg6kYLJvIQiTMD7RlHFhbvRGuqLOGYtgg/2/zWzV3h/H2OocsAykUSXbyGa0Eqp8TI8zlAyYi7gg==
       tarball: 'file:projects/api-service.tgz'
     version: 0.0.0
   'file:projects/cron-app.tgz':
@@ -14679,7 +14702,7 @@ packages:
     dev: false
     name: '@rush-temp/cron-app'
     resolution:
-      integrity: sha512-bjLo2WFfx7IWl1Nz+KcIeV3qyTaKP6C4UHEmz6aladDhDZ/icFDEnEbfjZ/fpzo7LQicyoJi5NRtDQML/I3IMQ==
+      integrity: sha512-V/ofg3V4cEweH7rGUSuEAA0C+5M8JBXDH4x1enHvquBtct7fipCA17LvVLpJZ1KW6+IwgkDJ8GV9HfzJa6eqBA==
       tarball: 'file:projects/cron-app.tgz'
     version: 0.0.0
   'file:projects/grpc-tools.tgz':
@@ -14721,7 +14744,7 @@ packages:
       '@types/sinon': 9.0.10
       '@typescript-eslint/eslint-plugin': 4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7
       '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
-      chai: 4.2.0
+      chai: 4.3.6
       eslint: 7.22.0
       eslint-config-airbnb-typescript: 12.3.1_eslint@7.22.0+typescript@4.3.2
       fuse.js: 6.4.6
@@ -14738,7 +14761,7 @@ packages:
     dev: false
     name: '@rush-temp/is-ticker-symbol'
     resolution:
-      integrity: sha512-FC+pePplW2vp6GqT4qZNd9RLuyW05xSQJCTJrvBqVZUS37Hvw2ZWNyXSQQz9Lmc8Y/zn0ogHJMi9zsr86YGVrg==
+      integrity: sha512-vlXrT9sTrLTIsWq74VUsBzRqb6hQVrNWvECncrQaNbm/R5fstETSSRWm0IuWVdc8BGaM5jorYgq7s/JHpSKNtg==
       tarball: 'file:projects/is-ticker-symbol.tgz'
     version: 0.0.0
   'file:projects/sentiment-rpc-server.tgz':
@@ -14765,7 +14788,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-rpc-server'
     resolution:
-      integrity: sha512-jMx8aS6x8JWr7xwivOssXSXYyyrecx1wCRYevDqzbN0YSUUnVn/5KXpnfV5+z2Cbq1SgRBCjJeljCd2rGY3Gfw==
+      integrity: sha512-ieyeEOiN7RNAmiWSq7QJ4AnFMFDZ24cwMoqXpaoLh6W9Ii+6Mr7UwvhgjUBCpcvvLpoAUkkBfyWXx2SyKDdGoA==
       tarball: 'file:projects/sentiment-rpc-server.tgz'
     version: 0.0.0
   'file:projects/sentiment-service.tgz':
@@ -14802,7 +14825,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-service'
     resolution:
-      integrity: sha512-gRgbsY168dhr2GZDnqqZaPL+tStxXlDdGqrbW94QFQcN+m4yqh5zJqFQKzU1/Tal/EIJHMw0HjWBgKQiZ73jrA==
+      integrity: sha512-RpvXCOdM5ACh5IieW+6yPo4uvCLR4MngFqLDAHd1tgNVPf247BLbf/htJgyOCj3pegJ+snWGKE9ol2+noJ4ucQ==
       tarball: 'file:projects/sentiment-service.tgz'
     version: 0.0.0
   'file:projects/templating-service.tgz':
@@ -14872,7 +14895,7 @@ packages:
     dev: false
     name: '@rush-temp/trading-services'
     resolution:
-      integrity: sha512-80QU8JlG8Rx8dQHLqrwiJuM9oyVAvGotAPF/wUpHsTfwsRVCxbFqc40SJlX0ZDSZIcy5teljiVUmpOMWv+pkRA==
+      integrity: sha512-MUMrPhjh6j5GIy8aEwHzz7vliIIQSxHTNScFp/dEi93n2iqy00Kvfe4wu2VA0kEt+bFkDjVd8PyJQy8yV6+OlQ==
       tarball: 'file:projects/trading-services.tgz'
     version: 0.0.0
 registry: ''
@@ -14934,7 +14957,6 @@ specifiers:
   '@typescript-eslint/parser': ~4.19.0
   apos-to-lex-form: ~1.0.5
   bad-words: ~3.0.4
-  chai: ~4.2.0
   dotenv: ~10.0.0
   ejs: ~3.1.5
   eslint: ~7.22.0

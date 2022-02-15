@@ -21,7 +21,7 @@
     "@typescript-eslint/eslint-plugin": "~4.19.0"
   },
   "dependencies": {
-    "api-service": "^0.2.12",
+    "api-service": "^1.0.8",
     "trader-sdk": "^0.2.12",
     "lodash": "~4.17.21",
     "templating-service": "^0.2.12"

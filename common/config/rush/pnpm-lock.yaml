@@ -15498,7 +15498,7 @@ packages:
       '@types/sinon': 9.0.10
       '@typescript-eslint/eslint-plugin': 4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7
       '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
-      chai: 4.2.0
+      chai: 4.3.6
       dotenv: 16.0.0
       eslint: 7.22.0
       google-protobuf: 3.17.3
@@ -15511,7 +15511,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-rpc-server'
     resolution:
-      integrity: sha512-ZtrlNRP0gpZM4D21guvNagwFiPLCCQr4g+v6lvAgD0K3L0fd/MI9hqh1xN5cy6Q3sfkqNZapQvCGZt/YU6x7yw==
+      integrity: sha512-PHW3KYO2jxbbirCMbuGgNxMzFYstas/055trriYzBsI9dQubiccWhJjFMbhbaOJzwQtxK5nj8F2Dm6a59rlZNw==
       tarball: 'file:projects/sentiment-rpc-server.tgz'
     version: 0.0.0
   'file:projects/sentiment-service.tgz':

@@ -52,7 +52,6 @@ dependencies:
   '@types/sinon': 9.0.10
   '@types/stopword': 1.0.0
   '@types/uuid': 8.3.0
-  '@typescript-eslint/eslint-plugin': 4.19.0_eslint@7.22.0+typescript@4.3.2
   apos-to-lex-form: 1.0.5
   bad-words: 3.0.4
   dotenv: 10.0.0
@@ -2967,14 +2966,15 @@ packages:
         optional: true
     resolution:
       integrity: sha512-CRQNQ0mC2Pa7VLwKFbrGVTArfdVDdefS+gTw0oC98vSI98IX5A8EVH4BzJ2FOB0YlCmm8Im36Elad/Jgtvveaw==
-  /@typescript-eslint/eslint-plugin/4.19.0_eslint@7.22.0+typescript@4.3.2:
+  /@typescript-eslint/eslint-plugin/4.33.0_8fe5ac6dd06e3cbde99d2d10093acea7:
     dependencies:
-      '@typescript-eslint/experimental-utils': 4.19.0_eslint@7.22.0+typescript@4.3.2
-      '@typescript-eslint/scope-manager': 4.19.0
+      '@typescript-eslint/experimental-utils': 4.33.0_eslint@7.22.0+typescript@4.3.2
+      '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
+      '@typescript-eslint/scope-manager': 4.33.0
       debug: 4.3.1
       eslint: 7.22.0
       functional-red-black-tree: 1.0.1
-      lodash: 4.17.21
+      ignore: 5.1.8
       regexpp: 3.1.0
       semver: 7.3.5
       tsutils: 3.21.0_typescript@4.3.2
@@ -2990,7 +2990,7 @@ packages:
       typescript:
         optional: true
     resolution:
-      integrity: sha512-CRQNQ0mC2Pa7VLwKFbrGVTArfdVDdefS+gTw0oC98vSI98IX5A8EVH4BzJ2FOB0YlCmm8Im36Elad/Jgtvveaw==
+      integrity: sha512-aINiAxGVdOl1eJyVjaWn/YcVAq4Gi/Yo35qHGCnqbWVz61g39D0h23veY/MA0rFFGfxK7TySg2uwDeNv+JgVpg==
   /@typescript-eslint/experimental-utils/4.19.0_eslint@7.22.0+typescript@4.3.2:
     dependencies:
       '@types/json-schema': 7.0.8
@@ -3000,7 +3000,6 @@ packages:
       eslint: 7.22.0
       eslint-scope: 5.1.1
       eslint-utils: 2.1.0
-      typescript: 4.3.2
     dev: false
     engines:
       node: ^10.12.0 || >=12.0.0
@@ -3009,6 +3008,23 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-9/23F1nnyzbHKuoTqFN1iXwN3bvOm/PRIXSBR3qFAYotK/0LveEOHr5JT1WZSzcD6BESl8kPOG3OoDRKO84bHA==
+  /@typescript-eslint/experimental-utils/4.33.0_eslint@7.22.0+typescript@4.3.2:
+    dependencies:
+      '@types/json-schema': 7.0.8
+      '@typescript-eslint/scope-manager': 4.33.0
+      '@typescript-eslint/types': 4.33.0
+      '@typescript-eslint/typescript-estree': 4.33.0_typescript@4.3.2
+      eslint: 7.22.0
+      eslint-scope: 5.1.1
+      eslint-utils: 3.0.0_eslint@7.22.0
+    dev: false
+    engines:
+      node: ^10.12.0 || >=12.0.0
+    peerDependencies:
+      eslint: '*'
+      typescript: '*'
+    resolution:
+      integrity: sha512-zeQjOoES5JFjTnAhI5QY7ZviczMzDptls15GFsI6jyUOq0kOf9+WonkhtlIhh0RgHRnqj5gdNxW5j1EvAyYg6Q==
   /@typescript-eslint/parser/4.19.0_eslint@7.22.0+typescript@4.3.2:
     dependencies:
       '@typescript-eslint/scope-manager': 4.19.0
@@ -6127,6 +6143,17 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-w94dQYoauyvlDc43XnGB8lU3Zt713vNChgt4EWwhXAP2XkBvndfxF0AgIqKOOasjPIPzj9JqgwkwbCYD0/V3Zg==
+  /eslint-utils/3.0.0_eslint@7.22.0:
+    dependencies:
+      eslint: 7.22.0
+      eslint-visitor-keys: 2.1.0
+    dev: false
+    engines:
+      node: ^10.0.0 || ^12.0.0 || >= 14.0.0
+    peerDependencies:
+      eslint: '>=5'
+    resolution:
+      integrity: sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==
   /eslint-visitor-keys/1.3.0:
     dev: false
     engines:
@@ -14809,7 +14836,7 @@ packages:
       '@types/lodash': 4.14.168
       '@types/mocha': 8.2.0
       '@types/sinon': 9.0.10
-      '@typescript-eslint/eslint-plugin': 4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7
+      '@typescript-eslint/eslint-plugin': 4.33.0_8fe5ac6dd06e3cbde99d2d10093acea7
       '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
       chai: 4.2.0
       dotenv: 10.0.0
@@ -14824,7 +14851,7 @@ packages:
     dev: false
     name: '@rush-temp/api-service'
     resolution:
-      integrity: sha512-SuBMC3EaIlqg6kYLJvIQiTMD7RlHFhbvRGuqLOGYtgg/2/zWzV3h/H2OocsAykUSXbyGa0Eqp8TI8zlAyYi7gg==
+      integrity: sha512-rUzHK/QNFWwcBANu6kuXFRntf+CkBCUMAUBRpexXzuhXVcaXiGtG0iLh+MaB/SKKKEQ0p6CAI4UPHM6blJtEuA==
       tarball: 'file:projects/api-service.tgz'
     version: 0.0.0
   'file:projects/cron-app.tgz':
@@ -14842,7 +14869,7 @@ packages:
     dev: false
     name: '@rush-temp/cron-app'
     resolution:
-      integrity: sha512-kuGlKP7PS2asOqObcVICT0kzmsqT0ZNpCM9y9onLDpkpUhMPrtnlae6Nq5t2J/7C4X/nidF8XyHfextILK6xtQ==
+      integrity: sha512-quauTBT2HEhMGfGzMZNc4EvfLjg/6sWJeuopcwsagoBHtYrY9uFeu6sJEgg89Nza/2s0Nj+dgEEIkYVbv2FsFQ==
       tarball: 'file:projects/cron-app.tgz'
     version: 0.0.0
   'file:projects/grpc-tools.tgz':
@@ -14901,7 +14928,7 @@ packages:
     dev: false
     name: '@rush-temp/is-ticker-symbol'
     resolution:
-      integrity: sha512-oZhWML4XcYZvOEe1AraYtf4WTQ4MgL+ZbOG1Kbtrx4uzonmhy87fPM+CKhafFWlVG/p+Aa936QtQuUPtKBCx9Q==
+      integrity: sha512-vlXrT9sTrLTIsWq74VUsBzRqb6hQVrNWvECncrQaNbm/R5fstETSSRWm0IuWVdc8BGaM5jorYgq7s/JHpSKNtg==
       tarball: 'file:projects/is-ticker-symbol.tgz'
     version: 0.0.0
   'file:projects/sentiment-rpc-server.tgz':
@@ -14965,7 +14992,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-service'
     resolution:
-      integrity: sha512-RpvXCOdM5ACh5IieW+6yPo4uvCLR4MngFqLDAHd1tgNVPf247BLbf/htJgyOCj3pegJ+snWGKE9ol2+noJ4ucQ==
+      integrity: sha512-5K4amE/CYVIjs5240Kj0NRDSbU9Fr1TOa+F4Yrmhr8FZLp+7koh1/Sq05KEp6/KRpfnorbKtlOrn+yhzbDheNg==
       tarball: 'file:projects/sentiment-service.tgz'
     version: 0.0.0
   'file:projects/templating-service.tgz':
@@ -15093,7 +15120,6 @@ specifiers:
   '@types/sinon': ~9.0.10
   '@types/stopword': ~1.0.0
   '@types/uuid': ~8.3.0
-  '@typescript-eslint/eslint-plugin': ~4.19.0
   apos-to-lex-form: ~1.0.5
   bad-words: ~3.0.4
   dotenv: ~10.0.0

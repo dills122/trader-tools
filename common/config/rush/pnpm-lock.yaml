@@ -73,7 +73,6 @@ dependencies:
   memory-cache: 0.2.0
   meow: 9.0.0
   mjml: 4.8.1
-  mocha: 8.2.1
   mustache: 4.1.0
   natural: 4.0.0
   node-cron: 3.0.0
@@ -84,7 +83,6 @@ dependencies:
   spelling-corrector: 3.0.0
   stopword: 1.0.6
   technicalindicators: 3.1.0
-  ts-node: 9.1.1
   ts-node-dev: 1.1.8
   tslib: 2.3.0
   uuid: 8.3.2
@@ -1858,6 +1856,20 @@ packages:
       node: '>=6.9.0'
     resolution:
       integrity: sha512-iob4soQa7dZw8nodR/KlOQkPh9S4I8RwCxwRIFuiMRYjOzH/KJzdUfDgz6cGi5dDaclXF4P2PAhCdrBJNIg68Q==
+  /@cspotcode/source-map-consumer/0.8.0:
+    dev: false
+    engines:
+      node: '>= 12'
+    resolution:
+      integrity: sha512-41qniHzTU8yAGbCp04ohlmSrZf8bkf/iJsl3V0dRGsQN/5GFfx+LbCSsCpp2gqrqjTVg/K6O8ycoV35JIwAzAg==
+  /@cspotcode/source-map-support/0.7.0:
+    dependencies:
+      '@cspotcode/source-map-consumer': 0.8.0
+    dev: false
+    engines:
+      node: '>=12'
+    resolution:
+      integrity: sha512-X4xqRHqN8ACt2aHVe51OxeA2HjbcL4MqFqXkrmQszJ1NOUuUu5u6Vqx/0lZSVNku7velL5FC/s5uEAj1lsBMhA==
   /@csstools/convert-colors/1.4.0:
     dev: false
     engines:
@@ -3651,6 +3663,12 @@ packages:
       node: '>=0.4.0'
     resolution:
       integrity: sha512-OPdCF6GsMIP+Az+aWfAAOEt2/+iVDKE7oy6lJ098aoe59oAmK76qV6Gw60SbZ8jHuG2wH058GF4pLFbYamYrVA==
+  /acorn-walk/8.2.0:
+    dev: false
+    engines:
+      node: '>=0.4.0'
+    resolution:
+      integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==
   /acorn/1.2.2:
     dev: false
     engines:
@@ -4811,6 +4829,22 @@ packages:
       fsevents: 2.3.2
     resolution:
       integrity: sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==
+  /chokidar/3.5.3:
+    dependencies:
+      anymatch: 3.1.2
+      braces: 3.0.2
+      glob-parent: 5.1.2
+      is-binary-path: 2.1.0
+      is-glob: 4.0.1
+      normalize-path: 3.0.0
+      readdirp: 3.6.0
+    dev: false
+    engines:
+      node: '>= 8.10.0'
+    optionalDependencies:
+      fsevents: 2.3.2
+    resolution:
+      integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==
   /chownr/2.0.0:
     dev: false
     engines:
@@ -5722,6 +5756,20 @@ packages:
         optional: true
     resolution:
       integrity: sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
+  /debug/4.3.3_supports-color@8.1.1:
+    dependencies:
+      ms: 2.1.2
+      supports-color: 8.1.1
+    dev: false
+    engines:
+      node: '>=6.0'
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    resolution:
+      integrity: sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==
   /decamelize-keys/1.1.0:
     dependencies:
       decamelize: 1.2.0
@@ -7375,6 +7423,17 @@ packages:
     dev: false
     resolution:
       integrity: sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==
+  /glob/7.2.0:
+    dependencies:
+      fs.realpath: 1.0.0
+      inflight: 1.0.6
+      inherits: 2.0.4
+      minimatch: 3.0.4
+      once: 1.4.0
+      path-is-absolute: 1.0.1
+    dev: false
+    resolution:
+      integrity: sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==
   /globals/11.12.0:
     dev: false
     engines:
@@ -10109,6 +10168,38 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-hnYFrSefHxYS2XFGtN01x8un0EwNu2bzKvhpRFhgoybIvMaOkkL60IVPmkb5h6XDmUl4IMSB+rT5cIO4/4bJgg==
+  /mocha/9.2.0:
+    dependencies:
+      '@ungap/promise-all-settled': 1.1.2
+      ansi-colors: 4.1.1
+      browser-stdout: 1.3.1
+      chokidar: 3.5.3
+      debug: 4.3.3_supports-color@8.1.1
+      diff: 5.0.0
+      escape-string-regexp: 4.0.0
+      find-up: 5.0.0
+      glob: 7.2.0
+      growl: 1.10.5
+      he: 1.2.0
+      js-yaml: 4.1.0
+      log-symbols: 4.1.0
+      minimatch: 3.0.4
+      ms: 2.1.3
+      nanoid: 3.2.0
+      serialize-javascript: 6.0.0
+      strip-json-comments: 3.1.1
+      supports-color: 8.1.1
+      which: 2.0.2
+      workerpool: 6.2.0
+      yargs: 16.2.0
+      yargs-parser: 20.2.4
+      yargs-unparser: 2.0.0
+    dev: false
+    engines:
+      node: '>= 12.0.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-kNn7E8g2SzVcq0a77dkphPsDSN7P+iYkqE0ZsGCYWRsoiKjOt+NvXfaagik8vuDa6W5Zw3qxe8Jfpt5qKf+6/Q==
   /module-details-from-path/1.0.3:
     dev: false
     resolution:
@@ -10187,6 +10278,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-FiB0kzdP0FFVGDKlRLEQ1BgDzU87dy5NnzjeW9YZNt+/c3+q82EQDUwniSAUxp/F0gFNI1ZhKU1FqYsMuqZVnw==
+  /nanoid/3.2.0:
+    dev: false
+    engines:
+      node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1
+    hasBin: true
+    resolution:
+      integrity: sha512-fmsZYa9lpn69Ad5eDn7FMcnnSR+8R34W9qJEijxYhTbfOWzr22n1QxCMzXLK+ODyW2973V3Fux959iQoUxzUIA==
   /nanomatch/1.2.13:
     dependencies:
       arr-diff: 4.0.0
@@ -14081,6 +14179,37 @@ packages:
         optional: true
     resolution:
       integrity: sha512-6szn3+J9WyG2hE+5W8e0ruZrzyk1uFLYye6IGMBadnOzDh8aP7t8CbFpsfCiEx2+wMixAhjFt7lOZC4+l+WbEA==
+  /ts-node/10.5.0_fd7c9963416b10178bb9d6335f71c78d:
+    dependencies:
+      '@cspotcode/source-map-support': 0.7.0
+      '@tsconfig/node10': 1.0.8
+      '@tsconfig/node12': 1.0.9
+      '@tsconfig/node14': 1.0.1
+      '@tsconfig/node16': 1.0.2
+      '@types/node': 14.14.25
+      acorn: 8.4.1
+      acorn-walk: 8.2.0
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 4.3.2
+      v8-compile-cache-lib: 3.0.0
+      yn: 3.1.1
+    dev: false
+    hasBin: true
+    peerDependencies:
+      '@swc/core': '>=1.2.50'
+      '@swc/wasm': '>=1.2.50'
+      '@types/node': '*'
+      typescript: '>=2.7'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      '@swc/wasm':
+        optional: true
+    resolution:
+      integrity: sha512-6kEJKwVxAJ35W4akuiysfKwKmjkbYxwQMTBaAxo9KKAx/Yd26mPUyhGz3ji+EsJoAgrLqVsYHNuuYwQe22lbtw==
   /ts-node/9.1.1:
     dependencies:
       arg: 4.1.3
@@ -14487,6 +14616,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+  /v8-compile-cache-lib/3.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-mpSYqfsFvASnSn5qMiwrr4VKfumbPyONLCOPmsR3A6pTY/r0+tSaVbgPWSAIuzbk3lCTa+FForeTiO+wBQGkjA==
   /v8-compile-cache/2.3.0:
     dev: false
     resolution:
@@ -14901,6 +15034,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-XdKkCK0Zqc6w3iTxLckiuJ81tiD/o5rBE/m+nXpRCB+/Sq4DqkfXZ/x0jW02DG1tGsfUGXbTJyZDP+eu67haSw==
+  /workerpool/6.2.0:
+    dev: false
+    resolution:
+      integrity: sha512-Rsk5qQHJ9eowMH28Jwhe8HEbmdYDX4lwoMWshiCXugjtHqMD9ZbiqSDLxcsfdqsETPzVUtX5s1Z5kStiIM6l4A==
   /wrap-ansi/5.1.0:
     dependencies:
       ansi-styles: 3.2.1
@@ -15339,7 +15476,7 @@ packages:
       jsftp: 2.1.3
       lodash: 4.17.21
       meow: 9.0.0
-      mocha: 8.2.1
+      mocha: 9.2.0
       proxyquire: 2.1.3
       sinon: 9.2.4
       ts-node: 9.1.1_typescript@4.3.2
@@ -15347,7 +15484,7 @@ packages:
     dev: false
     name: '@rush-temp/is-ticker-symbol'
     resolution:
-      integrity: sha512-vlXrT9sTrLTIsWq74VUsBzRqb6hQVrNWvECncrQaNbm/R5fstETSSRWm0IuWVdc8BGaM5jorYgq7s/JHpSKNtg==
+      integrity: sha512-9xjRpfasRDTB2SJI4pcUtKdR1Zqm175r93dwVeQUbQp1hA6gWqIke/MA9zKYkfiXjGhIawCpu5LeEP1dZLm1ig==
       tarball: 'file:projects/is-ticker-symbol.tgz'
     version: 0.0.0
   'file:projects/sentiment-rpc-server.tgz':
@@ -15405,13 +15542,13 @@ packages:
       sinon: 13.0.1
       spelling-corrector: 3.0.0
       stopword: 1.0.6
-      ts-node: 9.1.1_typescript@4.3.2
+      ts-node: 10.5.0_fd7c9963416b10178bb9d6335f71c78d
       typescript: 4.3.2
       word-list: 3.1.0
     dev: false
     name: '@rush-temp/sentiment-service'
     resolution:
-      integrity: sha512-5K4amE/CYVIjs5240Kj0NRDSbU9Fr1TOa+F4Yrmhr8FZLp+7koh1/Sq05KEp6/KRpfnorbKtlOrn+yhzbDheNg==
+      integrity: sha512-XyDiEZgRo0EiuAgJAPlbEy9PdS7u/ryB/uU/jEUKP9/S70DU/Hz79AUHarO/sKOTGW48KloEIvErq132A7EkRQ==
       tarball: 'file:projects/sentiment-service.tgz'
     version: 0.0.0
   'file:projects/templating-service.tgz':
@@ -15560,7 +15697,6 @@ specifiers:
   memory-cache: ^0.2.0
   meow: ~9.0.0
   mjml: ~4.8.1
-  mocha: ~8.2.1
   mustache: ^4.1.0
   natural: ~4.0.0
   node-cron: ~3.0.0
@@ -15571,7 +15707,6 @@ specifiers:
   spelling-corrector: ~3.0.0
   stopword: ~1.0.6
   technicalindicators: ~3.1.0
-  ts-node: ~9.1.1
   ts-node-dev: ^1.1.8
   tslib: ^2.2.0
   uuid: ~8.3.2

@@ -27,9 +27,9 @@ describe('Social::', function () {
       it('Should throw due to no posts being found', async () => {
         try {
           await FrontPage.getFrontPage(subreddit);
-        } catch (err: any) {
+        } catch (err) {
           assert(err);
-          expect(err.message).to.equal('No posts found');
+          expect((err as Error).message).to.equal('No posts found');
           expect(stubs.connectStub.callCount).to.equal(1);
           expect(stubs.getHotStub.callCount).to.equal(1);
         }

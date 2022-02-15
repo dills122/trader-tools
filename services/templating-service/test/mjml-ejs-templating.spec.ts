@@ -49,9 +49,9 @@ describe('Ejs-mjml::', function () {
     try {
       const templateString = await mjmlTemplater.createTemplateFromFile('test/path', {});
       assert(!templateString);
-    } catch (err: any) {
+    } catch (err) {
       assert(err);
-      expect(err.message).to.equal('Error with rendering template with mjml');
+      expect((err as Error).message).to.equal('Error with rendering template with mjml');
     }
   });
 
@@ -60,8 +60,8 @@ describe('Ejs-mjml::', function () {
     try {
       const templateString = await mjmlTemplater.createTemplateFromFile('test/path', {});
       expect(templateString).to.be.undefined;
-    } catch (err: any) {
-      expect(err.message).to.equal('Issue rendering your requested template');
+    } catch (err) {
+      expect((err as Error).message).to.equal('Issue rendering your requested template');
       expect(stubs.readFileStub.callCount).to.equal(1);
     }
   });
@@ -76,8 +76,8 @@ describe('Ejs-mjml::', function () {
     try {
       const templateString = await mjmlTemplater.createTemplateFromString('', {});
       expect(templateString).to.be.undefined;
-    } catch (err: any) {
-      expect(err.message).to.equal('Given template string was empty');
+    } catch (err) {
+      expect((err as Error).message).to.equal('Given template string was empty');
       expect(stubs.readFileStub.callCount).to.equal(0);
     }
   });

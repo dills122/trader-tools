@@ -33,8 +33,8 @@ describe('Ejs::', function () {
     try {
       const templateString = await ejsTemplating.createTemplateFromFile('test/path', {});
       expect(templateString).to.be.undefined;
-    } catch (err: any) {
-      expect(err.message).to.equal('Issue rendering your requested template');
+    } catch (err) {
+      expect((err as Error).message).to.equal('Issue rendering your requested template');
       expect(stubs.readFileStub.callCount).to.equal(1);
     }
   });
@@ -49,8 +49,8 @@ describe('Ejs::', function () {
     try {
       const templateString = await ejsTemplating.createTemplateFromString('', {});
       expect(templateString).to.be.undefined;
-    } catch (err: any) {
-      expect(err.message).to.equal('Given template string was empty');
+    } catch (err) {
+      expect((err as Error).message).to.equal('Given template string was empty');
       expect(stubs.readFileStub.callCount).to.equal(0);
     }
   });

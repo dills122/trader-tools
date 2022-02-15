@@ -36,10 +36,10 @@ describe('Symbols::', function () {
     try {
       const resp: any = await Symbols.symbols();
       assert(!resp);
-    } catch (err: any) {
+    } catch (err) {
       assert(err);
-      assert(err.message);
-      expect(err.message).to.equal('err');
+      assert((err as Error).message);
+      expect((err as Error).message).to.equal('err');
     }
   });
 });

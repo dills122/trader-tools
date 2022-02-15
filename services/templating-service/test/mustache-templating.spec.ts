@@ -36,8 +36,8 @@ describe('Mustache::', function () {
     try {
       const templateString = await mustacheTemplating.createTemplateFromFile('test/path', {});
       expect(templateString).to.be.undefined;
-    } catch (err: any) {
-      expect(err.message).to.equal('Issue rendering your requested template');
+    } catch (err) {
+      expect((err as Error).message).to.equal('Issue rendering your requested template');
       expect(stubs.readFileStub.callCount).to.equal(1);
       expect(stubs.mustacheRenderStub.callCount).to.equal(0);
     }
@@ -54,8 +54,8 @@ describe('Mustache::', function () {
     try {
       const templateString = await mustacheTemplating.createTemplateFromString('', {});
       expect(templateString).to.be.undefined;
-    } catch (err: any) {
-      expect(err.message).to.equal('Given template string was empty');
+    } catch (err) {
+      expect((err as Error).message).to.equal('Given template string was empty');
       expect(stubs.readFileStub.callCount).to.equal(0);
       expect(stubs.mustacheRenderStub.callCount).to.equal(0);
     }

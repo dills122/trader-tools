@@ -45,9 +45,9 @@ describe('Reddit::', () => {
         });
         try {
           await serviceInst.service();
-        } catch (err: any) {
+        } catch (err) {
           assert(err);
-          expect(err.message).to.equal('err');
+          expect((err as Error).message).to.equal('err');
           expect(stubs.frontPageServiceStub.callCount).to.equal(1);
         }
       });

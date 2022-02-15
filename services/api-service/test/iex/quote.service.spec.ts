@@ -43,10 +43,10 @@ describe('QuoteService::', function () {
     try {
       const resp = await IEXCloud<QuoteService.IEXQuote>(STOCK_SYMBOL);
       assert(!resp);
-    } catch (err: any) {
+    } catch (err) {
       assert(err);
-      assert(err.message);
-      expect(err.message).to.equal('err');
+      assert((err as Error).message);
+      expect((err as Error).message).to.equal('err');
     }
   });
 });

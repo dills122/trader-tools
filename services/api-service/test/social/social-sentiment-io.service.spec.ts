@@ -52,10 +52,10 @@ describe('IEXCloud::', function () {
       stubs.gotGetStub.rejects(Error('err'));
       try {
         await SocialSentiment.trendingStocksSentiment('twitter');
-      } catch (err: any) {
+      } catch (err) {
         assert(err);
         expect(stubs.gotGetStub.callCount).to.equal(1);
-        expect(err.message).to.equal('err');
+        expect((err as Error).message).to.equal('err');
       }
     });
   });
@@ -83,10 +83,10 @@ describe('IEXCloud::', function () {
       stubs.gotGetStub.rejects(Error('err'));
       try {
         await SocialSentiment.dailyStockSentiment(1);
-      } catch (err: any) {
+      } catch (err) {
         assert(err);
         expect(stubs.gotGetStub.callCount).to.equal(1);
-        expect(err.message).to.equal('err');
+        expect((err as Error).message).to.equal('err');
       }
     });
   });

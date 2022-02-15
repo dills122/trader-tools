@@ -38,9 +38,9 @@ describe('PolygonIO::', function () {
       try {
         const resp = await Ticker.getTickerSymbolPage(1);
         assert(!resp);
-      } catch (err: any) {
+      } catch (err) {
         assert(err);
-        assert.equal(err.message, 'Unsuccessful status returned from api, unable to proceed');
+        assert.equal((err as Error).message, 'Unsuccessful status returned from api, unable to proceed');
       }
     });
   });

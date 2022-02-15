@@ -29,7 +29,7 @@ describe('Gatherer::', function () {
         const rawData = await Gatherer.frontPageGather(Subreddit);
         assert(rawData);
         expect(rawData).length(5);
-      } catch (err: any) {
+      } catch (err) {
         assert(!err);
       }
     });
@@ -39,7 +39,7 @@ describe('Gatherer::', function () {
         const rawData = await Gatherer.frontPageGather(Subreddit);
         assert(rawData);
         expect(rawData).length(0);
-      } catch (err: any) {
+      } catch (err) {
         assert(err);
       }
     });
@@ -48,9 +48,9 @@ describe('Gatherer::', function () {
       try {
         const rawData = await Gatherer.frontPageGather(Subreddit);
         assert(!rawData, 'It did not go thru un happy path');
-      } catch (err: any) {
+      } catch (err) {
         assert(err);
-        expect(err.message).to.equal('err');
+        expect((err as Error).message).to.equal('err');
       }
     });
   });

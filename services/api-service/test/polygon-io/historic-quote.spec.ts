@@ -39,9 +39,9 @@ describe('PolygonIO::', function () {
       try {
         const resp = await HistoricQuote.getHistoricQuote('F');
         assert(!resp);
-      } catch (err: any) {
+      } catch (err) {
         assert(err);
-        assert.equal(err.message, 'Error');
+        assert.equal((err as Error).message, 'Error');
       }
     });
   });

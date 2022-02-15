@@ -33,9 +33,9 @@
     "api-service": "workspace:^0.2.12",
     "meow": "~9.0.0",
     "@types/meow": "~5.0.0",
-    "eslint": "~7.22.0",
-    "@typescript-eslint/parser": "~4.19.0",
-    "@typescript-eslint/eslint-plugin": "~4.19.0"
+    "@typescript-eslint/eslint-plugin": "~5.12.0",
+    "@typescript-eslint/parser": "~5.12.0",
+    "eslint": "~8.9.0"
   },
   "dependencies": {
     "fuse.js": "~6.4.6",

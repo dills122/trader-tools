@@ -318,7 +318,7 @@ importers:
     specifiers:
       '@types/chai': ~4.2.14
       '@types/lodash': ~4.14.168
-      '@types/mocha': ~8.2.0
+      '@types/mocha': ~9.1.0
       '@types/sinon': ~9.0.10
       '@typescript-eslint/eslint-plugin': ~4.19.0
       '@typescript-eslint/parser': ~4.19.0
@@ -342,7 +342,7 @@ importers:
     devDependencies:
       '@types/chai': 4.2.22
       '@types/lodash': 4.14.178
-      '@types/mocha': 8.2.3
+      '@types/mocha': 9.1.0
       '@types/sinon': 9.0.11
       '@typescript-eslint/eslint-plugin': 4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7
       '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
@@ -3184,6 +3184,10 @@ packages:
 
   /@types/mocha/8.2.3:
     resolution: {integrity: sha512-ekGvFhFgrc2zYQoX4JeZPmVzZxw6Dtllga7iGHzfbYIYkAMUx/sAFP2GdFpLff+vdHXu5fl7WX9AT+TtqYcsyw==}
+    dev: true
+
+  /@types/mocha/9.1.0:
+    resolution: {integrity: sha512-QCWHkbMv4Y5U9oW10Uxbr45qMMSzl4OzijsozynUAgx3kEHUdXB00udx2dWDQ7f2TU2a2uuiFaRZjCe3unPpeg==}
     dev: true
 
   /@types/mustache/4.1.2:

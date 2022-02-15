@@ -8,7 +8,7 @@ const Symbols = ['F', 'ABR', 'FB'];
 
 describe('IEXCloud::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -52,7 +52,7 @@ describe('IEXCloud::', function () {
       stubs.gotGetStub.rejects(Error('err'));
       try {
         await SocialSentiment.trendingStocksSentiment('twitter');
-      } catch (err) {
+      } catch (err: any) {
         assert(err);
         expect(stubs.gotGetStub.callCount).to.equal(1);
         expect(err.message).to.equal('err');
@@ -83,7 +83,7 @@ describe('IEXCloud::', function () {
       stubs.gotGetStub.rejects(Error('err'));
       try {
         await SocialSentiment.dailyStockSentiment(1);
-      } catch (err) {
+      } catch (err: any) {
         assert(err);
         expect(stubs.gotGetStub.callCount).to.equal(1);
         expect(err.message).to.equal('err');

@@ -7,7 +7,7 @@ const FAKE_ENDPOINT = 'fake/url';
 
 describe('IEXCloud::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -43,7 +43,7 @@ describe('IEXCloud::', function () {
         value: string;
       }>(FAKE_ENDPOINT);
       assert(!resp);
-    } catch (err) {
+    } catch (err: any) {
       assert(err);
       assert(err.message);
       expect(err.message).to.equal('err');

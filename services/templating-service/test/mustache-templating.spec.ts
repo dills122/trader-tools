@@ -11,7 +11,7 @@ const TEST_TEMPLATE = '<html><body><h1>Hello</h1></body></html>';
 
 describe('Mustache::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -36,7 +36,7 @@ describe('Mustache::', function () {
     try {
       const templateString = await mustacheTemplating.createTemplateFromFile('test/path', {});
       expect(templateString).to.be.undefined;
-    } catch (err) {
+    } catch (err: any) {
       expect(err.message).to.equal('Issue rendering your requested template');
       expect(stubs.readFileStub.callCount).to.equal(1);
       expect(stubs.mustacheRenderStub.callCount).to.equal(0);
@@ -54,7 +54,7 @@ describe('Mustache::', function () {
     try {
       const templateString = await mustacheTemplating.createTemplateFromString('', {});
       expect(templateString).to.be.undefined;
-    } catch (err) {
+    } catch (err: any) {
       expect(err.message).to.equal('Given template string was empty');
       expect(stubs.readFileStub.callCount).to.equal(0);
       expect(stubs.mustacheRenderStub.callCount).to.equal(0);

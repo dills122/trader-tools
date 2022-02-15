@@ -7,7 +7,7 @@ import { getTickerNewsItemList } from '../../mocks/polygon-io/ticker-news.mock';
 
 describe('PolygonIO::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -46,7 +46,7 @@ describe('PolygonIO::', function () {
       try {
         const resp = await TickerNews.getTickerNewsItems('F');
         assert(!resp);
-      } catch (err) {
+      } catch (err: any) {
         assert(err);
         assert.equal(err.message, 'Error');
       }

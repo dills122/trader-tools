@@ -9,7 +9,7 @@ const STOCK_SYMBOL = 'BTCUSD';
 
 describe('CryptoSymbols::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -36,7 +36,7 @@ describe('CryptoSymbols::', function () {
     try {
       const resp: any = await CryptoSymbols.cryptoSymbols();
       assert(!resp);
-    } catch (err) {
+    } catch (err: any) {
       assert(err);
       assert(err.message);
       expect(err.message).to.equal('err');

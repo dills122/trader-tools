@@ -10,7 +10,7 @@ const Subreddit = 'wallstreetbets';
 
 describe('Gatherer::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
   describe('FrontPageGatherer::', () => {
     beforeEach(() => {
       sandbox = Sinon.createSandbox();
@@ -29,7 +29,7 @@ describe('Gatherer::', function () {
         const rawData = await Gatherer.frontPageGather(Subreddit);
         assert(rawData);
         expect(rawData).length(5);
-      } catch (err) {
+      } catch (err: any) {
         assert(!err);
       }
     });
@@ -39,7 +39,7 @@ describe('Gatherer::', function () {
         const rawData = await Gatherer.frontPageGather(Subreddit);
         assert(rawData);
         expect(rawData).length(0);
-      } catch (err) {
+      } catch (err: any) {
         assert(err);
       }
     });
@@ -48,7 +48,7 @@ describe('Gatherer::', function () {
       try {
         const rawData = await Gatherer.frontPageGather(Subreddit);
         assert(!rawData, 'It did not go thru un happy path');
-      } catch (err) {
+      } catch (err: any) {
         assert(err);
         expect(err.message).to.equal('err');
       }

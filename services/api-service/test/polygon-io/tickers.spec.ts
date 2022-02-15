@@ -7,7 +7,7 @@ import { getRawTickerPageResponse } from '../../mocks/polygon-io/tickers.mock';
 
 describe('PolygonIO::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -38,7 +38,7 @@ describe('PolygonIO::', function () {
       try {
         const resp = await Ticker.getTickerSymbolPage(1);
         assert(!resp);
-      } catch (err) {
+      } catch (err: any) {
         assert(err);
         assert.equal(err.message, 'Unsuccessful status returned from api, unable to proceed');
       }

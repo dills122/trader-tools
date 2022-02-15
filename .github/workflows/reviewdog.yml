@@ -12,7 +12,4 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           locale: 'US'
-          exclude: |
-            */.git/*
-            */pnpm-lock.yaml/*
-            */.rush/*
+          exclude: '*/pnpm-lock.yaml/*'

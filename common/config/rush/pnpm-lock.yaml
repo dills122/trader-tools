@@ -55,7 +55,6 @@ dependencies:
   '@typescript-eslint/eslint-plugin': 4.19.0_eslint@7.22.0+typescript@4.3.2
   apos-to-lex-form: 1.0.5
   bad-words: 3.0.4
-  dotenv: 10.0.0
   ejs: 3.1.5
   eslint: 7.22.0
   express: 4.17.1
@@ -5753,6 +5752,12 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
+  /dotenv/16.0.0:
+    dev: false
+    engines:
+      node: '>=12'
+    resolution:
+      integrity: sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==
   /duplexer/0.1.2:
     dev: false
     resolution:
@@ -14842,7 +14847,7 @@ packages:
     dev: false
     name: '@rush-temp/cron-app'
     resolution:
-      integrity: sha512-kuGlKP7PS2asOqObcVICT0kzmsqT0ZNpCM9y9onLDpkpUhMPrtnlae6Nq5t2J/7C4X/nidF8XyHfextILK6xtQ==
+      integrity: sha512-quauTBT2HEhMGfGzMZNc4EvfLjg/6sWJeuopcwsagoBHtYrY9uFeu6sJEgg89Nza/2s0Nj+dgEEIkYVbv2FsFQ==
       tarball: 'file:projects/cron-app.tgz'
     version: 0.0.0
   'file:projects/grpc-tools.tgz':
@@ -14901,7 +14906,7 @@ packages:
     dev: false
     name: '@rush-temp/is-ticker-symbol'
     resolution:
-      integrity: sha512-oZhWML4XcYZvOEe1AraYtf4WTQ4MgL+ZbOG1Kbtrx4uzonmhy87fPM+CKhafFWlVG/p+Aa936QtQuUPtKBCx9Q==
+      integrity: sha512-vlXrT9sTrLTIsWq74VUsBzRqb6hQVrNWvECncrQaNbm/R5fstETSSRWm0IuWVdc8BGaM5jorYgq7s/JHpSKNtg==
       tarball: 'file:projects/is-ticker-symbol.tgz'
     version: 0.0.0
   'file:projects/sentiment-rpc-server.tgz':
@@ -14916,7 +14921,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7
       '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
       chai: 4.2.0
-      dotenv: 10.0.0
+      dotenv: 16.0.0
       eslint: 7.22.0
       google-protobuf: 3.17.3
       mocha: 8.2.1
@@ -14928,7 +14933,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-rpc-server'
     resolution:
-      integrity: sha512-ieyeEOiN7RNAmiWSq7QJ4AnFMFDZ24cwMoqXpaoLh6W9Ii+6Mr7UwvhgjUBCpcvvLpoAUkkBfyWXx2SyKDdGoA==
+      integrity: sha512-ZtrlNRP0gpZM4D21guvNagwFiPLCCQr4g+v6lvAgD0K3L0fd/MI9hqh1xN5cy6Q3sfkqNZapQvCGZt/YU6x7yw==
       tarball: 'file:projects/sentiment-rpc-server.tgz'
     version: 0.0.0
   'file:projects/sentiment-service.tgz':
@@ -14965,7 +14970,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-service'
     resolution:
-      integrity: sha512-RpvXCOdM5ACh5IieW+6yPo4uvCLR4MngFqLDAHd1tgNVPf247BLbf/htJgyOCj3pegJ+snWGKE9ol2+noJ4ucQ==
+      integrity: sha512-5K4amE/CYVIjs5240Kj0NRDSbU9Fr1TOa+F4Yrmhr8FZLp+7koh1/Sq05KEp6/KRpfnorbKtlOrn+yhzbDheNg==
       tarball: 'file:projects/sentiment-service.tgz'
     version: 0.0.0
   'file:projects/templating-service.tgz':
@@ -15096,7 +15101,6 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ~4.19.0
   apos-to-lex-form: ~1.0.5
   bad-words: ~3.0.4
-  dotenv: ~10.0.0
   ejs: ~3.1.5
   eslint: ~7.22.0
   express: ~4.17.1

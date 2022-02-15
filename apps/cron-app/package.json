@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "trading-services": "^0.2.12",
+    "trading-services": "workspace:^0.2.12",
     "node-cron": "~3.0.0",
     "express": "~4.17.1",
     "pm2": "^5.1.0"
@@ -32,6 +32,6 @@
     "ts-node-dev": "^1.1.8"
   },
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   }
 }

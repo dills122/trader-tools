@@ -1,16 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-  "rushVersion": "5.36.1",
+  "rushVersion": "5.59.2",
+  "pnpmVersion": "6.31.0",
+  "pnpmOptions": {
+    "useWorkspaces": true
+  },
 
-  "pnpmVersion": "4.14.4",
-  "pnpmOptions": {},
-
-  "nodeSupportedVersionRange": ">=13.13.0",
+  "nodeSupportedVersionRange": ">=14.0.0",
 
   "gitPolicy": {},
 
   "repository": {
-    "url": "https://github.com/dills122/trader-tools"
+    "url": "https://github.com/dills122/trader-tools",
+    "defaultBranch": "master",
+    "defaultRemote": "origin"
   },
   "eventHooks": {
     "preRushInstall": [

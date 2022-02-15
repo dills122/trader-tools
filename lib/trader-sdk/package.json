@@ -25,7 +25,7 @@
     "@types/node": "~17.0.18",
     "eslint": "~7.22.0",
     "@typescript-eslint/parser": "~4.19.0",
-    "@typescript-eslint/eslint-plugin": "~4.19.0"
+    "@typescript-eslint/eslint-plugin": "~4.33.0"
   },
   "dependencies": {
     "lodash": "~4.17.21",

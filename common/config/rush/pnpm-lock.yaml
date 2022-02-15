@@ -52,8 +52,7 @@ dependencies:
   '@types/sinon': 9.0.10
   '@types/stopword': 1.0.0
   '@types/uuid': 8.3.0
-  '@typescript-eslint/eslint-plugin': 4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7
-  '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
+  '@typescript-eslint/eslint-plugin': 4.19.0_eslint@7.22.0+typescript@4.3.2
   apos-to-lex-form: 1.0.5
   bad-words: 3.0.4
   chai: 4.2.0
@@ -2900,10 +2899,59 @@ packages:
     dev: false
     resolution:
       integrity: sha512-bvzMnzqoK16PQIC8AYHNdW45eREJQMd6WG/msQWX5V2+vZmODCOPb4TJcbgRljTZZTwTM4wUMcsI8FftNA7new==
+  /@typescript-eslint/eslint-plugin/4.19.0_462460fe19373d79999c3ab5bad104e6:
+    dependencies:
+      '@typescript-eslint/experimental-utils': 4.19.0_eslint@7.22.0+typescript@4.3.2
+      '@typescript-eslint/parser': 4.33.0_eslint@7.22.0+typescript@4.3.2
+      '@typescript-eslint/scope-manager': 4.19.0
+      debug: 4.3.1
+      eslint: 7.22.0
+      functional-red-black-tree: 1.0.1
+      lodash: 4.17.21
+      regexpp: 3.1.0
+      semver: 7.3.5
+      tsutils: 3.21.0_typescript@4.3.2
+      typescript: 4.3.2
+    dev: false
+    engines:
+      node: ^10.12.0 || >=12.0.0
+    peerDependencies:
+      '@typescript-eslint/parser': ^4.0.0
+      eslint: ^5.0.0 || ^6.0.0 || ^7.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    resolution:
+      integrity: sha512-CRQNQ0mC2Pa7VLwKFbrGVTArfdVDdefS+gTw0oC98vSI98IX5A8EVH4BzJ2FOB0YlCmm8Im36Elad/Jgtvveaw==
   /@typescript-eslint/eslint-plugin/4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7:
     dependencies:
       '@typescript-eslint/experimental-utils': 4.19.0_eslint@7.22.0+typescript@4.3.2
       '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
+      '@typescript-eslint/scope-manager': 4.19.0
+      debug: 4.3.1
+      eslint: 7.22.0
+      functional-red-black-tree: 1.0.1
+      lodash: 4.17.21
+      regexpp: 3.1.0
+      semver: 7.3.5
+      tsutils: 3.21.0_typescript@4.3.2
+      typescript: 4.3.2
+    dev: false
+    engines:
+      node: ^10.12.0 || >=12.0.0
+    peerDependencies:
+      '@typescript-eslint/parser': ^4.0.0
+      eslint: ^5.0.0 || ^6.0.0 || ^7.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    resolution:
+      integrity: sha512-CRQNQ0mC2Pa7VLwKFbrGVTArfdVDdefS+gTw0oC98vSI98IX5A8EVH4BzJ2FOB0YlCmm8Im36Elad/Jgtvveaw==
+  /@typescript-eslint/eslint-plugin/4.19.0_eslint@7.22.0+typescript@4.3.2:
+    dependencies:
+      '@typescript-eslint/experimental-utils': 4.19.0_eslint@7.22.0+typescript@4.3.2
       '@typescript-eslint/scope-manager': 4.19.0
       debug: 4.3.1
       eslint: 7.22.0
@@ -2962,6 +3010,25 @@ packages:
         optional: true
     resolution:
       integrity: sha512-/uabZjo2ZZhm66rdAu21HA8nQebl3lAIDcybUoOxoI7VbZBYavLIwtOOmykKCJy+Xq6Vw6ugkiwn8Js7D6wieA==
+  /@typescript-eslint/parser/4.33.0_eslint@7.22.0+typescript@4.3.2:
+    dependencies:
+      '@typescript-eslint/scope-manager': 4.33.0
+      '@typescript-eslint/types': 4.33.0
+      '@typescript-eslint/typescript-estree': 4.33.0_typescript@4.3.2
+      debug: 4.3.1
+      eslint: 7.22.0
+      typescript: 4.3.2
+    dev: false
+    engines:
+      node: ^10.12.0 || >=12.0.0
+    peerDependencies:
+      eslint: ^5.0.0 || ^6.0.0 || ^7.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    resolution:
+      integrity: sha512-ZohdsbXadjGBSK0/r+d87X0SBmKzOq4/S5nzK6SBgJspFo9/CUDJ7hjayuze+JK7CZQLDMroqytp7pOcFKTxZA==
   /@typescript-eslint/scope-manager/4.19.0:
     dependencies:
       '@typescript-eslint/types': 4.19.0
@@ -2971,12 +3038,27 @@ packages:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     resolution:
       integrity: sha512-GGy4Ba/hLXwJXygkXqMzduqOMc+Na6LrJTZXJWVhRrSuZeXmu8TAnniQVKgj8uTRKe4igO2ysYzH+Np879G75g==
+  /@typescript-eslint/scope-manager/4.33.0:
+    dependencies:
+      '@typescript-eslint/types': 4.33.0
+      '@typescript-eslint/visitor-keys': 4.33.0
+    dev: false
+    engines:
+      node: ^8.10.0 || ^10.13.0 || >=11.10.1
+    resolution:
+      integrity: sha512-5IfJHpgTsTZuONKbODctL4kKuQje/bzBRkwHE8UOZ4f89Zeddg+EGZs8PD8NcN4LdM3ygHWYB3ukPAYjvl/qbQ==
   /@typescript-eslint/types/4.19.0:
     dev: false
     engines:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     resolution:
       integrity: sha512-A4iAlexVvd4IBsSTNxdvdepW0D4uR/fwxDrKUa+iEY9UWvGREu2ZyB8ylTENM1SH8F7bVC9ac9+si3LWNxcBuA==
+  /@typescript-eslint/types/4.33.0:
+    dev: false
+    engines:
+      node: ^8.10.0 || ^10.13.0 || >=11.10.1
+    resolution:
+      integrity: sha512-zKp7CjQzLQImXEpLt2BUw1tvOMPfNoTAfb8l51evhYbOEEzdWyQNmHWWGPR6hwKJDAi+1VXSBmnhL9kyVTTOuQ==
   /@typescript-eslint/typescript-estree/4.19.0_typescript@4.3.2:
     dependencies:
       '@typescript-eslint/types': 4.19.0
@@ -2997,6 +3079,26 @@ packages:
         optional: true
     resolution:
       integrity: sha512-3xqArJ/A62smaQYRv2ZFyTA+XxGGWmlDYrsfZG68zJeNbeqRScnhf81rUVa6QG4UgzHnXw5VnMT5cg75dQGDkA==
+  /@typescript-eslint/typescript-estree/4.33.0_typescript@4.3.2:
+    dependencies:
+      '@typescript-eslint/types': 4.33.0
+      '@typescript-eslint/visitor-keys': 4.33.0
+      debug: 4.3.1
+      globby: 11.0.3
+      is-glob: 4.0.1
+      semver: 7.3.5
+      tsutils: 3.21.0_typescript@4.3.2
+      typescript: 4.3.2
+    dev: false
+    engines:
+      node: ^10.12.0 || >=12.0.0
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    resolution:
+      integrity: sha512-rkWRY1MPFzjwnEVHsxGemDzqqddw2QbTJlICPD9p9I9LfsO8fdmfQPOX3uKfUaGRDFJbfrtm/sXhVXN4E+bzCA==
   /@typescript-eslint/visitor-keys/4.19.0:
     dependencies:
       '@typescript-eslint/types': 4.19.0
@@ -3006,6 +3108,15 @@ packages:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     resolution:
       integrity: sha512-aGPS6kz//j7XLSlgpzU2SeTqHPsmRYxFztj2vPuMMFJXZudpRSehE3WCV+BaxwZFvfAqMoSd86TEuM0PQ59E/A==
+  /@typescript-eslint/visitor-keys/4.33.0:
+    dependencies:
+      '@typescript-eslint/types': 4.33.0
+      eslint-visitor-keys: 2.1.0
+    dev: false
+    engines:
+      node: ^8.10.0 || ^10.13.0 || >=11.10.1
+    resolution:
+      integrity: sha512-uqi/2aSz9g2ftcHWf8uLPJA70rUv6yuMW5Bohw+bwcuzaxQIHaKFZCKGoGXIrc9vkTJ3+0txM73K0Hq3d5wgIg==
   /@ungap/promise-all-settled/1.1.2:
     dev: false
     resolution:
@@ -14581,8 +14692,8 @@ packages:
       '@hapi/lab': 24.3.2_typescript@4.3.2
       '@types/hapi__hapi': 20.0.9
       '@types/node': 14.14.25
-      '@typescript-eslint/eslint-plugin': 4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7
-      '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
+      '@typescript-eslint/eslint-plugin': 4.19.0_462460fe19373d79999c3ab5bad104e6
+      '@typescript-eslint/parser': 4.33.0_eslint@7.22.0+typescript@4.3.2
       dotenv: 10.0.0
       eslint: 7.22.0
       lab-transform-typescript: 3.0.1_typescript@4.3.2
@@ -14594,7 +14705,7 @@ packages:
     dev: false
     name: '@rush-temp/admin-api'
     resolution:
-      integrity: sha512-aRWmtj4QKQHNRZut8NDFLw5hUay9+IVPU4itesiRBns6+EE6rHnAgV41fyzIxaKEKKBHd/lOQJvJ+kxUTk6q8Q==
+      integrity: sha512-F1rjuqG7ERxS3jCjqxqdjMzunJc9sSPZx8iBWDl/cbQgbGLumxLq4wjHctqOKHuKu7osGyX34XJ1jSxZEqAe1w==
       tarball: 'file:projects/admin-api.tgz'
     version: 0.0.0
   'file:projects/admin-ui.tgz':
@@ -14661,7 +14772,7 @@ packages:
     dev: false
     name: '@rush-temp/api-service'
     resolution:
-      integrity: sha512-ZJASBx8lwnSThS+a5DyYurdrSMlZxNuIueawvMPXqsR0YczEJDAHBfBvOSXkD2GK/NQrmnu9UbQP5851oGMj7Q==
+      integrity: sha512-SuBMC3EaIlqg6kYLJvIQiTMD7RlHFhbvRGuqLOGYtgg/2/zWzV3h/H2OocsAykUSXbyGa0Eqp8TI8zlAyYi7gg==
       tarball: 'file:projects/api-service.tgz'
     version: 0.0.0
   'file:projects/cron-app.tgz':
@@ -14679,7 +14790,7 @@ packages:
     dev: false
     name: '@rush-temp/cron-app'
     resolution:
-      integrity: sha512-bjLo2WFfx7IWl1Nz+KcIeV3qyTaKP6C4UHEmz6aladDhDZ/icFDEnEbfjZ/fpzo7LQicyoJi5NRtDQML/I3IMQ==
+      integrity: sha512-V/ofg3V4cEweH7rGUSuEAA0C+5M8JBXDH4x1enHvquBtct7fipCA17LvVLpJZ1KW6+IwgkDJ8GV9HfzJa6eqBA==
       tarball: 'file:projects/cron-app.tgz'
     version: 0.0.0
   'file:projects/grpc-tools.tgz':
@@ -14738,7 +14849,7 @@ packages:
     dev: false
     name: '@rush-temp/is-ticker-symbol'
     resolution:
-      integrity: sha512-FC+pePplW2vp6GqT4qZNd9RLuyW05xSQJCTJrvBqVZUS37Hvw2ZWNyXSQQz9Lmc8Y/zn0ogHJMi9zsr86YGVrg==
+      integrity: sha512-oZhWML4XcYZvOEe1AraYtf4WTQ4MgL+ZbOG1Kbtrx4uzonmhy87fPM+CKhafFWlVG/p+Aa936QtQuUPtKBCx9Q==
       tarball: 'file:projects/is-ticker-symbol.tgz'
     version: 0.0.0
   'file:projects/sentiment-rpc-server.tgz':
@@ -14765,7 +14876,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-rpc-server'
     resolution:
-      integrity: sha512-jMx8aS6x8JWr7xwivOssXSXYyyrecx1wCRYevDqzbN0YSUUnVn/5KXpnfV5+z2Cbq1SgRBCjJeljCd2rGY3Gfw==
+      integrity: sha512-ieyeEOiN7RNAmiWSq7QJ4AnFMFDZ24cwMoqXpaoLh6W9Ii+6Mr7UwvhgjUBCpcvvLpoAUkkBfyWXx2SyKDdGoA==
       tarball: 'file:projects/sentiment-rpc-server.tgz'
     version: 0.0.0
   'file:projects/sentiment-service.tgz':
@@ -14802,7 +14913,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-service'
     resolution:
-      integrity: sha512-gRgbsY168dhr2GZDnqqZaPL+tStxXlDdGqrbW94QFQcN+m4yqh5zJqFQKzU1/Tal/EIJHMw0HjWBgKQiZ73jrA==
+      integrity: sha512-RpvXCOdM5ACh5IieW+6yPo4uvCLR4MngFqLDAHd1tgNVPf247BLbf/htJgyOCj3pegJ+snWGKE9ol2+noJ4ucQ==
       tarball: 'file:projects/sentiment-service.tgz'
     version: 0.0.0
   'file:projects/templating-service.tgz':
@@ -14872,7 +14983,7 @@ packages:
     dev: false
     name: '@rush-temp/trading-services'
     resolution:
-      integrity: sha512-80QU8JlG8Rx8dQHLqrwiJuM9oyVAvGotAPF/wUpHsTfwsRVCxbFqc40SJlX0ZDSZIcy5teljiVUmpOMWv+pkRA==
+      integrity: sha512-MUMrPhjh6j5GIy8aEwHzz7vliIIQSxHTNScFp/dEi93n2iqy00Kvfe4wu2VA0kEt+bFkDjVd8PyJQy8yV6+OlQ==
       tarball: 'file:projects/trading-services.tgz'
     version: 0.0.0
 registry: ''
@@ -14931,7 +15042,6 @@ specifiers:
   '@types/stopword': ~1.0.0
   '@types/uuid': ~8.3.0
   '@typescript-eslint/eslint-plugin': ~4.19.0
-  '@typescript-eslint/parser': ~4.19.0
   apos-to-lex-form: ~1.0.5
   bad-words: ~3.0.4
   chai: ~4.2.0

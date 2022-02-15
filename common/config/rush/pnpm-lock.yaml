@@ -80,7 +80,7 @@ dependencies:
   mocha: 8.2.1
   mustache: 4.1.0
   natural: 4.0.0
-  node-cron: 2.0.3
+  node-cron: 3.0.0
   pm2: 5.1.0
   proxyquire: 2.1.3
   rxjs: 6.6.7
@@ -9884,16 +9884,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==
-  /node-cron/2.0.3:
+  /node-cron/3.0.0:
     dependencies:
-      opencollective-postinstall: 2.0.3
-      tz-offset: 0.0.1
+      moment-timezone: 0.5.33
     dev: false
     engines:
       node: '>=6.0.0'
-    requiresBuild: true
     resolution:
-      integrity: sha512-eJI+QitXlwcgiZwNNSRbqsjeZMp5shyajMR81RZCqeW0ZDEj4zU9tpd4nTh/1JsBiKbF8d08FCewiipDmVIYjg==
+      integrity: sha512-DDwIvvuCwrNiaU7HEivFDULcaQualDv7KoNlB/UU1wPW0n1tDEmBJKhEIE6DlF2FuoOHcNbLJ8ITL2Iv/3AWmA==
   /node-fetch/2.6.1:
     dev: false
     engines:
@@ -10242,11 +10240,6 @@ packages:
       node: '>=12'
     resolution:
       integrity: sha512-rXILpcQlkF/QuFez2BJDf3GsqpjGKbkUUToAIGo9A0Q6ZkoSGogZJulrUdwRkrAsoQvoZsrjCYt8+zblOk7JQQ==
-  /opencollective-postinstall/2.0.3:
-    dev: false
-    hasBin: true
-    resolution:
-      integrity: sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==
   /openurl/1.1.1:
     dev: false
     resolution:
@@ -13787,10 +13780,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-uauPG7XZn9F/mo+7MrsRjyvbxFpzemRjKEZXS4AK83oP2KKOJPvb+9cO/gmnv8arWZvhnjVOXz7B49m1l0e9Ew==
-  /tz-offset/0.0.1:
-    dev: false
-    resolution:
-      integrity: sha512-kMBmblijHJXyOpKzgDhKx9INYU4u4E1RPMB0HqmKSgWG8vEcf3exEfLh4FFfzd3xdQOw9EuIy/cP0akY6rHopQ==
   /ua-parser-js/0.7.28:
     dev: false
     resolution:
@@ -14783,14 +14772,14 @@ packages:
       '@typescript-eslint/parser': 4.33.0_eslint@7.22.0+typescript@4.3.2
       eslint: 7.22.0
       express: 4.17.1
-      node-cron: 2.0.3
+      node-cron: 3.0.0
       pm2: 5.1.0
       ts-node-dev: 1.1.8_typescript@4.3.2
       typescript: 4.3.2
     dev: false
     name: '@rush-temp/cron-app'
     resolution:
-      integrity: sha512-h5X9Hx9haD4IY0u9ST9webBuncOR5fNDq1hCj0odrElqIOvF1A5NlmOgjFr3RLBerTaF8bUTYSA/uT8Fa7DY6w==
+      integrity: sha512-kuGlKP7PS2asOqObcVICT0kzmsqT0ZNpCM9y9onLDpkpUhMPrtnlae6Nq5t2J/7C4X/nidF8XyHfextILK6xtQ==
       tarball: 'file:projects/cron-app.tgz'
     version: 0.0.0
   'file:projects/grpc-tools.tgz':
@@ -15069,7 +15058,7 @@ specifiers:
   mocha: ~8.2.1
   mustache: ^4.1.0
   natural: ~4.0.0
-  node-cron: ~2.0.3
+  node-cron: ~3.0.0
   pm2: ^5.1.0
   proxyquire: ~2.1.3
   rxjs: ~6.6.0

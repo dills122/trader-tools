@@ -2,7 +2,6 @@
   "name": "trading-services",
   "version": "0.2.12",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test yet\" && exit 0",
     "build": "tsc -p .",

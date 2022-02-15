@@ -2,7 +2,6 @@
   "name": "sentiment-service",
   "version": "0.2.12",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register \"test/**/*.spec.ts\"",
     "test:integration": "mocha -r ts-node/register \"integrations/**/*.spec.ts\"",

@@ -2,7 +2,6 @@
   "name": "api-service",
   "version": "0.2.12",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register \"test/**/*.spec.ts\"",
     "test:integrations": "mocha -r ts-node/register integrations/**/*.spec.ts",

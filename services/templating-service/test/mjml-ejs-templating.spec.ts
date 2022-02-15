@@ -18,7 +18,7 @@ const mjmlTemplater = proxyquire('../lib/mjml-ejs-templating.ts', {
 
 describe('Ejs-mjml::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -51,7 +51,7 @@ describe('Ejs-mjml::', function () {
       assert(!templateString);
     } catch (err) {
       assert(err);
-      expect(err.message).to.equal('Error with rendering template with mjml');
+      expect((err as Error).message).to.equal('Error with rendering template with mjml');
     }
   });
 
@@ -61,7 +61,7 @@ describe('Ejs-mjml::', function () {
       const templateString = await mjmlTemplater.createTemplateFromFile('test/path', {});
       expect(templateString).to.be.undefined;
     } catch (err) {
-      expect(err.message).to.equal('Issue rendering your requested template');
+      expect((err as Error).message).to.equal('Issue rendering your requested template');
       expect(stubs.readFileStub.callCount).to.equal(1);
     }
   });
@@ -77,7 +77,7 @@ describe('Ejs-mjml::', function () {
       const templateString = await mjmlTemplater.createTemplateFromString('', {});
       expect(templateString).to.be.undefined;
     } catch (err) {
-      expect(err.message).to.equal('Given template string was empty');
+      expect((err as Error).message).to.equal('Given template string was empty');
       expect(stubs.readFileStub.callCount).to.equal(0);
     }
   });

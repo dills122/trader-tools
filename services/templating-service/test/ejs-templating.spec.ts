@@ -10,7 +10,7 @@ const TEST_TEMPLATE = '<html><body><h1>Hello</h1></body></html>';
 
 describe('Ejs::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -34,7 +34,7 @@ describe('Ejs::', function () {
       const templateString = await ejsTemplating.createTemplateFromFile('test/path', {});
       expect(templateString).to.be.undefined;
     } catch (err) {
-      expect(err.message).to.equal('Issue rendering your requested template');
+      expect((err as Error).message).to.equal('Issue rendering your requested template');
       expect(stubs.readFileStub.callCount).to.equal(1);
     }
   });
@@ -50,7 +50,7 @@ describe('Ejs::', function () {
       const templateString = await ejsTemplating.createTemplateFromString('', {});
       expect(templateString).to.be.undefined;
     } catch (err) {
-      expect(err.message).to.equal('Given template string was empty');
+      expect((err as Error).message).to.equal('Given template string was empty');
       expect(stubs.readFileStub.callCount).to.equal(0);
     }
   });

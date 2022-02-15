@@ -9,7 +9,7 @@ const STOCK_SYMBOL = 'AAPL';
 
 describe('HistoricalBatchChart::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -47,8 +47,8 @@ describe('HistoricalBatchChart::', function () {
       assert(!resp);
     } catch (err) {
       assert(err);
-      assert(err.message);
-      expect(err.message).to.equal('err');
+      assert((err as Error).message);
+      expect((err as Error).message).to.equal('err');
     }
   });
 });

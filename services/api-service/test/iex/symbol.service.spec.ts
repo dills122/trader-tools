@@ -9,7 +9,7 @@ const STOCK_SYMBOL = 'A';
 
 describe('Symbols::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -38,8 +38,8 @@ describe('Symbols::', function () {
       assert(!resp);
     } catch (err) {
       assert(err);
-      assert(err.message);
-      expect(err.message).to.equal('err');
+      assert((err as Error).message);
+      expect((err as Error).message).to.equal('err');
     }
   });
 });

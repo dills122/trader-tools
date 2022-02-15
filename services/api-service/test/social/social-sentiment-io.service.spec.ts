@@ -8,7 +8,7 @@ const Symbols = ['F', 'ABR', 'FB'];
 
 describe('IEXCloud::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -55,7 +55,7 @@ describe('IEXCloud::', function () {
       } catch (err) {
         assert(err);
         expect(stubs.gotGetStub.callCount).to.equal(1);
-        expect(err.message).to.equal('err');
+        expect((err as Error).message).to.equal('err');
       }
     });
   });
@@ -86,7 +86,7 @@ describe('IEXCloud::', function () {
       } catch (err) {
         assert(err);
         expect(stubs.gotGetStub.callCount).to.equal(1);
-        expect(err.message).to.equal('err');
+        expect((err as Error).message).to.equal('err');
       }
     });
   });

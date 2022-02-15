@@ -7,7 +7,7 @@ import { getHistoricQuote } from '../../mocks/polygon-io/historic-quote.mock';
 
 describe('PolygonIO::', function () {
   let sandbox: Sinon.SinonSandbox;
-  let stubs: any = {};
+  const stubs: any = {};
 
   beforeEach(() => {
     sandbox = Sinon.createSandbox();
@@ -41,7 +41,7 @@ describe('PolygonIO::', function () {
         assert(!resp);
       } catch (err) {
         assert(err);
-        assert.equal(err.message, 'Error');
+        assert.equal((err as Error).message, 'Error');
       }
     });
   });

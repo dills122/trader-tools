@@ -11,6 +11,7 @@ const subreddit = 'wallstreetbets';
 describe('RPC::', function () {
   describe('RPC::', function () {
     let sandbox: Sinon.SinonSandbox;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const stubs: any = {};
 
     beforeEach(() => {
@@ -54,9 +55,8 @@ describe('RPC::', function () {
           subreddit: subreddit
         });
         expect(results).to.be.not.undefined;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (err: any) {
-        expect(err.message).to.equal('Client connection error');
+      } catch (err) {
+        expect((err as Error).message).to.equal('Client connection error');
         expect(stubs.waitForReadyStub.callCount).to.equal(1);
         expect(stubs.AnalyzeStub.callCount).to.equal(0);
       }
@@ -71,9 +71,8 @@ describe('RPC::', function () {
           subreddit: subreddit
         });
         expect(results).to.be.not.undefined;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (err: any) {
-        expect(err.message).to.equal('ERR');
+      } catch (err) {
+        expect((err as Error).message).to.equal('ERR');
         expect(stubs.waitForReadyStub.callCount).to.equal(1);
         expect(stubs.AnalyzeStub.callCount).to.equal(1);
       }

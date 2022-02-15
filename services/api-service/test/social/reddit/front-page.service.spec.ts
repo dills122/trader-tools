@@ -10,7 +10,7 @@ describe('Social::', function () {
   describe('Snoowrap::', () => {
     describe('FrontPage::', () => {
       let sandbox: Sinon.SinonSandbox;
-      let stubs: any = {};
+      const stubs: any = {};
       beforeEach(() => {
         sandbox = Sinon.createSandbox();
         stubs.getHotStub = sandbox.stub().resolves([]);
@@ -29,7 +29,7 @@ describe('Social::', function () {
           await FrontPage.getFrontPage(subreddit);
         } catch (err) {
           assert(err);
-          expect(err.message).to.equal('No posts found');
+          expect((err as Error).message).to.equal('No posts found');
           expect(stubs.connectStub.callCount).to.equal(1);
           expect(stubs.getHotStub.callCount).to.equal(1);
         }

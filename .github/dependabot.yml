@@ -5,7 +5,47 @@
 
 version: 2
 updates:
-  - package-ecosystem: 'npm' # See documentation for possible values
-    directory: '/' # Location of package manifests
+  - package-ecosystem: 'npm'
+    directory: '/apps/admin-api'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/apps/admin-ui'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/apps/cron-app'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/apps/sentiment-rpc-server'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/lib/grpc-tools'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/lib/is-ticker-symbol'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/lib/trader-sdk'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/services/api-service'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/services/sentiment-service'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/services/templating-service'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/services/trading-services'
     schedule:
       interval: 'daily'

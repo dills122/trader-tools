@@ -46,7 +46,6 @@ dependencies:
   '@types/mocha': 8.2.0
   '@types/mustache': 4.1.1
   '@types/natural': 2.1.1
-  '@types/node': 14.14.25
   '@types/node-cron': 2.0.3
   '@types/proxyquire': 1.3.28
   '@types/sinon': 9.0.10
@@ -2821,6 +2820,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-EPpXLOVqDvisVxtlbvzfyqSsFeQxltFbluZNRndIb8tr9KiBnYNLzrc1N3pyKUCww2RNrfHDViqDWWE1LCJQtQ==
+  /@types/node/17.0.18:
+    dev: false
+    resolution:
+      integrity: sha512-eKj4f/BsN/qcculZiRSujogjvp5O/k4lOW5m35NopjZM/QwLOR075a8pJW5hD+Rtdm2DaCVPENS6KtSQnUD6BA==
   /@types/node/6.14.13:
     dev: false
     resolution:
@@ -14580,7 +14583,7 @@ packages:
       '@hapi/hapi': 20.1.5
       '@hapi/lab': 24.3.2_typescript@4.3.2
       '@types/hapi__hapi': 20.0.9
-      '@types/node': 14.14.25
+      '@types/node': 17.0.18
       '@typescript-eslint/eslint-plugin': 4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7
       '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
       dotenv: 10.0.0
@@ -14594,7 +14597,7 @@ packages:
     dev: false
     name: '@rush-temp/admin-api'
     resolution:
-      integrity: sha512-aRWmtj4QKQHNRZut8NDFLw5hUay9+IVPU4itesiRBns6+EE6rHnAgV41fyzIxaKEKKBHd/lOQJvJ+kxUTk6q8Q==
+      integrity: sha512-6swpVTMt5rMANm4HhXtgKfFq2566gjuailAAcIFtHXw6PykSHP8JQG6fgoy5s5rChEZUvrHhcWU72byxxX9yEQ==
       tarball: 'file:projects/admin-api.tgz'
     version: 0.0.0
   'file:projects/admin-ui.tgz':
@@ -14661,7 +14664,7 @@ packages:
     dev: false
     name: '@rush-temp/api-service'
     resolution:
-      integrity: sha512-ZJASBx8lwnSThS+a5DyYurdrSMlZxNuIueawvMPXqsR0YczEJDAHBfBvOSXkD2GK/NQrmnu9UbQP5851oGMj7Q==
+      integrity: sha512-SuBMC3EaIlqg6kYLJvIQiTMD7RlHFhbvRGuqLOGYtgg/2/zWzV3h/H2OocsAykUSXbyGa0Eqp8TI8zlAyYi7gg==
       tarball: 'file:projects/api-service.tgz'
     version: 0.0.0
   'file:projects/cron-app.tgz':
@@ -14679,7 +14682,7 @@ packages:
     dev: false
     name: '@rush-temp/cron-app'
     resolution:
-      integrity: sha512-bjLo2WFfx7IWl1Nz+KcIeV3qyTaKP6C4UHEmz6aladDhDZ/icFDEnEbfjZ/fpzo7LQicyoJi5NRtDQML/I3IMQ==
+      integrity: sha512-V/ofg3V4cEweH7rGUSuEAA0C+5M8JBXDH4x1enHvquBtct7fipCA17LvVLpJZ1KW6+IwgkDJ8GV9HfzJa6eqBA==
       tarball: 'file:projects/cron-app.tgz'
     version: 0.0.0
   'file:projects/grpc-tools.tgz':
@@ -14738,7 +14741,7 @@ packages:
     dev: false
     name: '@rush-temp/is-ticker-symbol'
     resolution:
-      integrity: sha512-FC+pePplW2vp6GqT4qZNd9RLuyW05xSQJCTJrvBqVZUS37Hvw2ZWNyXSQQz9Lmc8Y/zn0ogHJMi9zsr86YGVrg==
+      integrity: sha512-oZhWML4XcYZvOEe1AraYtf4WTQ4MgL+ZbOG1Kbtrx4uzonmhy87fPM+CKhafFWlVG/p+Aa936QtQuUPtKBCx9Q==
       tarball: 'file:projects/is-ticker-symbol.tgz'
     version: 0.0.0
   'file:projects/sentiment-rpc-server.tgz':
@@ -14765,7 +14768,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-rpc-server'
     resolution:
-      integrity: sha512-jMx8aS6x8JWr7xwivOssXSXYyyrecx1wCRYevDqzbN0YSUUnVn/5KXpnfV5+z2Cbq1SgRBCjJeljCd2rGY3Gfw==
+      integrity: sha512-ieyeEOiN7RNAmiWSq7QJ4AnFMFDZ24cwMoqXpaoLh6W9Ii+6Mr7UwvhgjUBCpcvvLpoAUkkBfyWXx2SyKDdGoA==
       tarball: 'file:projects/sentiment-rpc-server.tgz'
     version: 0.0.0
   'file:projects/sentiment-service.tgz':
@@ -14802,7 +14805,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-service'
     resolution:
-      integrity: sha512-gRgbsY168dhr2GZDnqqZaPL+tStxXlDdGqrbW94QFQcN+m4yqh5zJqFQKzU1/Tal/EIJHMw0HjWBgKQiZ73jrA==
+      integrity: sha512-RpvXCOdM5ACh5IieW+6yPo4uvCLR4MngFqLDAHd1tgNVPf247BLbf/htJgyOCj3pegJ+snWGKE9ol2+noJ4ucQ==
       tarball: 'file:projects/sentiment-service.tgz'
     version: 0.0.0
   'file:projects/templating-service.tgz':
@@ -14872,7 +14875,7 @@ packages:
     dev: false
     name: '@rush-temp/trading-services'
     resolution:
-      integrity: sha512-80QU8JlG8Rx8dQHLqrwiJuM9oyVAvGotAPF/wUpHsTfwsRVCxbFqc40SJlX0ZDSZIcy5teljiVUmpOMWv+pkRA==
+      integrity: sha512-MUMrPhjh6j5GIy8aEwHzz7vliIIQSxHTNScFp/dEi93n2iqy00Kvfe4wu2VA0kEt+bFkDjVd8PyJQy8yV6+OlQ==
       tarball: 'file:projects/trading-services.tgz'
     version: 0.0.0
 registry: ''
@@ -14924,7 +14927,6 @@ specifiers:
   '@types/mocha': ~8.2.0
   '@types/mustache': ~4.1.1
   '@types/natural': ~2.1.1
-  '@types/node': ~14.14.22
   '@types/node-cron': ~2.0.3
   '@types/proxyquire': ~1.3.28
   '@types/sinon': ~9.0.10

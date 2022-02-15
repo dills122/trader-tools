@@ -82,7 +82,7 @@ dependencies:
   pm2: 5.1.0
   proxyquire: 2.1.3
   rxjs: 6.6.7
-  snoowrap: 1.22.0
+  snoowrap: 1.23.0
   spelling-corrector: 3.0.0
   stopword: 1.0.6
   technicalindicators: 3.1.0
@@ -12769,7 +12769,7 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-FtyOnWN/wCHTVXOMwvSv26d+ko5vWlIDD6zoUJ7LW8vh+ZBC8QdljveRP+crNrtBwioEUWy/4dMtbBjA4ioNlg==
-  /snoowrap/1.22.0:
+  /snoowrap/1.23.0:
     dependencies:
       bluebird: 3.7.2
       lodash: 4.17.21
@@ -12781,7 +12781,7 @@ packages:
     engines:
       node: '>=4.0.0'
     resolution:
-      integrity: sha512-eV1CnzWaAinucpOulyaz8ma/3sStPsxlE0sa0kjldKVrS4aQQc8rBJpwJk5cE67DcLSDMm6O1C6out4pPmrR6g==
+      integrity: sha512-8FIGWr20Gc+d/C3NRrNPp5VQFNb+eGaQyvIkM5KUL71pYpRM231fkRdLNydMrdtLNRDrTZeZApHHCb8Uk/QuTQ==
   /socket.io-adapter/1.1.2:
     dev: false
     resolution:
@@ -14821,13 +14821,13 @@ packages:
       lodash: 4.17.21
       mocha: 8.2.1
       sinon: 9.2.3
-      snoowrap: 1.22.0
+      snoowrap: 1.23.0
       ts-node: 9.1.1_typescript@4.3.2
       typescript: 4.3.2
     dev: false
     name: '@rush-temp/api-service'
     resolution:
-      integrity: sha512-SuBMC3EaIlqg6kYLJvIQiTMD7RlHFhbvRGuqLOGYtgg/2/zWzV3h/H2OocsAykUSXbyGa0Eqp8TI8zlAyYi7gg==
+      integrity: sha512-K93sGHfyTMZF/B/xMxf2Qno+RAuSBIMZOVWV6WVA4K4Og50V9R9hBz2CeljlAatwbarbkiRRCyXH3+2XmsX4uA==
       tarball: 'file:projects/api-service.tgz'
     version: 0.0.0
   'file:projects/cron-app.tgz':
@@ -15126,7 +15126,7 @@ specifiers:
   pm2: ^5.1.0
   proxyquire: ~2.1.3
   rxjs: ~6.6.0
-  snoowrap: ~1.22.0
+  snoowrap: ~1.23.0
   spelling-corrector: ~3.0.0
   stopword: ~1.0.6
   technicalindicators: ~3.1.0

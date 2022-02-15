@@ -54,7 +54,8 @@ describe('RPC::', function () {
           subreddit: subreddit
         });
         expect(results).to.be.not.undefined;
-      } catch (err) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (err: any) {
         expect(err.message).to.equal('Client connection error');
         expect(stubs.waitForReadyStub.callCount).to.equal(1);
         expect(stubs.AnalyzeStub.callCount).to.equal(0);
@@ -70,7 +71,8 @@ describe('RPC::', function () {
           subreddit: subreddit
         });
         expect(results).to.be.not.undefined;
-      } catch (err) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (err: any) {
         expect(err.message).to.equal('ERR');
         expect(stubs.waitForReadyStub.callCount).to.equal(1);
         expect(stubs.AnalyzeStub.callCount).to.equal(1);

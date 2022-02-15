@@ -2,7 +2,6 @@
   "name": "api-service",
   "version": "0.2.12",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register \"test/**/*.spec.ts\"",
     "test:integrations": "mocha -r ts-node/register integrations/**/*.spec.ts",
@@ -31,7 +30,7 @@
   "dependencies": {
     "got": "~11.8.2",
     "dotenv": "~10.0.0",
-    "trader-sdk": "^0.2.12",
+    "trader-sdk": "workspace:^0.2.12",
     "lodash": "~4.17.21",
     "snoowrap": "~1.23.0"
   }

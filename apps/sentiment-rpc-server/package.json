@@ -2,7 +2,6 @@
   "name": "sentiment-rpc-server",
   "version": "0.2.12",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "tsc -p .",
     "build:proto": "sh ./scripts/protoc/protoc.sh",
@@ -25,8 +24,8 @@
     "@grpc/proto-loader": "~0.6.4",
     "dotenv": "~16.0.0",
     "google-protobuf": "^3.17.3",
-    "sentiment-service": "~0.2.12",
-    "grpc-tools": "~0.2.12",
+    "sentiment-service": "workspace:~0.2.12",
+    "grpc-tools": "workspace:~0.2.12",
     "pm2": "^5.1.0"
   },
   "devDependencies": {

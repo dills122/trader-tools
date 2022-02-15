@@ -2,7 +2,6 @@
   "name": "sentiment-service",
   "version": "0.2.12",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register \"test/**/*.spec.ts\"",
     "test:integration": "mocha -r ts-node/register \"integrations/**/*.spec.ts\"",
@@ -22,10 +21,10 @@
     "stopword": "~1.0.6",
     "word-list": "~3.1.0",
     "bad-words": "~3.0.4",
-    "api-service": "^0.2.12",
+    "api-service": "workspace:^0.2.12",
     "lodash": "~4.17.21",
-    "is-ticker-symbol": "^0.2.9",
-    "trader-sdk": "^0.2.12"
+    "is-ticker-symbol": "workspace:^0.2.9",
+    "trader-sdk": "workspace:^0.2.12"
   },
   "devDependencies": {
     "typescript": "4.3.2",

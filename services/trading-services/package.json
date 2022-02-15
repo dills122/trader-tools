@@ -2,7 +2,6 @@
   "name": "trading-services",
   "version": "0.2.12",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test yet\" && exit 0",
     "build": "tsc -p .",
@@ -21,9 +20,9 @@
     "@typescript-eslint/eslint-plugin": "~4.19.0"
   },
   "dependencies": {
-    "api-service": "^0.2.12",
-    "trader-sdk": "^0.2.12",
+    "api-service": "workspace:^0.2.12",
+    "trader-sdk": "workspace:^0.2.12",
     "lodash": "~4.17.21",
-    "templating-service": "^0.2.12"
+    "templating-service": "workspace:^0.2.12"
   }
 }

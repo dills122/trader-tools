@@ -48,7 +48,6 @@ dependencies:
   '@types/natural': 2.1.1
   '@types/node-cron': 2.0.3
   '@types/proxyquire': 1.3.28
-  '@types/sinon': 9.0.10
   '@types/stopword': 1.0.0
   '@types/uuid': 8.3.0
   '@typescript-eslint/eslint-plugin': 4.19.0_eslint@7.22.0
@@ -3076,6 +3075,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ZFqF6qa48XsPdjXV5Gsz0Zqmux2PerNd3a/ktL45mHpa19cuMi/cL8tcxdAx497yRh+QtYPuofjT9oWw9P7nkA==
+  /@types/sinon/10.0.11:
+    dependencies:
+      '@types/sinonjs__fake-timers': 6.0.2
+    dev: false
+    resolution:
+      integrity: sha512-dmZsHlBsKUtBpHriNjlK0ndlvEh8dcb9uV9Afsbt89QIyydpC7NcR+nWlAhASfy3GHnxTl4FX/aKE7XZUt/B4g==
   /@types/sinon/9.0.10:
     dependencies:
       '@types/sinonjs__fake-timers': 6.0.2
@@ -15285,7 +15290,7 @@ packages:
       '@types/chai': 4.2.14
       '@types/lodash': 4.14.168
       '@types/mocha': 8.2.0
-      '@types/sinon': 9.0.10
+      '@types/sinon': 10.0.11
       '@typescript-eslint/eslint-plugin': 4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7
       '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
       chai: 4.2.0
@@ -15299,7 +15304,7 @@ packages:
     dev: false
     name: '@rush-temp/grpc-tools'
     resolution:
-      integrity: sha512-+cpz4CQPYPSRShoCQu1SHWsXoWETFdeeZ0vYvUiLWL93R/Tme5UJdXeUyduV/uXvXnXGcdNyJsw4xnOebFEH2w==
+      integrity: sha512-EPJhWfENDZ5rUFVe7zXUnHVG1ZuaDrQA3RD3RJZ56a1+Xkmx6tKJmJ8h2UYzYZe3jx4pCGg2Ge72rdmFv1SGvg==
       tarball: 'file:projects/grpc-tools.tgz'
     version: 0.0.0
   'file:projects/is-ticker-symbol.tgz':
@@ -15521,7 +15526,6 @@ specifiers:
   '@types/natural': ~2.1.1
   '@types/node-cron': ~2.0.3
   '@types/proxyquire': ~1.3.28
-  '@types/sinon': ~9.0.10
   '@types/stopword': ~1.0.0
   '@types/uuid': ~8.3.0
   '@typescript-eslint/eslint-plugin': ~4.19.0

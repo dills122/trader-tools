@@ -14842,7 +14842,7 @@ packages:
     dev: false
     name: '@rush-temp/cron-app'
     resolution:
-      integrity: sha512-kuGlKP7PS2asOqObcVICT0kzmsqT0ZNpCM9y9onLDpkpUhMPrtnlae6Nq5t2J/7C4X/nidF8XyHfextILK6xtQ==
+      integrity: sha512-quauTBT2HEhMGfGzMZNc4EvfLjg/6sWJeuopcwsagoBHtYrY9uFeu6sJEgg89Nza/2s0Nj+dgEEIkYVbv2FsFQ==
       tarball: 'file:projects/cron-app.tgz'
     version: 0.0.0
   'file:projects/grpc-tools.tgz':
@@ -14882,8 +14882,8 @@ packages:
       '@types/node': 14.14.25
       '@types/proxyquire': 1.3.28
       '@types/sinon': 9.0.10
-      '@typescript-eslint/eslint-plugin': 4.19.0_8fe5ac6dd06e3cbde99d2d10093acea7
-      '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.3.2
+      '@typescript-eslint/eslint-plugin': 4.19.0_462460fe19373d79999c3ab5bad104e6
+      '@typescript-eslint/parser': 4.33.0_eslint@7.22.0+typescript@4.3.2
       chai: 4.3.6
       eslint: 7.22.0
       eslint-config-airbnb-typescript: 12.3.1_eslint@7.22.0+typescript@4.3.2
@@ -14901,7 +14901,7 @@ packages:
     dev: false
     name: '@rush-temp/is-ticker-symbol'
     resolution:
-      integrity: sha512-oZhWML4XcYZvOEe1AraYtf4WTQ4MgL+ZbOG1Kbtrx4uzonmhy87fPM+CKhafFWlVG/p+Aa936QtQuUPtKBCx9Q==
+      integrity: sha512-hlhmNx3PZzfONX860d2riPmp6wlKShLEmyg+suWJ51/v+hh/ICSecbAOvrjw6JbW7hMsmmoARxNM4d5tQLFoTQ==
       tarball: 'file:projects/is-ticker-symbol.tgz'
     version: 0.0.0
   'file:projects/sentiment-rpc-server.tgz':
@@ -14965,7 +14965,7 @@ packages:
     dev: false
     name: '@rush-temp/sentiment-service'
     resolution:
-      integrity: sha512-RpvXCOdM5ACh5IieW+6yPo4uvCLR4MngFqLDAHd1tgNVPf247BLbf/htJgyOCj3pegJ+snWGKE9ol2+noJ4ucQ==
+      integrity: sha512-5K4amE/CYVIjs5240Kj0NRDSbU9Fr1TOa+F4Yrmhr8FZLp+7koh1/Sq05KEp6/KRpfnorbKtlOrn+yhzbDheNg==
       tarball: 'file:projects/sentiment-service.tgz'
     version: 0.0.0
   'file:projects/templating-service.tgz':

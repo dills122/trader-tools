@@ -443,7 +443,7 @@ importers:
       chai: ~4.3.6
       ejs: ~3.1.5
       eslint: ~8.9.0
-      mjml: ~4.8.1
+      mjml: ~4.12.0
       mocha: ~9.2.0
       mustache: ^4.1.0
       proxyquire: ~2.1.3
@@ -453,7 +453,7 @@ importers:
       uuid: ~8.3.2
     dependencies:
       ejs: 3.1.6
-      mjml: 4.8.2
+      mjml: 4.12.0
       mustache: 4.2.0
       uuid: 8.3.2
     devDependencies:
@@ -4445,16 +4445,27 @@ packages:
     resolution: {integrity: sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=}
     dev: true
 
-  /cheerio/1.0.0-rc.3:
-    resolution: {integrity: sha512-0td5ijfUPuubwLUu0OBoe98gZj8C/AA+RW3v67GPlGOrvxWjZmBXiBCRU+I8VEiNyJzjth40POfHiz2RB3gImA==}
-    engines: {node: '>= 0.6'}
+  /cheerio-select/1.5.0:
+    resolution: {integrity: sha512-qocaHPv5ypefh6YNxvnbABM07KMxExbtbfuJoIie3iZXX1ERwYmJcIiRrr9H05ucQP1k28dav8rpdDgjQd8drg==}
     dependencies:
-      css-select: 1.2.0
-      dom-serializer: 0.1.1
-      entities: 1.1.2
-      htmlparser2: 3.10.1
-      lodash: 4.17.21
-      parse5: 3.0.3
+      css-select: 4.2.1
+      css-what: 5.1.0
+      domelementtype: 2.2.0
+      domhandler: 4.3.0
+      domutils: 2.8.0
+    dev: false
+
+  /cheerio/1.0.0-rc.10:
+    resolution: {integrity: sha512-g0J0q/O6mW8z5zxQ3A8E8J1hUgp4SMOvEoW/x84OwyHKe/Zccz83PVT4y5Crcr530FV6NgmKI1qvGTKVl9XXVw==}
+    engines: {node: '>= 6'}
+    dependencies:
+      cheerio-select: 1.5.0
+      dom-serializer: 1.3.2
+      domhandler: 4.3.0
+      htmlparser2: 6.1.0
+      parse5: 6.0.1
+      parse5-htmlparser2-tree-adapter: 6.0.1
+      tslib: 2.3.1
     dev: false
 
   /chokidar/3.5.3:
@@ -4884,15 +4895,6 @@ packages:
       postcss: 8.4.5
     dev: true
 
-  /css-select/1.2.0:
-    resolution: {integrity: sha1-KzoRBTnFNV8c2NMUYj6HCxIeyFg=}
-    dependencies:
-      boolbase: 1.0.0
-      css-what: 2.1.3
-      domutils: 1.5.1
-      nth-check: 1.0.2
-    dev: false
-
   /css-select/4.2.1:
     resolution: {integrity: sha512-/aUslKhzkTNCQUB2qTX84lVmfia9NyjP3WpDGtj/WxhwBzWBYUV3DgUpurHTme8UTPcPlAD1DJ+b0nN/t50zDQ==}
     dependencies:
@@ -4901,10 +4903,6 @@ packages:
       domhandler: 4.3.0
       domutils: 2.8.0
       nth-check: 2.0.1
-
-  /css-what/2.1.3:
-    resolution: {integrity: sha512-a+EPoD+uZiNfh+5fxw2nO9QwFa6nJe2Or35fGY6Ipw1R3R4AGz1d1TEZrCegvw2YTmZ0jXirGYlzxxpYSHwpEg==}
-    dev: false
 
   /css-what/5.1.0:
     resolution: {integrity: sha512-arSMRWIIFY0hV8pIxZMEfmMI47Wj3R/aWpZDDxWYCPEiOMv6tfOrnpDtgxBYPEQD4V0Y/958+1TdC3iWTFcUPw==}
@@ -5275,13 +5273,6 @@ packages:
       void-elements: 2.0.1
     dev: true
 
-  /dom-serializer/0.1.1:
-    resolution: {integrity: sha512-l0IU0pPzLWSHBcieZbpOKgkIn3ts3vAh7ZuFyXNwJxJXk/c4Gwj9xaTJwIDVQCXawWD0qb3IzMGH5rglQaO0XA==}
-    dependencies:
-      domelementtype: 1.3.1
-      entities: 1.1.2
-    dev: false
-
   /dom-serializer/0.2.2:
     resolution: {integrity: sha512-2/xPb3ORsQ42nHYiSunXkDjPLBaEj/xTwUO4B7XCZQTRk7EBtTOPaygh10YAAh2OI1Qrp6NWfpAhzswj0ydt9g==}
     dependencies:
@@ -5322,12 +5313,6 @@ packages:
       domelementtype: 1.3.1
     dev: false
 
-  /domhandler/2.4.2:
-    resolution: {integrity: sha512-JiK04h0Ht5u/80fdLMCEmV4zkNh2BcoMFBmZ/91WtYZ8qVXSKjiw7fXMgFPnHcSZgOo3XdinHvmnDUeMf5R4wA==}
-    dependencies:
-      domelementtype: 1.3.1
-    dev: false
-
   /domhandler/3.3.0:
     resolution: {integrity: sha512-J1C5rIANUbuYK+FuFL98650rihynUOEzRLxW+90bKZRWB6A1X1Tf82GxR1qAWLyfNPRvjqfip3Q5tdYlmAa9lA==}
     engines: {node: '>= 4'}
@@ -5349,13 +5334,6 @@ packages:
     resolution: {integrity: sha1-3NhIiib1Y9YQeeSMn3t+Mjc2gs8=}
     dependencies:
       dom-serializer: 0.2.2
-      domelementtype: 1.3.1
-    dev: false
-
-  /domutils/1.7.0:
-    resolution: {integrity: sha512-Lgd2XcJ/NjEw+7tFvfKxOzCYKZsdct5lczQ2ZaQY8Djz7pfAD3Gbp8ySJWtreII/vDlMVmxwa6pHmdxIYgttDg==}
-    dependencies:
-      dom-serializer: 0.1.1
       domelementtype: 1.3.1
     dev: false
 
@@ -5549,10 +5527,6 @@ packages:
 
   /entities/1.0.0:
     resolution: {integrity: sha1-sph6o4ITR/zeZCsk/fyeT7cSvyY=}
-    dev: false
-
-  /entities/1.1.2:
-    resolution: {integrity: sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==}
     dev: false
 
   /entities/2.2.0:
@@ -6798,17 +6772,6 @@ packages:
       uglify-js: 3.15.1
     dev: false
 
-  /htmlparser2/3.10.1:
-    resolution: {integrity: sha512-IgieNijUMbkDovyoKObU1DUhm1iwNYE/fuifEoEHfd1oZKZDaONBSkal7Y01shxsM49R4XaMdGez3WnF9UfiCQ==}
-    dependencies:
-      domelementtype: 1.3.1
-      domhandler: 2.4.2
-      domutils: 1.7.0
-      entities: 1.1.2
-      inherits: 2.0.4
-      readable-stream: 3.6.0
-    dev: false
-
   /htmlparser2/3.8.3:
     resolution: {integrity: sha1-mWwosZFRaovoZQGn15dX5ccMEGg=}
     dependencies:
@@ -6824,6 +6787,15 @@ packages:
     dependencies:
       domelementtype: 2.2.0
       domhandler: 3.3.0
+      domutils: 2.8.0
+      entities: 2.2.0
+    dev: false
+
+  /htmlparser2/6.1.0:
+    resolution: {integrity: sha512-gyyPk6rgonLFEDGoeRgQNaEUvdJ4ktTmmUh/h2t7s+M8oPpIPxgNACWa+6ESR57kXstwqPiCut0V8NRpcwgU7A==}
+    dependencies:
+      domelementtype: 2.2.0
+      domhandler: 4.3.0
       domutils: 2.8.0
       entities: 2.2.0
     dev: false
@@ -7623,7 +7595,7 @@ packages:
     engines: {node: '>=10.0.0'}
     hasBin: true
     dependencies:
-      cheerio: 1.0.0-rc.3
+      cheerio: 1.0.0-rc.10
       commander: 5.1.0
       mensch: 0.3.4
       slick: 1.12.2
@@ -8304,48 +8276,48 @@ packages:
     resolution: {integrity: sha512-r6lj77KlwqLhIUku9UWYes7KJtsczvolZkzp8hbaDPPaE24OmWl5s539Mytlj22siEQKosZ26qCBgda2PKwoJw==}
     dev: true
 
-  /mjml-accordion/4.8.2:
-    resolution: {integrity: sha512-SodP6yxQ2hbRxyG0PGyVQ2U/nL6C90GydGXbjstM5Geph1fo4VlNr/3V7mHOWcyGNQFPRJpeRT1mEeYMy+eGZg==}
+  /mjml-accordion/4.12.0:
+    resolution: {integrity: sha512-vqBk4NhXN+w6F3c5vnLxkvgneREpkwTzZpbxtMzpNqkUW2yei0oSQ26j/wLgXYTaX+4Czp+oVr0cnNxjyCZHjA==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-body/4.8.2:
-    resolution: {integrity: sha512-LndgJNrvTX5opDzDI8+1wRcpfIAqJrrkqa7vSFX17p+lwN/7LpthHamT5uxru7twixoGixXMxFdfIQ/Ci4vFVQ==}
+  /mjml-body/4.12.0:
+    resolution: {integrity: sha512-IQBAHhdRKsNUXat+oxvRTjVJ1qzTRkNjFe/mtD/Pbn9olUnQmV+RKxnkqRZf7QtiTxVIOGC4kU9VLPjNymsFXQ==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-button/4.8.2:
-    resolution: {integrity: sha512-wtJSoqW2WR9qUIayIkHUaARuDFQTVbCSFC7JFy5hoBh8sTEGljnuH6hxwPu6QaWT9Lv4myWz0PKTsBCJlxUFzg==}
+  /mjml-button/4.12.0:
+    resolution: {integrity: sha512-XJfLP+mHvCr6Ky16ooYz5+8ODkf10+ATyvENCKyrof+rietr5WxN2FxWCZA9Orq20OE74/hvaOeZZdkxwtsXig==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-carousel/4.8.2:
-    resolution: {integrity: sha512-X57WrnjDfdAj6m7pf99fk63d0jNk2XQdpA/xAZWhKAeE8HU2iOPOPch2VGu0MUoCp4PxYDQldyvzxeUBk7eGkg==}
+  /mjml-carousel/4.12.0:
+    resolution: {integrity: sha512-vQ5Aqvix9mbAE0GspxIDpKK4dVMRuKFO3qV6N/CkrIAOe4+2CKV4AMn2fWUvQEx6hA6CGxayeLkI7E0hNOWcZA==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-cli/4.8.2:
-    resolution: {integrity: sha512-JCRDz7gYaxQiVnyx7VF5t7Lf6vAchUsJENduKtP0ffIV1S4yt/TNGYF1k3ocy9jOUM04DOuUoJLfwgrHILC6eA==}
+  /mjml-cli/4.12.0:
+    resolution: {integrity: sha512-//Y4XsN6aFgpZtDbQZRu4qe+CQzGWV3i5K3rC1dwPcdtpDMsXBPKiwIZFrQxpRVBwxs0hU4ZBQOMtvYZkoicdQ==}
     hasBin: true
     dependencies:
       '@babel/runtime': 7.17.2
@@ -8354,188 +8326,188 @@ packages:
       html-minifier: 4.0.0
       js-beautify: 1.14.0
       lodash: 4.17.21
-      mjml-core: 4.8.2
-      mjml-migrate: 4.8.2
-      mjml-parser-xml: 4.8.2
-      mjml-validator: 4.8.2
+      mjml-core: 4.12.0
+      mjml-migrate: 4.12.0
+      mjml-parser-xml: 4.12.0
+      mjml-validator: 4.12.0
       yargs: 16.2.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-column/4.8.2:
-    resolution: {integrity: sha512-TUZISg7e/E85UDaW64dLlOjxnBX4dCkBbQKlqPosGtERtHy90C6mV5ofDQtxFWsznTKHHgs3QJaGxYJ/ziQl4Q==}
+  /mjml-column/4.12.0:
+    resolution: {integrity: sha512-Ub/7ov2B1T2jfSpxvF61o3UCU4gGDFUqIelr7ghuazLc2KvTwdHYeR8mWt8l8RBM6zZiWjkYEFMP22ty7WXztg==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-core/4.8.2:
-    resolution: {integrity: sha512-cpyh9ShYNwHB95A7AE2S38zHh924vTqwXGgLDoQ6Q2qln05XBXzqxS1XyxAN7Ty3aF/4PVUMX5d7zSSjs4z9bg==}
+  /mjml-core/4.12.0:
+    resolution: {integrity: sha512-B3gUkV3kFN1IlzIV3GnpWBmE21XHH5ARyydMxacR75iC53PvJ9c50hr6DWLGdrrDCC6Fdud8jTmgD9dnWPmJhQ==}
     dependencies:
       '@babel/runtime': 7.17.2
-      cheerio: 1.0.0-rc.3
+      cheerio: 1.0.0-rc.10
       detect-node: 2.0.4
       html-minifier: 4.0.0
       js-beautify: 1.14.0
       juice: 7.0.0
       lodash: 4.17.21
-      mjml-migrate: 4.8.2
-      mjml-parser-xml: 4.8.2
-      mjml-validator: 4.8.2
+      mjml-migrate: 4.12.0
+      mjml-parser-xml: 4.12.0
+      mjml-validator: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-divider/4.8.2:
-    resolution: {integrity: sha512-6WlAWkORQ3HdUpzWH0/eSzkWKBiEaYuBQy68Fi2zHjumYbe58QiLTY6Zm9nJT7Slh3pNC+0ZOhotmp/uCmAv2w==}
+  /mjml-divider/4.12.0:
+    resolution: {integrity: sha512-L87iqrhVS+PnUInYbXK4lcTQcHfWMTL7ZqDL9XEMBywzX8cCfviLNMbqmLCO2HD8nMPVMRbcE32H04T6LyZ2qw==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-group/4.8.2:
-    resolution: {integrity: sha512-7xRNztJI2gJb0gI5n76zZA4Liv7cMd1GkGOaLTLsaJJ0Na78DoJRHTwUYlPvT0dmAdoXodHdbFApnAT7QVwIzg==}
+  /mjml-group/4.12.0:
+    resolution: {integrity: sha512-Rl7Iydd7M2SnbH1ItIi07hYY+FrEai5c6kYMKbcFWAuNupCuvUThuhx1AphMPCZFMLbbPSKNWMarBkWhepS7cw==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-head-attributes/4.8.2:
-    resolution: {integrity: sha512-0w4B4Og54LjgssADzr6UyoPoNT19RAuRSe8lPwKVkBgr5i9l1aI4BtQsO62RutJtbJUxEzOj63xX3u/bWCVbvg==}
+  /mjml-head-attributes/4.12.0:
+    resolution: {integrity: sha512-tRwKUzIrtcw1FGy8Xpy4vrFo0u2daZgqx3X0cM5WWrGFcKe7ZdjNEAkU/3w+WsFjeMcb0fHdKvd+sxBjPJ6fpA==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-head-breakpoint/4.8.2:
-    resolution: {integrity: sha512-It9djvHcIe1x5MlJdo4glA4qLD69oifaUyJuCVLnNbhlp64fI8V+W16LxvYHau/W/B3xI+Pbxp3i6odEco5phg==}
+  /mjml-head-breakpoint/4.12.0:
+    resolution: {integrity: sha512-BVVbvAIcIu49P1EJkEPPIY8Gu4GleyzpkdddqD3ihAPn3Pz07SEsFlHvI35eCszuaJeeMbSSxLrsF4m+aQQlvw==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-head-font/4.8.2:
-    resolution: {integrity: sha512-3BbeMvDpCJ2FjFRpuM5VKqmKI67Tt+bPDMd3/VXkQjnQPnVLSqvBJH8xyMiClgXAJPUpLPGlfiKvhNXEOyo9Aw==}
+  /mjml-head-font/4.12.0:
+    resolution: {integrity: sha512-ja5sWbGOIr1gF/7IIPzrgOlWYiKk57BC8JWYRANV7CxNKa635sd6aBJHbzXv1A6Ph+zH5KtE0MSQCK8n49BIsw==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-head-html-attributes/4.8.2:
-    resolution: {integrity: sha512-DUn5UZ9SKzv6QVM7zedbauRu2RPx/tKs+wR08xdk+BvtD+eaLoZYjDb5SvVeZWXNy6u4oL+bYPoHt/34t6lTsA==}
+  /mjml-head-html-attributes/4.12.0:
+    resolution: {integrity: sha512-XJesJuW9uzlNN5w/S7t5ZquSVDay7BehOKmIZKMwKn1y0SJBXiakcwt9M9hhF0HB189Bew0gpGt3m7QYvTez8g==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-head-preview/4.8.2:
-    resolution: {integrity: sha512-u+SAGwkEvF4xSvEU1GnijhbMyg47U97CIY/U7QpSRfq4wCMfAq8OfRQ+QfWvpuEYNG+KOpu2gc81pVtz49GDzA==}
+  /mjml-head-preview/4.12.0:
+    resolution: {integrity: sha512-pr02ZkxwU6/LWhrL3xP/hLrUXx27I1FnfgaYjgvMjh6pMURuy7W+W8BrNJKeyXZo685b2A5lNFDJV7rCJ6HrEQ==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-head-style/4.8.2:
-    resolution: {integrity: sha512-pNNZW0g1G5Yb2d6fYkIa6s/q07SzZOZd1Rny42cdU/WrgPh0iwRzYg218ak2R74cX4785DSqdHcBkIWGkUfZBw==}
+  /mjml-head-style/4.12.0:
+    resolution: {integrity: sha512-64IVdJ2Xl000SrwLt4cebl+MiZcino/ywMkuLQ/c48XeR6pkvbjXYAInWsdlMG1y041n1bOZICNnQQc4xhNJrw==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-head-title/4.8.2:
-    resolution: {integrity: sha512-jjUwg6kGvGcwYoW1+fImwahKDrdf7PJ0TKMEi4RDn1nwj5USWFEOuImNHr6hUcSZDtVduqpUqkxDinDBnGWnTw==}
+  /mjml-head-title/4.12.0:
+    resolution: {integrity: sha512-c7thJUmNLIdVy1ftLbYUjchHwrIfAb9SHdbuVQHdtQz45a3Ni2nie4AWxF/srn90k8q/uEKtQq1taOa4f71Zug==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-head/4.8.2:
-    resolution: {integrity: sha512-2czihEs2jmSqe/TV3oU7KXzBRVy8ikgPQOLY5twtzkEs+rO5/WsNJEeD8H5wVhQyaDuKNfRy875bo07ZghpHYw==}
+  /mjml-head/4.12.0:
+    resolution: {integrity: sha512-LcI4ykOB6nMV5W//tF9S1unlXxexfNZUnnyZ2OOzP1V7J5poLXdKXqB8XATN2YGGTsDZ5Q/5V1KO+NnjpW7zSw==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-hero/4.8.2:
-    resolution: {integrity: sha512-arJhE7tJXLem9ccZauMwpgy99bYmQQZmh8PHYklrkXbsVIz0oA5WDpf6MUzFPmD1Nod0R6lwfPyt8GER6MGAXA==}
+  /mjml-hero/4.12.0:
+    resolution: {integrity: sha512-j87DgSAyLzMMuNtVqR1okkI/orKnvZoR7i+RsA1yueNql9dZtnw3Ezy8cas8MJaAoGOmqIy9AqGRJIr82w4mxQ==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-image/4.8.2:
-    resolution: {integrity: sha512-E2UeRxSqH1/RsTAZPsXae60JmEuDEWDylgwEUNrRO77L8PbfwK+T6g7BC3XBRs2fTGVjUFMtzX00wva2bvmMiw==}
+  /mjml-image/4.12.0:
+    resolution: {integrity: sha512-P77M+PLLNn7QvGhL8sx+6yzkQbEMxIQO3yxqUC+x8Ie8kXS8phSNGcqx8qfhdN7p7sQ3CZdOIZSXkG7RRAF94w==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-migrate/4.8.2:
-    resolution: {integrity: sha512-AjC1zXBsf+5tfCe0u4bMk4qGqQbm5xpt20BMcMUeMOixJ6WQ58ThgsL3K+jrC/fzSSpZrT5z8aqPWsevw7LFow==}
+  /mjml-migrate/4.12.0:
+    resolution: {integrity: sha512-KDdPkuOzL9CAekY0CslM0Yqiomk4TubNMszw6UFfylp5xRA3CfBo0HdGcnewHBkZ8+isjPlzDWf3n+NkU11OiA==}
     hasBin: true
     dependencies:
       '@babel/runtime': 7.17.2
       js-beautify: 1.14.0
       lodash: 4.17.21
-      mjml-core: 4.8.2
-      mjml-parser-xml: 4.8.2
+      mjml-core: 4.12.0
+      mjml-parser-xml: 4.12.0
       yargs: 16.2.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-navbar/4.8.2:
-    resolution: {integrity: sha512-RCB289B4MzJ3/QrbQoAcfVhOXXf+0CY7Y483Ev04XS/C8ev+cRCiE0opk/cIjublvrmLYtbcr1y+bd+hG10HOw==}
+  /mjml-navbar/4.12.0:
+    resolution: {integrity: sha512-TWKV5lFgwUvRbG+FNz6Uo7mGPJRU/BK1v0BeQr1e5Ykft4052iYIuv2XNwRkeoORmLT+7AN8FbkP+TVBpflbWw==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-parser-xml/4.8.2:
-    resolution: {integrity: sha512-nr0pkxsSwGv9I/kKZZdm1GNHlIpyom8yEAEJNCpugcYMAkPBMfzbC+3xTmwlXYYjUn7Sry0NGHLPc0GF3OL7XQ==}
+  /mjml-parser-xml/4.12.0:
+    resolution: {integrity: sha512-cmCcvoiirH0kuCglGAjwBVfDrlnqS3e83uBwPN6wDN6IfxSgsPT6IV0vRfcJERsr2ThpFjvoSq4GmYi9oCUSMw==}
     dependencies:
       '@babel/runtime': 7.17.2
       detect-node: 2.0.4
@@ -8543,117 +8515,126 @@ packages:
       lodash: 4.17.21
     dev: false
 
-  /mjml-raw/4.8.2:
-    resolution: {integrity: sha512-IZrWSTXh1iEPwKX9fodvwoWql2hRPRB+FM3WJRCLtUgu2SdgPLF08J3muCw6CABa0DxJcbM+3hQ8xwKEBL5KEw==}
+  /mjml-preset-core/4.12.0:
+    resolution: {integrity: sha512-zoiCKcl/bK43ltr2J8dY9Qg5fcB3TbhaWcTG84oGYWdii5WEkKTXj5hpP1ss1XqdOGMNLij/HVwmli+xQCo6FQ==}
     dependencies:
       '@babel/runtime': 7.17.2
-      lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-accordion: 4.12.0
+      mjml-body: 4.12.0
+      mjml-button: 4.12.0
+      mjml-carousel: 4.12.0
+      mjml-column: 4.12.0
+      mjml-divider: 4.12.0
+      mjml-group: 4.12.0
+      mjml-head: 4.12.0
+      mjml-head-attributes: 4.12.0
+      mjml-head-breakpoint: 4.12.0
+      mjml-head-font: 4.12.0
+      mjml-head-html-attributes: 4.12.0
+      mjml-head-preview: 4.12.0
+      mjml-head-style: 4.12.0
+      mjml-head-title: 4.12.0
+      mjml-hero: 4.12.0
+      mjml-image: 4.12.0
+      mjml-navbar: 4.12.0
+      mjml-raw: 4.12.0
+      mjml-section: 4.12.0
+      mjml-social: 4.12.0
+      mjml-spacer: 4.12.0
+      mjml-table: 4.12.0
+      mjml-text: 4.12.0
+      mjml-wrapper: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-section/4.8.2:
-    resolution: {integrity: sha512-ppK40qcyX3GWvkhpll1o5XF5X8NbmFD/mV11wWix/q8Ej6F2NpB+M4EyAiEoWo9sDLe0LafHem08C0c68u2nLQ==}
+  /mjml-raw/4.12.0:
+    resolution: {integrity: sha512-vQUmrEZEgu0DCca7tiPdQ/vf8GM5QyeaabbLd1rX3XCt5Mid47LCdszmVcrk1WxqNuExIw1fNyEGCCDeP2qCJg==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-social/4.8.2:
-    resolution: {integrity: sha512-K3yhlIUBewIcanXuWbUXHd+uPVtuLLU322bJBiX5HWAtOgHFdWmXcOY85tyxj/DhDuivZkyerPv7cUIC8oiOSw==}
+  /mjml-section/4.12.0:
+    resolution: {integrity: sha512-5BdHrAghS/XJ40t3qtLHpY3rIVuBnJXv8dGm8U+oMVAzw3L4ySk5WI+FulRkchdPFCKpeXQZjXZaX0C7pmNaIw==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-spacer/4.8.2:
-    resolution: {integrity: sha512-swIl0YfrYYJ3olMW49irfrTKB6aCiqAxRsU3waHu2BZkgiXYeWWzdKVgXZ39c4sWvFBBbNwx/2dI3OEpcRSvJg==}
+  /mjml-social/4.12.0:
+    resolution: {integrity: sha512-eTsqJoKP65Imawh+WEX2dv4N34ItUmvIbsCeSQPhC/NG6klxDjzg5oDA1F2tZk+CPIuXVmJiauQ5/vPHLzUiVw==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-table/4.8.2:
-    resolution: {integrity: sha512-0iCkQ8VxRt6l7yfQLF2EvqMdRr6aUN0V/CzupCuoC17RpRmoK4hfRMVQXqUayqBAu9PYmUmqyivLPa+QkbV4PA==}
+  /mjml-spacer/4.12.0:
+    resolution: {integrity: sha512-YB+VCixcuWXDzICrGLFw7PJDkL166e4OG8IUUB2yhvd5VHtFFBc0iRksaEAumOL1r6MnXVCRq4Wcmxlzj7zOfQ==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-text/4.8.2:
-    resolution: {integrity: sha512-8WScSDAcMR+4T7/zIUh+KiJfs9yuswz0YyyqwNyHLRjVqaK6f0QDrMWP3KgUPXjNMrsY1sssME1Xowzlz7REMA==}
+  /mjml-table/4.12.0:
+    resolution: {integrity: sha512-IuLvyiJOsM6RgobuIfZuM36fJcoH8pK/A4awCLTEme0HCxEkkjzDkl4RBMK/KX53Cpor0U6oR6RlQfZcducpLg==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml-validator/4.8.2:
-    resolution: {integrity: sha512-5r5NMc37z1P4UyolP7AGBw3SIqV5QoDad4Mcf1sGt2tHPVfn4x1KzVlnVfD2yDzs6x6QAYpIrZVube7a2iND8A==}
-    dependencies:
-      '@babel/runtime': 7.17.2
-    dev: false
-
-  /mjml-wrapper/4.8.2:
-    resolution: {integrity: sha512-3LduGD7of8dJXAUA9RkhLIA2nHWZMnOTVu4pHpPRgIb4MNmWKcsXIP5aczqVSMT7V9dcBp3K9v5LCXVttzc+cQ==}
+  /mjml-text/4.12.0:
+    resolution: {integrity: sha512-AFcXiQBC48ZfKKgAdU0NRS2nqftc8zLGxBtPwHNgFkuh5Lf2rWgPK6JRubNi7qhb8Sd7M8stU+LIRA5sxM1nRQ==}
     dependencies:
       '@babel/runtime': 7.17.2
       lodash: 4.17.21
-      mjml-core: 4.8.2
-      mjml-section: 4.8.2
+      mjml-core: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /mjml/4.8.2:
-    resolution: {integrity: sha512-LXzWT/GdgMVROM/OyJyRJYhVHhhryJnSHIjSZ8Rg715DVgNK9aJ0VWVR56tNbC1dVP1LdWyz0Kq0F4/Ks3Uemg==}
+  /mjml-validator/4.12.0:
+    resolution: {integrity: sha512-EmOScfcJJ4LdIyHnE+K4FdkryQ+c6QRV7qp+zlunAHE5AUPaBS0OrHPHuNo1sOu7g1tc+bVl7eHR4FIb0Wkzwg==}
+    dependencies:
+      '@babel/runtime': 7.17.2
+    dev: false
+
+  /mjml-wrapper/4.12.0:
+    resolution: {integrity: sha512-u0pq+A9QBLwpeF/hdv2uWZIv3Qp4wwf+CMaHZsUpb3YfOJD/6YKwLvkeA7ngE+YxwwzgtgjmIEs4eDae1evlgQ==}
+    dependencies:
+      '@babel/runtime': 7.17.2
+      lodash: 4.17.21
+      mjml-core: 4.12.0
+      mjml-section: 4.12.0
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /mjml/4.12.0:
+    resolution: {integrity: sha512-uWDu1pPQVyoX4iKIrM02J6qOBN6PC1rSMP64DKi2qGU4dpOztVgvTBh6JttIbINV4ZiALtpeGu+jeEUqp2ROXA==}
     hasBin: true
     dependencies:
       '@babel/runtime': 7.17.2
-      mjml-accordion: 4.8.2
-      mjml-body: 4.8.2
-      mjml-button: 4.8.2
-      mjml-carousel: 4.8.2
-      mjml-cli: 4.8.2
-      mjml-column: 4.8.2
-      mjml-core: 4.8.2
-      mjml-divider: 4.8.2
-      mjml-group: 4.8.2
-      mjml-head: 4.8.2
-      mjml-head-attributes: 4.8.2
-      mjml-head-breakpoint: 4.8.2
-      mjml-head-font: 4.8.2
-      mjml-head-html-attributes: 4.8.2
-      mjml-head-preview: 4.8.2
-      mjml-head-style: 4.8.2
-      mjml-head-title: 4.8.2
-      mjml-hero: 4.8.2
-      mjml-image: 4.8.2
-      mjml-migrate: 4.8.2
-      mjml-navbar: 4.8.2
-      mjml-raw: 4.8.2
-      mjml-section: 4.8.2
-      mjml-social: 4.8.2
-      mjml-spacer: 4.8.2
-      mjml-table: 4.8.2
-      mjml-text: 4.8.2
-      mjml-validator: 4.8.2
-      mjml-wrapper: 4.8.2
+      mjml-cli: 4.12.0
+      mjml-core: 4.12.0
+      mjml-migrate: 4.12.0
+      mjml-preset-core: 4.12.0
+      mjml-validator: 4.12.0
     transitivePeerDependencies:
       - encoding
     dev: false
@@ -9060,12 +9041,6 @@ packages:
       lazy: 1.0.11
     dev: false
 
-  /nth-check/1.0.2:
-    resolution: {integrity: sha512-WeBOdju8SnzPN5vTUJYxYUxLeXpCaVP5i5e0LF8fg7WORF2Wd7wFX/pk0tYZk7s8T+J7VLy0Da6J1+wCT0AtHg==}
-    dependencies:
-      boolbase: 1.0.0
-    dev: false
-
   /nth-check/2.0.1:
     resolution: {integrity: sha512-it1vE95zF6dTT9lBsYbxvqh0Soy4SPowchj0UBGj/V6cTPnXXtQOPUbhZ6CmGzAD/rW22LQK6E96pcdJXk4A4w==}
     dependencies:
@@ -9364,12 +9339,6 @@ packages:
     dependencies:
       parse5: 6.0.1
     dev: true
-
-  /parse5/3.0.3:
-    resolution: {integrity: sha512-rgO9Zg5LLLkfJF9E6CCmXlSE4UVceloys8JrFqCcHloC3usd/kJCyPDwH2SOlzix2j3xaP9sUX3e8+kvkuleAA==}
-    dependencies:
-      '@types/node': 17.0.18
-    dev: false
 
   /parse5/6.0.1:
     resolution: {integrity: sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==}
@@ -10223,6 +10192,7 @@ packages:
       inherits: 2.0.4
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
+    dev: true
 
   /readdirp/3.6.0:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
@@ -11139,6 +11109,7 @@ packages:
     resolution: {integrity: sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==}
     dependencies:
       safe-buffer: 5.2.1
+    dev: true
 
   /strip-ansi/3.0.1:
     resolution: {integrity: sha1-ajhfuIU9lS1f8F0Oiq+UJ43GPc8=}
@@ -11739,6 +11710,7 @@ packages:
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=}
+    dev: true
 
   /utils-merge/1.0.1:
     resolution: {integrity: sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=}

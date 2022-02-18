@@ -1,11 +1,11 @@
 FROM ghcr.io/dills122/rushjs-base-img:edge
 WORKDIR /tmp
-COPY ../../ .
+COPY . .
 
 RUN adduser -S app
 RUN rm -rf ./common/temp \
-    && rush update --purge \
-    && rush build
+    && rush install -f sentiment-rpc-server -p \
+    && rush build --to sentiment-rpc-server
 RUN mkdir ./prod \
     && rush deploy --project sentiment-rpc-server --target-folder ./prod \
     && cp ./.env ./prod/

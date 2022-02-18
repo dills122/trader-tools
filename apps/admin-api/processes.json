@@ -4,12 +4,14 @@
       "name": "api",
       "script": "./start.js",
       "merge_logs": true,
-      "max_restarts": 20,
-      "instances": "max",
-      "exec_mode": "cluster",
+      "max_restarts": 5,
+      "instances": "1",
       "max_memory_restart": "200M",
-      "env": {
+      "env_production": {
         "NODE_ENV": "production"
+      },
+      "env_development": {
+        "NODE_ENV": "dev"
       }
     }
   ]

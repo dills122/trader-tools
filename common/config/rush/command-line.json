@@ -1,15 +1,5 @@
-/**
- * This configuration file defines custom commands for the "rush" command-line.
- * For full documentation, please see https://rushjs.io
- */
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/command-line.schema.json",
-
-  /**
-   * Custom "commands" introduce new verbs for the command-line.  To see the help for these
-   * example commands, try "rush --help", "rush my-bulk-command --help", or
-   * "rush my-global-command --help".
-   */
   "commands": [{
       "commandKind": "bulk",
       "name": "compile",
@@ -70,6 +60,12 @@
       "commandKind": "global",
       "shellCommand": "docker compose up -d",
       "summary": "Starts dev docker env"
+    },
+    {
+      "name": "docker-up:build",
+      "commandKind": "global",
+      "shellCommand": "docker compose up -d --build",
+      "summary": "Builds containers before starting docker env"
     },
     {
       "name": "docker-down:dev",

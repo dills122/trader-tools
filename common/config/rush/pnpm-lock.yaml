@@ -238,7 +238,7 @@ importers:
       '@typescript-eslint/parser': ~5.12.0
       api-service: workspace:^0.2.12
       chai: ~4.3.6
-      eslint: ~8.9.0
+      eslint: ~8.10.0
       fuse.js: ~6.4.6
       got: ~11.8.2
       jsftp: ~2.1.3
@@ -261,11 +261,11 @@ importers:
       '@types/node': 17.0.18
       '@types/proxyquire': 1.3.28
       '@types/sinon': 10.0.11
-      '@typescript-eslint/eslint-plugin': 5.12.0_c467cf9bb49b295941e83ce479a578b7
-      '@typescript-eslint/parser': 5.12.0_eslint@8.9.0+typescript@4.5.5
+      '@typescript-eslint/eslint-plugin': 5.12.0_7171b812dd4c0026711965a6ab6481fa
+      '@typescript-eslint/parser': 5.12.0_eslint@8.10.0+typescript@4.5.5
       api-service: link:../../services/api-service
       chai: 4.3.6
-      eslint: 8.9.0
+      eslint: 8.10.0
       got: 11.8.3
       jsftp: 2.1.3
       meow: 10.1.2

@@ -370,7 +370,7 @@ importers:
       '@types/sinon': ~10.0.11
       '@types/stopword': ~1.0.0
       '@types/uuid': ~8.3.0
-      '@typescript-eslint/eslint-plugin': ~5.12.0
+      '@typescript-eslint/eslint-plugin': ~5.13.0
       '@typescript-eslint/parser': ~5.12.0
       api-service: workspace:^0.2.12
       apos-to-lex-form: ~1.0.5
@@ -414,7 +414,7 @@ importers:
       '@types/sinon': 10.0.11
       '@types/stopword': 1.0.2
       '@types/uuid': 8.3.4
-      '@typescript-eslint/eslint-plugin': 5.12.0_7171b812dd4c0026711965a6ab6481fa
+      '@typescript-eslint/eslint-plugin': 5.13.0_7171b812dd4c0026711965a6ab6481fa
       '@typescript-eslint/parser': 5.12.0_eslint@8.10.0+typescript@4.5.5
       chai: 4.3.6
       eslint: 8.10.0

@@ -41,7 +41,7 @@
     "mocha": "~9.2.0",
     "sinon": "~13.0.1",
     "ts-node": "~10.5.0",
-    "typescript": "4.5.5",
+    "typescript": "4.6.2",
     "ts-node-dev": "^1.1.8"
   }
 }

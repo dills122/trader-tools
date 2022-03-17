@@ -49,7 +49,7 @@ importers:
       '@angular/platform-browser': ~13.3.0
       '@angular/platform-browser-dynamic': ~13.3.0
       '@angular/platform-server': ~13.2.2
-      '@angular/router': ~13.2.2
+      '@angular/router': ~13.3.0
       '@nguniversal/builders': ^13.0.2
       '@nguniversal/common': ~13.0.2
       '@nguniversal/express-engine': ^13.0.2
@@ -82,7 +82,7 @@ importers:
       '@angular/platform-browser': 13.3.0_6a025716b6bc57cd018b00350e85604e
       '@angular/platform-browser-dynamic': 13.3.0_aa94eda0c8a5882dc55ed035b99148bf
       '@angular/platform-server': 13.2.5_e0d85355ac86e5519656997386537144
-      '@angular/router': 13.2.5_95bdae191ef96538c9f4033f9a89b90e
+      '@angular/router': 13.3.0_95bdae191ef96538c9f4033f9a89b90e
       '@nguniversal/common': 13.0.2_cd6204f1035a2d49d78c91bbd55720cd
       '@nguniversal/express-engine': 13.0.2_d80d6a2a299e0abffea83829ac497858
       express: 4.17.3
@@ -890,13 +890,13 @@ packages:
       xhr2: 0.2.1
     dev: false
 
-  /@angular/router/13.2.5_95bdae191ef96538c9f4033f9a89b90e:
-    resolution: {integrity: sha512-R0U8/QR8YbVeDuvGHpdf61hygVVBbD8j5pIr+kD8vUmYYnn3447XdZg9zkQ9qaQUvBSV0voNIOffUfoP2HaBSw==}
+  /@angular/router/13.3.0_95bdae191ef96538c9f4033f9a89b90e:
+    resolution: {integrity: sha512-Kz657mtycup+s9emRH66etkBobAF26h3UDXE9pnjUM6MuVTA38P31WyTWKyWJVk8Oruxm/hTHZZBfI88o9/1sA==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     peerDependencies:
-      '@angular/common': 13.2.5
-      '@angular/core': 13.2.5
-      '@angular/platform-browser': 13.2.5
+      '@angular/common': 13.3.0
+      '@angular/core': 13.3.0
+      '@angular/platform-browser': 13.3.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@7.5.4

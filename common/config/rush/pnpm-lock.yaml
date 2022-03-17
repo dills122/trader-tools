@@ -48,7 +48,7 @@ importers:
       '@angular/forms': ~13.2.2
       '@angular/platform-browser': ~13.3.0
       '@angular/platform-browser-dynamic': ~13.3.0
-      '@angular/platform-server': ~13.2.2
+      '@angular/platform-server': ~13.3.0
       '@angular/router': ~13.3.0
       '@nguniversal/builders': ^13.0.2
       '@nguniversal/common': ~13.0.2
@@ -81,10 +81,10 @@ importers:
       '@angular/forms': 13.2.5_95bdae191ef96538c9f4033f9a89b90e
       '@angular/platform-browser': 13.3.0_6a025716b6bc57cd018b00350e85604e
       '@angular/platform-browser-dynamic': 13.3.0_aa94eda0c8a5882dc55ed035b99148bf
-      '@angular/platform-server': 13.2.5_e0d85355ac86e5519656997386537144
+      '@angular/platform-server': 13.3.0_e0d85355ac86e5519656997386537144
       '@angular/router': 13.3.0_95bdae191ef96538c9f4033f9a89b90e
       '@nguniversal/common': 13.0.2_cd6204f1035a2d49d78c91bbd55720cd
-      '@nguniversal/express-engine': 13.0.2_d80d6a2a299e0abffea83829ac497858
+      '@nguniversal/express-engine': 13.0.2_b98db901926ab43d3ce10423eb746d83
       express: 4.17.3
       memory-cache: 0.2.0
       pm2: 5.2.0
@@ -868,16 +868,16 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /@angular/platform-server/13.2.5_e0d85355ac86e5519656997386537144:
-    resolution: {integrity: sha512-7tDMkOkRZCFxWhB+69Vvkl9r2yv/32p/XrXRCIxA5DhLTDgeb687jsWUCcYRCZqblbyHP0DEcExUa0RTV1jB5A==}
+  /@angular/platform-server/13.3.0_e0d85355ac86e5519656997386537144:
+    resolution: {integrity: sha512-kfKyFi77f4MfcVfsv2O9icYz8FdqTjFdU1C8YDSC0OTgy4/QmwQ3lboZwcsvMRfF/aAb3liiFhPvNAjC2CYSEw==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     peerDependencies:
-      '@angular/animations': 13.2.5
-      '@angular/common': 13.2.5
-      '@angular/compiler': 13.2.5
-      '@angular/core': 13.2.5
-      '@angular/platform-browser': 13.2.5
-      '@angular/platform-browser-dynamic': 13.2.5
+      '@angular/animations': 13.3.0
+      '@angular/common': 13.3.0
+      '@angular/compiler': 13.3.0
+      '@angular/core': 13.3.0
+      '@angular/platform-browser': 13.3.0
+      '@angular/platform-browser-dynamic': 13.3.0
     dependencies:
       '@angular/animations': 13.2.5_@angular+core@13.2.5
       '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@7.5.4
@@ -2702,7 +2702,7 @@ packages:
       - supports-color
       - utf-8-validate
 
-  /@nguniversal/express-engine/13.0.2_d80d6a2a299e0abffea83829ac497858:
+  /@nguniversal/express-engine/13.0.2_b98db901926ab43d3ce10423eb746d83:
     resolution: {integrity: sha512-4CUBAYeatF8hl01hNdt372ANHjFFuaZ8rAYX64LWJSrlnt5a33NAbbHzMnAESbeo4LOkdG0XFQPB9IGG1MN5qw==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     peerDependencies:
@@ -2713,7 +2713,7 @@ packages:
     dependencies:
       '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@7.5.4
       '@angular/core': 13.2.5_rxjs@7.5.4+zone.js@0.11.5
-      '@angular/platform-server': 13.2.5_e0d85355ac86e5519656997386537144
+      '@angular/platform-server': 13.3.0_e0d85355ac86e5519656997386537144
       '@nguniversal/common': 13.0.2_cd6204f1035a2d49d78c91bbd55720cd
       express: 4.17.3
       tslib: 2.3.1

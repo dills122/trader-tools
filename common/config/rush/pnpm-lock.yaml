@@ -47,7 +47,7 @@ importers:
       '@angular/core': ~13.2.2
       '@angular/forms': ~13.2.2
       '@angular/platform-browser': ~13.3.0
-      '@angular/platform-browser-dynamic': ~13.2.2
+      '@angular/platform-browser-dynamic': ~13.3.0
       '@angular/platform-server': ~13.2.2
       '@angular/router': ~13.2.2
       '@nguniversal/builders': ^13.0.2
@@ -80,8 +80,8 @@ importers:
       '@angular/core': 13.2.5_rxjs@7.5.4+zone.js@0.11.5
       '@angular/forms': 13.2.5_95bdae191ef96538c9f4033f9a89b90e
       '@angular/platform-browser': 13.3.0_6a025716b6bc57cd018b00350e85604e
-      '@angular/platform-browser-dynamic': 13.2.5_aa94eda0c8a5882dc55ed035b99148bf
-      '@angular/platform-server': 13.2.5_4c3c0a6bbc79cfe6020ea2313242ab81
+      '@angular/platform-browser-dynamic': 13.3.0_aa94eda0c8a5882dc55ed035b99148bf
+      '@angular/platform-server': 13.2.5_e0d85355ac86e5519656997386537144
       '@angular/router': 13.2.5_95bdae191ef96538c9f4033f9a89b90e
       '@nguniversal/common': 13.0.2_cd6204f1035a2d49d78c91bbd55720cd
       '@nguniversal/express-engine': 13.0.2_d80d6a2a299e0abffea83829ac497858
@@ -835,14 +835,14 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /@angular/platform-browser-dynamic/13.2.5_aa94eda0c8a5882dc55ed035b99148bf:
-    resolution: {integrity: sha512-5NMlp/3DF7EOEMqtAoQ04Kuhyr9KqQmUt9skfei1AL5KyqKXnyxUVePIG+HqpwkeTV8P7XegR2+pZMfvxo/gPA==}
+  /@angular/platform-browser-dynamic/13.3.0_aa94eda0c8a5882dc55ed035b99148bf:
+    resolution: {integrity: sha512-7/r79Yn8SDH8t0/fJ26PmScm/S1JZ9hxjC8IoROdyC5xBrSGrp946mIKE/4/813zmF8uPj2lveV9p/XiKTbxSw==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     peerDependencies:
-      '@angular/common': 13.2.5
-      '@angular/compiler': 13.2.5
-      '@angular/core': 13.2.5
-      '@angular/platform-browser': 13.2.5
+      '@angular/common': 13.3.0
+      '@angular/compiler': 13.3.0
+      '@angular/core': 13.3.0
+      '@angular/platform-browser': 13.3.0
     dependencies:
       '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@7.5.4
       '@angular/compiler': 13.2.5
@@ -868,7 +868,7 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /@angular/platform-server/13.2.5_4c3c0a6bbc79cfe6020ea2313242ab81:
+  /@angular/platform-server/13.2.5_e0d85355ac86e5519656997386537144:
     resolution: {integrity: sha512-7tDMkOkRZCFxWhB+69Vvkl9r2yv/32p/XrXRCIxA5DhLTDgeb687jsWUCcYRCZqblbyHP0DEcExUa0RTV1jB5A==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     peerDependencies:
@@ -884,7 +884,7 @@ packages:
       '@angular/compiler': 13.2.5
       '@angular/core': 13.2.5_rxjs@7.5.4+zone.js@0.11.5
       '@angular/platform-browser': 13.3.0_6a025716b6bc57cd018b00350e85604e
-      '@angular/platform-browser-dynamic': 13.2.5_aa94eda0c8a5882dc55ed035b99148bf
+      '@angular/platform-browser-dynamic': 13.3.0_aa94eda0c8a5882dc55ed035b99148bf
       domino: 2.1.6
       tslib: 2.3.1
       xhr2: 0.2.1
@@ -2713,7 +2713,7 @@ packages:
     dependencies:
       '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@7.5.4
       '@angular/core': 13.2.5_rxjs@7.5.4+zone.js@0.11.5
-      '@angular/platform-server': 13.2.5_4c3c0a6bbc79cfe6020ea2313242ab81
+      '@angular/platform-server': 13.2.5_e0d85355ac86e5519656997386537144
       '@nguniversal/common': 13.0.2_cd6204f1035a2d49d78c91bbd55720cd
       express: 4.17.3
       tslib: 2.3.1

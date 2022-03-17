@@ -42,8 +42,8 @@ importers:
       '@angular/animations': ~13.2.2
       '@angular/cli': ~13.3.0
       '@angular/common': ~13.2.2
-      '@angular/compiler': ~13.2.2
-      '@angular/compiler-cli': ~13.2.2
+      '@angular/compiler': ~13.3.0
+      '@angular/compiler-cli': ~13.3.0
       '@angular/core': ~13.2.2
       '@angular/forms': ~13.2.2
       '@angular/platform-browser': ~13.3.0
@@ -76,12 +76,12 @@ importers:
     dependencies:
       '@angular/animations': 13.2.5_@angular+core@13.2.5
       '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@7.5.4
-      '@angular/compiler': 13.2.5
+      '@angular/compiler': 13.3.0
       '@angular/core': 13.2.5_rxjs@7.5.4+zone.js@0.11.5
       '@angular/forms': 13.2.5_95bdae191ef96538c9f4033f9a89b90e
       '@angular/platform-browser': 13.3.0_6a025716b6bc57cd018b00350e85604e
-      '@angular/platform-browser-dynamic': 13.3.0_aa94eda0c8a5882dc55ed035b99148bf
-      '@angular/platform-server': 13.3.0_e0d85355ac86e5519656997386537144
+      '@angular/platform-browser-dynamic': 13.3.0_1cfacd2ecb80bcbf5cdd135248255288
+      '@angular/platform-server': 13.3.0_f58296de2c76455cb4325bc978f0b3e3
       '@angular/router': 13.3.0_95bdae191ef96538c9f4033f9a89b90e
       '@nguniversal/common': 13.0.2_cd6204f1035a2d49d78c91bbd55720cd
       '@nguniversal/express-engine': 13.0.2_b98db901926ab43d3ce10423eb746d83
@@ -92,9 +92,9 @@ importers:
       tslib: 2.3.1
       zone.js: 0.11.5
     devDependencies:
-      '@angular-devkit/build-angular': 13.3.0_0d8938772dd2059c6ee3152d73d1b277
+      '@angular-devkit/build-angular': 13.3.0_a2e6d2226ede2a330b91dae25af8c26f
       '@angular/cli': 13.3.0
-      '@angular/compiler-cli': 13.2.5_629197922e830e679bc6fd1890d83b5a
+      '@angular/compiler-cli': 13.3.0_5ae05b94a7761812b687fc547acb6410
       '@nguniversal/builders': 13.0.2_7f3abf046a613bddebc82f56b174cf8e
       '@types/express': 4.17.13
       '@types/jasmine': 4.0.0
@@ -535,7 +535,7 @@ packages:
       - chokidar
     dev: true
 
-  /@angular-devkit/build-angular/13.3.0_0d8938772dd2059c6ee3152d73d1b277:
+  /@angular-devkit/build-angular/13.3.0_a2e6d2226ede2a330b91dae25af8c26f:
     resolution: {integrity: sha512-3Ji7EeqGHj7i1Jgmeo3aIEXsnfKyFeQPpl65gcYmHwj5dP4lZzLSU4rMaWWUKksccgqCUXgPI2vKePTPazmikg==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
     peerDependencies:
@@ -565,7 +565,7 @@ packages:
       '@angular-devkit/architect': 0.1303.0
       '@angular-devkit/build-webpack': 0.1303.0_c42d66f338fdf8eb26480f9fc4b04152
       '@angular-devkit/core': 13.3.0
-      '@angular/compiler-cli': 13.2.5_629197922e830e679bc6fd1890d83b5a
+      '@angular/compiler-cli': 13.3.0_5ae05b94a7761812b687fc547acb6410
       '@babel/core': 7.16.12
       '@babel/generator': 7.16.8
       '@babel/helper-annotate-as-pure': 7.16.7
@@ -576,7 +576,7 @@ packages:
       '@babel/runtime': 7.16.7
       '@babel/template': 7.16.7
       '@discoveryjs/json-ext': 0.5.6
-      '@ngtools/webpack': 13.3.0_5d5295c5a73e4dc3045b38567bae4ea4
+      '@ngtools/webpack': 13.3.0_18c22336a94d38b840537cfa55792576
       ansi-colors: 4.1.1
       babel-loader: 8.2.3_b899f084ebd6472309450457d1eff97e
       babel-plugin-istanbul: 6.1.1
@@ -776,20 +776,20 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /@angular/compiler-cli/13.2.5_629197922e830e679bc6fd1890d83b5a:
-    resolution: {integrity: sha512-Xd8xj2Z0ilA4TJAM/JkTtA1CAa6SuebFsEEvabHCRO5MDvtdsIUP91ADUZIqDHy7qe6Qift/rAVN2PXxT2aaNA==}
+  /@angular/compiler-cli/13.3.0_5ae05b94a7761812b687fc547acb6410:
+    resolution: {integrity: sha512-f9m55YejHJNIDTwHyGwf3wn5AvZepDfdAgeJP0Re4XmO1mf/Z9Ob5mJP5Q1yLNhqk0DlURWsZ1CbJqufPXMTbQ==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     hasBin: true
     peerDependencies:
-      '@angular/compiler': 13.2.5
-      typescript: '>=4.4.2 <4.6'
+      '@angular/compiler': 13.3.0
+      typescript: '>=4.4.2 <4.7'
     dependencies:
-      '@angular/compiler': 13.2.5
+      '@angular/compiler': 13.3.0
       '@babel/core': 7.17.5
       chokidar: 3.5.3
       convert-source-map: 1.8.0
       dependency-graph: 0.11.0
-      magic-string: 0.25.9
+      magic-string: 0.26.1
       reflect-metadata: 0.1.13
       semver: 7.3.5
       sourcemap-codec: 1.4.8
@@ -800,8 +800,8 @@ packages:
       - supports-color
     dev: true
 
-  /@angular/compiler/13.2.5:
-    resolution: {integrity: sha512-OF7xqs/7HPyRJXWiP8ZLwcgT+O/pyBdTjubrVNUPmzeKWPFyE9ZVKEg8MLGLbGHRtw1omhU9Mq4b12NqI1B/gA==}
+  /@angular/compiler/13.3.0:
+    resolution: {integrity: sha512-oeUvaBOVpey2G1I5fWZa3JcyRuBQ3dAeRay5UtQhu1Xw2L8jd2tYkbZb1XOgP9J1/Ma4LO62pjSaOpR2EtO5ww==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     dependencies:
       tslib: 2.3.1
@@ -835,7 +835,7 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /@angular/platform-browser-dynamic/13.3.0_aa94eda0c8a5882dc55ed035b99148bf:
+  /@angular/platform-browser-dynamic/13.3.0_1cfacd2ecb80bcbf5cdd135248255288:
     resolution: {integrity: sha512-7/r79Yn8SDH8t0/fJ26PmScm/S1JZ9hxjC8IoROdyC5xBrSGrp946mIKE/4/813zmF8uPj2lveV9p/XiKTbxSw==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     peerDependencies:
@@ -845,7 +845,7 @@ packages:
       '@angular/platform-browser': 13.3.0
     dependencies:
       '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@7.5.4
-      '@angular/compiler': 13.2.5
+      '@angular/compiler': 13.3.0
       '@angular/core': 13.2.5_rxjs@7.5.4+zone.js@0.11.5
       '@angular/platform-browser': 13.3.0_6a025716b6bc57cd018b00350e85604e
       tslib: 2.3.1
@@ -868,7 +868,7 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /@angular/platform-server/13.3.0_e0d85355ac86e5519656997386537144:
+  /@angular/platform-server/13.3.0_f58296de2c76455cb4325bc978f0b3e3:
     resolution: {integrity: sha512-kfKyFi77f4MfcVfsv2O9icYz8FdqTjFdU1C8YDSC0OTgy4/QmwQ3lboZwcsvMRfF/aAb3liiFhPvNAjC2CYSEw==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     peerDependencies:
@@ -881,10 +881,10 @@ packages:
     dependencies:
       '@angular/animations': 13.2.5_@angular+core@13.2.5
       '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@7.5.4
-      '@angular/compiler': 13.2.5
+      '@angular/compiler': 13.3.0
       '@angular/core': 13.2.5_rxjs@7.5.4+zone.js@0.11.5
       '@angular/platform-browser': 13.3.0_6a025716b6bc57cd018b00350e85604e
-      '@angular/platform-browser-dynamic': 13.3.0_aa94eda0c8a5882dc55ed035b99148bf
+      '@angular/platform-browser-dynamic': 13.3.0_1cfacd2ecb80bcbf5cdd135248255288
       domino: 2.1.6
       tslib: 2.3.1
       xhr2: 0.2.1
@@ -2640,7 +2640,7 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.11
     dev: true
 
-  /@ngtools/webpack/13.3.0_5d5295c5a73e4dc3045b38567bae4ea4:
+  /@ngtools/webpack/13.3.0_18c22336a94d38b840537cfa55792576:
     resolution: {integrity: sha512-QbTQWXK2WzYU+aKKVDG0ya7WYT+6rNAUXVt5ov9Nz1SGgDeozpiOx8ZqPWUvnToTY8EoodwWFGCVtkLHXUR+wA==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
     peerDependencies:
@@ -2648,7 +2648,7 @@ packages:
       typescript: '>=4.4.3 <4.7'
       webpack: ^5.30.0
     dependencies:
-      '@angular/compiler-cli': 13.2.5_629197922e830e679bc6fd1890d83b5a
+      '@angular/compiler-cli': 13.3.0_5ae05b94a7761812b687fc547acb6410
       typescript: 4.5.5
       webpack: 5.70.0_esbuild@0.14.22
     dev: true
@@ -2660,7 +2660,7 @@ packages:
       '@angular-devkit/build-angular': ^13.1.0
     dependencies:
       '@angular-devkit/architect': 0.1301.4
-      '@angular-devkit/build-angular': 13.3.0_0d8938772dd2059c6ee3152d73d1b277
+      '@angular-devkit/build-angular': 13.3.0_a2e6d2226ede2a330b91dae25af8c26f
       '@angular-devkit/core': 13.2.5
       '@nguniversal/common': 13.0.2_cd6204f1035a2d49d78c91bbd55720cd
       browser-sync: 2.27.7
@@ -2713,7 +2713,7 @@ packages:
     dependencies:
       '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@7.5.4
       '@angular/core': 13.2.5_rxjs@7.5.4+zone.js@0.11.5
-      '@angular/platform-server': 13.3.0_e0d85355ac86e5519656997386537144
+      '@angular/platform-server': 13.3.0_f58296de2c76455cb4325bc978f0b3e3
       '@nguniversal/common': 13.0.2_cd6204f1035a2d49d78c91bbd55720cd
       express: 4.17.3
       tslib: 2.3.1
@@ -8561,8 +8561,9 @@ packages:
       sourcemap-codec: 1.4.8
     dev: true
 
-  /magic-string/0.25.9:
-    resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
+  /magic-string/0.26.1:
+    resolution: {integrity: sha512-ndThHmvgtieXe8J/VGPjG+Apu7v7ItcD5mhEIvOscWjPF/ccOiLxHaSuCAS2G+3x4GKsAbT8u7zdyamupui8Tg==}
+    engines: {node: '>=12'}
     dependencies:
       sourcemap-codec: 1.4.8
     dev: true

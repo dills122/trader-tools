@@ -478,7 +478,7 @@ importers:
   ../../services/trading-services:
     specifiers:
       '@types/lodash': ~4.14.168
-      '@typescript-eslint/eslint-plugin': ~5.18.0
+      '@typescript-eslint/eslint-plugin': ~5.19.0
       '@typescript-eslint/parser': ~5.12.0
       api-service: workspace:^0.2.12
       eslint: ~8.13.0
@@ -493,7 +493,7 @@ importers:
       trader-sdk: link:../../lib/trader-sdk
     devDependencies:
       '@types/lodash': 4.14.179
-      '@typescript-eslint/eslint-plugin': 5.18.0_658d62263d054bfacbc8d4a782335714
+      '@typescript-eslint/eslint-plugin': 5.19.0_658d62263d054bfacbc8d4a782335714
       '@typescript-eslint/parser': 5.12.1_eslint@8.13.0+typescript@4.5.5
       eslint: 8.13.0
       typescript: 4.5.5

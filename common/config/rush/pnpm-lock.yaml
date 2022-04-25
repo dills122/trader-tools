@@ -117,7 +117,7 @@ importers:
       '@types/node-cron': ~2.0.3
       '@typescript-eslint/eslint-plugin': ~5.20.0
       '@typescript-eslint/parser': ~5.12.0
-      eslint: ~8.13.0
+      eslint: ~8.14.0
       express: ~4.17.1
       node-cron: ~3.0.0
       pm2: ^5.1.0
@@ -132,9 +132,9 @@ importers:
     devDependencies:
       '@types/express': 4.17.13
       '@types/node-cron': 2.0.5
-      '@typescript-eslint/eslint-plugin': 5.20.0_658d62263d054bfacbc8d4a782335714
-      '@typescript-eslint/parser': 5.12.1_eslint@8.13.0+typescript@4.5.5
-      eslint: 8.13.0
+      '@typescript-eslint/eslint-plugin': 5.20.0_31481e06f79e5dafb9431cb9222475a5
+      '@typescript-eslint/parser': 5.12.1_eslint@8.14.0+typescript@4.5.5
+      eslint: 8.14.0
       ts-node-dev: 1.1.8_typescript@4.5.5
       typescript: 4.5.5
 

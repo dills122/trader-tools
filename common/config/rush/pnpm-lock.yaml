@@ -380,7 +380,7 @@ importers:
       is-ticker-symbol: workspace:^0.2.9
       lodash: ~4.17.21
       mocha: ~9.2.0
-      natural: ~5.1.13
+      natural: ~5.2.1
       proxyquire: ~2.1.3
       sinon: ~13.0.1
       spelling-corrector: ~3.0.0
@@ -395,7 +395,7 @@ importers:
       bad-words: 3.0.4
       is-ticker-symbol: link:../../lib/is-ticker-symbol
       lodash: 4.17.21
-      natural: 5.1.13
+      natural: 5.2.1
       spelling-corrector: 3.0.0
       stopword: 1.0.11
       trader-sdk: link:../../lib/trader-sdk
@@ -9676,8 +9676,8 @@ packages:
     resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=}
     dev: true
 
-  /natural/5.1.13:
-    resolution: {integrity: sha512-fbV7Jvr8X0S+Yb/iggoGxTBRMSbTxN1m2sgBspNI5dSnE6x3lN2P48O1ddyoiTtMC2q4OKDkHJAGuNRs9jM9WA==}
+  /natural/5.2.1:
+    resolution: {integrity: sha512-a/jYWUcnsHwEhSJ3qWc/zQFuIRHuuara6WvPS0qsm8DmmI4hn+OXJM7eOOJJAN5Lp6/rGinrr6Rgg8TX8zDtYA==}
     engines: {node: '>=0.4.10'}
     dependencies:
       afinn-165: 1.0.4

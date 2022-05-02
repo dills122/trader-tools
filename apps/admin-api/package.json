@@ -23,7 +23,7 @@
     "dotenv": "~16.0.0"
   },
   "devDependencies": {
-    "@hapi/code": "^8.0.3",
+    "@hapi/code": "^9.0.0",
     "@hapi/lab": "^24.3.2",
     "@types/hapi__hapi": "^20.0.9",
     "@types/node": "~17.0.18",

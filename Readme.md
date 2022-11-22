@@ -213,8 +213,6 @@ docker compose up -d --build
 rush docker-down:dev
 ```
 
-If you also want to have the `admin-ui` up and running too, you will have to run that in another terminal window. using the `start:dev` command
-
 For more commands you can always run `rush --help` and all native, as well as custom commands will be listed their.
 
 ## Deployments

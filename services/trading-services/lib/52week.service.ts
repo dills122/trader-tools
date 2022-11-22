@@ -4,12 +4,17 @@ import { util, Emailer } from 'trader-sdk';
 export const service = async (): Promise<void> => {
   try {
     const results = await util.asyncFilter(util.getWatchlist(), async (symbol) => {
-      const { week52Low, latestPrice } = await IEX.Quote.quote(symbol);
-      if (week52Low >= latestPrice) {
-        return true;
+      try {
+        const { week52Low, latestPrice } = await IEX.Quote.quote(symbol);
+        if (week52Low >= latestPrice) {
+          return true;
+        }
+        const percentDifference = util.calculatePercentDifference(week52Low, latestPrice);
+        return percentDifference <= 10;
+      } catch (err) {
+        console.warn(err);
+        return false;
       }
-      const percentDifference = util.calculatePercentDifference(week52Low, latestPrice);
-      return percentDifference <= 10;
     });
     if (results.length <= 0) {
       return;

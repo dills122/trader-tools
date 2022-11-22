@@ -10,11 +10,10 @@
     "clean": "tsc --build --clean && rm -rf ./types",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "start:dev": "ts-node server.ts",
+    "start:dev": "ts-node-dev --respawn --transpile-only ./server.ts",
     "start": "node server.js",
     "test": "mocha -r ts-node/register \"test/**/*.spec.ts\"",
-    "pm2": "pm2 start processes.json --no-daemon",
-    "pm2:dev": "ts-node-dev --respawn --transpile-only ./server.ts"
+    "pm2": "pm2 start processes.json --no-daemon"
   },
   "keywords": [],
   "author": "",

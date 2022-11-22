@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p ./certs
+
 pushd ./certs
 
 openssl genrsa -out ca.key 4096

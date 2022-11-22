@@ -1,6 +1,10 @@
 version: '3.7'
 services:
-  nginx:
-    volumes:
-      - ./.docker/nginx/conf.d/prod-proxy.conf:/etc/nginx/conf.d/proxy.conf
-# will need to have another volume for the built angular admin code
+  cron-app:
+    image: ${REGISTRY_HOST}/trader-tools/data-service:${GITHUB_SHA_SHORT}
+    environment:
+      NODE_ENV: 'prod'
+  sentiment-api:
+    image: ${REGISTRY_HOST}/trader-tools/sentiment-api:${GITHUB_SHA_SHORT}
+    environment:
+      NODE_ENV: 'prod'

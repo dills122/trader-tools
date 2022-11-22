@@ -61,16 +61,6 @@
       "versionPolicyName": "traderService"
     },
     {
-      "packageName": "admin-ui",
-      "projectFolder": "apps/admin-ui",
-      "versionPolicyName": "adminService"
-    },
-    {
-      "packageName": "admin-api",
-      "projectFolder": "apps/admin-api",
-      "versionPolicyName": "adminService"
-    },
-    {
       "packageName": "sentiment-rpc-server",
       "projectFolder": "apps/sentiment-rpc-server",
       "versionPolicyName": "traderService"

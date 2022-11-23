@@ -1,6 +1,11 @@
 import cron from 'node-cron';
 import express from 'express';
 import { Week52Low, FastSlowSma, LinkReport, SocialSentimentReport } from 'trading-services';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const PORT = process.env.CRON_PORT || 3000;
 
 const app = express();
 
@@ -40,4 +45,6 @@ cron.schedule('35 16 * * 5', () => {
     });
 });
 
-app.listen(3000);
+app.listen(PORT, () => {
+  console.log('Cron Server Up and Running');
+});

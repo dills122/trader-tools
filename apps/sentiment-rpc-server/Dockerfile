@@ -13,4 +13,4 @@ WORKDIR /tmp/prod/apps/sentiment-rpc-server
 RUN chown -R app /tmp/prod
 USER app
 
-CMD ["pm2-runtime", "start", "processes.json"]
+CMD ["pm2-runtime", "start", "processes.json", "--env", "production"]

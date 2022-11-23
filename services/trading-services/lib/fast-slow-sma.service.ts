@@ -3,6 +3,7 @@ import { Emailer, Strategies } from 'trader-sdk';
 import { getWatchlist, sliceArrayByFullChunks } from 'trader-sdk/lib/util';
 import { mjml } from 'templating-service';
 
+//TODO this service seems to be working, but template is not showing SYMBOLS
 export const service = async (): Promise<void> => {
   const results: Record<string, unknown>[] = [];
   try {
@@ -16,6 +17,7 @@ export const service = async (): Promise<void> => {
         candles: sliceArrayByFullChunks(stockCandleCollection, 200, true)
       });
       results.push({
+        symbol: stock,
         hasRecentCrossUp: Indicator.hasRecentCrossUp(),
         hasRecentCrossDown: Indicator.hasRecentCrossDown(),
         hasCrossDown: Indicator.hasCrossDown(),

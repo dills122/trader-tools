@@ -9,14 +9,15 @@
     "compile": "tsc",
     "clean": "tsc --build --clean && rm -rf ./types",
     "start": "node cron-runner.js",
+    "start:dev": "ts-node-dev --respawn --transpile-only ./cron-runner.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "pm2": "pm2 start processes.json --no-daemon",
-    "pm2:dev": "ts-node-dev --respawn --transpile-only ./cron-runner.ts"
+    "pm2": "pm2 start processes.json --no-daemon"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "~16.0.0",
     "trading-services": "workspace:^0.2.12",
     "node-cron": "~3.0.0",
     "express": "~4.18.0",

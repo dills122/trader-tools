@@ -47,10 +47,10 @@ export default {
     symbol: 'MSNVF',
     exchange: 'OTC'
   },
-  GGTTF: {
-    symbol: 'GGTTF',
-    exchange: 'OTC'
-  },
+  // GGTTF: {
+  //   symbol: 'GGTTF',
+  //   exchange: 'OTC'
+  // },
   LAC: {
     symbol: 'LAC',
     exchange: 'NYSE'

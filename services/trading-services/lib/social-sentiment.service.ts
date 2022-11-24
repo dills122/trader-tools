@@ -1,5 +1,6 @@
 import { SocialSentiment } from 'api-service';
-import { Emailer, util } from 'trader-sdk';
+import { util } from 'trader-sdk';
+import { Emailer } from 'shared-sdk';
 import _ from 'lodash';
 import { mjml } from 'templating-service';
 

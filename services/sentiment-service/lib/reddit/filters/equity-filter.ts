@@ -4,7 +4,7 @@ import { config } from '../config';
 import { checker } from '../../word-checker';
 import { RedditExtractor } from '../extractors';
 import { InputStandardizer } from '../../standardize-input';
-import { Loggers } from 'trader-sdk';
+import { Loggers } from 'shared-sdk';
 
 const AuditLogger = Loggers.Audit.logger;
 

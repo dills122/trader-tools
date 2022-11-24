@@ -1,7 +1,8 @@
 import { IEX } from 'api-service';
-import { Emailer, Strategies } from 'trader-sdk';
+import { Strategies } from 'trader-sdk';
 import { getWatchlist, sliceArrayByFullChunks } from 'trader-sdk/lib/util';
 import { mjml } from 'templating-service';
+import { Emailer } from 'shared-sdk';
 
 //TODO this service seems to be working, but template is not showing SYMBOLS
 export const service = async (): Promise<void> => {

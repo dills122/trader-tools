@@ -4,11 +4,18 @@ import { CandleCollection } from './candles/candles';
 export interface BaseIndicatorArgs {
   candles: CandleCollection;
   period?: number;
+  lib?: IndicatorLib;
+}
+
+export enum IndicatorLib {
+  TechnicalIndicators = 'technicalindicators',
+  TradingSignals = 'trading-signals'
 }
 
 export default class BaseIndicator {
   protected candles: CandleCollection;
   protected period: number;
+  protected lib: IndicatorLib = IndicatorLib.TechnicalIndicators;
   constructor(args: BaseIndicatorArgs) {
     _.assign(this, args);
     this.calculatePeriod(this.period);

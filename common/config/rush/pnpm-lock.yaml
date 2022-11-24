@@ -225,6 +225,7 @@ importers:
       mocha: ~10.0.0
       sinon: ~14.0.0
       technicalindicators: ~3.1.0
+      trading-signals: ~3.6.1
       ts-node: ~10.7.0
       typescript: ~4.8.4
     dependencies:
@@ -232,6 +233,7 @@ importers:
       gmail-send: 1.8.14
       lodash: 4.17.21
       technicalindicators: 3.1.0
+      trading-signals: 3.6.1
     devDependencies:
       '@types/chai': 4.3.0
       '@types/lodash': 4.14.179
@@ -790,6 +792,10 @@ packages:
     resolution: {integrity: sha512-7la3ZDJG1tlRqySO+pnXycZpacaMEw/iLEm8kc4l+I+jN8KjBfoQVwO6jm98xzXVLrxV8vDrB5TaMoop8sKclQ==}
     dev: true
 
+  /@types/big.js/6.1.3:
+    resolution: {integrity: sha512-fHh2h1cFlvGP0kFCqoAsnuQoM0n3xHB6HxgZvELt7dji+BtK/j938MRL0nG5AA45EgibuFcPjgLlkqfUPCyoKw==}
+    dev: false
+
   /@types/body-parser/1.19.2:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
@@ -1333,6 +1339,10 @@ packages:
     resolution: {integrity: sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=}
     dependencies:
       tweetnacl: 0.14.5
+    dev: false
+
+  /big.js/6.1.1:
+    resolution: {integrity: sha512-1vObw81a8ylZO5ePrtMay0n018TcftpTA5HFKDaSuiUDBo8biRBtjIobw60OpwuvrGk+FsxKamqN4cnmj/eXdg==}
     dev: false
 
   /binary-extensions/2.2.0:
@@ -4388,7 +4398,7 @@ packages:
     dev: false
 
   /require-directory/2.1.1:
-    resolution: {integrity: sha1-jGStX9MNqxyXbiNE/+f3kqam30I=}
+    resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
 
   /require-in-the-middle/5.1.0:
@@ -4850,6 +4860,14 @@ packages:
 
   /tr46/0.0.3:
     resolution: {integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=}
+    dev: false
+
+  /trading-signals/3.6.1:
+    resolution: {integrity: sha512-NE7Oa+q6qL5t8Zn+4rn8zXyLtOeEUE0rr5l6RBvj4W1t/w+1DLTulFK67tzOM7JXemzZsdx6ZNDOnNtccDz04Q==}
+    engines: {node: '>= 10.9', yarn: '>= 1'}
+    dependencies:
+      '@types/big.js': 6.1.3
+      big.js: 6.1.1
     dev: false
 
   /tree-kill/1.2.2:

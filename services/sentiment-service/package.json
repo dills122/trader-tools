@@ -24,7 +24,7 @@
     "api-service": "workspace:^0.2.12",
     "lodash": "~4.17.21",
     "is-ticker-symbol": "workspace:^0.2.9",
-    "trader-sdk": "workspace:^0.2.12"
+    "shared-sdk": "workspace:*"
   },
   "devDependencies": {
     "typescript": "~4.8.4",

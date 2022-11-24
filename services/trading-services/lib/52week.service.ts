@@ -1,5 +1,6 @@
 import { IEX } from 'api-service';
-import { util, Emailer } from 'trader-sdk';
+import { util } from 'trader-sdk';
+import { Emailer } from 'shared-sdk';
 
 export const service = async (): Promise<void> => {
   try {

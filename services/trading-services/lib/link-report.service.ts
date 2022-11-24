@@ -1,5 +1,6 @@
 import { mjml } from 'templating-service';
-import { Emailer, LinkGenerator } from 'trader-sdk';
+import { LinkGenerator } from 'trader-sdk';
+import { Emailer } from 'shared-sdk';
 
 export const service = async (): Promise<void> => {
   try {

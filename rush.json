@@ -69,6 +69,11 @@
       "packageName": "grpc-tools",
       "projectFolder": "lib/grpc-tools",
       "versionPolicyName": "traderService"
+    },
+    {
+      "packageName": "shared-sdk",
+      "projectFolder": "lib/shared-sdk",
+      "versionPolicyName": "traderService"
     }
   ]
 }

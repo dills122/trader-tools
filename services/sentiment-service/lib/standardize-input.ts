@@ -1,4 +1,4 @@
-import { Loggers } from 'trader-sdk';
+import { Loggers } from 'shared-sdk';
 const aposToLexForm = require('apos-to-lex-form');
 import SpellCorrector from 'spelling-corrector';
 import StopWord from 'stopword';

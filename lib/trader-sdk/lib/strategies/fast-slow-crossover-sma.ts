@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { CandleCollection } from '../candles/candles';
 import SMA from '../sma';
 import { CrossDown, CrossUp } from 'technicalindicators';
+import { IndicatorLib } from '../indicator-lib.type';
 
 const dependencies = {
   CrossUp,
@@ -15,10 +16,12 @@ export const config = {
 
 export interface FastSlowSMACrossOverArgs {
   candles: CandleCollection;
+  lib?: IndicatorLib;
 }
 
 export class FastSlowSMACrossOver {
   private candles: CandleCollection;
+  private lib?: IndicatorLib;
   private fastPeriodSMAs: number[] = [];
   private slowPeriodSMAs: number[] = [];
   constructor(args: FastSlowSMACrossOverArgs) {
@@ -38,11 +41,19 @@ export class FastSlowSMACrossOver {
   }
 
   private calculateFastPeriodSMA(periodCandles: CandleCollection) {
-    return new SMA({ candles: periodCandles, period: config.fastPeriod }).getSMAForPeriod();
+    return new SMA({
+      candles: periodCandles,
+      period: config.fastPeriod,
+      lib: this.lib
+    }).getSMAForPeriod();
   }
 
   private calculateSlowPeriodSMA(periodCandles: CandleCollection) {
-    return new SMA({ candles: periodCandles, period: config.slowPeriod }).getSMAForPeriod();
+    return new SMA({
+      candles: periodCandles,
+      period: config.slowPeriod,
+      lib: this.lib
+    }).getSMAForPeriod();
   }
 
   hasRecentCrossUp(): boolean {

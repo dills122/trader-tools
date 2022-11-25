@@ -1,7 +1,8 @@
 import _ from 'lodash';
-import BaseIndicator, { BaseIndicatorArgs, IndicatorLib } from '../base-indicator';
+import BaseIndicator, { BaseIndicatorArgs } from '../base-indicator';
 import { SMA as SMA_ti } from 'technicalindicators';
 import { SMA as SMA_ts } from 'trading-signals';
+import { IndicatorLib } from '../indicator-lib.type';
 
 const dependencies = {
   SMA: SMA_ti

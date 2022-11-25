@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { CandleCollection } from './candles/candles';
+import { IndicatorLib } from './indicator-lib.type';
 
 export interface BaseIndicatorArgs {
   candles: CandleCollection;
@@ -7,18 +8,16 @@ export interface BaseIndicatorArgs {
   lib?: IndicatorLib;
 }
 
-export enum IndicatorLib {
-  TechnicalIndicators = 'technicalindicators',
-  TradingSignals = 'trading-signals'
-}
-
 export default class BaseIndicator {
   protected candles: CandleCollection;
   protected period: number;
-  protected lib: IndicatorLib = IndicatorLib.TechnicalIndicators;
+  protected lib: IndicatorLib;
   constructor(args: BaseIndicatorArgs) {
     _.assign(this, args);
     this.calculatePeriod(this.period);
+    if (!this.lib) {
+      this.lib = IndicatorLib.TechnicalIndicators;
+    }
   }
 
   setOrUpdateCandles(candles: CandleCollection): void {

@@ -37,7 +37,7 @@
     "eslint": "~8.30.0"
   },
   "dependencies": {
-    "fuse.js": "~6.4.6",
+    "fuse.js": "~6.6.2",
     "lodash": "~4.17.21"
   }
 }

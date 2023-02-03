@@ -85,6 +85,7 @@ jobs:
           labels: automated-pr, dependabot-cleanup
           branch: cloud-update-advanced-params
           delete-branch: true
+      - name: Check Outputs
         if: ${{ steps.cpr.outputs.pull-request-number }}
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"

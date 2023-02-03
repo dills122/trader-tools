@@ -69,19 +69,15 @@ jobs:
           node-version: 14
       - name: Update Lock File
         run: node common/scripts/install-run-rush.js update
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v8
-        with:
-          message: 'Updated project dependencies'
-          default_author: github_actions
-          new_branch: rush-lockfile-updates
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
+          commit-message: Updated project dependencies
           title: Update lock-file after Dependabot updates
           body: Update lock-file after Dependabot updates
           base: master
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           labels: automated-pr, dependabot-cleanup
           branch: rush-lockfile-updates
           delete-branch: true

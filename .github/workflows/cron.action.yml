@@ -89,6 +89,11 @@ jobs:
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+      - name: Approve Pull Request
+        uses: juliangruber/approve-pull-request-action@v2.0.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.cpr.outputs.pull-request-number }}
       - name: Merge PR
         uses: 'pascalgn/automerge-action@v0.15.5'
         env:
@@ -99,8 +104,3 @@ jobs:
           MERGE_REQUIRED_APPROVALS: '1'
           UPDATE_METHOD: 'rebase'
           PULL_REQUEST: '${{ steps.cpr.outputs.pull-request-number }}'
-      - name: Approve Pull Request
-        uses: juliangruber/approve-pull-request-action@v2.0.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.cpr.outputs.pull-request-number }}

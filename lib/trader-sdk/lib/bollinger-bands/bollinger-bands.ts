@@ -18,6 +18,7 @@ export interface BollingerBandsArgs extends BaseIndicatorArgs {
   stdDev?: number;
 }
 
+//TODO need to make this grab the latest BB record, not full list
 export class BollingerBands extends BaseIndicator {
   protected stdDev: number;
   protected bands: Band[];

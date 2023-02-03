@@ -83,7 +83,7 @@ jobs:
           body: Update lock-file after Dependabot updates
           base: master
           labels: automated-pr, dependabot-cleanup
-          branch: cloud-update-advanced-params
+          branch: rush-lockfile-updates
           delete-branch: true
       - name: Check Outputs
         if: ${{ steps.cpr.outputs.pull-request-number }}
@@ -91,11 +91,13 @@ jobs:
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
       - name: Approve Pull Request
+        if: ${{ steps.cpr.outputs.pull-request-number }}
         uses: juliangruber/approve-pull-request-action@v2.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.cpr.outputs.pull-request-number }}
       - name: Merge PR
+        if: ${{ steps.cpr.outputs.pull-request-number }}
         uses: 'pascalgn/automerge-action@v0.15.5'
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'

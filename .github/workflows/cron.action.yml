@@ -8,6 +8,7 @@ permissions:
 on:
   schedule:
     - cron: '0 3 * * 2'
+  workflow_dispatch:
 
 jobs:
   linter_job:
@@ -73,3 +74,33 @@ jobs:
         with:
           message: 'Updated project dependencies'
           default_author: github_actions
+          new_branch: rush-lockfile-updates
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: Update lock-file after Dependabot updates
+          body: Update lock-file after Dependabot updates
+          base: master
+          labels: automated-pr, dependabot-cleanup
+          branch: cloud-update-advanced-params
+          delete-branch: true
+        if: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+      - name: Approve Pull Request
+        uses: juliangruber/approve-pull-request-action@v2.0.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.cpr.outputs.pull-request-number }}
+      - name: Merge PR
+        uses: 'pascalgn/automerge-action@v0.15.5'
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          MERGE_METHOD: 'squash'
+          MERGE_RETRIES: '2'
+          MERGE_RETRY_SLEEP: '10000'
+          MERGE_REQUIRED_APPROVALS: '1'
+          UPDATE_METHOD: 'rebase'
+          PULL_REQUEST: '${{ steps.cpr.outputs.pull-request-number }}'

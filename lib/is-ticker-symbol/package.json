@@ -33,7 +33,7 @@
     "api-service": "workspace:^0.2.12",
     "meow": "11.0.0",
     "@typescript-eslint/eslint-plugin": "5.59.1",
-    "@typescript-eslint/parser": "5.59.1",
+    "@typescript-eslint/parser": "5.59.2",
     "eslint": "~8.39.0"
   },
   "dependencies": {

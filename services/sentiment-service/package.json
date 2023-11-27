@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "natural": "~6.2.0",
+    "natural": "~6.9.2",
     "apos-to-lex-form": "~1.0.5",
     "spelling-corrector": "~3.0.0",
     "stopword": "~1.0.6",

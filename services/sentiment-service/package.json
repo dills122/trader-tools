@@ -27,7 +27,7 @@
     "shared-sdk": "workspace:*"
   },
   "devDependencies": {
-    "typescript": "~5.2.2",
+    "typescript": "~5.3.2",
     "@types/lodash": "~4.14.168",
     "mocha": "~10.2.0",
     "chai": "~4.3.6",

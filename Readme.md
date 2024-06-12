@@ -1,5 +1,9 @@
 # Trader Tools
 
+**Deprecated/Unmaintained**
+
+Unfortunately this is a dead repo at this time, most of the services that were leveraged within this repo has either shut-down or went to pay-only and is no longer worth pursuing this.
+
 [![CI Job](https://github.com/dills122/trader-tools/actions/workflows/ci.action.yml/badge.svg)](https://github.com/dills122/trader-tools/actions/workflows/ci.action.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/dills122/trader-tools/badge)](https://www.codefactor.io/repository/github/dills122/trader-tools)
 
